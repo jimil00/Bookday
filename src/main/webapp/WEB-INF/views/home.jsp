@@ -5,10 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Home</title>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-	테스트
+	<a href="/member/signup">회원가입</a>
+	<a href="/member/login">로그인</a>
+	<a href="/booknote/bookshelves">독서노트 책장</a>
+	<a href="/delivery/bookbag">책가방</a>
 </body>
 </html>
