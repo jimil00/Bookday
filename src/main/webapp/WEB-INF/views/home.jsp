@@ -52,7 +52,7 @@
 
         .search-box {
             position: absolute;
-            bottom: 6px;
+            bottom: 5px;
             left: 0px;
             overflow: hidden;
             height: 40px;
@@ -104,7 +104,7 @@
             color: black;
             font-variation-settings:
                 'FILL' 0,
-                'wght' 300,
+                'wght' 200,
                 'GRAD' 200,
                 'opsz' 40
         }
