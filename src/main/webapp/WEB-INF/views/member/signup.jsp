@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -114,7 +113,6 @@ $(document).ready(function(){
 
                 
     }
-              
               if(!phoneRegex.test(phone)){
                 $("#phone, #verifi_code").css("border-color","red");
               }else{$("#phone").css("border-color","#5397fc");}

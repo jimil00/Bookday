@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +25,7 @@
 <body>
 <div class="contanier">
     <div class="header">
-        <img src="/resources/책하루 로고_중간.png">
+        <img src="/resources/bookday_logo_ver1(kor).png">
     </div>
         <div class="login_form"> 
             <form action="login">
