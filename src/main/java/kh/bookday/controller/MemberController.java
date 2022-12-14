@@ -38,7 +38,7 @@ public class MemberController {
 	
 	@RequestMapping("toSignup")
 	public String toSignup() {
-		return "/member/signup";
+		return "member/signup";
 	}
 	
 	@RequestMapping("toLogin")
