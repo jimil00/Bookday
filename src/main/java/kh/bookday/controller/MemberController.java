@@ -25,17 +25,6 @@ public class MemberController {
 	@Autowired
 	private HttpSession session;
 	
-//	@RequestMapping("phoneCheck")
-//	public String phoneCheck() {
-//		return "/member/login";
-//	}
-//	
-//	@RequestMapping("nickCheck")
-//	public String nickCheck() {
-//		return "/member/login";
-//	}
-//	
-	
 	@RequestMapping("toSignup")
 	public String toSignup() {
 		return "member/signup";
@@ -110,7 +99,7 @@ public class MemberController {
 	public String Updatepw(String phone) {
 		
 		
-		
+		//추가 중
 		
 		return "/member/toLogin";
 	}
