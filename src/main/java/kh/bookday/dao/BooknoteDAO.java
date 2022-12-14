@@ -9,11 +9,12 @@ import org.springframework.stereotype.Repository;
 import kh.bookday.dto.BookDTO;
 
 @Repository
-public class BookDAO {
-	
+public class BooknoteDAO {
+
 	@Autowired
 	private SqlSession db;
 	
-
-	
+	public List<BookDTO> selectBookselves(){
+		return db.selectList("Book.selectList");
+	}
 }
