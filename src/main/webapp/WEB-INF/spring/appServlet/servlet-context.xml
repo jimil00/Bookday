@@ -49,4 +49,5 @@
 <!-- 			<beans:bean class="kh.bookday.interceptor.LoginValidator"/> -->
 <!-- 		</interceptor> -->
 <!-- 	</interceptors> -->
+
 </beans:beans>

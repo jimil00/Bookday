@@ -44,79 +44,85 @@
 </div>
 <script>
 
-//휴대폰 번호 정규표현식
-let replacePhone = /[^0-9]/gi;
+    //휴대폰 번호 형식에서 벗어난 문자를 잡는 정규표현식
+    let replacePhone = /[^0-9]/;
 
- //비밀번호 정규표현식
-let replacePW=/^[A-Z a-z 0-9 ! @ $ %]$/;
-
-$(document).ready(function(){
+    //비밀번호 기본 형식에서 벗어난 문자를 잡는 정규표현식
+    //비번 기본 형식: ^[A-Z a-z 0-9 ! @ %]
+    let replacePW=/^[가-힣 # $ ^ & * ( ) = - ]$/;
     
-    //디폴트로 로그인 버튼 누르지 못하게 하기
-    $("#login_btn").attr("disabled", true);
+    $(document).ready(function(){
+        
+        //디폴트로 로그인 버튼 누르지 못하게 하기
+        $("#login_btn").attr("disabled", true);
 
-    //휴대폰 번호 숫자 외 입력 제한
-    $("#phone").on("focusout", function() {
-        let x = $(this).val();
-        if (x.length > 0) {
-            if (x.match(replacePhone)) {
-               x = x.replace(replacePhone, "");
+        //휴대폰 번호 숫자 외 입력 제한
+        $("#phone").on("focusout", function() {
+            let x = $(this).val();
+            if (x.length > 0) {
+                if (x.match(replacePhone)) {
+                   x = x.replace(replacePhone, "");
+                }
+                $(this).val(x);
             }
-            $(this).val(x);
-        }
-    }).on("keyup", function() {
-        $(this).val($(this).val().replace(replacePhone, ""));
+            //아예 입력부터 제한
+        }).on("input", function() {
+            $(this).val($(this).val().replace(replacePhone, ""));
+        });
+
+        //비밀번호 숫자, 영어 및 특수문자 외 입력 제한
+        $("#pw").on("focusout", function() {
+            let x = $(this).val();
+            if (x.length > 0) {
+                if (x.match(replacePW)) {
+                   x = x.replace(replacePW, "");
+                }
+                $(this).val(x);
+            }
+             //아예 입력부터 제한
+        }).on("input", function() {
+            $(this).val($(this).val().replace(replacePW, ""));
+        });
+ 
     });
 
-    //비밀번호 숫자, 영어 및 특수문자 외 입력 제한
-    $("#pw").on("focusout", function() {
-        let x = $(this).val();
-        if (x.length > 0) {
-            if (x.match(replacePW)) {
-               x = x.replace(replacePW, "");
+    //해당 값들을 넣지 않고 post했을 때
+	$("#phone, #pw").on("blur",function(){
+			let phone= $("#phone").val();
+            let pw=$("#pw").val();
+            let phoneRegex=/^010\d{3,4}\d{4}$/;
+
+			if(phone == "" || pw=="" || !phoneRegex.test(phone)){
+                //비어 있거나 휴대폰 번호 유효하지 못한 값을 넣으면 로그인 버튼 아예 못 누름
+				$("#login_btn").attr("disabled", true);
+				return;
+                //유효한 값이 들어 있으면 로그인 버튼 누르게 해줌.
+			}else{
+                $("#login_btn").attr("disabled", false);
+                return;
             }
-            $(this).val(x);
-        }
-    }).on("keyup", function() {
-        $(this).val($(this).val().replace(replacePW, ""));
-    });
 
-});
+            //로그인 버튼 눌렀을 때
+            $("#login_btn").on("click", function(){
 
-//해당 값들을 넣지 않고 post했을 때
-$("#phone, #pw").on("blur",function(){
-		let phone= $("#phone").val();
-        let pw=$("#pw").val();
-		if(phone == "" || pw==""){
-            //비어 있으면 로그인 버튼 아예 못 누름
-			$("#login_btn").attr("disabled", true);
-			return;
-            //값이 들어 있으면 로그인 버튼 누르게 해줌.
-		}else{$("#login_btn").attr("disabled", false);
-        return;}
-
-        //로그인 버튼 눌렀을 때
-        $("#login_btn").on("click", function(){
-
-             $.ajax({ //페이지 이동 없이 값을 얻어 냄
-			url:"/member/login",
-			data:{"pnum":pnum, "pw":pw}
-		
-		}).done(function(resp){
+                 $.ajax({ //페이지 이동 없이 값을 얻어 냄
+				url:"/member/login",
+				data:{"phone":phone, "pw":pw}
 			
-			console.log(resp);
+			}).done(function(resp){
+				
+				console.log(resp);
+				
+				if(resp == "false"){//휴대폰 번호 및 비번이 존재하지 않을 때,
+                    $("#result").html("휴대폰 번호 혹은 비밀번호가 틀립니다.");
+				}else{ //번호 및 비번이 존재할 때 메인으로
+                    location.href="/";
+                }
+			})
+
+            })
 			
-			if(resp == "false"){//번호 및 비번이 존재하지 않을 때,
-                $("#result").html("번호 혹은 비밀번호가 틀립니다.");
-			}else{ //번호 및 비번이 존재할 때 메인으로
-                location.href="/";
-            }
-		})
-
-        })
-		
-	});	
-
+		});	
 </script>
 </body>
 </html>
