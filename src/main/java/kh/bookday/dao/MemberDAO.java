@@ -2,6 +2,7 @@ package kh.bookday.dao;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,10 @@ public class MemberDAO {
 	@Autowired
 	private SqlSession db;
 	
-	public boolean idCheck(int phone) throws Exception{
+	//휴대폰 중복 검사
+	public boolean phoneCheck(String phone) throws Exception{
 		boolean result;
-	if(db.selectOne("Member.idCheck",phone)!=null) {
+	if(db.selectOne("Member.phoneCheck",phone)!=null) {
 		result=true;
 	}else{
 		result=false;
@@ -25,7 +27,17 @@ public class MemberDAO {
 	return result;
 	}
 	
-	//map에서 인트랑 스트링 값을 어캐 같이 담아오지(괜히 번호를 아이디로 했다..ㅎ)
+	//닉네임 중복 검사
+	public boolean nickCheck(String nickname) throws Exception{
+		boolean result;
+	if(db.selectOne("Member.nickCheck",nickname)!=null) {
+		result=true;
+	}else{
+		result=false;
+	};
+	return result;
+	}
+	
 	//일단 컨트롤러에서도 string으로 받아야 하니까 스트링으로 담고 
 	public boolean isLoginOk(String phone, String pw) throws Exception{
 		Map<String ,String> param = new HashMap<>();
@@ -41,9 +53,23 @@ public class MemberDAO {
 		return result;
 	}
 	
+	//회원가입
 	public int insert(MemberDTO dto) {
-
+		
+		//uuid 생성
+		String id =UUID.randomUUID().toString();
+		dto.setId(id);
 		return db.insert("Member.insert", dto);
+	}
+	
+	public String selectIdPwByPhone(String phone) {
+		return db.selectOne("Member.selectIdPwByPhone", phone);
+	}
+	
+	public int updatePw(String phone) {
+
+		return db.update("Member.updatePw", phone);
+		
 	}
 	
 }
