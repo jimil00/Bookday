@@ -18,9 +18,8 @@ public class MemberDTO {
 	private String sysprofname;
 
 	
-	public MemberDTO() {
-		super();
-	}
+	public MemberDTO() {}
+	
 	public MemberDTO(String id, String phone, String pw, String name, String nickname, String email, String postcode,
 			String address1, String address2, Timestamp signup_date, String oriprofname, String sysprofname) {
 		this.id = id;
@@ -36,7 +35,6 @@ public class MemberDTO {
 		this.oriprofname = oriprofname;
 		this.sysprofname = sysprofname;
 	}
-	
 	
 	public String getId() {
 		return id;
