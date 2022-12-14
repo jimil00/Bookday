@@ -1,7 +1,7 @@
 package kh.bookday.dto;
 
 public class BookDTO {
-	
+
 	private String b_isbn;
 	private int b_ranking;
 	private String b_title;
@@ -11,7 +11,7 @@ public class BookDTO {
 	private String b_publication_date;
 	private String b_img_url;
 	private String b_description;
-	
+
 	
 	public BookDTO() {
 		super();
@@ -84,5 +84,5 @@ public class BookDTO {
 	public void setB_description(String b_description) {
 		this.b_description = b_description;
 	}
-	
+
 }
