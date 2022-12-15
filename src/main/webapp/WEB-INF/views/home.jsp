@@ -10,21 +10,30 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
-/*     header */
-* {
-	box-sizing: border-box;
+
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
-div {
-	border: 1px solid black;
+* {
+	box-sizing: border-box;
+    font-family: 'NanumSquareNeo-Variable';
 }
+
+
+/* div { */
+/* 	border: 1px solid black; */
+/* } */
 
 .container {
 	margin: auto;
 	overflow: hidden;
 	width: 978px;
 }
-
+/*     header */
 .header {
 	height: 150px;
 	overflow: hidden;
@@ -169,7 +178,7 @@ height: 2000px;
 			location.href = "/delivery/toBookbag";
 		})
 		$("#bookselves").on("click", function() {
-			location.href = "/booknote/selectBookselves";
+			location.href = "/bookselves/selectBookselves";
 		})
 		$("#mypage").on("click", function() {
 			if (loginID == null) {

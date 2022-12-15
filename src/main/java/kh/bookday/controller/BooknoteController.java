@@ -22,12 +22,6 @@ public class BooknoteController {
 //		return "/booknote/bookselves";
 //	}
 	
-	@RequestMapping("selectBookselves")
-	public String selectBookselves(Model model) throws Exception{
-		List<BookDTO> list = service.selectBookselves();
-		model.addAttribute("list", list);
-		return "booknote/bookselves";
 
-	}
 
 }
