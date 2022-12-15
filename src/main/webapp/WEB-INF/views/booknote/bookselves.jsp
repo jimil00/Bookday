@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,21 +11,29 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
-/*     header */
-* {
-	box-sizing: border-box;
+
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
-div {
-	border: 1px solid black;
+* {
+	box-sizing: border-box;
+    font-family: 'NanumSquareNeo-Variable';
 }
+
+/* div {
+	border: 1px solid black;
+} */
 
 .container {
 	margin: auto;
 	overflow: hidden;
 	width: 978px;
 }
-
+/*     header */
 .header {
 	height: 150px;
 	overflow: hidden;
@@ -114,8 +123,49 @@ span, img:hover {
 }
 /*     header */
 /* body */
-.bookcover {
-	width: 300px;
+.body{
+    overflow: hidden;
+}
+.rental{
+    width: 100%;
+}
+.wishlist{
+    width: 100%;
+}
+.mybooks{
+    width: 100%;
+}
+.title{
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+}
+.word{
+    line-height: 30px;
+    font-size: 20px;
+}
+span.size-35{
+    font-size: 30px;
+    color:gray;
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
+}
+
+
+#bookselves{
+    height: 10px;
+    border: 0;
+    box-shadow: 0 10px 10px -10px #bbb inset;
+}
+
+.books{
+	width : 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.book>img{
+    width: 90px;
 }
 </style>
 </head>
@@ -151,22 +201,41 @@ span, img:hover {
 		<div class="navi"></div>
 		<div class="body">
 			<div class="rental">
-				<c:forEach var="rental" items="${list}">
-					<div class="bookcovers">
-						<img src="${rental.b_img_url }" class="bookcover">
-					</div>
-				</c:forEach>
-				<div class="rentalNavi">${navi }</div>
+                <div class="title">
+                    <div class="word">대여 중</div>&nbsp 
+                    <span class="material-symbols-outlined size-35">auto_stories</span>
+                </div>
+
+                <div class="books">
+                    <c:forEach var="rental" items="${rlist}">
+                        <div class="book">
+                            <img src="${rental.b_img_url }" class="bookcover">
+                        </div>
+                    </c:forEach>
+                </div>
+                <hr id="bookselves">
 			</div>
 			<div class="wishlist">
-				<c:forEach var="wishlist" items="${list }">
-					<div class="bookcovers">
+                <div class="title">
+                    <div class="word">위시리스트</div>&nbsp
+                    <span class="material-symbols-outlined size-35">favorite</span>
+                </div>
+                <div class="books">
+               		<c:forEach var="wishlist" items="${wlist }">
+					<div class="book">
 						<img src="${wishlist.b_img_url }" class="bookcover">
 					</div>
 				</c:forEach>
-				<div class="wishlistNavi">${navi }</div>
+                </div>
+                <hr id="bookselves">
+                <div class="wishlistNavi">${navi }</div>
+                
 			</div>
 			<div class="mybooks">
+                <div class="title">
+                    <div class="word">내 책장</div>&nbsp
+                    <span class="material-symbols-outlined size-35">shelves</span>
+                </div>
 				<c:forEach var="mybooks" items="${list }">
 					<div class="bookcovers">
 						<img src="${mybooks.b_img_url }" class="bookcover">

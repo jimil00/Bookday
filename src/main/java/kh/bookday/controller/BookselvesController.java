@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kh.bookday.dto.RentalDTO;
+import kh.bookday.dto.WishlistDTO;
 import kh.bookday.service.BookselvesService;
 
 @Controller
@@ -20,14 +22,14 @@ public class BookselvesController {
 	
 	@RequestMapping("selectBookselves")
 	public String selectBookselves(Model model) throws Exception{
-		
 		// 대여
-//		List<RentalDTO> rlist = service.selectOnesRentalBooks();
-//		model.addAttribute("rlist", rlist);
+		String id = "zxcvzxcv";
+		List<RentalDTO> rlist = service.selectOnesRentalBooks(id);
+		model.addAttribute("rlist", rlist);
 		
 		// 위시리스트
-//		List<WishlistDTO> wlist = service.selectOnesWishlistBooks();
-//		model.addAttribute("wlist", wlist);
+		List<WishlistDTO> wlist = service.selectOnesWishlistBooks(id);
+		model.addAttribute("wlist", wlist);
 		
 		// 책장
 		// 한 사람이 쓴 POST, BOOKMARK 쓴 것 BookDTO에 모아서 리스트로 보여주면 되지 않을까
