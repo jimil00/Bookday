@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/delivery/")
-public class DeliveryController {
+public class BookbagController {
 	
 	@RequestMapping("toBookbag")
 	public String toBookbag() {
