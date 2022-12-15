@@ -202,7 +202,8 @@ button:active {
 								$('#pw').val('');
 							} else if(resp =="true"){ //휴대번호 및 비번이 존재할 때,
 								location.href="/";
-								
+							
+								//이렇게 요청값만 에이작스로 가져오면 세션을 안 가져올거 같아서 수정 예정
 							}
 						})
 						.fail(function(){

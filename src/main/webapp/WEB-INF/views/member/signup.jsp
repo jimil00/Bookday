@@ -44,7 +44,7 @@
           <input type="text" placeholder="이메일" name="email" id="email">
         </div>
         <div class="box">
-          <input type="text" placeholder="닉네임" name="nickname" id="nickname" maxlength="20">      
+          <input type="text" placeholder="닉네임" name="nickname" id="nickname" maxlength="10">      
           <div id="nk_result">닉네임 중복 검사 출력</div>
         </div>
         <div class="box">
@@ -68,13 +68,11 @@
 
 $(document).ready(function(){
 
-        // //기본으로 회원가입 버튼 비활성화
-        // $("#signup_btn").attr("disabled", true);
 
       	$("#name, #nickname, #phone,#verifi_code,#email,#pw,#check_pw")
         .on("input",function(){
 
-			   let name= $("#name").val();
+		 let name= $("#name").val();
          let nickname=$("#nickname").val();
          let phone=$("#phone").val();
          let verifi_code=$("#verifi_code").val();
@@ -105,9 +103,8 @@ $(document).ready(function(){
                   if (resp == "true") {//핸드폰이 존재하므로 사용할 수 없는 경우
                     $("#phone").css("border-color", "red");
                     alert("이미 사용 중인 번호입니다.");
+                    $("#phone").val("");
                     return true;
-                    //   //로그인 페이지로 이동
-                    //  location.href="/member/toLogin"
 
                   } else { //핸드폰이 존재하지 않으므로 사용할 수 있는 경우
                     $("#phone").css("border-color", "#5397fc");
@@ -166,14 +163,14 @@ $(document).ready(function(){
               });
         }
 
-      //유효성 하나 하나 확인이 가능하나 빨간 선이 전체적으로 간다.
       //유효성에 맞으면 회원가입 버튼 활성화 + 중복검사 통과
       if(phoneRegex.test(phone) && nameRegex.test(name) && emailRegex.test(email) 
-      && nicknameRegex.test(nickname) && pwRegex.test(pw) && false){
+      && nicknameRegex.test(nickname) && pwRegex.test(pw)){
+        //&& false
         
         //회원가입 버튼 활성화
 			$("#signup_btn").attr("disabled", false);
-      return;
+      		return;
       }
     });
   });

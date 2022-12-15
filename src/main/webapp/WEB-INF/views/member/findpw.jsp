@@ -19,7 +19,7 @@
 <body>
     <div class="container">
         <div class="header"><a href="/"><img src="bookday_logo.png"></a></div>
-        <div class="inputbox"><input type="text" placeholder="휴대폰 번호를 입력하세요." id="check" name="check"></div>
+        <div class="inputbox"><input type="text" placeholder="휴대폰 번호를 입력하세요." id="phone" name="phone"></div>
         <div class="result"></div>
         <div class="find_btn"><button id="find_btn">확인</button></div>
     </div>
@@ -30,20 +30,22 @@
         
         //휴대폰 번호 여부 에이작스로 확인한 다음에 비밀번호 재설정 페이지로 이동 
           $.ajax({
-				url:"/member/findPw",
-				data:{"phone":check}
+				url:"/member/FindUser",
+				data:{"phone":phone}
 			
 			}).done(function(resp){
                 if(resp==false){
                     $("#result").html("일치하는 번호가 없습니다.");
                 }else{
-                    //인풋타입 추가해서 값 받기
+                    //인풋타입 추가해서 값 받기(추가 중)
                     $("#phone").remove();
                     let div=$("<div>");
+                    let input=$("<input>");
+           
+                    let input1=div.append(input);   
                     let pw=$("<input>").attr("placeholder","비밀번호 재설정");
+                    let input2=div.append(input);
                     let pw_check=$("<input>").attr("placeholder","비밀번호 확인");
-                    div.append(pw);
-
 
                 }
             })

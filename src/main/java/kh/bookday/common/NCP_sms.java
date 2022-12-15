@@ -9,6 +9,7 @@ import java.net.URL;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.Random;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -126,6 +127,16 @@ public class NCP_sms{
 			return encodeBase64String;
 			}
 			
+		//난수 생성
+		public String CreateRandomMsg(String phone){
+			Random rand=new Random();
+			
+			String msg;
+			
+			return null;
+		}
+		
+		
 		}
 	
 

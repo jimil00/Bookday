@@ -38,8 +38,7 @@ public class MemberController {
 		return "/member/login";
 	}
 	
-	//에이작스로 하면 안되겠다
-	@ResponseBody //에이작스로 보낼 때 @RequestParam("phone") String phone, @RequestParam("pw") String pw
+	@ResponseBody //에이작스로 보낼 때
 	@RequestMapping(value="login",produces="text/html;charset=utf8")
 	public String login(@RequestParam("phone") String phone, @RequestParam("pw") String pw)throws Exception{
 
@@ -55,42 +54,23 @@ public class MemberController {
 			session.setAttribute("loginID",id);
 			
 		}
-		//근데 이러면 세션 값을 보내주려나? 안 보내줄거 같음...
-		return String.valueOf(result); 
+		//근데 이러면 세션 값을 보내주지 않을거 같음.
+		return String.valueOf(result);  //"redirect:/"; 
 	}
-	
 
-//	@RequestMapping(value="login",produces="text/html;charset=utf8")
-//	public String login(@RequestParam("phone") String phone, @RequestParam("pw") String pw)throws Exception{
-//
-//		boolean result=service.isLoginOk(phone,pw);
-//		
-//		System.out.println(result);
-//		
-//		if(result) {
-//			
-//			//로그인 성공하면 id 값 가져와서 session 만들기
-//			String id=service.selectIdByPhone(phone);
-//			System.out.println(id);
-//			session.setAttribute("loginID",id);
-//			
-//			}
-//		return "redirect:/"; 
-//	}
-//	
 	
 	@ResponseBody//에이작스로 보내는 용도
 	@RequestMapping(value="nickCheck",produces="text/html;charset=utf8")
-	public String nickCheck(String nickname)throws Exception{
+	public String nickCheck(@RequestParam("nickname") String nickname)throws Exception{
 		
 		boolean result= service.nickCheck(nickname);
 		
 		return String.valueOf(result); 
 	}
 	
-	@ResponseBody//에이작스로 보내는 용도
-	@RequestMapping(value="phoneCheck",produces="text/html;charset=utf8")
-	public String phoneCheck(String phone)throws Exception{
+	@ResponseBody//에이작스로 보내는 용도 //핸드폰 중복 체크 및 비번 찾기에서 회원 여부 체크
+	@RequestMapping(value={"phoneCheck","FindUser"}, produces="text/html;charset=utf8")
+	public String phoneCheck(@RequestParam("phone") String phone)throws Exception{
 		boolean result= service.phoneCheck(phone);
 		return String.valueOf(result); 
 	}
@@ -114,26 +94,24 @@ public class MemberController {
 		return "/member/findpw";
 	}
 	
-	//비밀번호 찾기에서 사용자 찾기
-	@ResponseBody//에이작스로 보내는 용도
-	@RequestMapping(value="FindUser",produces="text/html;charset=utf8")
-	public String FindUser(String phone)throws Exception{
-		boolean result= service.phoneCheck(phone);
-		
-		return String.valueOf(result);
-	}
-
 	//비밀번호 재설정
 	@RequestMapping("Updatepw")
-	public String Updatepw(String phone) {
+	public String Updatepw(@RequestParam("phone") String phone) {
 		
-		
-		//추가 중
+		//다른 에이작스 컨트롤러에서 중복 여부 체크 후 update 시도
+		//해당 회원 정보로 들어갈 update 구문(해당 회원의 아이디 및 번호 값으로 조건을 준 후 update
+		int result=service.updatePw(phone);
 		
 		return "/member/toLogin";
 	}
 	
-	
+	//카카오 로그인(추가 중)
+	@RequestMapping(value="kakaoLogin" , method=RequestMethod.GET)
+	public String kakaoLogin(@RequestParam("code") String code) {
+		
+		System.out.println("#########"+code);
+		return "redirect:/";
+	}
 	
 	
 	@ExceptionHandler(Exception.class) 
