@@ -5,15 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kh.bookday.dao.BookselvesDAO;
+import kh.bookday.dao.BookshelvesDAO;
 import kh.bookday.dto.RentalDTO;
 import kh.bookday.dto.WishlistDTO;
 
 @Service
-public class BookselvesService {
+public class BookshelvesService {
 	
 	@Autowired
-	private BookselvesDAO dao;
+	private BookshelvesDAO dao;
 	
 	public List<RentalDTO> selectOnesRentalBooks(String id){
 		return dao.selectOnesRentalBooks(id);

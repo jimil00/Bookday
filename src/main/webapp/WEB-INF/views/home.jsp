@@ -150,7 +150,7 @@ height: 2000px;
 					<span class="material-symbols-outlined size-40" id="notifications">
 						notifications </span> <span class="material-symbols-outlined size-40"
 						id="bookbag"> shopping_bag </span> <span
-						class="material-symbols-outlined size-40" id="bookselves">
+						class="material-symbols-outlined size-40" id="bookshelves">
 						shelves </span> <span class="material-symbols-outlined size-40"
 						id="mypage"> person </span>
 				</div>
@@ -177,8 +177,8 @@ height: 2000px;
 		$("#bookbag").on("click", function() {
 			location.href = "/delivery/toBookbag";
 		})
-		$("#bookselves").on("click", function() {
-			location.href = "/bookselves/selectBookselves";
+		$("#bookshelves").on("click", function() {
+			location.href = "/bookshelves/selectBookshelves";
 		})
 		$("#mypage").on("click", function() {
 			if (loginID == null) {

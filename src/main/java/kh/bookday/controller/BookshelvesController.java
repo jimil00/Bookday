@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kh.bookday.dto.RentalDTO;
 import kh.bookday.dto.WishlistDTO;
-import kh.bookday.service.BookselvesService;
+import kh.bookday.service.BookshelvesService;
 
 @Controller
-@RequestMapping("bookselves")
-public class BookselvesController {
+@RequestMapping("bookshelves")
+public class BookshelvesController {
 	// 대여, 위시리스트, 책장
 	
 	@Autowired
-	private BookselvesService service;
+	private BookshelvesService service;
 	
-	@RequestMapping("selectBookselves")
-	public String selectBookselves(Model model) throws Exception{
+	@RequestMapping("selectBookshelves")
+	public String selectBookshelves(Model model) throws Exception{
 		// 대여
 		String id = "zxcvzxcv";
 		List<RentalDTO> rlist = service.selectOnesRentalBooks(id);
@@ -37,7 +37,7 @@ public class BookselvesController {
 //		List<BookDTO> blist = service.selectOnesPMedBooks();
 //		model.addAttribute("blist", blist);
 
-		return "booknote/bookselves";
+		return "booknote/bookshelves";
 	}
 	
 	@ExceptionHandler(Exception.class)
@@ -47,3 +47,4 @@ public class BookselvesController {
 	}
 
 }
+
