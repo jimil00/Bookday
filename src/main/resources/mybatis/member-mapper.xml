@@ -3,23 +3,24 @@
 
 <mapper namespace="Member">
 
-	<select id="nickCheck" resultType="kh.bookday.dto.MemberDTO">
-  		select nickname from member where nickname = #{value}
+	<select id="nickCheck" resultType="boolean">
+  		select count(*) from member where nickname = #{value}
   	</select>
   	
-  	<select id="phoneCheck" resultType="kh.bookday.dto.MemberDTO">
-  		select phone from member where phone = #{value}
+  	<select id="phoneCheck" resultType="boolean">
+  		select count(*) from member where phone = #{value}
   	</select>
   	
-  	<select id="isLoginOk" resultType="kh.bookday.dto.MemberDTO">
-  		select phone, pw from member where phone = #{phone} and pw=#{pw}
-  	</select>
+  	<select id="isLoginOk" resultType="boolean">
+	select count(*) from member where phone=#{phone} and pw=#{pw}
+	</select>
+  	
   	<insert id="insert">
-  	insert into member values(#{id},#{phone},#{pw},#{nickname},#{email},0,0,0,sysdate,0,0)
+  	insert into member values(#{id},#{phone},#{pw},#{name},#{nickname},#{email},0,0,0,default,0,0)
   	</insert>
   	
-  	<select id="selectIdPwByPhone" resultType="kh.bookday.dto.MemberDTO">
-  		select id, pw from member where phone = #{value}
+  	<select id="selectIdByPhone" resultType="String">
+  		select * from member where phone = #{value}
   	</select>
   	
   	<update id="updatePw">

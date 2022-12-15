@@ -16,60 +16,36 @@ public class MemberDAO {
 	@Autowired
 	private SqlSession db;
 	
-	//휴대폰 중복 검사
+	//핸드폰 중복 검사
 	public boolean phoneCheck(String phone) throws Exception{
-		boolean result;
-	if(db.selectOne("Member.phoneCheck",phone)!=null) {
-		result=true;
-	}else{
-		result=false;
-	};
-	return result;
+		return db.selectOne("Member.phoneCheck",phone);
 	}
-	
+
 	//닉네임 중복 검사
 	public boolean nickCheck(String nickname) throws Exception{
-		boolean result;
-	if(db.selectOne("Member.nickCheck",nickname)!=null) {
-		result=true;
-	}else{
-		result=false;
-	};
-	return result;
+		return db.selectOne("Member.nickCheck",nickname);
 	}
-	
-	//일단 컨트롤러에서도 string으로 받아야 하니까 스트링으로 담고 
-	public boolean isLoginOk(String phone, String pw) throws Exception{
-		Map<String ,String> param = new HashMap<>();
-		param.put("phone", phone);
-		param.put("pw", pw);
+
+	//로그인
+	public boolean isLoginOk(Map<String, String> param) throws Exception{
 		
-		boolean result;
-		if(db.selectOne("Member.isLoginOk",param)!=null) {
-			result=true;
-		}else{
-			result=false;
-		};
-		return result;
+		return db.selectOne("Member.isLoginOk",param);
 	}
 	
 	//회원가입
 	public int insert(MemberDTO dto) {
-		
-		//uuid 생성
-		String id =UUID.randomUUID().toString();
-		dto.setId(id);
 		return db.insert("Member.insert", dto);
 	}
-	
-	public String selectIdPwByPhone(String phone) {
-		return db.selectOne("Member.selectIdPwByPhone", phone);
-	}
-	
-	public int updatePw(String phone) {
 
-		return db.update("Member.updatePw", phone);
-		
+	//아이디로 세션값 주기 위한 로직
+	public String selectIdByPhone(String phone) {
+		return db.selectOne("Member.selectIdByPhone", phone);
 	}
 	
+	//비번 재설정
+	public int updatePw(String phone) {
+		return db.update("Member.updatePw", phone);
+
+	}
+
 }
