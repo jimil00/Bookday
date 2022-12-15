@@ -13,7 +13,7 @@
   img{width:25%;}
   .container {margin:auto; text-align:center; width:500px;height:fit-content;}
   .header{margin-top: 10%; margin-bottom:10%;}
-  input{ border-color:white; outline: none; border-radius:8px; padding-left: 10px; width:70%; height: 40px;}
+  input{ border-color:grey; border-radius:8px; padding-left: 10px; width:70%; height: 40px;}
   #phone{width:62%;}
   #verfi_btn{transition-duration: 0.1s; border-color:white; background-color:#5397fc;height:40px; border-radius:8px; background-color:#5397fc}
   #ph_result,  #nk_result{width:85%; text-align: right;}
@@ -32,6 +32,8 @@
 
         <div class="box">
           <div id="pnum"><input type="text" placeholder="휴대폰 번호" name="phone" id="phone"><button type="button" id="verfi_btn">인증</button></div>
+        </div>
+        <div class="box">
           <div id="vcode"><input type="text" placeholder="인증 번호" name="verifi_code" id="verifi_code"></div> 
           <div id="ph_result">인증번호 일치 여부 출력</div>
         </div>
@@ -49,12 +51,14 @@
           <div><input type="password" placeholder="비밀번호" name="pw" id="pw" minlength="8" maxlength="10">
             <!-- <span class="material-symbols-outlined">visibility</span> -->
           </div>
+          </div>
+          <div class="box">
           <div><input type="password" placeholder="비밀번호 확인" name="check_pw" id="check_pw">
             <!-- <span class="material-symbols-outlined">visibility</span> -->
           </div>
         </div>
         <div class="signup_btn">
-          <button id="signup_btn">회원가입</button>
+          <button id="signup_btn" disabled="true">회원가입</button>
         </div>
       </div>
     </form>
@@ -64,11 +68,12 @@
 
 $(document).ready(function(){
 
-        //기본으로 회원가입 버튼 비활성화
-        $("#signup_btn").attr("disabled", true);
+        // //기본으로 회원가입 버튼 비활성화
+        // $("#signup_btn").attr("disabled", true);
 
       	$("#name, #nickname, #phone,#verifi_code,#email,#pw,#check_pw")
         .on("input",function(){
+
 			   let name= $("#name").val();
          let nickname=$("#nickname").val();
          let phone=$("#phone").val();
@@ -79,32 +84,51 @@ $(document).ready(function(){
 
 
          let nameRegex=/[가-힣]{2,5}/;
-         let nicknameRegex=/[가-힣 a-z A-Z 0-9]/;
-         let phoneRegex=/^010\d{3,4}\d{4}$/;
+         let nicknameRegex=/[가-힣 a-z A-Z 0-9]{10}/;
+         let phoneRegex=/^01\d{1}\d{3,4}\d{4}$/;
          let emailRegex=/^[a-z 0-9 A-Z]{6,8}@[a-z]{5,6}.com$/;
          let pwRegex=/^[A-Z a-z 0-9 ! @ $ %]{8,10}$/;
 
-      //유효성 하나 하나 확인이 가능하나 빨간 선이 전체적으로 간다.
-      // 유효성에 맞으면 회원가입 버튼 활성화
-      if(name=="" || nickname=="" || phone=="" 
-      || verifi_code=="" || email=="" || pw=="" || check_pw=="" 
-      || !phoneRegex.test(phone) || !nameRegex.test(name) || !emailRegex.test(email) 
-      || !nicknameRegex.test(nickname) || !pwRegex.test(pw) || !pwRegex.test(pw)){
-        //비어 있으면 로그인 버튼 아예 못 누름
-			$("#signup_btn").attr("disabled", true);
+      if(!phoneRegex.test(phone)) {
+          $("#phone, #verifi_code").css("border-color", "red");
+              }else{
 
-        if(!phoneRegex.test(phone)){
-                $("#phone, #verifi_code").css("border-color","red");
-              }else{$("#phone").css("border-color","#5397fc");}
-      
+                //핸드폰 중복 검사
+                $.ajax({
+                  url: "/member/phoneCheck",
+                  data: { "phone": phone }
+
+                }).done(function (resp) {
+
+                  console.log(resp);
+
+                  if (resp == "true") {//핸드폰이 존재하므로 사용할 수 없는 경우
+                    $("#phone").css("border-color", "red");
+                    alert("이미 사용 중인 번호입니다.");
+                    return true;
+                    //   //로그인 페이지로 이동
+                    //  location.href="/member/toLogin"
+
+                  } else { //핸드폰이 존재하지 않으므로 사용할 수 있는 경우
+                    $("#phone").css("border-color", "#5397fc");
+                    return false;
+                  }
+
+                })
+              }
+
+        //이름 유효성 검사
         if(!nameRegex.test(name)){
            $("#name").css("border-color","red");
           }else{$("#name").css("border-color","#5397fc");}
 
+
+        //이메일 유효성 검사
         if(!emailRegex.test(email)){
                 $("#email").css("border-color","red");
               }else{$("#email").css("border-color","#5397fc");}
               
+        //닉네임 유효성 검사      
         if(!nicknameRegex.test(nickname)){
            $("#nickname").css("border-color","red");
           }else{
@@ -121,13 +145,15 @@ $(document).ready(function(){
 				if(resp == "true"){//닉네임이 존재하므로 사용할 수 없는 경우
 					$("#nickname").css("border-color","red");
           $("#nk_result").html("이미 사용 중인 닉네임입니다.");
+          return true;
 				}else{ //닉네임이 존재하지 않으므로 사용할 수 있는 경우
           $("#nickname").css("border-color","#5397fc");
+          return false;
 				}
 			}) //여기까지 중복 검사 로직
       
     }
-
+    //비밀번호 유효성 검사
     if(!pwRegex.test(pw)){
                 $("#pw, #check_pw").css("border-color","red");
               }else{ $("#pw").css("border-color","#5397fc");
@@ -139,13 +165,16 @@ $(document).ready(function(){
           }else{ $("#check_pw").css("border-color","red");}
               });
         }
-    
-            
-    }else{//유효한 값이 들어 있으면(조건 불충족ㅜ) 값만 들어 있어도 로그인 버튼 누르게 해줌.
-        $("#signup_btn").attr("disabled", false);
-        return;
-          }
 
+      //유효성 하나 하나 확인이 가능하나 빨간 선이 전체적으로 간다.
+      //유효성에 맞으면 회원가입 버튼 활성화 + 중복검사 통과
+      if(phoneRegex.test(phone) && nameRegex.test(name) && emailRegex.test(email) 
+      && nicknameRegex.test(nickname) && pwRegex.test(pw) && false){
+        
+        //회원가입 버튼 활성화
+			$("#signup_btn").attr("disabled", false);
+      return;
+      }
     });
   });
 

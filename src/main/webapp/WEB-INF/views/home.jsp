@@ -97,6 +97,19 @@ div {
 	height: 100%;
 }
 
+.sign-box{
+display:flex;
+justify-content:space-around;
+padding: 5px;
+}
+	
+.sign {
+	display:inline;
+	justify-content: center;
+	width: 50%;
+	text-align:right;
+}
+
 .icon-box {
 	position: absolute;
 	bottom: 0px;
@@ -114,8 +127,8 @@ span, img:hover {
 }
 /*     header */
 /* body */
-.body{
-height: 2000px;
+.body {
+	height: 2000px;
 }
 </style>
 </head>
@@ -137,6 +150,10 @@ height: 2000px;
 				</div>
 			</div>
 			<div class="icons">
+				<div class="sign-box">
+					<a href="/member/toLogin"><p class="sign" id="login">로그인</p></a> 
+					<a href="/member/toSignup"><p class="sign" id="signup">회원가입</p></a>
+				</div>
 				<div class="icon-box">
 					<span class="material-symbols-outlined size-40" id="notifications">
 						notifications </span> <span class="material-symbols-outlined size-40"
