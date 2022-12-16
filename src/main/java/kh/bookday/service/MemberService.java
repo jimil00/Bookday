@@ -16,6 +16,9 @@ public class MemberService {
 	@Autowired
 	private MemberDAO dao;
 	
+	public MemberDTO selectMemInfo(String id) {
+		return dao.selectMemInfo(id);
+	}
 	
 	public boolean phoneCheck(String phone) throws Exception{
 		 boolean result=dao.phoneCheck(phone);
