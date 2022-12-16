@@ -20,23 +20,30 @@
 	font-style: normal;
 }
 
-/* header */
 * {
 	box-sizing: border-box;
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-div {
-	/* border: 1px solid black; */
-	
-}
-
+/* div {
+	border: 1px solid black;
+} */
 .container {
 	margin: auto;
 	overflow: hidden;
 	width: 978px;
 }
 
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/*     header */
 .header {
 	height: 150px;
 	overflow: hidden;
@@ -49,7 +56,7 @@ div {
 	width: 55%;
 }
 
-#logo_img {
+#logoImg {
 	height: 50%;
 	position: absolute;
 	bottom: 0px;
@@ -63,7 +70,7 @@ div {
 	width: 25%;
 }
 
-.search-box {
+.searchBox {
 	position: absolute;
 	bottom: 5px;
 	left: 0px;
@@ -75,7 +82,7 @@ div {
 	box-shadow: 3px 3px 3px 3px #80808050;
 }
 
-.search-txt {
+.searchTxt {
 	float: left;
 	padding: 0;
 	background: none;
@@ -87,13 +94,13 @@ div {
 	left: 10px;
 }
 
-.search-btn {
+.searchBtn {
 	position: absolute;
 	right: 0px;
 	line-height: 100px;
 	border: none;
 	background-color: #ffffff;
-	color: #5397fc;
+	color: #5397fc50;
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
@@ -109,7 +116,7 @@ div {
 	height: 100%;
 }
 
-.icon-box {
+.iconBox {
 	position: absolute;
 	bottom: 0px;
 	right: 0px;
@@ -121,11 +128,17 @@ span.size-40 {
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
 }
 
-span, img:hover {
+span, #logoImg:hover {
 	cursor: pointer;
 }
 
-/* header */
+/*     header */
+
+/* navi */
+.navi {
+	width: 100%;
+	height: 50px;
+}
 
 /* body */
 .body {

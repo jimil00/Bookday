@@ -3,6 +3,10 @@
 
 <mapper namespace="Member">
 
+	<select id="selectMemInfo" resultType="kh.bookday.dto.MemberDTO">
+		select * from member where id = #{id}
+	</select>
+
 	<select id="nickCheck" resultType="boolean">
   		select count(*) from member where nickname = #{value}
   	</select>

@@ -10,16 +10,17 @@ import kh.bookday.dto.RentalDTO;
 import kh.bookday.dto.WishlistDTO;
 
 @Repository
-public class BookselvesDAO {
+public class BookshelvesDAO {
 	
 	@Autowired
 	private SqlSession db;
 	
 	public List<RentalDTO> selectOnesRentalBooks(String id){
-		return db.selectList("Bookselves.selectOnesRentalBooks", id);
+		return db.selectList("Bookshelves.selectOnesRentalBooks", id);
 	}
 	
 	public List<WishlistDTO> selectOnesWishlistBooks(String id){
-		return db.selectList("Bookselves.selectOnesWishlistBooks", id);
+		return db.selectList("Bookshelves.selectOnesWishlistBooks", id);
 	}
 }
+
