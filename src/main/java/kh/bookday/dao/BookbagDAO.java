@@ -14,8 +14,9 @@ public class BookbagDAO {
 	@Autowired
 	private SqlSession db;
 	
+	/* 책가방 리스트 출력 */
 	public List<BookbagDTO> selectById (String id){
-		return db.selectList("Delivery.selectById", id);
+		return db.selectList("Bookbag.selectById", id);
 	}
 
 }
