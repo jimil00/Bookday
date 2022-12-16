@@ -243,32 +243,6 @@ span, #logoImg:hover {
 
 /* body */
 </style>
-<script>
-	$("#logo_img").on("click", function() {
-		location.href = "/";
-	})
-
-	$("#searchword").on("keydown", function(e) {
-		if (e.keyCode == 13) {
-			$("#search").submit();
-		}
-	})
-	$("#notifications").on("click", function() {
-		location.href = "//toNotification";
-	})
-	$("#bookbag").on("click", function() {
-		location.href = "/delivery/toBookbag";
-	})
-	$("#bookselves").on("click", function() {
-		location.href = "/booknote/toBookselves";
-	})
-	$("#mypage").on("click", function() {
-		if (loginID == null) {
-			location.href = "/member/login";
-		}
-		location.href = "/member/toMypage";
-	})
-</script>
 </head>
 <body>
 	<div class="container">
@@ -300,7 +274,7 @@ span, #logoImg:hover {
 		<div class="navi"></div>
 		<div class="body">
 			<div class="body-top">
-				<div class="bookbag-count">담은 책가방 (${fn:length(list)})</div>
+				<div class="bookbag-count">책가방 (${fn:length(list)})</div>
 			</div>
 			<c:choose>
 				<c:when test="${fn:length(list) == 0}">
