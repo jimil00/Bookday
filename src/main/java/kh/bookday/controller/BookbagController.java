@@ -21,7 +21,7 @@ public class BookbagController {
 	@RequestMapping("toBookbag")
 	public String toBookbag(Model model) {
 
-		String id = "수아";
+		String id = "지민";
 		
 		/* 책가방 리스트 출력 */
 		List<BookbagDTO> list = service.selectById(id);

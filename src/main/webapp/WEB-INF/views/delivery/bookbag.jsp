@@ -28,6 +28,7 @@
 /* div {
 	border: 1px solid black;
 } */
+
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -43,7 +44,7 @@ hr {
 	margin-bottom: 15px;
 }
 
-/*     header */
+/* header */
 .header {
 	height: 150px;
 	overflow: hidden;
@@ -131,13 +132,13 @@ span.size-40 {
 span, #logoImg:hover {
 	cursor: pointer;
 }
-
-/*     header */
+/* header */
 
 /* navi */
 .navi {
-	width: 100%;
-	height: 50px;
+	/* width: 100%; */
+	/* height: 50px; */
+	
 }
 
 /* body */
@@ -145,51 +146,67 @@ span, #logoImg:hover {
 	overflow: hidden;
 }
 
-.body-top-one {
+.bookbag-count {
 	padding-top: 60px;
-	padding-bottom: 30px;
+	padding-bottom: 10px;
 	font-weight: bold;
 }
 
-.body-top-checkbox {
-	width: 40%;
+.top-checkbox-div {
+	width: 50%;
 	float: left;
 }
 
-.body-top-btn {
-	width: 30%;
+.top-btn-div {
+	width: 50%;
 	float: left;
 	text-align: right;
 }
 
-.selectAll-btn {
+.top-btn {
 	margin-left: 5px;
-	border-width: thin;
 	border-radius: 4px;
+	border: 1px solid rgb(194, 193, 193);
 	background-color: #ffffff;
 }
 
 .body-left {
 	width: 70%;
 	float: left;
+	border: 1px solid rgb(194, 193, 193);
+}
+
+.bookbag-top {
+	height: 50px;
+	padding-top: 30px;
+	padding-left: 15px;
+	padding-right: 18px;
+}
+
+.bookbag-main {
+	/* border: 1px solid black; */
+	overflow: hidden;
+	width: 100%;
+	height: 170px;
 }
 
 .bookbag-checkbox {
 	float: left;
-	height: 100%;
-	line-height: 160px;
+	width: 6%;
+	height: 150px;
+	line-height: 150px;
+	padding-left: 15px;
 }
 
 .bookbag-img {
-	width: 20%;
+	width: 16%;
 	height: 100%;
 	float: left;
-	padding-top: 8px;
 }
 
 #book-img {
 	width: auto;
-	height: 150px;
+	height: 140px;
 }
 
 .bookbag-detail {
@@ -198,7 +215,7 @@ span, #logoImg:hover {
 }
 
 .detail-btn {
-	border-width: thin;
+	border: 1px solid rgb(194, 193, 193);
 	border-radius: 4px;
 	background-color: #ffffff;
 }
@@ -210,15 +227,14 @@ span, #logoImg:hover {
 }
 
 .rental-detail {
-	border: 1px solid black;
+	border: 1px solid rgb(194, 193, 193);
 	/* border-width: 1px; */
-	border-radius: 3px;
 }
 
 .sub-btn {
 	margin-top: 8px;
 	width: 100%;
-	height: 30px;
+	height: 40px;
 	color: #ffffff;
 	border: none;
 	border-radius: 4px;
@@ -258,27 +274,25 @@ span, #logoImg:hover {
 	<div class="container">
 		<div class="header">
 			<div class="logo">
-				<img src="/resources/bookday_logotitle.png" id="logo_img">
+				<img src="/resources/bookday_logotitle.png" id="logoImg">
 			</div>
 			<div class="search">
-				<div class="search-box">
+				<div class="searchBox">
 					<form action="//search" id="search" method="post">
-						<input class="search-txt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchword" name="searchword">
-						<button class="search-btn" type="submit">
+						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
+							id="searchWord" name="searchWord">
+						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
 					</form>
 				</div>
 			</div>
 			<div class="icons">
-				<div class="icon-box">
-					<span class="material-symbols-outlined size-40" id="notifications">
-						notifications </span> <span class="material-symbols-outlined size-40"
-						id="bookbag"> shopping_bag </span> <span
-						class="material-symbols-outlined size-40" id="bookselves">
-						shelves </span> <span class="material-symbols-outlined size-40"
-						id="mypage"> person </span>
+				<div class="iconBox">
+					<span class="material-symbols-outlined size-40" id="notifications">notifications</span>
+					<span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
+					<span class="material-symbols-outlined size-40" id="bookshelves">shelves</span>
+					<span class="material-symbols-outlined size-40" id="mypage">person</span>
 				</div>
 			</div>
 		</div>
@@ -286,28 +300,15 @@ span, #logoImg:hover {
 		<div class="navi"></div>
 		<div class="body">
 			<div class="body-top">
-				<div class="body-top-one">담은 책가방 (count)</div>
-				<div class="body-top-two" style="height: 20px;">
-					<div class="body-top-checkbox">
-						<input type="checkbox" id="selectAll" name="" checked> <label
-							for="selectAll">전체 선택</label>
-					</div>
-					<div class="body-top-btn">
-						<button class="selectAll-btn">선택 위시리스트에 담기</button>
-						<button class="selectAll-btn">선택 삭제</button>
-					</div>
-				</div>
-				<hr style="width: 70%; text-align: left; margin-left: 0;">
+				<div class="bookbag-count">담은 책가방 (${fn:length(list)})</div>
 			</div>
-
 			<c:choose>
-
 				<c:when test="${fn:length(list) == 0}">
 					<div class="body-left">
+						<div class="bookbag-top"></div>
 						<div class="bookbag-main"
-							style="height: 160px; text-align: center; line-height: 160px;">
-							책가방에 담긴 작품이 없습니다.</div>
-						<hr>
+							style="text-align: center; line-height: 120px;">책가방에 담긴 작품이
+							없습니다.</div>
 					</div>
 					<div class="body-right">
 						<div class="rental-detail"
@@ -318,32 +319,41 @@ span, #logoImg:hover {
 						</div>
 					</div>
 				</c:when>
-
 				<c:otherwise>
 					<div class="body-left">
-						<div class="bookbag-main" style="height: 170px;">
-							<div class="bookbag-checkbox">
-								<input type="checkbox" id="select" name="" checked> <label
-									for="select"></label>
+						<div class="bookbag-top">
+							<div class="top-checkbox-div">
+								<input type="checkbox" id="selectAll" name="" checked> <label
+									for="selectAll">전체 선택</label>
 							</div>
-							<div class="bookbag-img">
-								<img
-									src="https://image.aladin.co.kr/product/24512/70/cover/k392630952_1.jpg"
-									id="book-img">
-							</div>
-							<div class="bookbag-detail">
-								<div class="bookbag-detail-text"
-									style="height: 50%; padding-top: 8px;">
-									달러구트 꿈 백화점<br> 이미예<br>
-								</div>
-								<div class="bookbag-detail-btn"
-									style="height: 50%; padding-top: 53px;">
-									<button class="detail-btn">위시리스트에 담기</button>
-									<button class="detail-btn">삭제</button>
-								</div>
+							<div class="top-btn-div">
+								<button class="top-btn">선택 위시리스트에 담기</button>
+								<button class="top-btn">선택 삭제</button>
 							</div>
 						</div>
-						<hr>
+						<hr style="width: 95%; margin-top: 5px;">
+						<c:forEach var="bookbag" items="${list}">
+							<div class="bookbag-main">
+								<div class="bookbag-checkbox">
+									<input type="checkbox" id="select" name="" checked> <label
+										for="select"></label>
+								</div>
+								<div class="bookbag-img">
+									<img src="${bookbag.b_img_url }" id="book-img">
+								</div>
+								<div class="bookbag-detail">
+									<div class="bookbag-detail-text" style="height: 50%;">
+										${bookbag.b_title }<br> ${bookbag.b_writer }<br>
+									</div>
+									<div class="bookbag-detail-btn"
+										style="height: 50%; padding-top: 35px;">
+										<button class="detail-btn">위시리스트에 담기</button>
+										<button class="detail-btn">삭제</button>
+									</div>
+								</div>
+							</div>
+							<hr style="width: 95%; margin-top: -14px;">
+						</c:forEach>
 					</div>
 					<div class="body-right">
 						<div class="rental-detail"
@@ -361,7 +371,6 @@ span, #logoImg:hover {
 						</div>
 					</div>
 				</c:otherwise>
-
 			</c:choose>
 		</div>
 		<div class="footer"></div>
