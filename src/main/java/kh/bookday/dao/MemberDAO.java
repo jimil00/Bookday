@@ -43,8 +43,8 @@ public class MemberDAO {
 	}
 	
 	//비번 재설정
-	public int updatePw(String phone) {
-		return db.update("Member.updatePw", phone);
+	public int updatePw(Map<String, String> param) {
+		return db.update("Member.updatePw", param);
 
 	}
 

@@ -10,24 +10,23 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
-
 @font-face {
-    font-family: 'NanumSquareNeo-Variable';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'NanumSquareNeo-Variable';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 * {
 	box-sizing: border-box;
-    font-family: 'NanumSquareNeo-Variable';
+	font-family: 'NanumSquareNeo-Variable';
 }
-
 
 /* div { */
 /* 	border: 1px solid black; */
 /* } */
-
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -106,17 +105,17 @@
 	height: 100%;
 }
 
-.sign-box{
-display:flex;
-justify-content:space-around;
-padding: 5px;
+.sign-box {
+	display: flex;
+	justify-content: space-around;
+	padding: 5px;
 }
-	
+
 .sign {
-	display:inline;
+	display: inline;
 	justify-content: center;
 	width: 50%;
-	text-align:right;
+	text-align: right;
 }
 
 .icon-box {
@@ -159,9 +158,20 @@ span, img:hover {
 				</div>
 			</div>
 			<div class="icons">
+
 				<div class="sign-box">
-					<a href="/member/toLogin"><p class="sign" id="login">로그인</p></a> 
-					<a href="/member/toSignup"><p class="sign" id="signup">회원가입</p></a>
+					<c:choose>
+						<c:when test="${empty loginID}">
+							<a href="/member/toLogin"><p class="sign" id="login">로그인</p></a>
+							<a href="/member/toSignup"><p class="sign" id="signup">회원가입</p></a>
+						</c:when>
+						<c:otherwise>
+							<c:if test="${list}">
+							<p class="user" id="user">${nickname} 님</p>
+							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
+							</c:if>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="icon-box">
 					<span class="material-symbols-outlined size-40" id="notifications">

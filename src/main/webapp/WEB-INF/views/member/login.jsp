@@ -69,6 +69,14 @@ button:active {
 	text-decoration: none;
 	margin-bottom: 5%;
 }
+hr{
+   display: block; 
+    height: 1px;
+    border: 0; 
+    border-top: 1px solid rgb(216, 216, 216);
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
 .kakao_login {
 	margin-top: 5%;
