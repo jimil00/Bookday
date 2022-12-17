@@ -36,6 +36,7 @@ public class MemberDTO {
 		this.sysprofname = sysprofname;
 	}
 	
+	
 	public String getId() {
 		return id;
 	}
@@ -90,8 +91,14 @@ public class MemberDTO {
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-	public Timestamp getSignup_date() {
-		return signup_date;
+	public long getSignup_date() {
+		long currentTime = System.currentTimeMillis();
+		long signupTime = this.signup_date.getTime();
+		
+		long timeGap = (currentTime - signupTime)/1000; // 초 차이
+		long dateGap = timeGap/86400+1;
+		
+		return dateGap;		
 	}
 	public void setSignup_date(Timestamp signup_date) {
 		this.signup_date = signup_date;
@@ -109,4 +116,14 @@ public class MemberDTO {
 		this.sysprofname = sysprofname;
 	}
 
+	
+//	public long getDateGap(Timestamp signup_date) {
+//		long currentTime = System.currentTimeMillis();
+//		long signupTime = this.signup_date.getTime();
+//		
+//		long timeGap = (currentTime - signupTime)/1000; // 초 차이
+//		long dateGap = timeGap/86400;
+//		
+//		return dateGap;	
+//	}
 }

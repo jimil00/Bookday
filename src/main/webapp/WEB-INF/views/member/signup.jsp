@@ -11,6 +11,19 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <style>
+@font-face {
+	font-family: 'NanumSquareNeo-Variable';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: 'NanumSquareNeo-Variable';
+}
 img {
 	width: 25%;
 }
@@ -32,14 +45,29 @@ input {
 	border-radius: 8px;
 	padding-left: 10px;
 	width: 70%;
-	height: 40px;
+	height: 50px;
 }
 
-#phone {
-	width: 62%;
+/*체크 표시 스타일*/
+.box{
+position:relative;}
+
+#check_icon{
+position:absolute;
+	top: 10px;
+  	bottom: 5px;
+  	right: 85px;
 }
 
-#verfi_btn {
+#phone_box, #vcode_box{
+	position:relative;
+}
+
+#verfi_btn, #check_btn {
+	position:absolute;
+	top: 4px;
+  	bottom: 0;
+  	right: 80px;
 	transition-duration: 0.1s;
 	border-color: white;
 	background-color: #5397fc;
@@ -89,13 +117,13 @@ input {
 			<div class="signup_form">
 
 				<div class="box">
-					<div id="pnum">
+					<div id="phone_box">
 						<input type="text" placeholder="휴대폰 번호" name="phone" id="phone" maxlength="11">
 						<button type="button" id="verfi_btn">인증</button>
 					</div>
 				</div>
 				<div class="box">
-					<div id="vcode">
+					<div id="vcode_box">
 						<input type="text" placeholder="인증 번호" name="verifi_code" id="verifi_code">
 						<button type="button" id="check_btn">확인</button>
 					</div>
@@ -104,19 +132,23 @@ input {
 				<div class="box">
 					<input type="text" placeholder="이름" name="name" id="name"
 						maxlength="5">
+						<span class="material-symbols-outlined" id="check_icon">check</span>
 				</div>
 				<div class="box">
 					<input type="text" placeholder="이메일" name="email" id="email">
+					<span class="material-symbols-outlined" id="check_icon">check</span>
 				</div>
 				<div class="box">
 					<input type="text" placeholder="닉네임" name="nickname" id="nickname"
 						minlength="2" maxlength="10">
+						<span class="material-symbols-outlined" id="check_icon">check</span>
 					<div id="nk_result"></div>
 				</div>
 				<div class="box">
 					<div>
 						<input type="password" placeholder="비밀번호" name="pw" id="pw"
 							minlength="8" maxlength="16">
+							<span class="material-symbols-outlined" id="check_icon">check</span>
 						<!-- <span class="material-symbols-outlined">visibility</span> -->
 					</div>
 				</div>
@@ -124,6 +156,7 @@ input {
 					<div>
 						<input type="password" placeholder="비밀번호 확인" name="check_pw"
 							id="check_pw">
+						<span class="material-symbols-outlined" id="check_icon">check</span>
 						<!-- <span class="material-symbols-outlined">visibility</span> -->
 					</div>
 				</div>
@@ -205,7 +238,8 @@ $(document).ready(function(){
                                             	  //버튼 2번 클릭 못하게 해야 될듯
                                             	  if(resp==false){
                                             		  $("#verifi_code").css("border-color", "#5397fc");
-                                            		  $("#verfi_btn").attr("disabled", true);
+                                            		  $("#verfi_btn").attr("disabled", true); 
+                                            		  $("#check_btn").attr("disabled", true);
                                             	  }else{
                                             		  alert("인증번호가 틀립니다.");
                                             		  $("#verifi_code").css("border-color", "red");

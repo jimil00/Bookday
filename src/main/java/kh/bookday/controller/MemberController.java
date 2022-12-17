@@ -37,13 +37,15 @@ public class MemberController {
 		return "/member/login";
 	}
 	
+	//로그인
 	@ResponseBody //에이작스로 보낼 때
 	@RequestMapping("login")
-	public String login(@RequestParam("phone") String phone, @RequestParam("pw") String pw)throws Exception{
+	public boolean login(@RequestParam("phone") String phone, @RequestParam("pw") String pw)throws Exception{
 
 		
 		//비밀번호 암호화 후 db에 있는 암호화된 비번과 맞는지 확인
 		String encryPassword = Pw_SHA256.getSHA256(pw);
+		
 		//System.out.println("비밀번호:"+pw);
 		//System.out.println("암호화된 비밀번호:"+encryPassword);
 		
@@ -58,13 +60,44 @@ public class MemberController {
 			System.out.println(id);
 			session.setAttribute("loginID",id);
 			
+			MemberDTO dto=service.selectMemInfo(id);
+			String nickname=dto.getNickname();
+			System.out.println(nickname);
+			session.setAttribute("nickname",nickname);
+			
 		}
-		//근데 이러면 세션 값을 보내주지 않을거 같음.
-		return String.valueOf(result);  //"redirect:/"; 
+		
+		return result;
 	}
-
 	
-	@ResponseBody//에이작스로 보내는 용도
+	//로그아웃
+	@RequestMapping("logOut")
+	public String logOut() {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	//회원가입 관련
+	@RequestMapping(value="signup")
+	public String insert(MemberDTO dto)throws Exception{
+		
+
+		System.out.println("비밀번호:"+dto.getPw());
+		
+		//비밀번호 암호화
+		String encryPassword = Pw_SHA256.getSHA256(dto.getPw());
+		dto.setPw(encryPassword);
+		System.out.println("암호화된 비밀번호:"+encryPassword);
+		
+		
+		//insert하기
+		int result=service.insert(dto);
+		
+		return "redirect:/member/toLogin";
+	}
+	
+	//닉네임 중복 체크
+	@ResponseBody
 	@RequestMapping("nickCheck")
 	public String nickCheck(@RequestParam("nickname") String nickname)throws Exception{
 		
@@ -79,15 +112,7 @@ public class MemberController {
 		
 		boolean result= service.phoneCheck(phone);
 		System.out.println("번호 중복 체크 결과:"+result);
-				
-//		if(result==false) {
-//		//번호에 따른 랜덤 인증번호 생성
-//		String code= service.CreateRandomMsg(phone);
-//		System.out.println(code);
-//		
-//		//세션으로 담아주기? (여러 방법이 있는데 생각해봐야함)
-//		session.setAttribute("rand", code);
-		
+						
 		return String.valueOf(result); 
 		
 		}
@@ -107,7 +132,7 @@ public class MemberController {
 		return true;
 	}
 	
-	//인증 번호 일치 여부
+	//인증 번호 일치 여부 확인
 	@ResponseBody
 	@GetMapping("phoneAuthOK") //@RequestParam("verifi_code") 
 	public boolean phoneAuthOK(@RequestParam("verifi_code") String code) {
@@ -125,25 +150,7 @@ public class MemberController {
 		    return true;
 		}
 	
-	@RequestMapping(value="signup")
-	public String insert(MemberDTO dto)throws Exception{
-		
-//		//insert 전에 uuid 생성
-//		dto.setId(UUID.randomUUID().toString());
-		System.out.println("비밀번호:"+dto.getPw());
-		
-		//비밀번호 암호화
-		String encryPassword = Pw_SHA256.getSHA256(dto.getPw());
-		dto.setPw(encryPassword);
-		System.out.println("암호화된 비밀번호:"+encryPassword);
-		
-		
-		//insert하기
-		int result=service.insert(dto);
-		
-		return "redirect:/member/toLogin";
-	}
-	
+	//비밀번호 찾기 페이지로 이동
 	@RequestMapping("toFindPw")
 	public String toFindPw() {
 		
@@ -155,24 +162,30 @@ public class MemberController {
 	public String Updatepw(@RequestParam("pw") String pw ,@RequestParam("phone") String phone) {
 		
 		//다른 에이작스 컨트롤러에서 중복 여부 체크 후 update 시도
-		//해당 회원 정보로 들어갈 update 구문(해당 회원의 아이디 및 번호 값으로 조건을 준 후 update
+		
 		//다시 암호화
 		String updatePw=Pw_SHA256.getSHA256(pw);
 		
+		//해당 회원 정보로 들어갈 update 구문(해당 회원의 아이디 및 번호 값으로 조건을 준 후 update
 		int result=service.updatePw(updatePw,phone);
 		
 		return "/member/toLogin";
 	}
 	
 	//카카오 로그인(추가 중)
+	//인가 코드 받기
 	@RequestMapping(value="kakaoLogin" , method=RequestMethod.GET)
 	public String kakaoLogin(@RequestParam("code") String code) {
 		
 		System.out.println("#########"+code);
+		
+		//System.out.println(access_token);
+		
 		return "redirect:/";
 	}
 	
-	
+
+	//에러 수집
 	@ExceptionHandler(Exception.class) 
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();

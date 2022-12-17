@@ -33,6 +33,7 @@
 	width: 978px;
 }
 /*     header */
+
 .header {
 	height: 150px;
 	overflow: hidden;
@@ -107,15 +108,29 @@
 
 .sign-box {
 	display: flex;
-	justify-content: space-around;
-	padding: 5px;
+	justify-content: flex-end;
 }
 
-.sign {
-	display: inline;
-	justify-content: center;
-	width: 50%;
-	text-align: right;
+.sign-box>a {
+	margin: 5px;
+	text-decoration: underline;
+	text-underline-offset: 5px;
+	text-decoration-color: grey;
+	color: black;
+}
+
+.sign-box>a:hover {
+	color: #5397fc;
+	text-decoration-color: #5397fc;
+}
+
+#nick {
+	text-decoration: none;
+}
+
+#nick:hover {
+	color: black;
+	cursor: default;
 }
 
 .icon-box {
@@ -162,14 +177,12 @@ span, img:hover {
 				<div class="sign-box">
 					<c:choose>
 						<c:when test="${empty loginID}">
-							<a href="/member/toLogin"><p class="sign" id="login">로그인</p></a>
-							<a href="/member/toSignup"><p class="sign" id="signup">회원가입</p></a>
+							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
+							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
 						</c:when>
 						<c:otherwise>
-							<c:if test="${list}">
-							<p class="user" id="user">${nickname} 님</p>
-							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
-							</c:if>
+							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
+							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -177,7 +190,7 @@ span, img:hover {
 					<span class="material-symbols-outlined size-40" id="notifications">
 						notifications </span> <span class="material-symbols-outlined size-40"
 						id="bookbag"> shopping_bag </span> <span
-						class="material-symbols-outlined size-40" id="bookselves">
+						class="material-symbols-outlined size-40" id="bookshelves">
 						shelves </span> <span class="material-symbols-outlined size-40"
 						id="mypage"> person </span>
 				</div>
@@ -204,12 +217,12 @@ span, img:hover {
 		$("#bookbag").on("click", function() {
 			location.href = "/delivery/toBookbag";
 		})
-		$("#bookselves").on("click", function() {
-			location.href = "/bookselves/selectBookselves";
+		$("#bookshelves").on("click", function() {
+			location.href = "/bookshelves/selectBookshelves";
 		})
 		$("#mypage").on("click", function() {
 			if (loginID == null) {
-				location.href = "/member/login";
+				location.href = "/member/toLogin";
 			}
 			location.href = "/member/toMypage";
 		})

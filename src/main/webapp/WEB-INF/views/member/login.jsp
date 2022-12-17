@@ -8,7 +8,23 @@
 <title>책하루 로그인</title>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
+@font-face {
+	font-family: 'NanumSquareNeo-Variable';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: 'NanumSquareNeo-Variable';
+}
+
 .contanier {
 	text-align: center;
 	width: 400px;
@@ -16,10 +32,68 @@
 	margin: auto;
 }
 
-.header {
+
+/* .header {
 	margin-top: 10%;
 	margin-bottom: 10%;
+} */
+
+
+
+
+.search {
+	float: left;
+	position: relative;
+	height: 100%;
+	width: 25%;
 }
+
+.search-box {
+	position: absolute;
+	bottom: 5px;
+	left: 0px;
+	overflow: hidden;
+	height: 40px;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px 3px #80808050;
+}
+
+.search-txt {
+	float: left;
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	line-height: 40px;
+	position: absolute;
+	left: 10px;
+}
+
+.search-btn {
+	position: absolute;
+	right: 0px;
+	line-height: 100px;
+	border: none;
+	background-color: #ffffff;
+	color: #5397fc;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icons {
+	float: left;
+	position: relative;
+	width: 20%;
+	height: 100%;
+}
+
 
 .header>a>img {
 	width: 40%;
@@ -101,6 +175,24 @@ hr{
 		<div class="header">
 			<a href="/"/><img src="/resources/bookday_logo_ver1(kor).png"></a>
 		</div>
+		<!-- 헤더 수정 중 -->
+		<!-- <div class="header">
+			<div class="logo">
+				<img src="/resources/bookday_logotitle.png" id="logo_img">
+			</div>
+			<div class="search">
+				<div class="search-box">
+					<form action="//search" id="search" method="post">
+						<input class="search-txt" type="text" placeholder="검색어를 입력해 주세요"
+							id="searchword" name="searchword">
+						<button class="search-btn" type="submit">
+							<span class="material-symbols-outlined"> search </span>
+						</button>
+					</form>
+				</div>
+			</div>
+		 -->
+
 		<div class="login_form">
 			<!--  <form action="/member/login">-->
 				<div class="phone">
@@ -121,8 +213,7 @@ hr{
 			<hr>
 			<div class="kakao_login">
 				<a class="p-2"
-					href="https://kauth.kakao.com/oauth/authorize?client_id=ccb724dc3fc2bf9f2d152ffdec3b1d30&redirect_uri=	
-                    http://localhost:8090/member/kakaoLogin&response_type=code">
+					href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=	5d39c4a90d2cd9ef1649a8e6108ba988&redirect_uri=http://localhost:8090/member/kakaoLogin">
 					<img src="/resources/kakao_login_medium_wide.png">
 				</a>
 			</div>
@@ -191,7 +282,7 @@ hr{
 		$("#login_btn").on("click", function() {
 			
 			let phone = $("#phone").val();
-						let pw = $("#pw").val();
+			let pw = $("#pw").val();
 						
 						$.ajax({ //페이지 이동 없이 값을 얻어 냄
 							url : "/member/login",
@@ -204,14 +295,12 @@ hr{
 
 							console.log(resp);
 
-							if (resp == "false") {//휴대번호 및 비번이 존재하지 않을 때,
+							if (resp == false) {//휴대번호 및 비번이 존재하지 않을 때,
 								alert("휴대폰 번호 혹은 비밀번호가 존재하지 않습니다.");
 								$('#phone').val('');
 								$('#pw').val('');
-							} else if(resp =="true"){ //휴대번호 및 비번이 존재할 때,
+							} else if(resp ==true){ //휴대번호 및 비번이 존재할 때,
 								location.href="/";
-							
-								//이렇게 요청값만 에이작스로 가져오면 세션을 안 가져올거 같아서 수정 예정
 							}
 						})
 						.fail(function(){
