@@ -29,19 +29,19 @@ public class BooknoteController {
 	private HttpSession session;
 	
 	
-	@RequestMapping("selectAllPost")
-	public String selectBooknote(Model model) {
+	@RequestMapping("selectPostListById")
+	public String selectPostListById(Model model) {
 		// id session
 //		String id = String.valueOf(session.getAttribute("loginID"));
 		String id = "zxcvzxcv";
 		
-		MemberDTO dto = mservice.selectMemInfo(id);
+		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
 		
-		List<PostDTO> list = service.selectAllPost(id);
+		List<PostDTO> list = service.selectPostListById(id);
 		model.addAttribute("list", list);
 		
-		return "mybook/booknote/selectallpost";
+		return "/mybook/booknote/selectpostlist";
 	}
 	
 	@ExceptionHandler(Exception.class)

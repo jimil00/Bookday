@@ -14,7 +14,7 @@ public class BooknoteService {
 	@Autowired
 	private BooknoteDAO dao;
 	
-	public List<PostDTO> selectAllPost(String id){
-		return dao.selectAllPost(id);
+	public List<PostDTO> selectPostListById(String id){
+		return dao.selectPostListById(id);
 	}
 }

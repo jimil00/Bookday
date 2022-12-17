@@ -556,7 +556,7 @@
                 location.href = "/delivery/toBookbag";
             })
             $("#bookshelves").on("click", function () {
-                location.href = "/bookshelves/selectAllBookshelves";
+                location.href = "/bookshelves/selectBookshelvesListById";
             })
             $("#mypage").on("click", function () {
                 if (loginID == null) {
@@ -565,7 +565,7 @@
                 location.href = "/member/toMypage";
             })
             $("#snBookshelves").on("click", function () {
-                location.href = "/bookshelves/selectAllBookshelves";
+                location.href = "/bookshelves/selectBookshelvesListById";
             })
             $("#snStatistics").on("click", function () {
                 location.href = "/bookstatistics/select-";
@@ -574,10 +574,10 @@
                 location.href = "/bookcalendar/select-";
             })
             $("#snBookmark").on("click", function () {
-                location.href = "/bookmark/selectAllBookmark";
+                location.href = "/bookmark/selectBookmarkListById";
             })
             $("#snBooknote").on("click", function () {
-                location.href = "/booknote/selectAllPost";
+                location.href = "/booknote/selectPostListById";
             })
         </script>
 </body>

@@ -14,8 +14,8 @@ public class BookmarkDAO {
 	@Autowired
 	private SqlSession db;
 	
-	public List<BookmarkDTO> selectAllBookmark(String id){
-		return db.selectList("Bookmark.selectAllBookmark", id);
+	public List<BookmarkDTO> selectBookmarkListById(String id){
+		return db.selectList("Bookmark.selectBookmarkListById", id);
 	}
 	
 }

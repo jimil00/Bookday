@@ -16,8 +16,8 @@ public class MemberService {
 	@Autowired
 	private MemberDAO dao;
 	
-	public MemberDTO selectMemInfo(String id) {
-		return dao.selectMemInfo(id);
+	public MemberDTO selectMemberById(String id) {
+		return dao.selectMemberById(id);
 	}
 	
 	public boolean phoneCheck(String phone) throws Exception{

@@ -28,20 +28,20 @@ public class BookmarkController {
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping("selectAllBookmark")
-	public String selectBookmark(Model model) throws Exception{
+	@RequestMapping("selectBookmarkListById")
+	public String selectBookmarListkById(Model model) throws Exception{
 		
 		// id session
 //		String id = String.valueOf(session.getAttribute("loginID"));
 		String id = "zxcvzxcv";
 		
-		MemberDTO dto = mservice.selectMemInfo(id);
+		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
 		
-		List<BookmarkDTO> list = service.selectAllBookmark(id);
+		List<BookmarkDTO> list = service.selectBookmarkListById(id);
 		model.addAttribute("list", list);
 		
-		return "mybook/bookmark";
+		return "/mybook/bookmark";
 	}
 	
 	@ExceptionHandler(Exception.class)

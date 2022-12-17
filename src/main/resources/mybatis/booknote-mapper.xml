@@ -3,7 +3,7 @@
 
 <mapper namespace="Booknote">
 
-	<select id="selectAllPost" resultType="kh.bookday.dto.PostDTO">
+	<select id="selectPostListById" resultType="kh.bookday.dto.PostDTO">
 		select * from post where p_writer_id = #{id}
 	</select>
 

@@ -14,8 +14,8 @@ public class BookmarkService {
 	@Autowired
 	private BookmarkDAO dao;
 	
-	public List<BookmarkDTO> selectAllBookmark(String id){
-		return dao.selectAllBookmark(id);
+	public List<BookmarkDTO> selectBookmarkListById(String id){
+		return dao.selectBookmarkListById(id);
 	}
 	
 }

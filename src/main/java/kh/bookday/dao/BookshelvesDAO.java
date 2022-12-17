@@ -15,12 +15,12 @@ public class BookshelvesDAO {
 	@Autowired
 	private SqlSession db;
 	
-	public List<RentalDTO> selectAllRental(String id){
-		return db.selectList("Bookshelves.selectAllRental", id);
+	public List<RentalDTO> selectRentalListById(String id){
+		return db.selectList("Bookshelves.selectRentalListById", id);
 	}
 	
-	public List<WishlistDTO> selectAllWishlist(String id){
-		return db.selectList("Bookshelves.selectAllWishlist", id);
+	public List<WishlistDTO> selectWishlistListById(String id){
+		return db.selectList("Bookshelves.selectWishlistListById", id);
 	}
 }
 

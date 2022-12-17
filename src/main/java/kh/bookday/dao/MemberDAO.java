@@ -17,8 +17,8 @@ public class MemberDAO {
 	private SqlSession db;
 	
 	// 회원정보 출력
-	public MemberDTO selectMemInfo(String id) {
-		return db.selectOne("Member.selectMemInfo", id);
+	public MemberDTO selectMemberById(String id) {
+		return db.selectOne("Member.selectMemberById", id);
 
 	}
 	

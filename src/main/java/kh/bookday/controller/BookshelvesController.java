@@ -30,21 +30,21 @@ public class BookshelvesController {
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping("selectAllBookshelves")
-	public String selectBookshelves(Model model) throws Exception{
+	@RequestMapping("selectBookshelvesListById")
+	public String selectBookshelvesListById(Model model) throws Exception{
 		// id session
 //		String id = String.valueOf(session.getAttribute("loginID"));
 		String id = "zxcvzxcv";
 		
-		MemberDTO dto = mservice.selectMemInfo(id);
+		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
 		
 		// 대여
-		List<RentalDTO> rlist = service.selectAllRental(id);
+		List<RentalDTO> rlist = service.selectRentalListById(id);
 		model.addAttribute("rlist", rlist);
 		
 		// 위시리스트
-		List<WishlistDTO> wlist = service.selectAllWishlist(id);
+		List<WishlistDTO> wlist = service.selectWishlistListById(id);
 		model.addAttribute("wlist", wlist);
 		
 		// 책장
@@ -53,7 +53,7 @@ public class BookshelvesController {
 //		List<BookDTO> blist = service.selectOnesPMedBooks();
 //		model.addAttribute("blist", blist);
 
-		return "mybook/bookshelves";
+		return "/mybook/bookshelves";
 	}
 	
 	@ExceptionHandler(Exception.class)

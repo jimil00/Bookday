@@ -14,7 +14,7 @@ public class BooknoteDAO {
 	@Autowired
 	private SqlSession db;
 	
-	public List<PostDTO> selectAllPost(String id){
-		return db.selectList("Booknote.selectAllPost", id);
+	public List<PostDTO> selectPostListById(String id){
+		return db.selectList("Booknote.selectPostListById", id);
 	}
 }
