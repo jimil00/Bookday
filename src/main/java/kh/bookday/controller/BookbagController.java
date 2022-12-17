@@ -21,10 +21,10 @@ public class BookbagController {
 	@RequestMapping("toBookbag")
 	public String toBookbag(Model model) {
 
-		String id = "지민";
+		String id = "수진";
 		
 		/* 책가방 리스트 출력 */
-		List<BookbagDTO> list = service.selectById(id);
+		List<BookbagDTO> list = service.selectBookbagListById(id);
 		model.addAttribute("list", list);
 
 		System.out.println("리스트 사이즈 확인 : " + list.size());

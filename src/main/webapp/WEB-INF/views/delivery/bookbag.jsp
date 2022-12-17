@@ -28,7 +28,6 @@
 /* div {
 	border: 1px solid black;
 } */
-
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -284,14 +283,6 @@ span, #logoImg:hover {
 							style="text-align: center; line-height: 120px;">책가방에 담긴 작품이
 							없습니다.</div>
 					</div>
-					<div class="body-right">
-						<div class="rental-detail"
-							style="height: 140px; text-align: center; line-height: 140px;">
-							종이책 구독 서비스를 이용해보세요!</div>
-						<div class="subscription">
-							<button class="sub-btn">구독하기</button>
-						</div>
-					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="body-left">
@@ -329,23 +320,16 @@ span, #logoImg:hover {
 							<hr style="width: 95%; margin-top: -14px;">
 						</c:forEach>
 					</div>
-					<div class="body-right">
-						<div class="rental-detail"
-							style="height: 140px; padding-left: 5px;">
-							<p>
-								남은 배송 횟수 : 3회 <br> 남은 대여 권수 : 10권 <br>
-							</p>
-							<p>
-								대여할 책 : 10권<br> 도착예정일 : 2022년 12월 14일<br> 반납일 : 2022년
-								12월 24일<br>
-							</p>
-						</div>
-						<div class="subscription">
-							<button class="sub-btn">구독하기</button>
-						</div>
-					</div>
 				</c:otherwise>
 			</c:choose>
+			<div class="body-right">
+				<div class="rental-detail"
+					style="height: 140px; text-align: center; line-height: 140px;">
+					종이책 구독 서비스를 이용해보세요!</div>
+				<div class="subscription">
+					<button class="sub-btn">구독하기</button>
+				</div>
+			</div>
 		</div>
 		<div class="footer"></div>
 	</div>

@@ -3,7 +3,7 @@
 
 <mapper namespace="Bookbag">
 
-	<select id="selectById" resultType="kh.bookday.dto.BookbagDTO">
+	<select id="selectBookbagListById" resultType="kh.bookday.dto.BookbagDTO">
 		select * from bookbag where id = #{id}
 	</select>
 	

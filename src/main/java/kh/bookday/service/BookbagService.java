@@ -15,8 +15,8 @@ public class BookbagService {
 	private BookbagDAO dao;
 	
 	/* 책가방 리스트 출력 */
-	public List<BookbagDTO> selectById(String id){	
-		return dao.selectById(id);
+	public List<BookbagDTO> selectBookbagListById(String id){	
+		return dao.selectBookbagListById(id);
 	}
 
 	
