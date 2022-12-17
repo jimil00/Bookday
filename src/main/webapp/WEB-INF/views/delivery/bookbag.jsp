@@ -347,7 +347,7 @@ span, #logoImg:hover {
 			location.href = "//toNotification";
 		})
 		$("#bookbag").on("click", function() {
-			location.href = "/delivery/toBookbag";
+			location.href = "/delivery/selectBookbagListById";
 		})
 		$("#bookselves").on("click", function() {
 			location.href = "/booknote/selectBookselves";

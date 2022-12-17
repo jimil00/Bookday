@@ -18,8 +18,8 @@ public class BookbagController {
 	@Autowired
 	private BookbagService service;
 
-	@RequestMapping("toBookbag")
-	public String toBookbag(Model model) {
+	@RequestMapping("selectBookbagListById")
+	public String selectBookbagListById(Model model) {
 
 		String id = "수진";
 		
