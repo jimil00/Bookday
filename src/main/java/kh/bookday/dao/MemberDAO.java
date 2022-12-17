@@ -22,12 +22,12 @@ public class MemberDAO {
 	}
 
 	// 핸드폰 중복 검사
-	public boolean phoneCheck(String phone) throws Exception{
+	public boolean checkPhone(String phone) throws Exception{
 		return db.selectOne("Member.phoneCheck",phone);
 	}
 
 	// 닉네임 중복 검사
-	public boolean nickCheck(String nickname) throws Exception{
+	public boolean checkNick(String nickname) throws Exception{
 		return db.selectOne("Member.nickCheck",nickname);
 	}
 
@@ -38,8 +38,8 @@ public class MemberDAO {
 	}
 
 	// 회원가입
-	public int insert(MemberDTO dto) {
-		return db.insert("Member.insert", dto);
+	public int signUp(MemberDTO dto) {
+		return db.insert("Member.signUp", dto);
 	}
 
 	// 아이디로 세션값 주기 위한 로직

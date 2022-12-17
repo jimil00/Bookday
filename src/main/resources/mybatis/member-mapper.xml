@@ -19,7 +19,7 @@
 	select count(*) from member where phone=#{phone} and pw=#{pw}
 	</select>
   	
-  	<insert id="insert">
+  	<insert id="signUp">
   	insert into member values(#{id},#{phone},#{pw},#{name},#{nickname},#{email},0,0,0,default,0,0)
   	</insert>
   	

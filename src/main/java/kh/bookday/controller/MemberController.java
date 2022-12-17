@@ -78,8 +78,8 @@ public class MemberController {
 	}
 	
 	//회원가입 관련
-	@RequestMapping(value="signup")
-	public String insert(MemberDTO dto)throws Exception{
+	@RequestMapping(value="signUp")
+	public String signUp(MemberDTO dto)throws Exception{
 		
 
 		System.out.println("비밀번호:"+dto.getPw());
@@ -91,7 +91,7 @@ public class MemberController {
 		
 		
 		//insert하기
-		int result=service.insert(dto);
+		int result=service.signUp(dto);
 		
 		return "redirect:/member/toLogin";
 	}
@@ -99,18 +99,18 @@ public class MemberController {
 	//닉네임 중복 체크
 	@ResponseBody
 	@RequestMapping("nickCheck")
-	public String nickCheck(@RequestParam("nickname") String nickname)throws Exception{
+	public String checkNick(@RequestParam("nickname") String nickname)throws Exception{
 		
-		boolean result= service.nickCheck(nickname);
+		boolean result= service.checkNick(nickname);
 		
 		return String.valueOf(result); 
 	}
 	
 	@ResponseBody //핸드폰 중복 체크 및 비번 찾기에서 회원 여부 체크
 	@RequestMapping(value={"phoneCheck","findUser"})
-	public String phoneCheck(@RequestParam("phone") String phone)throws Exception{
+	public String checkPhone(@RequestParam("phone") String phone)throws Exception{
 		
-		boolean result= service.phoneCheck(phone);
+		boolean result= service.checkPhone(phone);
 		System.out.println("번호 중복 체크 결과:"+result);
 						
 		return String.valueOf(result); 
@@ -126,13 +126,13 @@ public class MemberController {
 		String code= service.CreateRandomMsg(phone);
 		System.out.println("번호에 따른 인증번호 발급:"+code);
 		
-		//해당 번호와 맞는 인증 번호인지 따져줘야 할듯 / 세션으로 담아주기? (여러 방법이 있는데 생각해봐야함)
+		//세션으로 담아주기? (여러 방법이 있는데 생각해봐야함)
 		session.setAttribute("rand", code);
 		
 		return true;
 	}
 	
-	//인증 번호 일치 여부 확인
+	//인증 번호 일치 여부 확인 //한번에 여러 번 인증버튼을 누르면 여기서 인식을 못함
 	@ResponseBody
 	@GetMapping("phoneAuthOK") //@RequestParam("verifi_code") 
 	public boolean phoneAuthOK(@RequestParam("verifi_code") String code) {
@@ -151,14 +151,14 @@ public class MemberController {
 		}
 	
 	//비밀번호 찾기 페이지로 이동
-	@RequestMapping("toFindPw")
-	public String toFindPw() {
+	@RequestMapping("toUpdatePw")
+	public String toUpdatePw() {
 		
 		return "/member/findpw";
 	}
 	
 	//비밀번호 재설정
-	@RequestMapping("Updatepw")
+	@RequestMapping("UpdatePw")
 	public String Updatepw(@RequestParam("pw") String pw ,@RequestParam("phone") String phone) {
 		
 		//다른 에이작스 컨트롤러에서 중복 여부 체크 후 update 시도

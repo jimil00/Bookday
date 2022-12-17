@@ -22,15 +22,15 @@ public class MemberService {
 		return dao.selectMemInfo(id);
 	}
 	
-	public boolean phoneCheck(String phone) throws Exception{
-		 boolean result=dao.phoneCheck(phone);
+	public boolean checkPhone(String phone) throws Exception{
+		 boolean result=dao.checkPhone(phone);
 		 	
 			return result;
 			}
 	
 	
-	public boolean nickCheck(String nickname) throws Exception{
-		 boolean result=dao.nickCheck(nickname);
+	public boolean checkNick(String nickname) throws Exception{
+		 boolean result=dao.checkNick(nickname);
 		 	
 			return result;
 		
@@ -46,12 +46,12 @@ public class MemberService {
 		return result;			
 		}
 	
-	public int insert(MemberDTO dto) {
+	public int signUp(MemberDTO dto) {
 		
 		//uuid 생성
 		String id =UUID.randomUUID().toString();
 		dto.setId(id);
-		return dao.insert(dto);
+		return dao.signUp(dto);
 	}
 	
 	public String selectIdByPhone(String phone) {

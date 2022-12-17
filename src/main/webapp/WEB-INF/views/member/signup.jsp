@@ -185,7 +185,7 @@ $(document).ready(function(){
          let nameRegex=/[가-힣]{2,5}/;
          let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
          let phoneRegex=/^01\d{1}\d{3,4}\d{4}$/;
-         let emailRegex=/^[a-z 0-9 A-Z]{6,8}@[a-z]{5,6}.com$/;
+         let emailRegex=/^[a-z 0-9 A-Z]{6,12}@[a-z]{5,7}.com$/;
          let pwRegex=/^[A-Z a-z 0-9 ! @ $ %]{8,16}$/;
 
       if(!phoneRegex.test(phone)) {
@@ -235,9 +235,11 @@ $(document).ready(function(){
                                             	  
                                             	  console.log(resp);
                                             	  
-                                            	  //버튼 2번 클릭 못하게 해야 될듯
+                                            	  //입력 값 수정 불가 & 버튼 2번 클릭 못하게 해야 될듯
                                             	  if(resp==false){
                                             		  $("#verifi_code").css("border-color", "#5397fc");
+                                            		  $("#phone").attr("readonly",true);
+                                            		  $("#verifi_code").attr("readonly",true);
                                             		  $("#verfi_btn").attr("disabled", true); 
                                             		  $("#check_btn").attr("disabled", true);
                                             	  }else{
@@ -310,11 +312,12 @@ $(document).ready(function(){
               });
         }
 
-      //유효성에 맞으면 회원가입 버튼 활성화 + 중복검사 통과
+      //유효성에 맞으면 회원가입 버튼 활성화 + 중복검사 통과 + 값이 비어있지 않을 때
       if(phoneRegex.test(phone) && nameRegex.test(name) && emailRegex.test(email) 
-      && nicknameRegex.test(nickname) && pwRegex.test(pw)&& $("#verifi_code").val()!=null && $("#check_pw").val()!=null){
+      && nicknameRegex.test(nickname) && pwRegex.test(pw)
+      && $("#name").val()!="" && $("#nickname").val()!="" && $("#check_pw").val()!=""
+      && && $("#email").val()!="" && $("#pw").val()!=""){
      
-        
         //회원가입 버튼 활성화
 			$("#signup_btn").attr("disabled", false);
       		return;
