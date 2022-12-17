@@ -15,11 +15,11 @@ public class BookshelvesService {
 	@Autowired
 	private BookshelvesDAO dao;
 	
-	public List<RentalDTO> selectOnesRentalBooks(String id){
-		return dao.selectOnesRentalBooks(id);
+	public List<RentalDTO> selectAllRental(String id){
+		return dao.selectAllRental(id);
 	}
 	
-	public List<WishlistDTO> selectOnesWishlistBooks(String id){
-		return dao.selectOnesWishlistBooks(id);
+	public List<WishlistDTO> selectAllWishlist(String id){
+		return dao.selectAllWishlist(id);
 	}
 }

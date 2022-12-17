@@ -17,6 +17,7 @@ public class PostDTO {
 	private String p_content;
 	private int p_view_count;
 	private int p_comment_count;
+	private int p_like_count;
 	
 	
 	public PostDTO() {
@@ -24,7 +25,8 @@ public class PostDTO {
 	}
 	public PostDTO(int p_seq, String p_writer_id, String b_isbn, String b_img_url, String b_title, String b_writer,
 			String b_genre, String p_writer_nn, Timestamp p_write_date, String p_title, String p_content,
-			int p_view_count, int p_comment_count) {
+			int p_view_count, int p_comment_count, int p_like_count) {
+		super();
 		this.p_seq = p_seq;
 		this.p_writer_id = p_writer_id;
 		this.b_isbn = b_isbn;
@@ -38,9 +40,10 @@ public class PostDTO {
 		this.p_content = p_content;
 		this.p_view_count = p_view_count;
 		this.p_comment_count = p_comment_count;
+		this.p_like_count = p_like_count;
 	}
-	
-	
+
+
 	public int getP_seq() {
 		return p_seq;
 	}
@@ -118,6 +121,12 @@ public class PostDTO {
 	}
 	public void setP_comment_count(int p_comment_count) {
 		this.p_comment_count = p_comment_count;
+	}
+	public int getP_like_count() {
+		return p_like_count;
+	}
+	public void setP_like_count(int p_like_count) {
+		this.p_like_count = p_like_count;
 	}
 	
 }

@@ -2,6 +2,8 @@ package kh.bookday.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,17 +25,23 @@ public class BookmarkController {
 	@Autowired
 	private BookmarkService service;
 	
-	@RequestMapping("selectBookmark")
+	@Autowired
+	private HttpSession session;
+	
+	@RequestMapping("selectAllBookmark")
 	public String selectBookmark(Model model) throws Exception{
-		// 대여
+		
+		// id session
+//		String id = String.valueOf(session.getAttribute("loginID"));
 		String id = "zxcvzxcv";
+		
 		MemberDTO dto = mservice.selectMemInfo(id);
 		model.addAttribute("dto", dto);
 		
-		List<BookmarkDTO> list = service.selectOnesBookmark(id);
+		List<BookmarkDTO> list = service.selectAllBookmark(id);
 		model.addAttribute("list", list);
 		
-		return "mybooks/bookmark";
+		return "mybook/bookmark";
 	}
 	
 	@ExceptionHandler(Exception.class)

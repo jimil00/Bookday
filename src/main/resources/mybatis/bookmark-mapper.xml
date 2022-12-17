@@ -3,7 +3,7 @@
 
 <mapper namespace="Bookmark">
 
-	<select id="selectOnesBookmark" resultType="kh.bookday.dto.BookmarkDTO">
+	<select id="selectAllBookmark" resultType="kh.bookday.dto.BookmarkDTO">
 		select * from bookmark where bm_writer_id = #{id}
 	</select>
 	
