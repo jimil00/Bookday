@@ -338,7 +338,7 @@
                 location.href = "//toNotification";
             })
             $("#bookbag").on("click", function () {
-                location.href = "/delivery/toBookbag";
+                location.href = "/delivery/selectBookbagListById";
             })
             $("#bookshelves").on("click", function () {
                 location.href = "/bookshelves/selectBookshelvesListById";

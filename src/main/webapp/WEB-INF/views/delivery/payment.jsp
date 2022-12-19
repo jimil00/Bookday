@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home</title>
+<title>Payment</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -168,7 +168,8 @@ span, #logoImg:hover {
 
 /* body */
 .body {
-	height: 2000px;
+	/* height: 2000px; */
+	
 }
 </style>
 </head>
@@ -212,11 +213,11 @@ span, #logoImg:hover {
 		</div>
 		<hr id="headerHr">
 		<div class="navi"></div>
-		<div class="body"></div>
+		<div class="body">결제페이지</div>
 		<div class="footer"></div>
 	</div>
 	<script>
-      $("#logo_img").on("click", function() {
+      $("#logoImg").on("click", function() {
          location.href = "/";
       })
 

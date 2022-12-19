@@ -3,8 +3,18 @@
 
 <mapper namespace="Bookbag">
 
+	<!-- 책가방 리스트 출력 -->
 	<select id="selectBookbagListById" resultType="kh.bookday.dto.BookbagDTO">
 		select * from bookbag where id = #{id}
 	</select>
 	
+	<!-- 담은 작품 삭제 -->
+	<delete id="deleteBookbagBySeq">
+		delete from bookbag where bookbag_seq = #{id}
+	</delete>
+	
+	<!-- 위시리스트 추가 -->
+	<insert id="insertWishlist">
+		insert into wishlist values(wishlist_seq.nextval,#{id},#{b_isbn},#{b_img_url},#{b_title},#{b_writer},#{b_genre},default)
+	</insert>
 </mapper>
