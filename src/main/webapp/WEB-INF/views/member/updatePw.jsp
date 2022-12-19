@@ -82,18 +82,20 @@ button:active {
 				
 				console.log(resp);
 				
-                if(resp==false){
-                    alert("가입된 회원이 아닙니다.");
-                    $("#phone").val("");
+                if(resp == false){
+                	
+                    if(confirm("가입된 회원이 아닙니다.\n 회원가입하시겠습니까?")){
+                    	location.href="/member/toSignup";
+                    }else{
+                    	$("#phone").val("");
+                    }
+                    
                 }else{ 
                 	alert("회원입니다.");
                 	//회원이면 비밀번호 재설정하게 해준다.
                 	}
 			});
-		
-		
-		
-	
+
 	});
 	
 

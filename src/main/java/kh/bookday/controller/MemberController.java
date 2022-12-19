@@ -1,9 +1,13 @@
 package kh.bookday.controller;
 
+import java.sql.Timestamp;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 import kh.bookday.common.Pw_SHA256;
 import kh.bookday.dto.MemberDTO;
@@ -60,7 +67,7 @@ public class MemberController {
 			System.out.println(id);
 			session.setAttribute("loginID",id);
 			
-			MemberDTO dto=service.selectMemInfo(id);
+			MemberDTO dto=service.selectMemberById(id);
 			String nickname=dto.getNickname();
 			System.out.println(nickname);
 			session.setAttribute("nickname",nickname);
@@ -98,29 +105,29 @@ public class MemberController {
 	
 	//닉네임 중복 체크
 	@ResponseBody
-	@RequestMapping("nickCheck")
-	public String checkNick(@RequestParam("nickname") String nickname)throws Exception{
+	@RequestMapping("checkByNickname")
+	public String checkByNickname(@RequestParam("nickname") String nickname)throws Exception{
 		
-		boolean result= service.checkNick(nickname);
+		boolean result= service.checkByNickname(nickname);
 		
 		return String.valueOf(result); 
 	}
 	
 	@ResponseBody //핸드폰 중복 체크 및 비번 찾기에서 회원 여부 체크
-	@RequestMapping(value={"phoneCheck","findUser"})
-	public String checkPhone(@RequestParam("phone") String phone)throws Exception{
+	@RequestMapping(value={"checkByPhone","findUser"})
+	public boolean checkByPhone(@RequestParam("phone") String phone)throws Exception{
 		
-		boolean result= service.checkPhone(phone);
+		boolean result= service.checkByPhone(phone);
 		System.out.println("번호 중복 체크 결과:"+result);
 						
-		return String.valueOf(result); 
+		return result; 
 		
 		}
 	
 	
 	@ResponseBody //인증번호 발급 //sms까지는 번호 도용 차단 서비스 때문에 3~5일 정도 기다려야 할 듯
-	@RequestMapping("phoneAuth")
-	public boolean phoneAuth(@RequestParam("phone") String phone)throws Exception{
+	@RequestMapping("createAuthNum")
+	public boolean createAuthNum(@RequestParam("phone") String phone)throws Exception{
 				
 		//번호에 따른 랜덤 인증번호 생성
 		String code= service.CreateRandomMsg(phone);
@@ -134,8 +141,8 @@ public class MemberController {
 	
 	//인증 번호 일치 여부 확인 //한번에 여러 번 인증버튼을 누르면 여기서 인식을 못함
 	@ResponseBody
-	@GetMapping("phoneAuthOK") //@RequestParam("verifi_code") 
-	public boolean phoneAuthOK(@RequestParam("verifi_code") String code) {
+	@GetMapping("doAuthNumMatch") //@RequestParam("verifi_code") 
+	public boolean doAuthNumMatch(@RequestParam("verifi_code") String code) {
 		
 		//생성된 인증번호
 		String rand=(String) session.getAttribute("rand");
@@ -154,36 +161,59 @@ public class MemberController {
 	@RequestMapping("toUpdatePw")
 	public String toUpdatePw() {
 		
-		return "/member/findpw";
+		return "/member/updatePw";
 	}
 	
 	//비밀번호 재설정
-	@RequestMapping("UpdatePw")
-	public String Updatepw(@RequestParam("pw") String pw ,@RequestParam("phone") String phone) {
+	@RequestMapping("updatePw")
+	public String updatepw(@RequestParam("pw") String pw ,@RequestParam("phone") String phone) {
 		
 		//다른 에이작스 컨트롤러에서 중복 여부 체크 후 update 시도
 		
 		//다시 암호화
-		String updatePw=Pw_SHA256.getSHA256(pw);
+		String updatedPw=Pw_SHA256.getSHA256(pw);
 		
 		//해당 회원 정보로 들어갈 update 구문(해당 회원의 아이디 및 번호 값으로 조건을 준 후 update
-		int result=service.updatePw(updatePw,phone);
+		int result=service.updatePw(updatedPw,phone);
 		
 		return "/member/toLogin";
 	}
 	
-	//카카오 로그인(추가 중)
-	//인가 코드 받기
+	//카카오 로그인
+	//인가 코드 받기 + 토큰 발급 + 유저 정보 조회 
 	@RequestMapping(value="kakaoLogin" , method=RequestMethod.GET)
-	public String kakaoLogin(@RequestParam("code") String code) {
+	public String kakaoLogin(@RequestParam("code") String code, Model model) {
 		
-		System.out.println("#########"+code);
+		String access_Token=service.getAccessToken(code);
 		
-		//System.out.println(access_token);
+		
+		MemberDTO userInfo =service.getUserInfo(access_Token);
+		
+		model.addAttribute("code", code);
+		model.addAttribute("access_Token", access_Token);
+		model.addAttribute("userInfo", userInfo);
+		
+		System.out.println(userInfo);
+		
+		session.setAttribute("loginID", userInfo.getId());
+		session.setAttribute("nickname",userInfo.getNickname());
+		
+		//유의할 점: 이 로직을 통해 들어가면 uuid가 생성됨.
+		int result=service.signUp(userInfo);
 		
 		return "redirect:/";
 	}
 	
+	
+//	//카카오 로그아웃 //그냥 세션값 사라짐 없어도 될 듯 
+//	@RequestMapping(value="kakaoLogout" , method=RequestMethod.GET)
+//	public String kakaoLogout(@RequestParam("code") String code, Model model) {
+//		
+//		session.invalidate();
+//		
+//		return "redirect:/";
+//	}
+//	
 
 	//에러 수집
 	@ExceptionHandler(Exception.class) 

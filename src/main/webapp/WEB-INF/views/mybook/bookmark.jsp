@@ -38,7 +38,10 @@
             margin-top: 15px;
             margin-bottom: 15px;
         }
-
+        button:hover{
+            cursor: pointer;
+        }
+        
         /*     header */
         .header {
             height: 150px;
@@ -456,7 +459,7 @@
                     <li><span class="material-symbols-outlined size-35" id="snBookshelves">shelves</span></li>
                     <li><span class="material-symbols-outlined size-35" id="snStatistics">equalizer</span></li>
                     <li><span class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
-                    <li class="selected"><span class="material-symbols-outlined size-35" id="bookmark">book</span></li>
+                    <li class="selected"><span class="material-symbols-outlined size-35" id="snBookmark">book</span></li>
                     <li><span class="material-symbols-outlined size-35" id="snBooknote">edit</span></li>
                 </ul>
             </div>
@@ -553,7 +556,7 @@
                 location.href = "/delivery/toBookbag";
             })
             $("#bookshelves").on("click", function () {
-                location.href = "/bookshelves/selectBookshelves";
+                location.href = "/bookshelves/selectBookshelvesListById";
             })
             $("#mypage").on("click", function () {
                 if (loginID == null) {
@@ -562,7 +565,7 @@
                 location.href = "/member/toMypage";
             })
             $("#snBookshelves").on("click", function () {
-                location.href = "/bookshelves/selectBookshelves";
+                location.href = "/bookshelves/selectBookshelvesListById";
             })
             $("#snStatistics").on("click", function () {
                 location.href = "/bookstatistics/select-";
@@ -571,10 +574,10 @@
                 location.href = "/bookcalendar/select-";
             })
             $("#snBookmark").on("click", function () {
-                location.href = "/bookmark/selectBookmark";
+                location.href = "/bookmark/selectBookmarkListById";
             })
             $("#snBooknote").on("click", function () {
-                location.href = "/booknote/select-";
+                location.href = "/booknote/selectPostListById";
             })
         </script>
 </body>

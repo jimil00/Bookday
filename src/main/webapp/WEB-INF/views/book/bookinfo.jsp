@@ -6,8 +6,275 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet"
+   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        @font-face {
+            font-family: 'NanumSquareNeo-Variable';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+
+        * {
+            box-sizing: border-box;
+            font-family: 'NanumSquareNeo-Variable';
+        }
+
+        /* div {
+   border: 1px solid black;
+} */
+        .container {
+            margin: auto;
+            overflow: hidden;
+            width: 978px;
+        }
+
+        hr {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid rgb(216, 216, 216);
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        /*     header */
+        .header {
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .logo {
+            float: left;
+            position: relative;
+            height: 100%;
+            width: 55%;
+        }
+
+        #logoImg {
+            height: 50%;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        .search {
+            float: left;
+            position: relative;
+            height: 100%;
+            width: 25%;
+        }
+
+        .searchBox {
+            position: absolute;
+            bottom: 5px;
+            left: 0px;
+            overflow: hidden;
+            height: 40px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 3px 3px 3px 3px #80808050;
+        }
+
+        .searchTxt {
+            float: left;
+            padding: 0;
+            background: none;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            line-height: 40px;
+            position: absolute;
+            left: 10px;
+        }
+
+        .searchBtn {
+            position: absolute;
+            right: 0px;
+            line-height: 100px;
+            border: none;
+            background-color: #ffffff;
+            color: #5397fc50;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icons {
+            float: left;
+            position: relative;
+            width: 20%;
+            height: 100%;
+        }
+
+		.signBox {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.signBox>a {
+	margin: 5px;
+	text-decoration: underline;
+	text-underline-offset: 5px;
+	text-decoration-color: grey;
+	color: black;
+}
+
+.signBox>a:hover {
+	color: #5397fc;
+	text-decoration-color: #5397fc;
+}
+
+#nick {
+	text-decoration: none;
+}
+
+#nick:hover {
+	color: black;
+	cursor: default;
+}
+
+        .iconBox {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
+
+        span.size-40 {
+            font-size: 40px;
+            color: black;
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
+        }
+
+        span,
+        #logoImg:hover {
+            cursor: pointer;
+        }
+
+        /*     header */
+
+        /* navi */
+        .navi {
+            width: 100%;
+            height: 50px;
+        }
+/* body */
+.body {
+   height: 2000px;
+   /* position: absolute; */
+}
+
+.box, .b_etc, .post-link, .link_btn,#b_genre {
+    display: inline-flex;
+}
+.box{ width:978px;
+    position: absolute;}
+
+.b_img>img{width:250px;}
+
+
+.b_title {margin:20px; margin-top: 5px;}
+#b_title{font-size: 30px; }
+.box>div>p,.box>div>div>p{margin:20px; margin-top:5px;}
+.b_etc{margin-bottom:25px; width:fit-content;}
+.line{margin:0px;padding:0px;}
+.b_genre {margin:20px; margin-bottom:0px;}
+#b_genre{margin:0px;}
+.link_btn{margin-left:20px; position:relative; top:40%;}
+.post-link{position: absolute; right: 20px; bottom:310px;}
+.link_btn>button{width: 335px; height:50px;}
+</style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="/resources/bookday_logotitle.png" id="logoImg">
+            </div>
+            <div class="search">
+                <div class="searchBox">
+                    <form action="//search" id="search" method="post">
+                        <input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요" id="searchWord"
+                            name="searchWord">
+                        <button class="searchBtn" type="submit">
+                            <span class="material-symbols-outlined"> search </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="icons">
+				<div class="signBox">
+					<c:choose>
+						<c:when test="${empty loginID}">
+							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
+							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
+						</c:when>
+						<c:otherwise>
+							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
+							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+						</c:otherwise>
+					</c:choose>
+				</div>
+                <div class="iconBox">
+                    <span class="material-symbols-outlined size-40" id="notifications">notifications</span>
+                    <span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
+                    <span class="material-symbols-outlined size-40" id="bookshelves">shelves</span>
+                    <span class="material-symbols-outlined size-40" id="mypage">person</span>
+                </div>
+            </div>
+        </div>
+        <hr id="headerHr">
+        <div class="navi"></div>
+      <div class="body">
 
+    <div calss="book_basic_info"> 
+        <div class="box">
+            <div class="b_img"><img src="테스트.jpg" id="b_img"></div>
+            <div class="b_title">
+                    <p id="b_title">왜 아가리로만 할까?</p>
+                    <div class="b_etc">
+                        <p id="b_writer">저자</p>
+                        <p class="line">|</p>
+                        <p id="b_publisher">출판사</p>
+                        <p class="line">|</p>
+                        <p id="b_publication_date">출간일자</p>
+                    </div>
+                    <div class="b_genre">
+                        <span class="material-symbols-outlined">label</span>
+                        <p id="b_genre">장르</p>
+                    </div>
+                <div class="link_btn">
+                    <button><span class="material-symbols-outlined">
+                        favorite</span> 위시리스트에 담기</button>
+                    <button><span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span> 책가방에 담기</button>
+                </div>
+                <div class="post-link">
+                    <button>
+                        <span class="material-symbols-outlined">edit_square</span>
+                    <br><br>포스트 작성
+                    </button>
+                </div>
+            </div>
+        </div> <!--box -->
+    </div> <!--book_basic_info-->
+
+    <div class="review">댓글창</div>
+
+    <div class="post">포스트 미리보기</div>
+
+    <div class="with-books">함께 읽은 책</div>
+  
+      </div> <!--body-->
+
+      <div class="footer"></div>
+   </div>
+    </div>
 </body>
 </html>

@@ -17,18 +17,18 @@ public class MemberDAO {
 	private SqlSession db;
 
 	// 회원정보 출력
-	public MemberDTO selectMemInfo(String id) {
-		return db.selectOne("Member.selectMemInfo", id);
+	public MemberDTO selectMemberById(String id) {
+		return db.selectOne("Member.selectMemberById", id);
 	}
 
 	// 핸드폰 중복 검사
-	public boolean checkPhone(String phone) throws Exception{
-		return db.selectOne("Member.phoneCheck",phone);
+	public boolean  checkByPhone(String phone) throws Exception{
+		return db.selectOne("Member.checkByPhone",phone);
 	}
 
 	// 닉네임 중복 검사
-	public boolean checkNick(String nickname) throws Exception{
-		return db.selectOne("Member.nickCheck",nickname);
+	public boolean checkByNickname(String nickname) throws Exception{
+		return db.selectOne("Member.checkByNickname",nickname);
 	}
 
 	// 로그인

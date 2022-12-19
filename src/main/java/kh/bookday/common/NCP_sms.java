@@ -18,7 +18,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
-@Repository
+
 public class NCP_sms{
 		
 		@SuppressWarnings("unchecked")

@@ -113,7 +113,7 @@ position:absolute;
 			<img src="/resources/bookday_logo_ver1(kor).png" />
 		</div>
 
-		<form action="/member/signup">
+		<form action="/member/signUp">
 			<div class="signup_form">
 
 				<div class="box">
@@ -161,52 +161,88 @@ position:absolute;
 					</div>
 				</div>
 				<div class="signup_btn">
-					<button id="signup_btn" disabled="true">회원가입</button>
+					<button id="signup_btn">회원가입</button>
 				</div>
 			</div>
 		</form>
 
 	</div>
-	<script>
+<script>
 
 $(document).ready(function(){
-
-      	$("#name, #nickname, #phone,#verifi_code,#email,#pw,#check_pw")
-        .on("keyup",function(){
+	
+		
+      	$("#name").on("keyup",function(){
 
 		 let name= $("#name").val();
-         let nickname=$("#nickname").val();
-         let phone=$("#phone").val();
-         let verifi_code=$("#verifi_code").val();
-         let email=$("#email").val();
-         let pw=$("#pw").val();
-         let check_pw=$("#check_pw").val();
-
          let nameRegex=/[가-힣]{2,5}/;
-         let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
-         let phoneRegex=/^01\d{1}\d{3,4}\d{4}$/;
-         let emailRegex=/^[a-z 0-9 A-Z]{6,12}@[a-z]{5,7}.com$/;
-         let pwRegex=/^[A-Z a-z 0-9 ! @ $ %]{8,16}$/;
 
-      if(!phoneRegex.test(phone)) {
+		    //이름 유효성 검사
+			if(!nameRegex.test(name)){
+           $("#name").css("border-color","red");
+          }else{
+        $("#name").css("border-color","#5397fc");
+        $("#name").attr("readonly",true);}
+
+		});
+
+		$("#nickname").on("keyup",function(){
+			let nickname=$("#nickname").val();
+			let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
+
+			   //닉네임 유효성 검사      
+			if(!nicknameRegex.test(nickname)){
+           $("#nickname").css("border-color","red");
+           $("#nk_result").html("최소 2자 이상");
+          }else{
+
+          //닉네임 중복 검사
+          $.ajax({
+				url:"/member/checkByNickname",
+				data:{"nickname":nickname}
+			
+			}).done(function(resp){
+				
+				console.log(resp);
+				
+				if(resp == true){//닉네임이 존재하므로 사용할 수 없는 경우
+				$("#nickname").css("border-color","red");	
+          		$("#nk_result").html("이미 사용 중인 닉네임입니다.");
+    
+				}else { //닉네임이 존재하지 않으므로 사용할 수 있는 경우
+         $("#nickname").css("border-color","#5397fc");
+         $("#nk_result").html("사용 가능한 닉네임입니다.");
+         $("#nickname").attr("readonly",true);}
+				
+			}) //여기까지 중복 검사 로직
+      
+    }
+
+		});
+
+		$("#phone").on("keyup",function(){
+
+			let phone=$("#phone").val();
+			let phoneRegex=/^01\d{1}\d{3,4}\d{4}$/;
+
+			if(!phoneRegex.test(phone)){
           $("#phone, #verifi_code").css("border-color", "red");
               }else{
 
                 //핸드폰 중복 검사
                 $.ajax({
-                  url: "/member/phoneCheck",
+                  url: "/member/checkByPhone",
                   data: { "phone": phone }
 
                 }).done(function (resp){
 
                   console.log(resp);
 
-                  if (resp == "true") {//휴대폰이 존재하므로 사용할 수 없는 경우
+                  if (resp == true) {//휴대폰이 존재하므로 사용할 수 없는 경우
                     $("#phone").css("border-color", "red");
                     alert("이미 사용 중인 번호입니다.");
                     $("#phone").val("");
                     
-					//오류: alert창 2번 뜨고 인증번호도 여러 번 감
                   } else { //휴대폰이 존재하지 않으므로 사용할 수 있는 경우
                     $("#phone").css("border-color", "#5397fc");
                     $("#verfi_btn").on("click", function(){	
@@ -214,13 +250,20 @@ $(document).ready(function(){
                     	if(confirm("인증하시겠습니까?")){
                     		//인증 번호 발송되는 에이작스
                     		 $.ajax({
-                                url: "/member/phoneAuth",
+                                url: "/member/createAuthNum",
                                  data: {"phone": phone }
 
                                }).done(function (resp) {
                             	   
                             	   if(resp=true){ 
                             		   alert("인증번호가 발송되었습니다.");
+                            		   $("#verfi_btn").attr("disabled", true); 
+                            		   
+                            		   $("#phone").on("input",function(){
+                            			   $("#verfi_btn").attr("disabled", false); 
+                            			   location.reload();
+                            			   
+                                           		   });
                             		   
                             		    //확인 버튼 눌렀을 때
                                        $("#check_btn").on("click",function(){
@@ -228,7 +271,7 @@ $(document).ready(function(){
                             			   let verifi_code=$("#verifi_code").val();
                             			   
                             			   $.ajax({
-                                               url: "/member/phoneAuthOK",
+                                               url: "/member/doAuthNumMatch",
                                                 data: {"verifi_code": verifi_code }
 
                                               }).done(function (resp) {
@@ -242,6 +285,7 @@ $(document).ready(function(){
                                             		  $("#verifi_code").attr("readonly",true);
                                             		  $("#verfi_btn").attr("disabled", true); 
                                             		  $("#check_btn").attr("disabled", true);
+                                            		   $("#signup_btn").attr("disabled", false);
                                             	  }else{
                                             		  alert("인증번호가 틀립니다.");
                                             		  $("#verifi_code").css("border-color", "red");
@@ -252,78 +296,93 @@ $(document).ready(function(){
                                });
                     	}else{
                     		$("#phone").val("");
+                    		location.reload();
                     		}
                     })
                 
                   }
 
                 })
-              };
- 
-        //이름 유효성 검사
-        if(!nameRegex.test(name)){
-           $("#name").css("border-color","red");
-          }else{$("#name").css("border-color","#5397fc");}
+              }
 
+		});
 
-        //이메일 유효성 검사
-        if(!emailRegex.test(email)){
+       
+		$("#email").on("keyup",function(){
+
+			let email=$("#email").val();
+			let emailRegex=/^[a-z 0-9 A-Z]{6,12}@[a-z]{5,7}.com$/;
+
+			   //이메일 유효성 검사
+			   if(!emailRegex.test(email)){
                 $("#email").css("border-color","red");
-              }else{$("#email").css("border-color","#5397fc");}
+                
+              }else{
+            	$("#email").css("border-color","#5397fc");
+            	$("#email").attr("readonly",true);}
               
-        //닉네임 유효성 검사      
-        if(!nicknameRegex.test(nickname)){
-           $("#nickname").css("border-color","red");
-           $("#nk_result").html("최소 2자 이상");
-          }else{
 
-          //닉네임 중복 검사
-          $.ajax({
-				url:"/member/nickCheck",
-				data:{"nickname":nickname}
-			
-			}).done(function(resp){
-				
-				console.log(resp);
-				
-				if(resp == true){//닉네임이 존재하므로 사용할 수 없는 경우
-				$("#nickname").css("border-color","red");	
-          		$("#nk_result").html("이미 사용 중인 닉네임입니다.");
-          return true;
-				}else { //닉네임이 존재하지 않으므로 사용할 수 있는 경우
-         $("#nickname").css("border-color","#5397fc");
-         $("#nk_result").html("사용 가능한 닉네임입니다.");
-          return false;
-				}
-				
-			}) //여기까지 중복 검사 로직
-      
-    }
-    //비밀번호 유효성 검사
-    if(!pwRegex.test(pw)){
+		});
+    
+		$("#pw").on("keyup",function(){
+
+		let pw=$("#pw").val();
+        
+        let pwRegex=/^[A-Z a-z 0-9 ! @ $ %]{8,16}$/;
+
+		   //비밀번호 유효성 검사
+		   if(!pwRegex.test(pw)){
                 $("#pw, #check_pw").css("border-color","red");
-              }else{ $("#pw").css("border-color","#5397fc");
+              }else{ 
+            	  $("#pw").css("border-color","#5397fc");
+            	  $("#pw").attr("readonly",true);
+              
 
            //비밀번호 일치 확인
           $("#check_pw").on("keyup",function(){
+
+			let check_pw=$("#check_pw").val();
+
           if($("#pw").val()==$("#check_pw").val()){
           $("#check_pw").css("border-color","#5397fc");
           }else{ $("#check_pw").css("border-color","red");}
-              });
+          
+          });
+           
         }
+		   
+		});
+		
+		//기본적으로 버튼 비활성화
+		$("#signup_btn").attr("disabled", true);
+		
+		$("#name, #nickname, #phone,#verifi_code,#email,#pw,#check_pw")
+        .on("blur",function(){
+		let name= $("#name").val();
+         let nickname=$("#nickname").val();
+         let phone=$("#phone").val();
+         let verifi_code=$("#verifi_code").val();
+         let email=$("#email").val();
+         let pw=$("#pw").val();
+         let check_pw=$("#check_pw").val();
 
-      //유효성에 맞으면 회원가입 버튼 활성화 + 중복검사 통과 + 값이 비어있지 않을 때
-      if(phoneRegex.test(phone) && nameRegex.test(name) && emailRegex.test(email) 
-      && nicknameRegex.test(nickname) && pwRegex.test(pw)
-      && $("#name").val()!="" && $("#nickname").val()!="" && $("#check_pw").val()!=""
-      && && $("#email").val()!="" && $("#pw").val()!=""){
-     
-        //회원가입 버튼 활성화
-			$("#signup_btn").attr("disabled", false);
-      		return;
-      }
-    });
-  });
-    </script>
+/* 
+         let nameRegex=/[가-힣]{2,5}/;
+         let nicknameRegex=/[가-힣 a-z A-Z 0-9]/;
+         let phoneRegex=/^010\d{3,4}\d{4}$/;
+         let emailRegex=/^[a-z 0-9 A-Z]{6,8}@[a-z]{5,6}.com$/;
+         let pwRegex=/^[A-Z a-z 0-9 ! @ %]{8,10}$/; */
+		
+         if(name=="" || nickname=="" || phone=="" 
+             || verifi_code=="" || email=="" || pw=="" || check_pw==""){
+               //비어 있으면 로그인 버튼 아예 못 누름
+       			$("#signup_btn").attr("disabled", true);}
+             
+
+        });
+		
+		
+});
+</script>
 </body>
 </html>

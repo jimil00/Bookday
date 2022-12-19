@@ -3,11 +3,11 @@
 
 <mapper namespace="Bookshelves">
 
-	<select id="selectOnesRentalBooks" resultType="kh.bookday.dto.RentalDTO">
+	<select id="selectRentalListById" resultType="kh.bookday.dto.RentalDTO">
 		select * from rental where id = #{id}
 	</select>
 	
-	<select id="selectOnesWishlistBooks" resultType="kh.bookday.dto.WishlistDTO">
+	<select id="selectWishlistListById" resultType="kh.bookday.dto.WishlistDTO">
 		select * from wishlist where id = #{id}
 	</select>
 </mapper>

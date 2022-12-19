@@ -27,19 +27,18 @@
 
 .contanier {
 	text-align: center;
+	padding-top:100px;
+	margin-top:500px;
 	width: 400px;
-	height: fit-content;
+	height: 600px;
 	margin: auto;
 }
 
 
-/* .header {
+.header {
 	margin-top: 10%;
 	margin-bottom: 10%;
-} */
-
-
-
+} 
 
 .search {
 	float: left;
@@ -208,7 +207,7 @@ hr{
 				</div>
 			<!--  </form>--> 
 			<div class="findpw_link">
-				<a href="/member/toFindPw">비밀번호 재설정</a>
+				<a href="/member/toUpdatePw">비밀번호 재설정</a>
 			</div>
 			<hr>
 			<div class="kakao_login">

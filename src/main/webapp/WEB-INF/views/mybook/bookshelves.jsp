@@ -40,7 +40,10 @@
             margin-top: 15px;
             margin-bottom: 15px;
         }
-
+        button:hover{
+            cursor: pointer;
+        }
+        
         /*     header */
         .header {
             height: 150px;
@@ -259,17 +262,17 @@
         <div class="body">
             <div class="sideNavi">
                 <ul>
-                    <li class="selected"><span class="material-symbols-outlined size-35" id="bookshelves">shelves</span></li>
-                    <li><span class="material-symbols-outlined size-35" id="statistics">equalizer</span></li>
-                    <li><span class="material-symbols-outlined size-35" id="calendar">calendar_month</span></li>
-                    <li><span class="material-symbols-outlined size-35" id="bookmark">book</span></li>
-                    <li><span class="material-symbols-outlined size-35" id="booknote">edit</span></li>
+                    <li class="selected"><span class="material-symbols-outlined size-35" id="snBookshelves">shelves</span></li>
+                    <li><span class="material-symbols-outlined size-35" id="snStatistics">equalizer</span></li>
+                    <li><span class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
+                    <li><span class="material-symbols-outlined size-35" id="snBookmark">book</span></li>
+                    <li><span class="material-symbols-outlined size-35" id="snBooknote">edit</span></li>
                 </ul>
             </div>
             <div class="contents">
                 <div class="contentsHeader">
-                    <div id="contentsHeaderImg"><img src="" width="100" height="100" id="profile"></div>
-                    <div id="contentsHeaderTxt"> 님 책하루와 함께한 하루</div>
+                    <div id="contentsHeaderImg"><img src="/images/${dto.sysprofname }" width="100" height="100" id="profile"></div>
+                    <div id="contentsHeaderTxt">${dto.nickname }님 책하루와 함께한 ${dto.signup_date } 하루</div>
                 </div>
                 <div class="contentsBody">
                     <div class="rental">
@@ -322,11 +325,11 @@
         <div class="footer"></div>
     </div>
         <script>
-            $("#logoImg").on("click", function () {
+            $("#logo_img").on("click", function () {
                 location.href = "/";
             })
 
-            $("#searchWord").on("keydown", function (e) {
+            $("#searchword").on("keydown", function (e) {
                 if (e.keyCode == 13) {
                     $("#search").submit();
                 }
@@ -338,7 +341,7 @@
                 location.href = "/delivery/toBookbag";
             })
             $("#bookshelves").on("click", function () {
-                location.href = "/bookshelves/selectBookshelves";
+                location.href = "/bookshelves/selectBookshelvesListById";
             })
             $("#mypage").on("click", function () {
                 if (loginID == null) {
@@ -346,17 +349,20 @@
                 }
                 location.href = "/member/toMypage";
             })
-            $("#statistics").on("click", function () {
+            $("#snBookshelves").on("click", function () {
+                location.href = "/bookshelves/selectBookshelvesListById";
+            })
+            $("#snStatistics").on("click", function () {
                 location.href = "/bookstatistics/select-";
             })
-            $("#calendar").on("click", function () {
+            $("#snCalendar").on("click", function () {
                 location.href = "/bookcalendar/select-";
             })
-            $("#bookmark").on("click", function () {
-                location.href = "/bookmark/selectBookmark";
+            $("#snBookmark").on("click", function () {
+                location.href = "/bookmark/selectBookmarkListById";
             })
-            $("#booknote").on("click", function () {
-                location.href = "/booknote/select-";
+            $("#snBooknote").on("click", function () {
+                location.href = "/booknote/selectPostListById";
             })
         </script>
 </body>
