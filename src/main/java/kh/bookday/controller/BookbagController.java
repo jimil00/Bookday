@@ -29,7 +29,7 @@ public class BookbagController {
 
 	/* 책가방페이지 출력 */
 	@RequestMapping("selectBookbagListById")
-	public String selectBookbagListById(Model model) throws Exception{
+	public String selectBookbagListById(Model model) {
 
 		String id = "지민";
 
@@ -47,7 +47,7 @@ public class BookbagController {
 
 	/* 담은 작품 삭제 */
 	@RequestMapping("deleteBookbagBySeq")
-	public String deleteBookbagBySeq(int bookbag_seq) throws Exception{
+	public String deleteBookbagBySeq(int bookbag_seq) {
 		service.deleteBookbagBySeq(bookbag_seq);
 		return "redirect:/delivery/selectBookbagListById";
 	}
@@ -55,7 +55,7 @@ public class BookbagController {
 	/* 위시리스트 체크 */
 	@ResponseBody
 	@RequestMapping("selectWishlistByIdBisbn")
-	public String selectWishlistByIdBisbn(String id, String b_isbn) throws Exception{
+	public String selectWishlistByIdBisbn(String id, String b_isbn) {
 		
 		System.out.println(id);
 		WishlistDTO dto = service.selectWishlistByIdBisbn(id, b_isbn);
@@ -72,7 +72,7 @@ public class BookbagController {
 	
 	/* 위시리스트 추가 */
 	@RequestMapping("insertWishlist")
-	public String insertWishlist(WishlistDTO dto) throws Exception{
+	public String insertWishlist(WishlistDTO dto) {
 		
 		service.insertWishlist(dto);
 		System.out.println("위시리스트 추가 완료");
@@ -88,7 +88,7 @@ public class BookbagController {
 
 	/* 대여완료페이지 */
 	@RequestMapping("toRentalCompleted")
-	public String toRentalCompleted() throws Exception{
+	public String toRentalCompleted() {
 		return "delivery/rentalcompleted";
 	}
 
