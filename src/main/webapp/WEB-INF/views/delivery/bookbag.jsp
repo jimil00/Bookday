@@ -340,16 +340,16 @@ span, #logoImg:hover {
 						                $.ajax({
 						                    url: "/delivery/selectWishlistByIdBisbn",
 						                    data: {
-						                        "id": "수진",
+						                        "id": "지민",
 						                        "b_isbn": "${bookbag.b_isbn }"
 						                    }, success: function (result) {
 						                        if (result == "false") {
-						                            alert("이미 장바구니에 있는 작품입니다.");
+						                            alert("이미 위시리스트에 있는 책입니다.");
 						                        } else {
 						                            $.ajax({
 						                                url: "/delivery/insertWishlist",
 						                                data: {
-						                                    "id": "수진",
+						                                    "id": "지민",
 						                                    "b_isbn": "${bookbag.b_isbn }",
 						                                    "b_img_url": "${bookbag.b_img_url }",
 						                                    "b_title": "${bookbag.b_title }",

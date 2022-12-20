@@ -22,7 +22,7 @@ import kh.bookday.service.MemberService;
 public class BookbagController {
 
 	@Autowired
-	private BookbagService bservice;
+	private BookbagService service;
 
 	@Autowired
 	private MemberService mservice;
@@ -31,10 +31,10 @@ public class BookbagController {
 	@RequestMapping("selectBookbagListById")
 	public String selectBookbagListById(Model model) throws Exception{
 
-		String id = "수진";
+		String id = "지민";
 
 		/* 책가방 리스트 출력 */
-		List<BookbagDTO> list = bservice.selectBookbagListById(id);
+		List<BookbagDTO> list = service.selectBookbagListById(id);
 		model.addAttribute("list", list);
 		System.out.println("리스트 사이즈 확인 : " + list.size());
 
@@ -42,13 +42,13 @@ public class BookbagController {
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
 
-		return "/delivery/bookbag";
+		return "delivery/bookbag";
 	}
 
 	/* 담은 작품 삭제 */
 	@RequestMapping("deleteBookbagBySeq")
 	public String deleteBookbagBySeq(int bookbag_seq) throws Exception{
-		int result = bservice.deleteBookbagBySeq(bookbag_seq);
+		service.deleteBookbagBySeq(bookbag_seq);
 		return "redirect:/delivery/selectBookbagListById";
 	}
 	
@@ -58,11 +58,11 @@ public class BookbagController {
 	public String selectWishlistByIdBisbn(String id, String b_isbn) throws Exception{
 		
 		System.out.println(id);
-		WishlistDTO result = bservice.selectWishlistByIdBisbn(id, b_isbn);
+		WishlistDTO dto = service.selectWishlistByIdBisbn(id, b_isbn);
 		
-		System.out.println("위시리스트 체크 결과 : " + result);
+		System.out.println("위시리스트 체크 결과 : " + dto);
 		
-		if(result==null) { // 위시리스트에 담을 수 있는 상태
+		if(dto == null) { // 위시리스트에 담을 수 있는 상태
 			return String.valueOf("true");
 		}else { // 위시리스트에 이미 존재해서 담을 수 없는 상태
 			return String.valueOf("false");
@@ -74,7 +74,7 @@ public class BookbagController {
 	@RequestMapping("insertWishlist")
 	public String insertWishlist(WishlistDTO dto) throws Exception{
 		
-		int result = bservice.insertWishlist(dto);
+		service.insertWishlist(dto);
 		System.out.println("위시리스트 추가 완료");
 		
 		return "redirect:/delivery/selectBookbagListById";
@@ -83,13 +83,13 @@ public class BookbagController {
 	/* 결제페이지 */
 	@RequestMapping("topayment")
 	public String topayment() throws Exception{
-		return "/delivery/payment";
+		return "delivery/payment";
 	}
 
 	/* 대여완료페이지 */
 	@RequestMapping("toRentalCompleted")
 	public String toRentalCompleted() throws Exception{
-		return "/delivery/rentalcompleted";
+		return "delivery/rentalcompleted";
 	}
 
 	@ExceptionHandler(Exception.class)

@@ -23,8 +23,8 @@ public class BookbagService {
 	}
 	
 	/* 담은 작품 삭제 */
-	public int deleteBookbagBySeq(int bookbag_seq) {
-		return dao.deleteBookbagBySeq(bookbag_seq);
+	public void deleteBookbagBySeq(int bookbag_seq) {
+		dao.deleteBookbagBySeq(bookbag_seq);
 	}
 	
 	/* 위시리스트 체크 */
@@ -36,7 +36,7 @@ public class BookbagService {
 	}
 	
 	/* 위시리스트 추가 */
-	public int insertWishlist(WishlistDTO dto) {
-		return dao.insertWishlist(dto);
+	public void insertWishlist(WishlistDTO dto) {
+		dao.insertWishlist(dto);
 	}
 }
