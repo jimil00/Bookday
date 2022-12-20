@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home</title>
+<title>Rental Completed</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
 @font-face {
 	font-family: 'NanumSquareNeo-Variable';
@@ -24,7 +25,6 @@
 }
 
 /* div {
-
    border: 1px solid black;
 } */
 .container {
@@ -143,10 +143,10 @@ hr {
 }
 
 .iconBox {
-            position: absolute;
-            bottom: 0px;
-            right: 0px;
-        }
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
 
 span.size-40 {
 	font-size: 40px;
@@ -165,10 +165,10 @@ span, #logoImg:hover {
 	width: 100%;
 	height: 50px;
 }
-
 /* body */
 .body {
-   height: 2000px;
+	/* height: 2000px; */
+	
 }
 </style>
 </head>
@@ -202,7 +202,6 @@ span, #logoImg:hover {
 						</c:otherwise>
 					</c:choose>
 				</div>
-
 				<div class="iconBox">
 					<span class="material-symbols-outlined size-40" id="notifications">notifications</span>
 					<span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
@@ -213,12 +212,11 @@ span, #logoImg:hover {
 		</div>
 		<hr id="headerHr">
 		<div class="navi"></div>
-		<div class="body"></div>
+		<div class="body">대여완료페이지</div>
 		<div class="footer"></div>
 	</div>
 	<script>
-
-      $("#logo_img").on("click", function() {
+      $("#logoImg").on("click", function() {
          location.href = "/";
       })
 

@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,6 +144,7 @@ span, #logoImg:hover {
 
 /* body */
 .body {
+	/* 	height: 2000px; */
 	overflow: hidden;
 }
 
@@ -230,7 +233,7 @@ span, #logoImg:hover {
 	/* border-width: 1px; */
 }
 
-.sub-btn {
+.sub-rental-btn {
 	margin-top: 8px;
 	width: 100%;
 	height: 40px;
@@ -275,6 +278,7 @@ span, #logoImg:hover {
 			<div class="body-top">
 				<div class="bookbag-count">책가방 (${fn:length(list)})</div>
 			</div>
+
 			<c:choose>
 				<c:when test="${fn:length(list) == 0}">
 					<div class="body-left">
@@ -288,7 +292,7 @@ span, #logoImg:hover {
 					<div class="body-left">
 						<div class="bookbag-top">
 							<div class="top-checkbox-div">
-								<input type="checkbox" id="selectAll" name="" checked> <label
+								<input type="checkbox" id="selectAll" name=""> <label
 									for="selectAll">전체 선택</label>
 							</div>
 							<div class="top-btn-div">
@@ -300,7 +304,7 @@ span, #logoImg:hover {
 						<c:forEach var="bookbag" items="${list}">
 							<div class="bookbag-main">
 								<div class="bookbag-checkbox">
-									<input type="checkbox" id="select" name="" checked> <label
+									<input type="checkbox" id="select" name=""> <label
 										for="select"></label>
 								</div>
 								<div class="bookbag-img">
@@ -308,36 +312,108 @@ span, #logoImg:hover {
 								</div>
 								<div class="bookbag-detail">
 									<div class="bookbag-detail-text" style="height: 50%;">
-										${bookbag.b_title }<br> ${bookbag.b_writer }<br>
+										${bookbag.b_title }<br> ${bookbag.b_writer }<br> <input
+											type="hidden" value="${bookbag.b_isbn }"> <input
+											type="hidden" value="${bookbag.b_genre }">
 									</div>
 									<div class="bookbag-detail-btn"
 										style="height: 50%; padding-top: 35px;">
-										<button class="detail-btn">위시리스트에 담기</button>
-										<button class="detail-btn">삭제</button>
+										<button class="detail-btn" type="button" id="w${bookbag.bookbag_seq }">위시리스트에 담기</button>
+										<button class="detail-btn" type="button"
+											id="d${bookbag.bookbag_seq }">삭제</button>
 									</div>
 								</div>
 							</div>
 							<hr style="width: 95%; margin-top: -14px;">
+							<script>
+								$(function() {
+									$("#d${bookbag.bookbag_seq }").on("click",function() {
+										if (confirm("<${bookbag.b_title }> 작품을 삭제하시겠습니까?")) {
+											location.href = "/delivery/deleteBookbagBySeq?bookbag_seq="+ ${bookbag.bookbag_seq}
+											alert("삭제되었습니다.");
+										}
+									});
+								})
+								
+								$(function () {
+						            $("#w${bookbag.bookbag_seq }").on("click", function () {
+						                $.ajax({
+						                    url: "/delivery/selectWishlistByIdBisbn",
+						                    data: {
+						                        "id": "지민",
+						                        "b_isbn": "${bookbag.b_isbn }"
+						                    }, success: function (result) {
+						                        if (result == "false") {
+						                            alert("이미 위시리스트에 있는 책입니다.");
+						                        } else {
+						                            $.ajax({
+						                                url: "/delivery/insertWishlist",
+						                                data: {
+						                                    "id": "지민",
+						                                    "b_isbn": "${bookbag.b_isbn }",
+						                                    "b_img_url": "${bookbag.b_img_url }",
+						                                    "b_title": "${bookbag.b_title }",
+						                                    "b_writer": "${bookbag.b_writer }",
+						                                    "b_genre": "${bookbag.b_genre }"
+						                                }, success: function (resp) {
+						                                    alert("위시리스트에 담았습니다.");
+						                                }
+						                            });
+						                        }
+						                    }
+						                });
+						           });
+					        });
+							</script>
 						</c:forEach>
 					</div>
 				</c:otherwise>
 			</c:choose>
-			<div class="body-right">
-				<div class="rental-detail"
-					style="height: 140px; text-align: center; line-height: 140px;">
-					종이책 구독 서비스를 이용해보세요!</div>
-				<div class="subscription">
-					<button class="sub-btn">구독하기</button>
-				</div>
-			</div>
+
+			<c:choose>
+				<c:when test="${dto.grade eq '미구독'}">
+					<div class="body-right">
+						<div class="rental-detail"
+							style="height: 140px; text-align: center; line-height: 140px;">
+							종이책 구독 서비스를 이용해보세요!</div>
+						<div class="sub-rental">
+							<button class="sub-rental-btn" id="sub-btn">구독하기</button>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<c:set var="arrivalDate"
+						value="<%=new Date(new Date().getTime() + 60 * 60 * 24 * 1000 * 2)%>" />
+					<c:set var="returnDate"
+						value="<%=new Date(new Date().getTime() + 60 * 60 * 24 * 1000 * 12)%>" />
+					<div class="body-right">
+						<div class="rental-detail"
+							style="height: 140px; padding-left: 5px;">
+							<p>
+								남은 배송 횟수 : 3회 <br> 남은 대여 권수 : 10권
+							</p>
+							<p>
+								대여할 책 : 10권<br> 도착예정일 :
+								<fmt:formatDate value="${arrivalDate}" pattern="yyyy-MM-dd(E)" />
+								<br> 반납일 :
+								<fmt:formatDate value="${returnDate}" pattern="yyyy-MM-dd(E)" />
+								<br>
+							</p>
+						</div>
+						<div class="sub-rental">
+							<button class="sub-rental-btn" id="rental-btn">대여하기</button>
+						</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 		<div class="footer"></div>
 	</div>
 	<script>
-		$("#logo_img").on("click", function() {
+		$("#logoImg").on("click", function() {
 			location.href = "/";
 		})
-
 		$("#searchword").on("keydown", function(e) {
 			if (e.keyCode == 13) {
 				$("#search").submit();
@@ -347,7 +423,7 @@ span, #logoImg:hover {
 			location.href = "//toNotification";
 		})
 		$("#bookbag").on("click", function() {
-			location.href = "/delivery/toBookbag";
+			location.href = "/delivery/selectBookbagListById";
 		})
 		$("#bookselves").on("click", function() {
 			location.href = "/booknote/selectBookselves";
@@ -357,6 +433,17 @@ span, #logoImg:hover {
 				location.href = "/member/login";
 			}
 			location.href = "/member/toMypage";
+		})
+
+		$("#sub-btn").on("click", function() {
+			location.href = "/delivery/topayment";
+		})
+		$("#rental-btn").on("click", function() {
+			if(${fn:length(list) == 0}){
+				alert("대여할 책이 없습니다.");
+			}else if (confirm("대여하시겠습니까?")) {
+				location.href = "/delivery/toRentalCompleted";
+			}
 		})
 	</script>
 </body>

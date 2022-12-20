@@ -16,12 +16,15 @@ public class MemberDTO {
 	private Timestamp signup_date;
 	private String oriprofname;
 	private String sysprofname;
+	private String grade;
 
 	
-	public MemberDTO() {}
+	public MemberDTO() {
+		super();
+	}
 	
 	public MemberDTO(String id, String phone, String pw, String name, String nickname, String email, String postcode,
-			String address1, String address2, Timestamp signup_date, String oriprofname, String sysprofname) {
+			String address1, String address2, Timestamp signup_date, String oriprofname, String sysprofname, String grade) {
 		this.id = id;
 		this.phone = phone;
 		this.pw = pw;
@@ -34,6 +37,7 @@ public class MemberDTO {
 		this.signup_date = signup_date;
 		this.oriprofname = oriprofname;
 		this.sysprofname = sysprofname;
+		this.grade = grade;
 	}
 	
 	
@@ -114,6 +118,12 @@ public class MemberDTO {
 	}
 	public void setSysprofname(String sysprofname) {
 		this.sysprofname = sysprofname;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 
 	
