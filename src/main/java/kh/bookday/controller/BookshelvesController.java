@@ -53,7 +53,7 @@ public class BookshelvesController {
 //		List<BookDTO> blist = service.selectOnesPMedBooks();
 //		model.addAttribute("blist", blist);
 
-		return "/mybook/bookshelves";
+		return "mybook/bookshelves";
 	}
 	
 	@ExceptionHandler(Exception.class)

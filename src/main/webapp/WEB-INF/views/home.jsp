@@ -191,7 +191,7 @@
 			location.href = "/delivery/toBookbag";
 		})
 		$("#bookshelves").on("click", function() {
-			location.href = "/bookshelves/selectAllBookshelves";
+			location.href = "/bookshelves/selectBookshelvesListById";
 		})
 		$("#mypage").on("click", function() {
 			if (loginID == null) {

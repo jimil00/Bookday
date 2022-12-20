@@ -41,8 +41,9 @@ public class BooknoteController {
 		List<PostDTO> list = service.selectPostListById(id);
 		model.addAttribute("list", list);
 		
-		return "/mybook/booknote/selectpostlist";
+		return "mybook/booknote/selectpostlist";
 	}
+
 	
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e) {

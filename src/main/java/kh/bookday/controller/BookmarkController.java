@@ -41,7 +41,7 @@ public class BookmarkController {
 		List<BookmarkDTO> list = service.selectBookmarkListById(id);
 		model.addAttribute("list", list);
 		
-		return "/mybook/bookmark";
+		return "mybook/bookmark";
 	}
 	
 	@ExceptionHandler(Exception.class)
