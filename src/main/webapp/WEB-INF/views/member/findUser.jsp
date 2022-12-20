@@ -58,26 +58,25 @@ button:active {
 		</div>
 		<!-- <form action="/member/findUser"> -->
 			<div class="inputbox">
-				<input type="text" placeholder="비밀번호 재설정" id="updatePw"
-					name="updatePw">
+				<input type="text" placeholder="휴대폰 번호를 입력하세요." id="phone"
+					name="phone">
 			</div>
 			<div class="result"></div>
-			<div class="update_btn">
-				<button type="button" id="update_btn">확인</button>
+			<div class="find_btn">
+				<button type="button" id="find_btn">확인</button>
 			</div>
 		<!--</form> -->
 	</div>
 </body>
 <script>
-	$("#update_btn").on("click", function(){
+	$("#find_btn").on("click", function(){
 		
-		let updatePw = $("#updatePw").val();
+		let phone = $("#phone").val();
 		
 		 //휴대폰 번호 여부 에이작스로 확인한 다음에 비밀번호 재설정 페이지로 이동 
         $.ajax({
-				url:"/member/updatePw",
-				data:{"updatePw":updatePw,
-					"phone":phone}
+				url:"/member/findUser",
+				data:{"phone":phone}
 			
 			}).done(function(resp){
 				
@@ -85,12 +84,19 @@ button:active {
 				
                 if(resp == false){
                 	
-                  alert("비밀번호가 변경되었습니다.");
-                  location.href="/member/toLogin";
+                    if(confirm("가입된 회원이 아닙니다.\n 회원가입하시겠습니까?")){
+                    	location.href="/member/toSignup";
+                    }else{
+                    	$("#phone").val("");
+                    }
+                    
+                }else{ 
+                	//회원이면 비밀번호 재설정 페이지로 이동
+                	location.href="/member/toUpdatePw?phone="+$("#phone").val();
+                	}
 			});
 
 	});
-	
 
 </script>
 </html>

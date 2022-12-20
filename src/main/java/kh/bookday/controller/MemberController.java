@@ -41,13 +41,13 @@ public class MemberController {
 	
 	@RequestMapping("toLogin")
 	public String toLogin() {
-		return "/member/login";
+		return "member/login";
 	}
 	
 	//로그인
 	@ResponseBody //에이작스로 보낼 때
 	@RequestMapping("login")
-	public boolean login(@RequestParam("phone") String phone, @RequestParam("pw") String pw)throws Exception{
+	public boolean login(String phone, String pw){
 
 		
 		//비밀번호 암호화 후 db에 있는 암호화된 비번과 맞는지 확인
@@ -78,7 +78,7 @@ public class MemberController {
 	}
 	
 	//로그아웃
-	@RequestMapping("logOut")
+	@RequestMapping("logout")
 	public String logOut() {
 		session.invalidate();
 		return "redirect:/";
@@ -86,7 +86,7 @@ public class MemberController {
 	
 	//회원가입 관련
 	@RequestMapping(value="signUp")
-	public String signUp(MemberDTO dto)throws Exception{
+	public String signUp(MemberDTO dto){
 		
 
 		System.out.println("비밀번호:"+dto.getPw());
@@ -98,7 +98,7 @@ public class MemberController {
 		
 		
 		//insert하기
-		int result=service.signUp(dto);
+		service.signUp(dto);
 		
 		return "redirect:/member/toLogin";
 	}
@@ -106,7 +106,7 @@ public class MemberController {
 	//닉네임 중복 체크
 	@ResponseBody
 	@RequestMapping("checkByNickname")
-	public String checkByNickname(@RequestParam("nickname") String nickname)throws Exception{
+	public String checkByNickname(String nickname){
 		
 		boolean result= service.checkByNickname(nickname);
 		
@@ -115,7 +115,7 @@ public class MemberController {
 	
 	@ResponseBody //핸드폰 중복 체크 및 비번 찾기에서 회원 여부 체크
 	@RequestMapping(value={"checkByPhone","findUser"})
-	public boolean checkByPhone(@RequestParam("phone") String phone)throws Exception{
+	public boolean checkByPhone(String phone){
 		
 		boolean result= service.checkByPhone(phone);
 		System.out.println("번호 중복 체크 결과:"+result);
@@ -127,7 +127,7 @@ public class MemberController {
 	
 	@ResponseBody //인증번호 발급 //sms까지는 번호 도용 차단 서비스 때문에 3~5일 정도 기다려야 할 듯
 	@RequestMapping("createAuthNum")
-	public boolean createAuthNum(@RequestParam("phone") String phone)throws Exception{
+	public boolean createAuthNum(String phone){
 				
 		//번호에 따른 랜덤 인증번호 생성
 		String code= service.CreateRandomMsg(phone);
@@ -142,7 +142,7 @@ public class MemberController {
 	//인증 번호 일치 여부 확인 //한번에 여러 번 인증버튼을 누르면 여기서 인식을 못함
 	@ResponseBody
 	@GetMapping("doAuthNumMatch") //@RequestParam("verifi_code") 
-	public boolean doAuthNumMatch(@RequestParam("verifi_code") String code) {
+	public boolean doAuthNumMatch(String code) {
 		
 		//생성된 인증번호
 		String rand=(String) session.getAttribute("rand");
@@ -157,26 +157,34 @@ public class MemberController {
 		    return true;
 		}
 	
-	//비밀번호 찾기 페이지로 이동
+	//비밀번호 재설정을 위한 회원 정보 찾기 페이지
+	@RequestMapping("toFindUser")
+	public String toFindUser() {
+		
+		return "member/findUser";
+	}
+	
+
+	//비밀번호 재설정 페이지로 이동
 	@RequestMapping("toUpdatePw")
 	public String toUpdatePw() {
 		
-		return "/member/updatePw";
+		return "member/updatePw";
 	}
 	
 	//비밀번호 재설정
 	@RequestMapping("updatePw")
-	public String updatepw(@RequestParam("pw") String pw ,@RequestParam("phone") String phone) {
+	public String updatepw(String updatePw, @RequestParam("phone")String phone ) {
 		
 		//다른 에이작스 컨트롤러에서 중복 여부 체크 후 update 시도
 		
 		//다시 암호화
-		String updatedPw=Pw_SHA256.getSHA256(pw);
+		String updatedPw=Pw_SHA256.getSHA256(updatePw);
 		
 		//해당 회원 정보로 들어갈 update 구문(해당 회원의 아이디 및 번호 값으로 조건을 준 후 update
-		int result=service.updatePw(updatedPw,phone);
+		service.updatePw(updatedPw,phone);
 		
-		return "/member/toLogin";
+		return "member/toLogin";
 	}
 	
 	//카카오 로그인
@@ -199,7 +207,7 @@ public class MemberController {
 		session.setAttribute("nickname",userInfo.getNickname());
 		
 		//유의할 점: 이 로직을 통해 들어가면 uuid가 생성됨.
-		int result=service.signUp(userInfo);
+		service.signUp(userInfo);
 		
 		return "redirect:/";
 	}

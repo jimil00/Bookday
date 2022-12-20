@@ -255,7 +255,7 @@ $(document).ready(function(){
 
                                }).done(function (resp) {
                             	   
-                            	   if(resp=true){ 
+                            	   if(resp == true){ 
                             		   alert("인증번호가 발송되었습니다.");
                             		   $("#verfi_btn").attr("disabled", true); 
                             		   
@@ -272,14 +272,14 @@ $(document).ready(function(){
                             			   
                             			   $.ajax({
                                                url: "/member/doAuthNumMatch",
-                                                data: {"verifi_code": verifi_code }
+                                                data: {"code": verifi_code }
 
                                               }).done(function (resp) {
                                             	  
                                             	  console.log(resp);
                                             	  
                                             	  //입력 값 수정 불가 & 버튼 2번 클릭 못하게 해야 될듯
-                                            	  if(resp==false){
+                                            	  if(resp == false){
                                             		  $("#verifi_code").css("border-color", "#5397fc");
                                             		  $("#phone").attr("readonly",true);
                                             		  $("#verifi_code").attr("readonly",true);
@@ -378,7 +378,6 @@ $(document).ready(function(){
                //비어 있으면 로그인 버튼 아예 못 누름
        			$("#signup_btn").attr("disabled", true);}
              
-
         });
 		
 		

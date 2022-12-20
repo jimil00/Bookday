@@ -33,20 +33,20 @@ public class MemberService {
 		return dao.selectMemberById(id);
 	}
 
-	public boolean checkByPhone(String phone) throws Exception{
+	public boolean checkByPhone(String phone){
 		boolean result=dao.checkByPhone(phone);
 
 		return result;
 	}
 
-	public boolean checkByNickname(String nickname) throws Exception{
+	public boolean checkByNickname(String nickname){
 		boolean result=dao.checkByNickname(nickname);
 
 		return result;
 
 	}
 
-	public boolean isLoginOk(String phone, String pw) throws Exception{
+	public boolean isLoginOk(String phone, String pw){
 		Map<String ,String> param = new HashMap<>();
 		param.put("phone", phone);
 		param.put("pw", pw);
@@ -56,24 +56,24 @@ public class MemberService {
 		return result;			
 	}
 
-	public int signUp(MemberDTO dto) {
+	public void signUp(MemberDTO dto) {
 
 		//uuid 생성
 		String id =UUID.randomUUID().toString();
 		dto.setId(id);
-		return dao.signUp(dto);
+		//return dao.signUp(dto);
 	}
 
 	public String selectIdByPhone(String phone) {
 		return dao.selectIdByPhone(phone);
 	}
 
-	public int updatePw(String pw,String phone) {
+	public void updatePw(String pw,String phone) {
 		Map<String ,String> param = new HashMap<>();
 		param.put("pw", pw);
 		param.put("phone", phone);
 
-		return dao.updatePw(param);
+		//return dao.updatePw(param);
 	}
 
 
@@ -142,7 +142,7 @@ public class MemberService {
 			}
 			System.out.println("response body : " + result);
 
-			//    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
+			// Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
 			JsonParser parser = new JsonParser();
 			JsonElement element = parser.parse(result);
 
@@ -154,6 +154,7 @@ public class MemberService {
 
 			br.close();
 			bw.close();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -205,22 +206,22 @@ public class MemberService {
 
 			JsonObject kakao_account=element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
-			JsonObject profile=kakao_account.getAsJsonObject().get("profile").getAsJsonObject();
+			//JsonObject profile=kakao_account.getAsJsonObject().get("profile").getAsJsonObject();
 
 			String id =  element.getAsJsonObject().get("id").getAsString();
 
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
 
-			String profile_image_url =profile.getAsJsonObject().get("profile_image_url").getAsString();
+			//String profile_image_url =profile.getAsJsonObject().get("profile_image_url").getAsString();
 
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-
-			userInfo.setPw("0"); //비밀번호
+		
+			userInfo.setPw(UUID.randomUUID().toString()); //비밀번호 겹치지 않게 자동값 생성(보안에 매우 취약)
 			userInfo.setPhone("0"); //휴대폰 번호
 			userInfo.setEmail(email); //이메일
 			userInfo.setName(nickname); //이름(닉네임과 동일)
 			userInfo.setNickname(nickname);//닉네임(세션)
-			userInfo.setOriprofname(profile_image_url); //카톡 프로필 사진 링크인데 일단 oriproname에 넣었음.
+			//userInfo.setOriprofname(profile_image_url); //카톡 프로필 사진 링크인데 일단 oriproname에 넣었음.
 			
 		}catch(IOException e){
 			e.printStackTrace();

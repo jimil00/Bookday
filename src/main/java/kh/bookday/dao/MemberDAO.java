@@ -17,22 +17,22 @@ public class MemberDAO {
 	private SqlSession db;
 
 	// 회원정보 출력
-	public MemberDTO selectMemberById(String id) {
+	public MemberDTO selectMemberById(String id){
 		return db.selectOne("Member.selectMemberById", id);
 	}
 
 	// 핸드폰 중복 검사
-	public boolean  checkByPhone(String phone) throws Exception{
+	public boolean  checkByPhone(String phone){
 		return db.selectOne("Member.checkByPhone",phone);
 	}
 
 	// 닉네임 중복 검사
-	public boolean checkByNickname(String nickname) throws Exception{
+	public boolean checkByNickname(String nickname){
 		return db.selectOne("Member.checkByNickname",nickname);
 	}
 
 	// 로그인
-	public boolean isLoginOk(Map<String, String> param) throws Exception{
+	public boolean isLoginOk(Map<String, String> param){
 
 		return db.selectOne("Member.isLoginOk",param);
 	}
@@ -47,7 +47,6 @@ public class MemberDAO {
 		return db.selectOne("Member.selectIdByPhone", phone);
 	}
 	
-
 	//비번 재설정
 	public int updatePw(Map<String, String> param) {
 		return db.update("Member.updatePw", param);
