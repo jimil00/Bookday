@@ -1,6 +1,7 @@
 package kh.bookday.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class BookbagDAO {
 	/* 담은 작품 삭제 */
 	public int deleteBookbagBySeq(int bookbag_seq) {
 		return db.delete("Bookbag.deleteBookbagBySeq", bookbag_seq);
+	}
+	
+	/* 위시리스트 체크 */
+	public WishlistDTO selectWishlistByIdBisbn(Map<String, String> param) {
+		return db.selectOne("Bookbag.selectWishlistByIdBisbn", param);
 	}
 	
 	/* 위시리스트 추가 */

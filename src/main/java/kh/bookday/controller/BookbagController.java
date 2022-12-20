@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.bookday.dto.BookbagDTO;
 import kh.bookday.dto.MemberDTO;
@@ -30,7 +31,7 @@ public class BookbagController {
 	@RequestMapping("selectBookbagListById")
 	public String selectBookbagListById(Model model) throws Exception{
 
-		String id = "지민";
+		String id = "수진";
 
 		/* 책가방 리스트 출력 */
 		List<BookbagDTO> list = bservice.selectBookbagListById(id);
@@ -51,18 +52,30 @@ public class BookbagController {
 		return "redirect:/delivery/selectBookbagListById";
 	}
 	
-	/* 위시리스트 조회 */
-	
+	/* 위시리스트 체크 */
+	@ResponseBody
+	@RequestMapping("selectWishlistByIdBisbn")
+	public String selectWishlistByIdBisbn(String id, String b_isbn) throws Exception{
+		
+		System.out.println(id);
+		WishlistDTO result = bservice.selectWishlistByIdBisbn(id, b_isbn);
+		
+		System.out.println("위시리스트 체크 결과 : " + result);
+		
+		if(result==null) { // 위시리스트에 담을 수 있는 상태
+			return String.valueOf("true");
+		}else { // 위시리스트에 이미 존재해서 담을 수 없는 상태
+			return String.valueOf("false");
+		}
+		
+	}
 	
 	/* 위시리스트 추가 */
 	@RequestMapping("insertWishlist")
-	public String insertWishlist(HttpServletRequest request, WishlistDTO dto) throws Exception{
-		String b_title = request.getParameter("b_title");
-		System.out.println(b_title);
+	public String insertWishlist(WishlistDTO dto) throws Exception{
 		
 		int result = bservice.insertWishlist(dto);
 		System.out.println("위시리스트 추가 완료");
-		System.out.println(result);
 		
 		return "redirect:/delivery/selectBookbagListById";
 	}

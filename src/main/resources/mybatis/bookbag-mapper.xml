@@ -8,10 +8,15 @@
 		select * from bookbag where id = #{id}
 	</select>
 	
-	<!-- 담은 작품 삭제 -->
+	<!-- 담은 작품 삭제 --> 
 	<delete id="deleteBookbagBySeq">
 		delete from bookbag where bookbag_seq = #{id}
 	</delete>
+	
+	<!-- 위시리스트 체크 -->
+	<select id="selectWishlistByIdBisbn" resultType="kh.bookday.dto.WishlistDTO">
+		select * from wishlist where id = #{id} and b_isbn = #{b_isbn}
+	</select>
 	
 	<!-- 위시리스트 추가 -->
 	<insert id="insertWishlist">

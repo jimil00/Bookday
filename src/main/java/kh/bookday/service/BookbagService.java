@@ -1,6 +1,8 @@
 package kh.bookday.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,14 @@ public class BookbagService {
 	/* 담은 작품 삭제 */
 	public int deleteBookbagBySeq(int bookbag_seq) {
 		return dao.deleteBookbagBySeq(bookbag_seq);
+	}
+	
+	/* 위시리스트 체크 */
+	public WishlistDTO selectWishlistByIdBisbn(String id, String b_isbn) {
+		Map<String, String> param = new HashMap<>();
+		param.put("id", id);
+		param.put("b_isbn", b_isbn);
+		return dao.selectWishlistByIdBisbn(param);
 	}
 	
 	/* 위시리스트 추가 */

@@ -335,23 +335,35 @@ span, #logoImg:hover {
 									});
 								})
 								
-								$(function() {
-									$("#w${bookbag.bookbag_seq }").on("click",function() {
-											$.ajax({
-						                        url: "/delivery/insertWishlist",
-						                        data: {
-						                        	"id": "지민",
-						                            "b_isbn": "${bookbag.b_isbn }",
-						                            "b_img_url": "${bookbag.b_img_url }",
-						                            "b_title": "${bookbag.b_title }" ,
-						                            "b_writer": "${bookbag.b_writer }",
-						                            "b_genre": "${bookbag.b_genre }"	 
-						                        }, success : function(result) {
-						                        	alert("위시리스트에 담았습니다.");
+								$(function () {
+						            $("#w${bookbag.bookbag_seq }").on("click", function () {
+						                $.ajax({
+						                    url: "/delivery/selectWishlistByIdBisbn",
+						                    data: {
+						                        "id": "수진",
+						                        "b_isbn": "${bookbag.b_isbn }"
+						                    }, success: function (result) {
+						                        if (result == "false") {
+						                            alert("이미 장바구니에 있는 작품입니다.");
+						                        } else {
+						                            $.ajax({
+						                                url: "/delivery/insertWishlist",
+						                                data: {
+						                                    "id": "수진",
+						                                    "b_isbn": "${bookbag.b_isbn }",
+						                                    "b_img_url": "${bookbag.b_img_url }",
+						                                    "b_title": "${bookbag.b_title }",
+						                                    "b_writer": "${bookbag.b_writer }",
+						                                    "b_genre": "${bookbag.b_genre }"
+						                                }, success: function (resp) {
+						                                    alert("위시리스트에 담았습니다.");
+						                                }
+						                            });
 						                        }
-						                    });
-									});
-								})
+						                    }
+						                });
+						           });
+					        });
 							</script>
 						</c:forEach>
 					</div>
