@@ -82,7 +82,7 @@ public class BookbagController {
 
 	/* 결제페이지 */
 	@RequestMapping("topayment")
-	public String topayment() throws Exception{
+	public String topayment() {
 		return "delivery/payment";
 	}
 
