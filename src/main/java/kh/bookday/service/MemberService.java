@@ -61,7 +61,6 @@ public class MemberService {
 		//uuid 생성
 		String id =UUID.randomUUID().toString();
 		dto.setId(id);
-		//return dao.signUp(dto);
 	}
 
 	public String selectIdByPhone(String phone) {
@@ -73,12 +72,11 @@ public class MemberService {
 		param.put("pw", pw);
 		param.put("phone", phone);
 
-		//return dao.updatePw(param);
 	}
 
 
 	//NCP_sms 관련 서비스 로직 //인증번호 난수 생성 후 발송
-	public String CreateRandomMsg(String phone){
+	public String createRandomMsg(String phone){
 		NCP_sms sms = new NCP_sms();
 		Random rand=new Random();
 		String msg="";
@@ -206,13 +204,9 @@ public class MemberService {
 
 			JsonObject kakao_account=element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
-			//JsonObject profile=kakao_account.getAsJsonObject().get("profile").getAsJsonObject();
-
 			String id =  element.getAsJsonObject().get("id").getAsString();
 
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
-
-			//String profile_image_url =profile.getAsJsonObject().get("profile_image_url").getAsString();
 
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 		
@@ -221,7 +215,7 @@ public class MemberService {
 			userInfo.setEmail(email); //이메일
 			userInfo.setName(nickname); //이름(닉네임과 동일)
 			userInfo.setNickname(nickname);//닉네임(세션)
-			//userInfo.setOriprofname(profile_image_url); //카톡 프로필 사진 링크인데 일단 oriproname에 넣었음.
+			
 			
 		}catch(IOException e){
 			e.printStackTrace();

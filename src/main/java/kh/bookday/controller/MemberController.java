@@ -129,7 +129,7 @@ public class MemberController {
 	public boolean createAuthNum(String phone){
 				
 		//번호에 따른 랜덤 인증번호 생성
-		String code= service.CreateRandomMsg(phone);
+		String code= service.createRandomMsg(phone);
 		System.out.println("번호에 따른 인증번호 발급:"+code);
 		
 		//세션으로 담아주기? (여러 방법이 있는데 생각해봐야함)
@@ -156,13 +156,6 @@ public class MemberController {
 		    return true;
 		}
 	
-	//비밀번호 재설정을 위한 회원 정보 찾기 페이지
-	@RequestMapping("toFindUser")
-	public String toFindUser() {
-		
-		return "member/findUser";
-	}
-	
 
 	//비밀번호 재설정 페이지로 이동
 	@RequestMapping("toUpdatePw")
@@ -172,8 +165,9 @@ public class MemberController {
 	}
 	
 	//비밀번호 재설정
+	@ResponseBody
 	@RequestMapping("updatePw")
-	public String updatepw(String updatePw, @RequestParam("phone")String phone ) {
+	public String updatepw(String updatePw, String phone ) {
 		
 		//다른 에이작스 컨트롤러에서 중복 여부 체크 후 update 시도
 		
@@ -183,12 +177,12 @@ public class MemberController {
 		//해당 회원 정보로 들어갈 update 구문(해당 회원의 아이디 및 번호 값으로 조건을 준 후 update
 		service.updatePw(updatedPw,phone);
 		
-		return "member/toLogin";
+		return "true";
 	}
 	
 	//카카오 로그인
 	//인가 코드 받기 + 토큰 발급 + 유저 정보 조회 
-	@RequestMapping(value="kakaoLogin" , method=RequestMethod.GET)
+	@RequestMapping(value="kakaoLogin")
 	public String kakaoLogin(@RequestParam("code") String code, Model model) {
 		
 		String access_Token=service.getAccessToken(code);

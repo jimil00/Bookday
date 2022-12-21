@@ -33,7 +33,7 @@
 	width: 978px;
 }
 
-hr {
+hr{
 	display: block;
 	height: 1px;
 	border: 0;
@@ -159,6 +159,10 @@ span, #logoImg:hover {
 }
 
 /* header */
+
+.login_form{
+	margin-top:200px;
+}
 
 /* navi */
 .navi {

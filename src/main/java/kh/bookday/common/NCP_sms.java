@@ -43,7 +43,7 @@ public class NCP_sms{
 			JSONObject toJson = new JSONObject();
 		    JSONArray  toArr = new JSONArray();
 						
-		   toJson.put("content","[책하루 인증 번호]");	// Optional, messages.content	개별 메시지 내용, SMS: 최대 80byte, LMS, MMS: 최대 2000byte
+		   toJson.put("content","[책하루] \n 책하루 인증 번호는"+ "["+rand+"]"+"입니다.");	// Optional, messages.content	개별 메시지 내용, SMS: 최대 80byte, LMS, MMS: 최대 2000byte
 		   toJson.put("to",phone);						// Mandatory(필수), messages.to	수신번호, -를 제외한 숫자만 입력 가능
 		   toArr.add(toJson);
 		    

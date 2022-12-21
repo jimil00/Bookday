@@ -74,7 +74,7 @@
 .search-btn {
 	position: absolute;
 	right: 0px;
-	line-height: 100px;
+	line-height: 100px;#80808050
 	border: none;
 	background-color: #ffffff;
 	color: #5397fc;
@@ -95,12 +95,17 @@
 
 
 .header>a>img {
-	width: 40%;
+	width: 70%;
+}
+
+#phone, #pw{
+	margin-top:2%;
 }
 
 input {
-	border-color: white;
-	outline: none;
+    border: 1px solid #d5d5d5;
+    outline: none;
+	box-shadow:3px 3px #80808050;
 	border-radius: 8px;
 	padding-left: 10px;
 	width: 70%;
@@ -114,14 +119,16 @@ input {
 .login_btn {
 	margin: auto;
 	width: 70%;
-	margin-top: 10%;
+	margin-top: 5%;
 }
 
 button {
+	color:#5397fc;
+    outline: none;
+    border: 1px solid #5397fc;
 	transition-duration: 0.1s;
-	box-shadow: 3px 3px;
-	border-color: #5397fc;
-	background-color: #5397fc;
+	box-shadow:3px 3px #80808050;
+	background-color: white;
 	border-radius: 8px;
 	width: 100%;
 	height: 40px;
@@ -133,12 +140,18 @@ button:active {
 	box-shadow: none;
 }
 
+button:disabled {
+ color: black;
+ }
+
 .findpw_link {
 	margin-top: 5%;
-	margin-bottom: 3%;
+	margin-bottom: 5%;
 }
 
 .findpw_link>a {
+    font-size: smaller;
+	color:black;
 	text-decoration: none;
 	margin-bottom: 5%;
 }
@@ -149,6 +162,7 @@ hr{
     border-top: 1px solid rgb(216, 216, 216);
     margin-top: 15px;
     margin-bottom: 15px;
+    width: 285px;
 }
 
 .kakao_login {
@@ -158,7 +172,7 @@ hr{
 .kakao_login>a>img {
 	transition-duration: 0.1s;
 	border-radius: 8px;
-	box-shadow: 3px 3px;
+	box-shadow:3px 3px #80808050;
 	width: 70%;
 	height: 40px;
 }
@@ -172,25 +186,8 @@ hr{
 <body>
 	<div class="contanier">
 		<div class="header">
-			<a href="/"/><img src="/resources/bookday_logo_ver1(kor).png"></a>
+			<a href="/"/><img src="/resources/bookday_logotitle.png"></a>
 		</div>
-		<!-- 헤더 수정 중 -->
-		<!-- <div class="header">
-			<div class="logo">
-				<img src="/resources/bookday_logotitle.png" id="logo_img">
-			</div>
-			<div class="search">
-				<div class="search-box">
-					<form action="//search" id="search" method="post">
-						<input class="search-txt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchword" name="searchword">
-						<button class="search-btn" type="submit">
-							<span class="material-symbols-outlined"> search </span>
-						</button>
-					</form>
-				</div>
-			</div>
-		 -->
 
 		<div class="login_form">
 			<!--  <form action="/member/login">-->
@@ -203,17 +200,17 @@ hr{
 						name="pw" maxlength="20" />
 				</div>
 				<div class="login_btn">
-					<button id="login_btn">로그인</button>
+					<button id="login_btn" style="color:#5397fc;">로그인</button>
 				</div>
 			<!--  </form>--> 
 			<div class="findpw_link">
-				<a href="/member/toUpdatePw">비밀번호 재설정</a>
+				<a href="/member/toFindUser">비밀번호 재설정</a>
 			</div>
-			<hr>
+			<hr id="hr">
 			<div class="kakao_login">
 				<a class="p-2"
 					href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=	5d39c4a90d2cd9ef1649a8e6108ba988&redirect_uri=http://localhost:8090/member/kakaoLogin">
-					<img src="/resources/kakao_login_medium_wide.png">
+					<img src="/resources/kakao_login_large_wide.png">
 				</a>
 			</div>
 		</div>
@@ -298,7 +295,7 @@ hr{
 								alert("휴대폰 번호 혹은 비밀번호가 존재하지 않습니다.");
 								$('#phone').val('');
 								$('#pw').val('');
-							} else if(resp ==true){ //휴대번호 및 비번이 존재할 때,
+							} else if(resp == true){ //휴대번호 및 비번이 존재할 때,
 								location.href="/";
 							}
 						})
@@ -306,7 +303,7 @@ hr{
 							alert("요청 실패");
 						});
 
-		});
+			});
 		
 		});
 
