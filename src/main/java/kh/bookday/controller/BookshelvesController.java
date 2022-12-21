@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kh.bookday.dto.MemberDTO;
+import kh.bookday.dto.PostDTO;
 import kh.bookday.dto.RentalDTO;
 import kh.bookday.dto.WishlistDTO;
 import kh.bookday.service.BookshelvesService;
@@ -48,12 +49,12 @@ public class BookshelvesController {
 		model.addAttribute("wlist", wlist);
 		
 		// 책장
-		// 한 사람이 쓴 POST, BOOKMARK 쓴 것 BookDTO에 모아서 리스트로 보여주면 되지 않을까
+		// 한 사람이 쓴 POST 쓴 것 
 		// Posted,Marked Books
-//		List<BookDTO> blist = service.selectOnesPMedBooks();
-//		model.addAttribute("blist", blist);
+		List<PostDTO> plist = service.selectPostListById(id);
+		model.addAttribute("plist", plist);
 
-		return "/mybook/bookshelves";
+		return "mybook/bookshelves";
 	}
 	
 	@ExceptionHandler(Exception.class)
