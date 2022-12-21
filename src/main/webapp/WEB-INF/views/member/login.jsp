@@ -204,7 +204,7 @@ hr{
 				</div>
 			<!--  </form>--> 
 			<div class="findpw_link">
-				<a href="/member/toFindUser">비밀번호 재설정</a>
+				<a href="/member/toUpdatePw">비밀번호 재설정</a>
 			</div>
 			<hr id="hr">
 			<div class="kakao_login">
