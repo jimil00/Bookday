@@ -183,7 +183,6 @@ position:absolute;
 
 $(document).ready(function(){
 	
-	
 	//기본적으로 버튼 비활성화
 	$("#signup_btn").attr("disabled", true);
 	
@@ -219,7 +218,7 @@ $(document).ready(function(){
          
     });
 	
-	$("#phone").on("keyup",function(){
+	$("#phone").on("blur",function(){
 
 		let phone=$("#phone").val();
 		let phoneRegex=/^01\d{1}\d{3,4}\d{4}$/;
