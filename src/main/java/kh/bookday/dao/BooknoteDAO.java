@@ -17,4 +17,8 @@ public class BooknoteDAO {
 	public List<PostDTO> selectPostListById(String id){
 		return db.selectList("Booknote.selectPostListById", id);
 	}
+	
+	public void insertPost(PostDTO dto) {
+		db.insert("Booknote.insertPost", dto);
+	}
 }

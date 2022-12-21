@@ -10,4 +10,11 @@
 	<select id="selectWishlistListById" resultType="kh.bookday.dto.WishlistDTO">
 		select * from wishlist where id = #{id}
 	</select>
+	
+	
+	<select id="selectPostListById" resultType="kh.bookday.dto.PostDTO">
+		<![CDATA[
+		    select * from (select * from post order by p_seq desc) where p_writer_id = #{id} and rownum between 0 and 20
+		]]>
+	</select>
 </mapper>
