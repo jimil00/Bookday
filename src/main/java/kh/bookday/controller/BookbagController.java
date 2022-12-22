@@ -31,7 +31,7 @@ public class BookbagController {
 	@RequestMapping("selectBookbagListById")
 	public String selectBookbagListById(Model model) {
 
-		String id = "지민";
+		String id = "수진";
 
 		/* 책가방 리스트 출력 */
 		List<BookbagDTO> list = service.selectBookbagListById(id);
@@ -90,6 +90,12 @@ public class BookbagController {
 	@RequestMapping("toRentalCompleted")
 	public String toRentalCompleted() {
 		return "delivery/rentalcompleted";
+	}
+	
+	/* 배송지페이지 */
+	@RequestMapping("toAddress")
+	public String toAddress() {
+		return "delivery/address";
 	}
 
 	@ExceptionHandler(Exception.class)
