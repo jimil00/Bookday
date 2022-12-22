@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.bookday.dao.BooknoteDAO;
+import kh.bookday.dto.BookDTO;
 import kh.bookday.dto.PostDTO;
 
 @Service
@@ -20,5 +21,9 @@ public class BooknoteService {
 	
 	public void insertPost(PostDTO dto) {
 		dao.insertPost(dto);
+	}
+	
+	public List<BookDTO> selectBookListBySw(String word){
+		return dao.selectBookListBySw(word);
 	}
 }
