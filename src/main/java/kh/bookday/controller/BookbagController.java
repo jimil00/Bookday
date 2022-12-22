@@ -93,11 +93,33 @@ public class BookbagController {
 	}
 	
 	/* 배송지페이지 */
-	@RequestMapping("toAddress")
-	public String toAddress() {
-		return "delivery/address";
+	@RequestMapping("toDestination")
+	public String toDestination() {
+		return "delivery/destination";
 	}
-
+	
+	/* 회원 주소 입력 */
+	@RequestMapping("updateMemberById")
+	public String insertDestination(MemberDTO dto, Model model) {
+//		String postcode = request.getParameter("postcode");
+//		String address1 = request.getParameter("address1");
+//		String address2 = request.getParameter("address2");
+//
+//		System.out.println(postcode);
+//		System.out.println(address1);
+//		System.out.println(address2);
+		
+		System.out.println("여기");
+		
+		service.updateMemberById(dto);
+		
+		System.out.println(dto);
+		
+		model.addAttribute("dto", dto);
+		
+		return "redirect:/delivery/selectBookbagListById";
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();

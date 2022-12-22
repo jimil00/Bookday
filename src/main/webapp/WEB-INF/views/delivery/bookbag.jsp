@@ -179,12 +179,12 @@ span, #logoImg:hover {
 	width: 70%;
 	overflow: hidden;
 	float: left;
-	border: 1px solid rgb(194, 193, 193);
+	/* 	border: 1px solid rgb(194, 193, 193); */
 }
 
 .bookbag-top {
-	height: 80px;
-	padding-top: 55px;
+	height: 50px;
+	padding-top: 25px;
 	padding-left: 15px;
 	padding-right: 18px;
 }
@@ -193,7 +193,7 @@ span, #logoImg:hover {
 	/* border: 1px solid black; */
 	overflow: hidden;
 	width: 100%;
-	height: 188px;
+	height: 170px;
 }
 
 .bookbag-checkbox {
@@ -211,7 +211,7 @@ span, #logoImg:hover {
 }
 
 #book-img {
-	width: auto;
+	width: 93px;
 	height: 140px;
 }
 
@@ -235,7 +235,7 @@ span, #logoImg:hover {
 }
 
 .rental {
-	height: 249px;
+	/* 	height: 249px; */
 	border: 1px solid rgb(194, 193, 193);
 }
 
@@ -333,7 +333,8 @@ span, #logoImg:hover {
 											type="hidden" value="${bookbag.b_isbn }"> <input
 											type="hidden" value="${bookbag.b_genre }">
 									</div>
-									<div class="bookbag-detail-btn" style="height: 40%; padding-top: 9px;">
+									<div class="bookbag-detail-btn"
+										style="height: 40%; padding-top: 20px;">
 										<button class="detail-btn" type="button"
 											id="w${bookbag.bookbag_seq }">위시리스트에 담기</button>
 										<button class="detail-btn" type="button"
@@ -357,7 +358,7 @@ span, #logoImg:hover {
 						                $.ajax({
 						                    url: "/delivery/selectWishlistByIdBisbn",
 						                    data: {
-						                        "id": "수아",
+						                        "id": "지민",
 						                        "b_isbn": "${bookbag.b_isbn }"
 						                    }, success: function (result) {
 						                        if (result == "false") {
@@ -366,7 +367,7 @@ span, #logoImg:hover {
 						                            $.ajax({
 						                                url: "/delivery/insertWishlist",
 						                                data: {
-						                                    "id": "수아",
+						                                    "id": "지민",
 						                                    "b_isbn": "${bookbag.b_isbn }",
 						                                    "b_img_url": "${bookbag.b_img_url }",
 						                                    "b_title": "${bookbag.b_title }",
@@ -409,28 +410,35 @@ span, #logoImg:hover {
 					<div class="body-right">
 						<div class="rental">
 							<div class="rental-detail"
-								style="height: 130px; padding-left: 12px; padding-top: 12px; padding-bottom: 12px; padding-right: 12px;">
-								남은 배송 횟수 : 3회 <br> 남은 대여 권수 : 10권
-								<p>
-									대여할 책 : <span id="check-count-result"></span> 권<br> 도착예정일
-									:
+								style="padding-left: 15px; padding-top: 18px; padding-bottom: 18px; padding-right: 15px;">
+								<div style="padding-bottom: 4px;">남은 배송 횟수 : 3회</div>
+								<div style="padding-bottom: 4px;">남은 대여 권수 : 10권</div>
+								<div style="padding-bottom: 4px;">
+									대여할 책 : <span id="check-count-result"></span> 권
+								</div>
+								<div style="padding-bottom: 4px;">
+									도착예정일 :
 									<fmt:formatDate value="${arrivalDate}" pattern="yyyy-MM-dd(E)" />
-									<br> 반납일 :
+								</div>
+								<div>
+									반납일 :
 									<fmt:formatDate value="${returnDate}" pattern="yyyy-MM-dd(E)" />
-									<br>
-								</p>
+								</div>
 							</div>
 							<hr style="margin-top: 0px; margin-bottom: 0px; width: 92%;">
-							<div class="destination" 
-								style="padding-left: 12px; padding-top: 12px; padding-bottom: 12px; padding-right: 12px;">
+							<div class="destination"
+								style="padding-left: 15px; padding-top: 18px; padding-bottom: 18px; padding-right: 15px;">
 								<div>
 									배송지
 									<button id="address-search">주소변경</button>
 								</div>
 								<br>
-								<div>우편번호 : 01026</div>
-								<div>주소 : 서울 강북구 4.19로 23-1</div>
-								<div>상세주소 : 202동 1001호</div>
+								<div style="padding-bottom: 3px;">우편번호</div>
+								<div style="padding-bottom: 10px;">${dto.postcode }</div>
+								<div style="padding-bottom: 3px;">주소</div>
+								<div style="padding-bottom: 10px;">${dto.address1 }</div>
+								<div style="padding-bottom: 3px;">상세주소</div>
+								<div>${dto.address2 }</div>
 							</div>
 						</div>
 						<div class="sub-rental">
@@ -467,7 +475,7 @@ span, #logoImg:hover {
     });
 	
 	document.getElementById("address-search").onclick = function () {
-		window.open("/delivery/toAddress", "new", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=500, left=500, top=150");
+		window.open("/delivery/toDestination", "new", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=500, left=500, top=150");
     }
 	
 		$("#logoImg").on("click", function() {

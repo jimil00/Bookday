@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kh.bookday.dao.BookbagDAO;
 import kh.bookday.dto.BookbagDTO;
+import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.WishlistDTO;
 
 @Service
@@ -38,5 +39,10 @@ public class BookbagService {
 	/* 위시리스트 추가 */
 	public void insertWishlist(WishlistDTO dto) {
 		dao.insertWishlist(dto);
+	}
+	
+	/* 회원 주소 입력 */
+	public int updateMemberById(MemberDTO dto) {
+		return dao.updateMemberById(dto);
 	}
 }

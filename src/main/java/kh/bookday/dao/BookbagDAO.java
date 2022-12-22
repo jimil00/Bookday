@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.bookday.dto.BookbagDTO;
+import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.WishlistDTO;
 
 @Repository
@@ -36,4 +37,8 @@ public class BookbagDAO {
 		db.insert("Bookbag.insertWishlist", dto);
 	}
 	
+	/* 회원 주소 입력 */
+	public int updateMemberById(MemberDTO dto) {
+		return db.update("Bookbag.updateMemberById", dto);
+	}
 }
