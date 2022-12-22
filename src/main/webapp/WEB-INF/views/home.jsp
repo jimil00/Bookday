@@ -25,7 +25,7 @@
 }
 
 /* div {
-   border: 1px solid black;
+	border: 1px solid black;
 } */
 .container {
 	margin: auto;
@@ -33,21 +33,17 @@
 	width: 978px;
 }
 
-hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
-	margin-bottom: 15px;
+button:hover {
+	cursor: pointer;
 }
 
-/* header */
+/*     header */
 .header {
 	height: 150px;
 	overflow: hidden;
 }
 
+/* logo */
 .logo {
 	float: left;
 	position: relative;
@@ -62,6 +58,11 @@ hr {
 	left: 0px;
 }
 
+#logoImg:hover {
+	cursor: pointer;
+}
+
+/* search */
 .search {
 	float: left;
 	position: relative;
@@ -108,13 +109,31 @@ hr {
 	justify-content: center;
 }
 
-.icons {
+/* member */
+.member {
 	float: left;
 	position: relative;
 	width: 20%;
 	height: 100%;
 }
+/* icon */
+.iconBox {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
 
+span.size-40 {
+	font-size: 40px;
+	color: black;
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
+}
+
+span.size-40 {
+	cursor: pointer;
+}
+
+/* login */
 .signBox {
 	display: flex;
 	justify-content: flex-end;
@@ -122,9 +141,8 @@ hr {
 
 .signBox>a {
 	margin: 5px;
-	text-decoration: underline;
+	text-decoration: none;
 	text-underline-offset: 5px;
-	text-decoration-color: grey;
 	color: black;
 }
 
@@ -142,23 +160,16 @@ hr {
 	cursor: default;
 }
 
-.iconBox {
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
+/* headerHr */
+#headerHr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
-
-span.size-40 {
-	font-size: 40px;
-	color: black;
-	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
-}
-
-span, #logoImg:hover {
-	cursor: pointer;
-}
-
-/* header */
+/*     header */
 
 /* navi */
 .navi {
@@ -189,7 +200,7 @@ span, #logoImg:hover {
 					</form>
 				</div>
 			</div>
-			<div class="icons">
+			<div class="member">
 				<div class="signBox">
 					<c:choose>
 						<c:when test="${empty loginID}">
@@ -216,29 +227,29 @@ span, #logoImg:hover {
 		<div class="footer"></div>
 	</div>
 	<script>
-      $("#logo_img").on("click", function() {
-         location.href = "/";
-      })
-      $("#searchword").on("keydown", function(e) {
-         if (e.keyCode == 13) {
-            $("#search").submit();
-         }
-      })
-      $("#notifications").on("click", function() {
-         location.href = "//toNotification";
-      })
-      $("#bookbag").on("click", function() {
-         location.href = "/delivery/selectBookbagListById";
-      })
-      $("#bookshelves").on("click", function() {
-         location.href = "/bookshelves/selectBookshelvesListById";
-      })
-      $("#mypage").on("click", function() {
-         if (loginID == null) {
-            location.href = "/member/login";
-         }
-         location.href = "/member/toMypage";
-      })
-   </script>
+		$("#logoImg").on("click", function() {
+			location.href = "/";
+		})
+		$("#searchWord").on("keydown", function(e) {
+			if (e.keyCode == 13) {
+				$("#search").submit();
+			}
+		})
+		$("#notifications").on("click", function() {
+			location.href = "//toNotification";
+		})
+		$("#bookbag").on("click", function() {
+			location.href = "/delivery/selectBookbagListById";
+		})
+		$("#bookshelves").on("click", function() {
+			location.href = "/bookshelves/selectBookshelvesListById";
+		})
+		$("#mypage").on("click", function() {
+			if (loginID == null) {
+				location.href = "/member/login";
+			}
+			location.href = "/member/toMypage";
+		})
+	</script>
 </body>
 </html>

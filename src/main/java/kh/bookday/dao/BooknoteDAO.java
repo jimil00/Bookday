@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.bookday.dto.BookDTO;
 import kh.bookday.dto.PostDTO;
 
 @Repository
@@ -20,5 +21,9 @@ public class BooknoteDAO {
 	
 	public void insertPost(PostDTO dto) {
 		db.insert("Booknote.insertPost", dto);
+	}
+	
+	public List<BookDTO> selectBookListBySw(String word){
+		return db.selectList("Booknote.selectBookListBySw", word);
 	}
 }
