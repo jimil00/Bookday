@@ -17,4 +17,8 @@ public class BooknoteService {
 	public List<PostDTO> selectPostListById(String id){
 		return dao.selectPostListById(id);
 	}
+	
+	public void insertPost(PostDTO dto) {
+		dao.insertPost(dto);
+	}
 }

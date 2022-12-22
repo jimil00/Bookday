@@ -219,7 +219,6 @@ span, #logoImg:hover {
       $("#logo_img").on("click", function() {
          location.href = "/";
       })
-
       $("#searchword").on("keydown", function(e) {
          if (e.keyCode == 13) {
             $("#search").submit();
@@ -232,7 +231,7 @@ span, #logoImg:hover {
          location.href = "/delivery/selectBookbagListById";
       })
       $("#bookshelves").on("click", function() {
-         location.href = "/bookshelves/selectAllBookshelves";
+         location.href = "/bookshelves/selectBookshelvesListById";
       })
       $("#mypage").on("click", function() {
          if (loginID == null) {
