@@ -78,7 +78,7 @@ public class MemberController {
 	
 	//로그아웃
 	@RequestMapping("logout")
-	public String logOut() {
+	public String logout() {
 		session.invalidate();
 		return "redirect:/";
 	}
@@ -124,7 +124,7 @@ public class MemberController {
 		}
 	
 	
-	@ResponseBody //인증번호 발급 //sms까지는 번호 도용 차단 서비스 때문에 3~5일 정도 기다려야 할 듯
+	@ResponseBody //인증번호 발급
 	@RequestMapping("createAuthNum")
 	public boolean createAuthNum(String phone){
 				
@@ -140,7 +140,7 @@ public class MemberController {
 	
 	//인증 번호 일치 여부 확인 //한번에 여러 번 인증버튼을 누르면 여기서 인식을 못함
 	@ResponseBody
-	@GetMapping("doAuthNumMatch") //@RequestParam("verifi_code") 
+	@GetMapping("doAuthNumMatch")
 	public boolean doAuthNumMatch(String code) {
 		
 		//생성된 인증번호
@@ -194,14 +194,14 @@ public class MemberController {
 		model.addAttribute("access_Token", access_Token);
 		model.addAttribute("userInfo", userInfo);
 		
-		System.out.println(userInfo);
-		
-		session.setAttribute("loginID", userInfo.getId());
-		session.setAttribute("nickname",userInfo.getNickname());
+		System.out.println(userInfo.getId());
 		
 		//유의할 점: 이 로직을 통해 들어가면 uuid가 생성됨.
 		service.signUp(userInfo);
 		
+		session.setAttribute("loginID", userInfo.getId());
+		session.setAttribute("nickname",userInfo.getNickname());
+
 		return "redirect:/";
 	}
 	

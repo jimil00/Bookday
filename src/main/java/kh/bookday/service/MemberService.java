@@ -210,6 +210,8 @@ public class MemberService {
 
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 		
+			
+			userInfo.setId(id);
 			userInfo.setPw(UUID.randomUUID().toString()); //비밀번호 겹치지 않게 자동값 생성(보안에 매우 취약)
 			userInfo.setPhone("0"); //휴대폰 번호
 			userInfo.setEmail(email); //이메일

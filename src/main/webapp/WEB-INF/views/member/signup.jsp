@@ -272,7 +272,7 @@ $(document).ready(function(){
                         			   
                         			   $.ajax({
                                            url: "/member/doAuthNumMatch",
-                                            data: {"code": verifi_code }
+                                           data: {"code": verifi_code}
 
                                           }).done(function (resp) {
                                         	  
