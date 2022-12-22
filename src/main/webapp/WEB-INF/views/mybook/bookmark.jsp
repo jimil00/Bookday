@@ -1,584 +1,670 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Bookmark</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <style>
-        @font-face {
-            font-family: 'NanumSquareNeo-Variable';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
+<meta charset="UTF-8">
+<title>Bookmark</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<style>
+@font-face {
+	font-family: 'NanumSquareNeo-Variable';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
 
-        * {
-            box-sizing: border-box;
-            font-family: 'NanumSquareNeo-Variable';
-        }
+* {
+	box-sizing: border-box;
+	font-family: 'NanumSquareNeo-Variable';
+}
 
-        /* div {
+body {
+	margin: 8px;
+	line-height: inherit;
+}
+/* div {
 	border: 1px solid black;
 } */
-        .container {
-            margin: auto;
-            overflow: hidden;
-            width: 978px;
-        }
+.container {
+	margin: auto;
+	overflow: hidden;
+	width: 978px !important;
+	padding-left: 0px;
+	padding-right: 0px;
+}
 
-        hr {
-            display: block;
-            height: 1px;
-            border: 0;
-            border-top: 1px solid rgb(216, 216, 216);
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-        button:hover{
-            cursor: pointer;
-        }
-        
-        /*     header */
-        .header {
-            height: 150px;
-            overflow: hidden;
-        }
+button:hover {
+	cursor: pointer;
+}
 
-        .logo {
-            float: left;
-            position: relative;
-            height: 100%;
-            width: 55%;
-        }
+/*     header */
+.header {
+	height: 150px;
+	overflow: hidden;
+}
 
-        #logoImg {
-            height: 50%;
-            position: absolute;
-            bottom: 0px;
-            left: 0px;
-        }
+/* logo */
+.logo {
+	float: left;
+	position: relative;
+	height: 100%;
+	width: 55%;
+}
 
-        .search {
-            float: left;
-            position: relative;
-            height: 100%;
-            width: 25%;
-        }
+#logoImg {
+	height: 50%;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
 
-        .searchBox {
-            position: absolute;
-            bottom: 5px;
-            left: 0px;
-            overflow: hidden;
-            height: 40px;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 3px 3px 3px 3px #80808050;
-        }
+#logoImg:hover {
+	cursor: pointer;
+}
+/* search */
+.search {
+	float: left;
+	position: relative;
+	height: 100%;
+	width: 25%;
+}
 
-        .searchTxt {
-            float: left;
-            padding: 0;
-            background: none;
-            border: none;
-            outline: none;
-            font-size: 15px;
-            line-height: 40px;
-            position: absolute;
-            left: 10px;
-        }
+.searchBox {
+	position: absolute;
+	bottom: 5px;
+	left: 0px;
+	overflow: hidden;
+	height: 40px;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px 3px #80808050;
+}
 
-        .searchBtn {
-            position: absolute;
-            right: 0px;
-            line-height: 100px;
-            border: none;
-            background-color: #ffffff;
-            color: #5397fc50;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.searchTxt {
+	float: left;
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	line-height: 40px;
+	position: absolute;
+	left: 10px;
+}
 
-        .icons {
-            float: left;
-            position: relative;
-            width: 20%;
-            height: 100%;
-        }
+.searchBtn {
+	position: absolute;
+	right: 0px;
+	line-height: 100px;
+	border: none;
+	background-color: #ffffff;
+	color: #5397fc50;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-        .iconBox {
-            position: absolute;
-            bottom: 0px;
-            right: 0px;
-        }
+/* member */
+.member {
+	float: left;
+	position: relative;
+	width: 20%;
+	height: 100%;
+}
+/* icon */
+.iconBox {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
 
-        span.size-40 {
-            font-size: 40px;
-            color: black;
-            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
-        }
+span.size-40 {
+	font-size: 40px;
+	color: black;
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
+}
 
-        span,
-        #logoImg:hover {
-            cursor: pointer;
-        }
+span.size-40 {
+	cursor: pointer;
+}
 
-        /*     header */
 
-        /* navi */
-        .navi {
-            width: 100%;
-            height: 50px;
-        }
+/* login */
+.signBox {
+	display: flex;
+	justify-content: flex-end;
+}
 
-        /* body */
-        /* sidenavi */
-        .sideNavi {
-            width: 10%;
-            float: left;
-        }
+.signBox>a {
+	margin: 5px;
+	text-decoration: none;
+	text-underline-offset: 5px;
+	color: black;
+}
 
-        ul {
-            list-style-type: none;
-            margin-top: 20px;
-            padding-left: 0px;
-        }
+.signBox>a:hover {
+	color: #5397fc;
+	text-decoration-color: #5397fc;
+}
 
-        li {
-            margin-top: 10px;
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            border-radius: 50%;
-        }
+#nick {
+	text-decoration: none;
+}
 
-        span.size-35 {
-            line-height: 40px;
-            font-size: 35px;
-            color: gray;
-            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
-        }
+#nick:hover {
+	color: black;
+	cursor: default;
+}
 
-        .selected {
-            background-color: #5397fc50;
-        }
+/* headerHr */
+#headerHr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+/*     header */
 
-        /* contents */
-        .contentsHeader {
-            width: 100%;
-            margin-bottom: 30px;
-            font-size: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
+/* navi */
+.navi {
+	width: 100%;
+	height: 50px;
+}
 
-        #profile {
-            border-radius: 50%;
-        }
+/* body */
+.body {
+	overflow: hidden;
+}
 
-        .contents {
-            width: 90%;
-            float: left;
-            overflow: hidden;
-        }
+/* sidenavi */
+.sideNavi {
+	width: 10%;
+	float: left;
+}
 
-        .title {
-            height: 50px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-end;
-        }
+ul {
+	list-style-type: none;
+	margin-top: 20px;
+	padding-left: 0px;
+}
 
-        .titleTxt {
-            line-height: 30px;
-            font-size: 20px;
-        }
+li {
+	margin-top: 10px;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	border-radius: 50%;
+}
 
-        span.size-30 {
-            font-size: 30px;
-            color: gray;
-            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
-        }
+span.size-35 {
+	line-height: 40px;
+	font-size: 35px;
+	color: gray;
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
+}
 
-        .insertBookmark {
-            width: 100%;
-        }
+.selected {
+	background-color: #5397fc50;
+}
 
-        .insertBookmarkBookInfo {
-            height: 50px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
+span.size-35{
+cursor: pointer;
+}
 
-        .bookmarkBookSearchTitle {
-            font-size: 15px;
-            margin-right: 10px;
-            padding-bottom: 10px;
-        }
+/* contents */
+.contents {
+	width: 90%;
+	float: left;
+	overflow: hidden;
+}
 
-        .bookmarkBookSearchBox {
-            position: relative;
-            bottom: 5px;
-            overflow: hidden;
-            height: 40px;
-            width: 244.5px;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 3px 3px 3px 3px #80808050;
-        }
+/* contentsHeader */
+.contentsHeader {
+	width: 100%;
+	margin-bottom: 30px;
+	font-size: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
 
-        .bookmarkBookSearchTxt {
-            float: left;
-            padding: 0;
-            background: none;
-            border: none;
-            outline: none;
-            font-size: 15px;
-            line-height: 40px;
-            position: absolute;
-            left: 10px;
-        }
+#contentsHeaderImg {
+	height: 100px;
+	width: 100px;
+}
 
-        .bookmarkBookSearchBtn {
-            position: absolute;
-            right: 0px;
-            line-height: 100px;
-            border: none;
-            background-color: #ffffff;
-            color: #5397fc50;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+#profile {
+	border-radius: 50%;
+}
 
-        .insertBookmark{
-            display: inline-block;
-        }
+/* contentsBody */
+.title {
+	height: 50px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: flex-end;
+}
 
-        .insertBookmarkContent {
-            margin-top: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        .insertbookmarkContentBox {
-            height: 120px;
-            width: 870px;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 3px 3px 3px 3px #80808050;
-            overflow: hidden;
-            position: relative;
-            overflow-y: auto;
-        }
+.titleTxt {
+	line-height: 30px;
+	font-size: 20px;
+}
 
-        .insertBookmarkBtn {
-            width: 100%;
-            height: 65px;
-            position: relative;
-        }
+span.size-30 {
+	font-size: 30px;
+	color: gray;
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
+}
 
-        #insertBookmarkBtn {
-            position: absolute;
-            top: 55%;
-            transform: translate(0%, -50%);
-            right: 8px;
-            width: 50px;
-            height: 30px;
-            font-size: 15px;
-            color: rgb(47, 47, 47);
-            background-color: #5397fc50;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 3px 3px 3px 3px #80808050;
-        }
+/* contentsBodyInsertBookmark */
+.insertBookmark {
+	width: 100%;
+}
 
-        .bookmarkSearch {
-            height: 50px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            margin-top: 25px;
-            margin-bottom: 25px;
-        }
+.insertBookmarkBookInfo {
+	height: 50px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
 
-        .bookmarkSearchTitle {
-            font-size: 15px;
-            margin-right: 10px;
-            padding-bottom: 10px;
-        }
+.bookmarkBookSearchTitle {
+	font-size: 15px;
+	margin-right: 10px;
+	padding-bottom: 10px;
+}
 
-        .bookmarkSearchBox {
-            position: relative;
-            bottom: 5px;
-            overflow: hidden;
-            height: 40px;
-            width: 244.5px;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 3px 3px 3px 3px #80808050;
-        }
+.bookmarkBookSearchBox {
+	position: relative;
+	bottom: 5px;
+	overflow: hidden;
+	height: 40px;
+	width: 244.5px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px 3px #80808050;
+}
 
-        .bookmarkSearchTxt {
-            float: left;
-            padding: 0;
-            background: none;
-            border: none;
-            outline: none;
-            font-size: 15px;
-            line-height: 40px;
-            position: absolute;
-            left: 10px;
-        }
+.bookmarkBookSearchTxt {
+	float: left;
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	line-height: 40px;
+	position: absolute;
+	left: 10px;
+}
 
-        .bookmarkSearchBtn {
-            position: absolute;
-            right: 0px;
-            line-height: 100px;
-            border: none;
-            background-color: #ffffff;
-            color: #5397fc50;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.bookmarkBookSearchBtn {
+	position: absolute;
+	right: 0px;
+	line-height: 100px;
+	border: none;
+	background-color: #ffffff;
+	color: #5397fc50;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-        .bookmarkContents {
-            width: 100%;
-            height: auto;
-            display: flex;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
+.insertBookmark {
+	display: inline-block;
+}
 
-        .bookmarkContentsImg {
-            width: 15%;
-        }
+.insertBookmarkContent {
+	margin-top: 10px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
 
-        .bookmarkBookImg {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
+.insertbookmarkContentBox {
+	height: 120px;
+	width: 870px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px 3px #80808050;
+	overflow: hidden;
+	position: relative;
+	overflow-y: auto;
+}
 
-        .bookmarkBookImg>img {
-            height: 180px;
-        }
+.insertBookmarkBtn {
+	width: 100%;
+	height: 65px;
+	position: relative;
+}
 
-        .bookmarkContentsTxt {
-            display: inline-block;
-            height: auto;
-            width: 85%;
-        }
+#insertBookmarkBtn {
+	position: absolute;
+	top: 55%;
+	transform: translate(0%, -50%);
+	right: 8px;
+	width: 50px;
+	height: 30px;
+	font-size: 15px;
+	color: rgb(47, 47, 47);
+	background-color: #5397fc50;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px 3px #80808050;
+}
 
-        .bookmarkBookInfo {
-            font-size: 15px;
-        }
+/* contentsBodySearchBookmake */
+.bookmarkSearch {
+	height: 50px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
 
-        .bookmarkWritedate {
-            font-size: 12px;
-            display: flex;
-            justify-content: flex-end;
-        }
+.bookmarkSearchTitle {
+	font-size: 15px;
+	margin-right: 10px;
+	padding-bottom: 10px;
+}
 
-        .bookmarkContent {
-            height: auto;
-            font-size: 14px;
-        }
+.bookmarkSearchBox {
+	position: relative;
+	bottom: 5px;
+	overflow: hidden;
+	height: 40px;
+	width: 244.5px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px 3px #80808050;
+}
 
-        .bookmarkContentsBtn {
-            float: right;
-            width: 14%;
-            height: 50px;
-            display: flex;
-            justify-items: flex-end;
-            justify-content: space-around;
-        }
-        .bookmarkContentsBtn>button {
-            width: 50px;
-            height: 30px;
-            font-size: 15px;
-            color: rgb(47, 47, 47);
-            background-color: #5397fc50;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 3px 3px 3px 3px #80808050;
-        }
-    </style>
+.bookmarkSearchTxt {
+	float: left;
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	line-height: 40px;
+	position: absolute;
+	left: 10px;
+}
+
+.bookmarkSearchBtn {
+	position: absolute;
+	right: 0px;
+	line-height: 100px;
+	border: none;
+	background-color: #ffffff;
+	color: #5397fc50;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* contentsBodyBookmakeContents */
+.bookmarkContents {
+	width: 100%;
+	height: auto;
+	display: flex;
+	margin-bottom: 20px;
+	flex-wrap: wrap;
+}
+
+.bookmarkContentsImg {
+	width: 15%;
+}
+
+.bookmarkBookImg {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.bookmarkBookImg>img {
+	height: 180px;
+}
+
+.bookmarkContentsTxt {
+	display: inline-block;
+	height: auto;
+	width: 85%;
+}
+
+.bookmarkBookInfo {
+	font-size: 15px;
+}
+
+.bookmarkWritedate {
+	font-size: 12px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.bookmarkContent {
+	height: auto;
+	font-size: 14px;
+}
+
+.bookmarkContentsBtn {
+	float: right;
+	width: 14%;
+	height: 50px;
+	display: flex;
+	justify-items: flex-end;
+	justify-content: space-around;
+}
+
+.bookmarkContentsBtn>button {
+	width: 50px;
+	height: 30px;
+	font-size: 15px;
+	color: rgb(47, 47, 47);
+	background-color: #5397fc50;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 3px 3px 3px 3px #80808050;
+}
+</style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <img src="/resources/bookday_logotitle.png" id="logoImg">
-            </div>
-            <div class="search">
-                <div class="searchBox">
-                    <form action="//search" id="search" method="post">
-                        <input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요" id="searchWord"
-                            name="searchWord">
-                        <button class="searchBtn" type="submit">
-                            <span class="material-symbols-outlined"> search </span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="icons">
-                <div class="iconBox">
-                    <span class="material-symbols-outlined size-40" id="notifications">notifications</span>
-                    <span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
-                    <span class="material-symbols-outlined size-40" id="bookshelves">shelves</span>
-                    <span class="material-symbols-outlined size-40" id="mypage">person</span>
-                </div>
-            </div>
-        </div>
-        <hr id="headerHr">
-        <div class="navi"></div>
-        <div class="body">
-            <div class="sideNavi">
-                <ul>
-                    <li><span class="material-symbols-outlined size-35" id="snBookshelves">shelves</span></li>
-                    <li><span class="material-symbols-outlined size-35" id="snStatistics">equalizer</span></li>
-                    <li><span class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
-                    <li class="selected"><span class="material-symbols-outlined size-35" id="snBookmark">book</span></li>
-                    <li><span class="material-symbols-outlined size-35" id="snBooknote">edit</span></li>
-                </ul>
-            </div>
-            <div class="contents">
-                <div class="contentsHeader">
-                    <div id="contentsHeaderImg"><img src="/images/${dto.sysprofname }" width="100" height="100" id="profile"></div>
-                    <div id="contentsHeaderTxt">${dto.nickname }님 책하루와 함께한 ${dto.signup_date } 하루</div>
-                </div>
-                <div class="contentsBody">
-                    <div class="title">
-                        <div class="titleTxt">책갈피</div>&nbsp
-                        <span class="material-symbols-outlined size-30">book</span>
-                    </div>
-                    <div class="insertBookmark">
-                        <div class="insertBookmarkBookInfo">
-                            <div class="bookmarkBookSearchTitle">책 검색</div>
-                            <div class="bookmarkBookSearchBox">
-                                <form action="//search" id="bookmarkBookSearch" method="post">
-                                    <input class="bookmarkBookSearchTxt" type="text" placeholder="검색어를 입력해 주세요"
-                                        id="bookmarkBookSearchWord" name="bookmarkBookSearchWord">
-                                    <button class="bookmarkBookSearchBtn" type="submit">
-                                        <span class="material-symbols-outlined"> search </span>
-                                    </button>
-                                </form>
-                                <!--                     이거는 ajax해야 할 듯 나온 값을 폼으로 아래의 content와 보내주기 아래것도 ajax 댓글처럼 생각하면 된다.-->
-                            </div>
-                        </div>
-                        <div class="insertBookmarkContent">
-                            <div class="insertbookmarkContentBox" contenteditable="true"></div>
-                        </div>
-                        <div class="insertBookmarkBtn">
-                            <button id="insertBookmarkBtn" type="submit">입력</button>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="bookmarkSearch">
-                        <div class="bookmarkSearchTitle">책갈피 검색</div>
-                        <div class="bookmarkSearchBox">
-                            <!--                     ajax -->
-                            <form action="//search" id="bookmarkSearch" method="post">
-                                <input class="bookmarkSearchTxt" type="text" placeholder="검색어를 입력해 주세요"
-                                    id="bookmarkSearchWord" name="bookmarkSearchWord">
-                                <button class="bookmarkSearchBtn" type="submit">
-                                    <span class="material-symbols-outlined"> search </span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="selectBookmarkList">
-                        <c:forEach var="bm" items="${list}">
-                            <div class="bookmarkContents">
-                                <div class="bookmarkContentsImg">
-                                    <div class="bookmarkBookImg"><img src="${bm.b_img_url }"></div>
-                                </div>
-                                <div class="bookmarkContentsTxt">
-                                    <div class="bookmarkBookInfo"><${bm.b_title }>&nbsp${bm.b_writer }</div>
-                                    <div class="bookmarkWritedate">${bm.bm_write_date }</div>
-                                    <hr>
-                                    <div class="bookmarkContent">
-                                        ${bm.bm_content}
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="bookmarkContentsBtn">
-                                <button class="updateBookmarkContentsBtn">수정</button>
-                                <button class="deleteBookmarkContentsBtn">삭제</button>
-                            </div>
-                        </c:forEach>
-                    </div>
-                    <!--             	검색할거면 bms로 다시 리스트 출력 c when otherwise 쓰기 -->
-                    <div class="bookmarkContentsListPage">
-                    </div>
-                    <div class="page"></div>
-                </div>
-            </div>
+	<div class="container">
+		<div class="header">
+			<div class="logo">
+				<img src="/resources/bookday_logotitle.png" id="logoImg">
+			</div>
+			<div class="search">
+				<div class="searchBox">
+					<form action="//search" id="search" method="post">
+						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
+							id="searchWord" name="searchWord">
+						<button class="searchBtn" type="submit">
+							<span class="material-symbols-outlined"> search </span>
+						</button>
+					</form>
+				</div>
+			</div>
+			<div class="member">
+				<div class="signBox">
+					<c:choose>
+						<c:when test="${empty loginID}">
+							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
+							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
+						</c:when>
+						<c:otherwise>
+							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
+							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+						</c:otherwise>
+					</c:choose>
+				</div>
+				<div class="iconBox">
+					<span class="material-symbols-outlined size-40" id="notifications">notifications</span>
+					<span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
+					<span class="material-symbols-outlined size-40" id="bookshelves">shelves</span>
+					<span class="material-symbols-outlined size-40" id="mypage">person</span>
+				</div>
+			</div>
+		</div>
+		<hr id="headerHr">
+		<div class="navi"></div>
+		<div class="body">
+			<div class="sideNavi">
+				<ul>
+					<li><span class="material-symbols-outlined size-35"
+						id="snBookshelves">shelves</span></li>
+					<li><span class="material-symbols-outlined size-35"
+						id="snStatistics">equalizer</span></li>
+					<li><span class="material-symbols-outlined size-35"
+						id="snCalendar">calendar_month</span></li>
+					<li class="selected"><span
+						class="material-symbols-outlined size-35" id="snBookmark">book</span></li>
+					<li><span class="material-symbols-outlined size-35"
+						id="snBooknote">edit</span></li>
+				</ul>
+			</div>
+			<div class="contents">
+				<div class="contentsHeader">
+					<div id="contentsHeaderImg">
+						<img src="/images/${dto.sysprofname }" width="100" height="100"
+							id="profile">
+					</div>
+					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
+						} 하루</div>
+				</div>
+				<div class="contentsBody">
+					<div class="title">
+						<div class="titleTxt">책갈피</div>
+						&nbsp <span class="material-symbols-outlined size-30">book</span>
+					</div>
+					<div class="insertBookmark">
+						<div class="insertBookmarkBookInfo">
+							<div class="bookmarkBookSearchTitle">책 검색</div>
+							<div class="bookmarkBookSearchBox">
+								<form action="//search" id="bookmarkBookSearch" method="post">
+									<input class="bookmarkBookSearchTxt" type="text"
+										placeholder="검색어를 입력해 주세요" id="bookmarkBookSearchWord"
+										name="bookmarkBookSearchWord">
+									<button class="bookmarkBookSearchBtn" type="submit">
+										<span class="material-symbols-outlined"> search </span>
+									</button>
+								</form>
+								<!--                     이거는 ajax해야 할 듯 나온 값을 폼으로 아래의 content와 보내주기 아래것도 ajax 댓글처럼 생각하면 된다.-->
+							</div>
+						</div>
+						<div class="insertBookmarkContent">
+							<div class="insertbookmarkContentBox" contenteditable="true"></div>
+						</div>
+						<div class="insertBookmarkBtn">
+							<button id="insertBookmarkBtn" type="submit">입력</button>
+						</div>
+					</div>
+					<hr>
+					<div class="bookmarkSearch">
+						<div class="bookmarkSearchTitle">책갈피 검색</div>
+						<div class="bookmarkSearchBox">
+							<!--                     ajax -->
+							<form action="//search" id="bookmarkSearch" method="post">
+								<input class="bookmarkSearchTxt" type="text"
+									placeholder="검색어를 입력해 주세요" id="bookmarkSearchWord"
+									name="bookmarkSearchWord">
+								<button class="bookmarkSearchBtn" type="submit">
+									<span class="material-symbols-outlined"> search </span>
+								</button>
+							</form>
+						</div>
+					</div>
+					<div class="selectBookmarkList">
+						<c:forEach var="bm" items="${list}">
+							<div class="bookmarkContents">
+								<div class="bookmarkContentsImg">
+									<div class="bookmarkBookImg">
+										<img src="${bm.b_img_url }">
+									</div>
+								</div>
+								<div class="bookmarkContentsTxt">
+									<div class="bookmarkBookInfo"><${bm.b_title
+										}>&nbsp${bm.b_writer }</div>
+									<div class="bookmarkWritedate">${bm.bm_write_date }</div>
+									<hr>
+									<div class="bookmarkContent">${bm.bm_content}</div>
+								</div>
+							</div>
+							<hr>
+							<div class="bookmarkContentsBtn">
+								<button class="updateBookmarkContentsBtn">수정</button>
+								<button class="deleteBookmarkContentsBtn">삭제</button>
+							</div>
+						</c:forEach>
+					</div>
+					<!--             	검색할거면 bms로 다시 리스트 출력 c when otherwise 쓰기 -->
+					<div class="bookmarkContentsListPage"></div>
+					<div class="page"></div>
+				</div>
+			</div>
 
-            <div class="footer"></div>
-        </div>
-        <script>
-            $("#logo_img").on("click", function () {
-                location.href = "/";
-            })
+			<div class="footer"></div>
+		</div>
+		<script>
+			$("#logoImg").on("click", function() {
+				location.href = "/";
+			})
 
-            $("#searchword").on("keydown", function (e) {
-                if (e.keyCode == 13) {
-                    $("#search").submit();
-                }
-            })
-            $("#notifications").on("click", function () {
-                location.href = "//toNotification";
-            })
-            $("#bookbag").on("click", function () {
-                location.href = "/delivery/toBookbag";
-            })
-            $("#bookshelves").on("click", function () {
-                location.href = "/bookshelves/selectBookshelvesListById";
-            })
-            $("#mypage").on("click", function () {
-                if (loginID == null) {
-                    location.href = "/member/login";
-                }
-                location.href = "/member/toMypage";
-            })
-            $("#snBookshelves").on("click", function () {
-                location.href = "/bookshelves/selectBookshelvesListById";
-            })
-            $("#snStatistics").on("click", function () {
-                location.href = "/bookstatistics/select-";
-            })
-            $("#snCalendar").on("click", function () {
-                location.href = "/bookcalendar/select-";
-            })
-            $("#snBookmark").on("click", function () {
-                location.href = "/bookmark/selectBookmarkListById";
-            })
-            $("#snBooknote").on("click", function () {
-                location.href = "/booknote/selectPostListById";
-            })
-        </script>
+			$("#searchWord").on("keydown", function(e) {
+				if (e.keyCode == 13) {
+					$("#search").submit();
+				}
+			})
+			$("#notifications").on("click", function() {
+				location.href = "//toNotification";
+			})
+			$("#bookbag").on("click", function() {
+				location.href = "/delivery/toBookbag";
+			})
+			$("#bookshelves").on("click", function() {
+				location.href = "/bookshelves/selectBookshelvesListById";
+			})
+			$("#mypage").on("click", function() {
+				if (loginID == null) {
+					location.href = "/member/login";
+				}
+				location.href = "/member/toMypage";
+			})
+			$("#snBookshelves").on("click", function() {
+				location.href = "/bookshelves/selectBookshelvesListById";
+			})
+			$("#snStatistics").on("click", function() {
+				location.href = "/bookstatistics/select-";
+			})
+			$("#snCalendar").on("click", function() {
+				location.href = "/bookcalendar/select-";
+			})
+			$("#snBookmark").on("click", function() {
+				location.href = "/bookmark/selectBookmarkListById";
+			})
+			$("#snBooknote").on("click", function() {
+				location.href = "/booknote/selectPostListById";
+			})
+		</script>
 </body>
 </html>

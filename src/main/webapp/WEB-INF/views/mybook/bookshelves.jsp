@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 
@@ -13,6 +14,15 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+	crossorigin="anonymous"></script>
 <style>
 @font-face {
 	font-family: 'NanumSquareNeo-Variable';
@@ -28,22 +38,19 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
+body {
+	margin: 8px;
+	line-height: inherit;
+}
 /* div {
 	border: 1px solid black;
 } */
 .container {
 	margin: auto;
 	overflow: hidden;
-	width: 978px;
-}
-
-#headerHr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
-	margin-bottom: 15px;
+	width: 978px !important;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 button:hover {
@@ -56,6 +63,7 @@ button:hover {
 	overflow: hidden;
 }
 
+/* logo */
 .logo {
 	float: left;
 	position: relative;
@@ -70,6 +78,10 @@ button:hover {
 	left: 0px;
 }
 
+#logoImg:hover {
+	cursor: pointer;
+}
+/* search */
 .search {
 	float: left;
 	position: relative;
@@ -116,13 +128,14 @@ button:hover {
 	justify-content: center;
 }
 
-.icons {
+/* member */
+.member {
 	float: left;
 	position: relative;
 	width: 20%;
 	height: 100%;
 }
-
+/* icon */
 .iconBox {
 	position: absolute;
 	bottom: 0px;
@@ -135,10 +148,51 @@ span.size-40 {
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
 }
 
-span, #logoImg:hover {
+span.size-40 {
 	cursor: pointer;
 }
 
+/* login */
+.signBox {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.signBox>a {
+	margin: 5px;
+	text-decoration: none;
+	text-underline-offset: 5px;
+	color: black;
+}
+
+.signBox>a:hover {
+	color: #5397fc;
+	text-decoration-color: #5397fc;
+}
+
+.signBox>a>p {
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+}
+
+#nick {
+	text-decoration: none;
+}
+
+#nick:hover {
+	color: black;
+	cursor: default;
+}
+
+/* headerHr */
+#headerHr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
 /*     header */
 
 /* navi */
@@ -148,6 +202,10 @@ span, #logoImg:hover {
 }
 
 /* body */
+.body {
+	overflow: hidden;
+}
+
 /* sidenavi */
 .sideNavi {
 	width: 10%;
@@ -179,6 +237,10 @@ span.size-35 {
 	background-color: #5397fc50;
 }
 
+span.size-35 {
+	cursor: pointer;
+}
+
 /* contents */
 .contentsHeader {
 	width: 100%;
@@ -187,6 +249,11 @@ span.size-35 {
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
+}
+
+#contentsHeaderImg {
+	height: 100px;
+	width: 100px;
 }
 
 #profile {
@@ -241,6 +308,9 @@ span.size-30 {
 	height: 10px;
 	border: 0;
 	box-shadow: 0 10px 10px -10px #bbb inset;
+	opacity: inherit;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .rentalBooks {
@@ -255,35 +325,40 @@ span.size-30 {
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-.swiper {
-	display: flex;
-	align-items: flex-end;
-	width: 100%;
+.wishlistBooks {
+	position: relative;
+	height: 200px;
+}
+
+.carousel-inner {
 	height: 140px;
 }
 
-.swiper-wrapper {
-	height: 125px;
-/*  	justify-content: space-evenly;  */
+.carousel-item {
+	height: 100%;
 }
 
-.swiper-slide{
-/* 	width: 80px !important; */
+.item-page {
+	height: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: flex-end;
 }
 
-.swiper-slide img {
-	position: absolute;
-	bottom: 3px;
-	display: block;
+.wishlistBook img {
 	width: 80px;
-	height: auto;
-	object-fit: cover;
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-.swiper-pagination {
-	position: static !important;
-	--swiper-theme-color: #5397fc !important;
+.carousel-indicators {
+	position: relative;
+}
+
+.carousel-indicators [data-bs-target] {
+	border-radius: 50%;
+	width: 10px;
+	height: 10px;
+	background-color: #80808050;
 }
 
 * .postedBooks {
@@ -298,6 +373,7 @@ span.size-30 {
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
 </style>
+
 </head>
 
 <body>
@@ -317,7 +393,19 @@ span.size-30 {
 					</form>
 				</div>
 			</div>
-			<div class="icons">
+			<div class="member">
+				<div class="signBox">
+					<c:choose>
+						<c:when test="${empty loginID}">
+							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
+							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
+						</c:when>
+						<c:otherwise>
+							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
+							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+						</c:otherwise>
+					</c:choose>
+				</div>
 				<div class="iconBox">
 					<span class="material-symbols-outlined size-40" id="notifications">notifications</span>
 					<span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
@@ -349,8 +437,8 @@ span.size-30 {
 						<img src="/images/${dto.sysprofname }" width="100" height="100"
 							id="profile">
 					</div>
-					<div id="contentsHeaderTxt">${dto.nickname }님책하루와함께한
-						${dto.signup_date } 하루</div>
+					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
+						} 하루</div>
 				</div>
 				<div class="contentsBody">
 					<div class="rental">
@@ -372,35 +460,64 @@ span.size-30 {
 							<div class="titleTxt">위시리스트</div>
 							&nbsp <span class="material-symbols-outlined size-30">favorite</span>
 						</div>
-						<!-- Swiper -->
-						<div class="swiper mySwiper wishlistBooks">
-							<div class="swiper-wrapper">
-								<c:forEach var="wishlist" items="${wlist }">
-									<div class="swiper-slide wishlistBook">
-										<img src="${wishlist.b_img_url }">
+						<div class="wishlistBooks"
+							style="min-width: 880.2px; max-width: 880.2px;">
+							<div id="carouselExampleSlidesOnly" class="carousel slide"
+								data-bs-interval="false">
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<div class="item-page">
+											<c:forEach var="wishlist" items="${wlist }"
+												varStatus="wstatus">
+												<div class="wishlistBook" id="${wstatus.count }">
+													<img src="${wishlist.b_img_url }">
+												</div>
+												<c:if test="${wstatus.count%10==0 }">
+										</div>
 									</div>
-								</c:forEach>
+									<div class="carousel-item">
+										<div class="item-page">
+											</c:if>
+											</c:forEach>
+										</div>
+									</div>
+
+								</div>
+
+								<hr class="bookshelvesHr">
+
+								<div class="carousel-indicators">
+
+									<c:forEach var="i" begin="0" end="${fn:length(wlist)%10 }"
+										step="1">
+
+										<button type="button"
+											data-bs-target="#carouselExampleSlidesOnly"
+											data-bs-slide-to="${i }"
+											<c:if test="${i==0}">class="active"</c:if>
+											aria-label="Slide ${i }" aria-current="true"></button>
+									</c:forEach>
+								</div>
 							</div>
 						</div>
-						<hr class="bookshelvesHr">
-						<div class="swiper-pagination wishlistPage"></div>
 					</div>
+
 					<div class="posted">
 						<div class="title" id="posted">
 							<div class="titleTxt">내 책장</div>
 							&nbsp <span class="material-symbols-outlined size-30">shelves</span>
 						</div>
-
 						<div class="postedBooks">
-
 							<c:forEach var="post" items="${plist }" varStatus="status">
 								<div class="postedBook" id="${status.count }">
-									<img src="${post.b_img_url }">
-									<input type="hidden" value="${post.p_seq }">
+									<img src="${post.b_img_url }"> <input type="hidden"
+										value="${post.p_seq }">
 								</div>
 								<c:if test="${status.count%10==0 }">
-						</div><hr class="bookshelvesHr"><div class="postedBooks">
-								</c:if>
+						</div>
+						<hr class="bookshelvesHr">
+						<div class="postedBooks">
+							</c:if>
 							</c:forEach>
 						</div>
 						<div class="postedsNavi">${navi }</div>
@@ -408,71 +525,49 @@ span.size-30 {
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="footer"></div>
+		<div class="footer"></div>
 	</div>
 	<script>
-                $("#logo_img").on("click", function () {
-                    location.href = "/";
-                })
+		$("#logoImg").on("click", function() {
+			location.href = "/";
+		})
 
-                $("#searchword").on("keydown", function (e) {
-                    if (e.keyCode == 13) {
-                        $("#search").submit();
-                    }
-                })
-                $("#notifications").on("click", function () {
-                    location.href = "//toNotification";
-                })
-                $("#bookbag").on("click", function () {
-                    location.href = "/delivery/selectBookbagListById";
-                })
-                $("#bookshelves").on("click", function () {
-                    location.href = "/bookshelves/selectBookshelvesListById";
-                })
-                $("#mypage").on("click", function () {
-                    if (loginID == null) {
-                        location.href = "/member/login";
-                    }
-                    location.href = "/member/toMypage";
-                })
-                $("#snBookshelves").on("click", function () {
-                    location.href = "/bookshelves/selectBookshelvesListById";
-                })
-                $("#snStatistics").on("click", function () {
-                    location.href = "/bookstatistics/select-";
-                })
-                $("#snCalendar").on("click", function () {
-                    location.href = "/bookcalendar/select-";
-                })
-                $("#snBookmark").on("click", function () {
-                    location.href = "/bookmark/selectBookmarkListById";
-                })
-                $("#snBooknote").on("click", function () {
-                    location.href = "/booknote/selectPostListById";
-                })
-
-    <!-- Initialize Swiper -->
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 10,
-        spaceBetween: 3,
-        slidesPerGroup: 10,
-        loop: true,
-        slidesOffsetBefore: 5.3,
-        loopFillGroupWithBlank: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }
-      });
-        
-      <!-- Ajax Infinite Scroll -->
-
-            </script>
+		$("#searchWord").on("keydown", function(e) {
+			if (e.keyCode == 13) {
+				$("#search").submit();
+			}
+		})
+		$("#notifications").on("click", function() {
+			location.href = "//toNotification";
+		})
+		$("#bookbag").on("click", function() {
+			location.href = "/delivery/selectBookbagListById";
+		})
+		$("#bookshelves").on("click", function() {
+			location.href = "/bookshelves/selectBookshelvesListById";
+		})
+		$("#mypage").on("click", function() {
+			if (loginID == null) {
+				location.href = "/member/login";
+			}
+			location.href = "/member/toMypage";
+		})
+		$("#snBookshelves").on("click", function() {
+			location.href = "/bookshelves/selectBookshelvesListById";
+		})
+		$("#snStatistics").on("click", function() {
+			location.href = "/bookstatistics/select-";
+		})
+		$("#snCalendar").on("click", function() {
+			location.href = "/bookcalendar/select-";
+		})
+		$("#snBookmark").on("click", function() {
+			location.href = "/bookmark/selectBookmarkListById";
+		})
+		$("#snBooknote").on("click", function() {
+			location.href = "/booknote/selectPostListById";
+		})<!-- Ajax Infinite Scroll -->
+	</script>
 </body>
 
 </html>

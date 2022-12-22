@@ -95,7 +95,7 @@
 
 
 .header>a>img {
-	width: 70%;
+	width:40%;
 }
 
 #phone, #pw{
@@ -186,7 +186,7 @@ hr{
 <body>
 	<div class="contanier">
 		<div class="header">
-			<a href="/"/><img src="/resources/bookday_logotitle.png"></a>
+			<a href="/"/><img src="/resources/bookday_logo_ver1(kor).png"></a>
 		</div>
 
 		<div class="login_form">

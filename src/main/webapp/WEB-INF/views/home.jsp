@@ -26,6 +26,7 @@
 /* div {
 
    border: 1px solid black;
+
 } */
 .container {
 	margin: auto;
@@ -33,13 +34,8 @@
 	width: 978px;
 }
 
-hr{
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
-	margin-bottom: 15px;
+button:hover {
+	cursor: pointer;
 }
 
 /* header */
@@ -48,6 +44,7 @@ hr{
 	overflow: hidden;
 }
 
+/* logo */
 .logo {
 	float: left;
 	position: relative;
@@ -62,6 +59,11 @@ hr{
 	left: 0px;
 }
 
+#logoImg:hover {
+	cursor: pointer;
+}
+
+/* search */
 .search {
 	float: left;
 	position: relative;
@@ -108,40 +110,14 @@ hr{
 	justify-content: center;
 }
 
-.icons {
+/* member */
+.member {
 	float: left;
 	position: relative;
 	width: 20%;
 	height: 100%;
 }
-
-.signBox {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.signBox>a {
-	margin: 5px;
-	text-decoration: underline;
-	text-underline-offset: 5px;
-	text-decoration-color: grey;
-	color: black;
-}
-
-.signBox>a:hover {
-	color: #5397fc;
-	text-decoration-color: #5397fc;
-}
-
-#nick {
-	text-decoration: none;
-}
-
-#nick:hover {
-	color: black;
-	cursor: default;
-}
-
+/* icon */
 .iconBox {
             position: absolute;
             bottom: 0px;
@@ -158,7 +134,45 @@ span, #logoImg:hover {
 	cursor: pointer;
 }
 
+/* headerHr */
+#headerHr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
 /* header */
+
+
+/* login */
+.signBox {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.signBox>a {
+	margin: 5px;
+	text-decoration: none;
+	text-underline-offset: 5px;
+	color: black;
+}
+
+.signBox>a:hover {
+	color: #5397fc;
+	text-decoration-color: #5397fc;
+}
+
+#nick {
+	text-decoration: none;
+}
+
+#nick:hover {
+	color: black;
+	cursor: default;
+}
 
 .login_form{
 	margin-top:200px;
@@ -193,7 +207,7 @@ span, #logoImg:hover {
 					</form>
 				</div>
 			</div>
-			<div class="icons">
+			<div class="member">
 				<div class="signBox">
 					<c:choose>
 						<c:when test="${empty loginID}">
@@ -222,7 +236,6 @@ span, #logoImg:hover {
 		<div class="footer"></div>
 	</div>
 	<script>
-
       $("#logo_img").on("click", function() {
          location.href = "/";
       })
@@ -242,7 +255,7 @@ span, #logoImg:hover {
       })
       $("#mypage").on("click", function() {
          if (loginID == null) {
-            location.href = "/member/login";
+            location.href = "/member/tologin";
          }
          location.href = "/member/toMypage";
       })

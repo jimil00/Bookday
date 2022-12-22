@@ -25,23 +25,19 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
+body {
+	margin: 8px;
+	line-height: inherit;
+}
 /* div {
 	border: 1px solid black;
 } */
 .container {
 	margin: auto;
 	overflow: hidden;
-	width: 978px;
-}
-
-hr {
-	width: 100%;
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
-	margin-bottom: 15px;
+	width: 978px !important;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 button:hover {
@@ -54,6 +50,7 @@ button:hover {
 	overflow: hidden;
 }
 
+/* logo */
 .logo {
 	float: left;
 	position: relative;
@@ -68,6 +65,10 @@ button:hover {
 	left: 0px;
 }
 
+#logoImg:hover {
+	cursor: pointer;
+}
+/* search */
 .search {
 	float: left;
 	position: relative;
@@ -114,13 +115,14 @@ button:hover {
 	justify-content: center;
 }
 
-.icons {
+/* member */
+.member {
 	float: left;
 	position: relative;
 	width: 20%;
 	height: 100%;
 }
-
+/* icon */
 .iconBox {
 	position: absolute;
 	bottom: 0px;
@@ -133,10 +135,47 @@ span.size-40 {
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
 }
 
-span, #logoImg:hover {
+span.size-40 {
 	cursor: pointer;
 }
 
+
+/* login */
+.signBox {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.signBox>a {
+	margin: 5px;
+	text-decoration: none;
+	text-underline-offset: 5px;
+	color: black;
+}
+
+.signBox>a:hover {
+	color: #5397fc;
+	text-decoration-color: #5397fc;
+}
+
+#nick {
+	text-decoration: none;
+}
+
+#nick:hover {
+	color: black;
+	cursor: default;
+}
+
+/* headerHr */
+#headerHr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
 /*     header */
 
 /* navi */
@@ -146,6 +185,10 @@ span, #logoImg:hover {
 }
 
 /* body */
+.body {
+	overflow: hidden;
+}
+
 /* sidenavi */
 .sideNavi {
 	width: 10%;
@@ -177,7 +220,19 @@ span.size-35 {
 	background-color: #5397fc50;
 }
 
+span.size-35{
+cursor: pointer;
+}
+
+
 /* contents */
+.contents {
+	width: 90%;
+	float: left;
+	overflow: hidden;
+}
+
+/* contentHeader */
 .contentsHeader {
 	width: 100%;
 	margin-bottom: 30px;
@@ -187,16 +242,16 @@ span.size-35 {
 	align-items: flex-end;
 }
 
+#contentsHeaderImg {
+	height: 100px;
+	width: 100px;
+}
+
 #profile {
 	border-radius: 50%;
 }
 
-.contents {
-	width: 90%;
-	float: left;
-	overflow: hidden;
-}
-
+/* contentdBody */
 .title {
 	height: 50px;
 	margin-bottom: 20px;
@@ -215,6 +270,7 @@ span.size-30 {
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
 }
 
+/* contentsBodySearchPost */
 .postSearch {
 	float: left;
 	height: 50px;
@@ -269,6 +325,7 @@ span.size-30 {
 	justify-content: center;
 }
 
+/* contentsBodyInsertPostBtn */
 .insertPostBtn {
 	float: left;
 	width: 50%;
@@ -291,6 +348,7 @@ span.size-30 {
 	box-shadow: 3px 3px 3px 3px #80808050;
 }
 
+/* contentsBodyPostContents */
 .postContents {
 	width: 100%;
 	height: auto;
@@ -407,7 +465,19 @@ span.size-45 {
 					</form>
 				</div>
 			</div>
-			<div class="icons">
+			<div class="member">
+				<div class="signBox">
+					<c:choose>
+						<c:when test="${empty loginID}">
+							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
+							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
+						</c:when>
+						<c:otherwise>
+							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
+							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+						</c:otherwise>
+					</c:choose>
+				</div>				
 				<div class="iconBox">
 					<span class="material-symbols-outlined size-40" id="notifications">notifications</span>
 					<span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
@@ -439,8 +509,8 @@ span.size-45 {
 						<img src="/images/${dto.sysprofname }" width="100" height="100"
 							id="profile">
 					</div>
-					<div id="contentsHeaderTxt">${dto.nickname }님 책하루와 함께한
-						${dto.signup_date } 하루</div>
+					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
+						} 하루</div>
 				</div>
 				<div class="contentsBody">
 					<div class="title">
@@ -502,46 +572,49 @@ span.size-45 {
 			<div class="footer"></div>
 		</div>
 		<script>
-                    $("#logo_img").on("click", function () {
-                        location.href = "/";
-                    })
+			$("#logoImg").on("click", function() {
+				location.href = "/";
+			})
 
-                    $("#searchword").on("keydown", function (e) {
-                        if (e.keyCode == 13) {
-                            $("#search").submit();
-                        }
-                    })
-                    $("#notifications").on("click", function () {
-                        location.href = "//toNotification";
-                    })
-                    $("#bookbag").on("click", function () {
-                        location.href = "/delivery/toBookbag";
-                    })
-                    $("#bookshelves").on("click", function () {
-                        location.href = "/bookshelves/selectBookshelvesListById";
-                    })
-                    $("#mypage").on("click", function () {
-                        if (loginID == null) {
-                            location.href = "/member/login";
-                        }
-                        location.href = "/member/toMypage";
-                    })
-                    $("#snBookshelves").on("click", function () {
-                        location.href = "/bookshelves/selectBookshelvesListById";
-                    })
-                    $("#snStatistics").on("click", function () {
-                        location.href = "/bookstatistics/select-";
-                    })
-                    $("#snCalendar").on("click", function () {
-                        location.href = "/bookcalendar/select-";
-                    })
-                    $("#snBookmark").on("click", function () {
-                        location.href = "/bookmark/selectBookmarkListById";
-                    })
-                    $("#snBooknote").on("click", function () {
-                        location.href = "/booknote/selectPostListById";
-                    })
-                </script>
+			$("#searchWord").on("keydown", function(e) {
+				if (e.keyCode == 13) {
+					$("#search").submit();
+				}
+			})
+			$("#notifications").on("click", function() {
+				location.href = "//toNotification";
+			})
+			$("#bookbag").on("click", function() {
+				location.href = "/delivery/toBookbag";
+			})
+			$("#bookshelves").on("click", function() {
+				location.href = "/bookshelves/selectBookshelvesListById";
+			})
+			$("#mypage").on("click", function() {
+				if (loginID == null) {
+					location.href = "/member/login";
+				}
+				location.href = "/member/toMypage";
+			})
+			$("#snBookshelves").on("click", function() {
+				location.href = "/bookshelves/selectBookshelvesListById";
+			})
+			$("#snStatistics").on("click", function() {
+				location.href = "/bookstatistics/select-";
+			})
+			$("#snCalendar").on("click", function() {
+				location.href = "/bookcalendar/select-";
+			})
+			$("#snBookmark").on("click", function() {
+				location.href = "/bookmark/selectBookmarkListById";
+			})
+			$("#snBooknote").on("click", function() {
+				location.href = "/booknote/selectPostListById";
+			})
+			$("#insertPostBtn").on("click", function() {
+				location.href = "/booknote/toInsertPost";
+			})
+		</script>
 </body>
 
 </html>
