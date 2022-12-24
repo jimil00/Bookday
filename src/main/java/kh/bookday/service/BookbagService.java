@@ -41,8 +41,18 @@ public class BookbagService {
 		dao.insertWishlist(dto);
 	}
 	
-	/* 회원 주소 입력 */
-	public int updateMemberById(MemberDTO dto) {
-		return dao.updateMemberById(dto);
+	/* 회원 배송지 정보 입력 */
+	public void updateMemberById(MemberDTO dto) {
+		dao.updateMemberById(dto);
+	}
+	
+	/* 월 구독 회원 등록 */
+	public void insertMonthSubMemberById(String id) {
+		dao.insertMonthSubMemberById(id);
+	}
+	
+	/* 회원 등급 변경 */
+	public void updateMemberGradeById(String id) {
+		dao.updateMemberGradeById(id);
 	}
 }

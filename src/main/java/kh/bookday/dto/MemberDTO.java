@@ -13,6 +13,8 @@ public class MemberDTO {
 	private String postcode;
 	private String address1;
 	private String address2;
+	private String reciver;
+	private String reciver_phone;
 	private Timestamp signup_date;
 	private String oriprofname;
 	private String sysprofname;
@@ -24,7 +26,7 @@ public class MemberDTO {
 	}
 	
 	public MemberDTO(String id, String phone, String pw, String name, String nickname, String email, String postcode,
-			String address1, String address2, Timestamp signup_date, String oriprofname, String sysprofname, String grade) {
+			String address1, String address2, String reciver, String reciver_phone, Timestamp signup_date, String oriprofname, String sysprofname, String grade) {
 		this.id = id;
 		this.phone = phone;
 		this.pw = pw;
@@ -34,6 +36,8 @@ public class MemberDTO {
 		this.postcode = postcode;
 		this.address1 = address1;
 		this.address2 = address2;
+		this.reciver = reciver;
+		this.reciver_phone = reciver_phone;
 		this.signup_date = signup_date;
 		this.oriprofname = oriprofname;
 		this.sysprofname = sysprofname;
@@ -94,6 +98,18 @@ public class MemberDTO {
 	}
 	public void setAddress2(String address2) {
 		this.address2 = address2;
+	}
+	public String getReciver() {
+		return reciver;
+	}
+	public void setReciver(String reciver) {
+		this.reciver = reciver;
+	}
+	public String getReciver_phone() {
+		return reciver_phone;
+	}
+	public void setReciver_phone(String reciver_phone) {
+		this.reciver_phone = reciver_phone;
 	}
 	public long getSignup_date() {
 		long currentTime = System.currentTimeMillis();

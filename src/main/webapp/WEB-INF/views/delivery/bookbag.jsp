@@ -147,7 +147,6 @@ span, #logoImg:hover {
 
 /* body */
 .body {
-	/* 	height: 2000px; */
 	overflow: hidden;
 }
 
@@ -235,7 +234,6 @@ span, #logoImg:hover {
 }
 
 .rental {
-	/* 	height: 249px; */
 	border: 1px solid rgb(194, 193, 193);
 }
 
@@ -298,10 +296,10 @@ span, #logoImg:hover {
 
 			<c:choose>
 				<c:when test="${fn:length(list) == 0}">
-					<div class="body-left" style="height: 262px">
+					<div class="body-left" style="border: 1px solid rgb(194, 193, 193);">
 						<div class="bookbag-top"></div>
 						<div class="bookbag-main"
-							style="text-align: center; line-height: 170px;">책가방에 담긴 작품이
+							style="text-align: center; line-height: 125px;">책가방에 담긴 작품이
 							없습니다.</div>
 					</div>
 				</c:when>
@@ -358,7 +356,7 @@ span, #logoImg:hover {
 						                $.ajax({
 						                    url: "/delivery/selectWishlistByIdBisbn",
 						                    data: {
-						                        "id": "지민",
+						                        "id": "수진",
 						                        "b_isbn": "${bookbag.b_isbn }"
 						                    }, success: function (result) {
 						                        if (result == "false") {
@@ -367,7 +365,7 @@ span, #logoImg:hover {
 						                            $.ajax({
 						                                url: "/delivery/insertWishlist",
 						                                data: {
-						                                    "id": "지민",
+						                                    "id": "수진",
 						                                    "b_isbn": "${bookbag.b_isbn }",
 						                                    "b_img_url": "${bookbag.b_img_url }",
 						                                    "b_title": "${bookbag.b_title }",
@@ -394,8 +392,8 @@ span, #logoImg:hover {
 			<c:choose>
 				<c:when test="${dto.grade eq '미구독'}">
 					<div class="body-right">
-						<div class="rental-detail"
-							style="height: 190px; text-align: center; line-height: 190px;">
+						<div class="rental"
+							style="height: 170px; text-align: center; line-height: 170px;">
 							종이책 구독 서비스를 이용해보세요!</div>
 						<div class="sub-rental">
 							<button class="body-right-btn" id="sub-btn">구독하기</button>
@@ -430,7 +428,14 @@ span, #logoImg:hover {
 								style="padding-left: 15px; padding-top: 18px; padding-bottom: 18px; padding-right: 15px;">
 								<div>
 									배송지
-									<button id="address-search">주소변경</button>
+									<c:choose>
+										<c:when test="${dto.postcode eq null}">
+											<button id="address-search">주소검색</button>
+										</c:when>
+										<c:otherwise>
+											<button id="address-search">주소변경</button>
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<br>
 								<div style="padding-bottom: 3px;">우편번호</div>
@@ -438,7 +443,11 @@ span, #logoImg:hover {
 								<div style="padding-bottom: 3px;">주소</div>
 								<div style="padding-bottom: 10px;">${dto.address1 }</div>
 								<div style="padding-bottom: 3px;">상세주소</div>
-								<div>${dto.address2 }</div>
+								<div style="padding-bottom: 10px;">${dto.address2 }</div>
+								<div style="padding-bottom: 3px;">받으실 분</div>
+								<div style="padding-bottom: 10px;">${dto.reciver }</div>
+								<div style="padding-bottom: 3px;">휴대폰 번호</div>
+								<div>${dto.reciver_phone }</div>
 							</div>
 						</div>
 						<div class="sub-rental">
@@ -452,31 +461,33 @@ span, #logoImg:hover {
 		<div class="footer"></div>
 	</div>
 	<script>
-	var checkCount = $('input[class=check]:checked').length;
-    document.getElementById("check-count-result").innerText = checkCount;
-    
-    $(document).on('click', '#check-all', function () {
-        if ($('#check-all').is(':checked')) {
-            $('.check').prop('checked', true);
-        } else {
-            $('.check').prop('checked', false);
-        }
-        var checkCount = $('input[class=check]:checked').length;
-        document.getElementById("check-count-result").innerText = checkCount;
-    });
-	$(document).on('click', '.check', function () {
-        if ($('input[class=check]:checked').length == $('.check').length) {
-            $('#check-all').prop('checked', true);
-        } else {
-            $('#check-all').prop('checked', false);
-        }
-        var checkCount = $('input[class=check]:checked').length;
-        document.getElementById("check-count-result").innerText = checkCount;
-    });
+	if(${fn:length(list) > 0}) {
+		var checkCount = $('input[class=check]:checked').length;
+	    document.getElementById("check-count-result").innerText = checkCount;
+	    
+	    $(document).on('click', '#check-all', function () {
+	        if ($('#check-all').is(':checked')) {
+	            $('.check').prop('checked', true);
+	        } else {
+	            $('.check').prop('checked', false);
+	        }
+	        var checkCount = $('input[class=check]:checked').length;
+	        document.getElementById("check-count-result").innerText = checkCount;
+	    });
+		$(document).on('click', '.check', function () {
+	        if ($('input[class=check]:checked').length == $('.check').length) {
+	            $('#check-all').prop('checked', true);
+	        } else {
+	            $('#check-all').prop('checked', false);
+	        }
+	        var checkCount = $('input[class=check]:checked').length;
+	        document.getElementById("check-count-result").innerText = checkCount;
+	    });
 	
-	document.getElementById("address-search").onclick = function () {
-		window.open("/delivery/toDestination", "new", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=500, left=500, top=150");
-    }
+		document.getElementById("address-search").onclick = function () {
+			window.open("/delivery/toDestination", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=500, left=500, top=150");
+	    }
+	}
 	
 		$("#logoImg").on("click", function() {
 			location.href = "/";
@@ -503,13 +514,17 @@ span, #logoImg:hover {
 		})
 
 		$("#sub-btn").on("click", function() {
-			location.href = "/delivery/topayment";
+			location.href = "/delivery/toPayment";
 		})
 		$("#rental-btn").on("click", function() {
-			if(${fn:length(list) == 0}){
+			if (${fn:length(list) == 0}) {
 				alert("대여할 책이 없습니다.");
-			}else if (confirm("대여하시겠습니까?")) {
-				location.href = "/delivery/toRentalCompleted";
+			}else if (${dto.postcode eq null}) {
+				alert("배송지 정보를 입력해주세요.");
+			}else {
+				 if(confirm("대여하시겠습니까?")){
+					location.href = "/delivery/toRentalCompleted";
+				 } 
 			}
 		})
 	</script>

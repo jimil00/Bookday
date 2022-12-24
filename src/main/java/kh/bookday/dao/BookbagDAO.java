@@ -37,8 +37,18 @@ public class BookbagDAO {
 		db.insert("Bookbag.insertWishlist", dto);
 	}
 	
-	/* 회원 주소 입력 */
-	public int updateMemberById(MemberDTO dto) {
-		return db.update("Bookbag.updateMemberById", dto);
+	/* 회원 배송지 정보 입력 */
+	public void updateMemberById(MemberDTO dto) {
+		db.update("Bookbag.updateMemberById", dto);
+	}
+	
+	/* 월 구독 회원 등록 */
+	public void insertMonthSubMemberById(String id) {
+		db.insert("Bookbag.insertMonthSubMemberById", id);
+	}
+	
+	/* 회원 등급 변경 */
+	public void updateMemberGradeById(String id) {
+		db.update("Bookbag.updateMemberGradeById", id);
 	}
 }

@@ -17,20 +17,16 @@
 		<div class="header">배송지 입력</div>
 		<hr>
 		<div class="body">
-			<!-- 			<form action="/delivery/selectBookbagListById" method="post"> -->
-			<input type="text" id="postcode" name="postcode" placeholder="우편번호">
+			<input type="text" id="postcode" name="postcode" placeholder="우편번호"
+				disabled>
 			<button type="button" id="search-btn">우편번호 찾기</button>
 			<br> <input type="text" id="address1" name="address1"
-				placeholder="지번주소"><br> <input type="text"
-				id="address2" name="address2" placeholder="상세주소"><br>
-				<input type="text"
-				id="Recipient" name="Recipient" placeholder="받으실 분"><br> 
-				<input type="text"
-				id="Recipient-phone" name="Recipient-phone" placeholder="휴대폰 번호"><br> 
-				<input
-				type="checkbox">기본 배송지로 저장<br>
+				placeholder="지번주소" disabled><br> <input type="text"
+				id="address2" name="address2" placeholder="상세주소"><br> <input
+				type="text" id="reciver" name="reciver" placeholder="받으실 분"><br>
+			<input type="text" id="reciver_phone" name="reciver_phone"
+				placeholder="휴대폰 번호"><br>
 			<button type="button" id="save-btn">저장</button>
-			<!-- 			</form> -->
 		</div>
 	</div>
 
@@ -48,25 +44,42 @@
 			});
 		}
 
-		$("#save-btn").on("click", function() {
-			//window.opener.document.getElementById("postcode").innerHTML = document.getElementById("postcode").value;
-			//window.opener.document.getElementById("address1").innerHTML = document.getElementById("address1").value + document.getElementById("address2").value;
-			//window.opener.document.getElementById("address2").innerHTML = document.getElementById("address2").value;
-			$.ajax({
-				url : "/delivery/updateMemberById",
-				data : {
-					"id" : "수진",
-					"postcode" : $("#postcode").val(),
-					"address1" : $("#address1").val(),
-					"address2" : $("#address2").val()
-				},
-				success : function(resp) {
-					alert("저장");
-					opener.parent.location.reload();
-					window.close();
-				}
-			});
-		})
+		$("#save-btn").on(
+				"click",
+				function() {
+					if ($("#postcode").val() == ""
+							|| $("#address1").val() == ""
+							|| $("#address2").val() == ""
+							|| $("#reciver").val() == ""
+							|| $("#reciver_phone").val() == "") {
+						alert("정보를 입력해주세요.");
+						return false;
+					}
+
+					let phone = $("#reciver_phone").val();
+					let phoneRegex = /^01\d{1}\d{3,4}\d{4}$/;
+					if (!phoneRegex.test(phone)) {
+						alert("휴대폰 번호를 정확히 입력해주세요.");
+						return false;
+					}
+
+					$.ajax({
+						url : "/delivery/updateMemberById",
+						data : {
+							"id" : "수진",
+							"postcode" : $("#postcode").val(),
+							"address1" : $("#address1").val(),
+							"address2" : $("#address2").val(),
+							"reciver" : $("#reciver").val(),
+							"reciver_phone" : $("#reciver_phone").val()
+						},
+						success : function(resp) {
+							alert("배송지가 저장되었습니다.");
+							opener.parent.location.reload();
+							window.close();
+						}
+					});
+				})
 	</script>
 </body>
 </html>
