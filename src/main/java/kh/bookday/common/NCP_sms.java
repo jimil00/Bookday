@@ -16,13 +16,16 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.stereotype.Repository;
+
 
 public class NCP_sms{
 		
-		public void send_msg() {
+		@SuppressWarnings("unchecked")
+		public void send_msg(String phone , String rand) {
 			
 			//헤더 생성
-			String hostNameUrl = "https://sens.apigw.ntruss.com/sms/v2";     		// 호스트 URL
+			String hostNameUrl = "https://sens.apigw.ntruss.com";    // 호스트 URL
 			String requestUrl= "/sms/v2/services/";                   		// 요청 URL
 			String requestUrlType = "/messages";                      		// 요청 URL
 			String accessKey = "W2Esy6fNIKCnEjIYtPCA";                     	// 네이버 클라우드 플랫폼 회원에게 발급되는 개인 인증키			// Access Key : https://www.ncloud.com/mypage/manage/info > 인증키 관리 > Access Key ID
@@ -33,24 +36,25 @@ public class NCP_sms{
 			requestUrl += serviceId + requestUrlType;
 			String apiUrl = hostNameUrl + requestUrl;
 			
+			//https://sens.apigw.ntruss.com/sms/v2/services/ncp:sms:kr:297260365853:book_day/messages
+			
 			// JSON 을 활용한 body data 생성
 			JSONObject bodyJson = new JSONObject();
 			JSONObject toJson = new JSONObject();
 		    JSONArray  toArr = new JSONArray();
-
-		    //toJson.put("subject","");							// Optional, messages.subject	개별 메시지 제목, LMS, MMS에서만 사용 가능
-		    //toJson.put("content","sms test in spring 111");	// Optional, messages.content	개별 메시지 내용, SMS: 최대 80byte, LMS, MMS: 최대 2000byte
-		    //toJson.put("to",singup_phone);						// Mandatory(필수), messages.to	수신번호, -를 제외한 숫자만 입력 가능
-		   // toArr.put(toJson);
+						
+		   toJson.put("content","[책하루] \n 책하루 인증 번호는"+ "["+rand+"]"+"입니다.");	// Optional, messages.content	개별 메시지 내용, SMS: 최대 80byte, LMS, MMS: 최대 2000byte
+		   toJson.put("to",phone);						// Mandatory(필수), messages.to	수신번호, -를 제외한 숫자만 입력 가능
+		   toArr.add(toJson);
 		    
 		    bodyJson.put("type","SMS");							// Madantory, 메시지 Type (SMS | LMS | MMS), (소문자 가능)
 		    //bodyJson.put("countryCode","82");					// Optional, 국가 전화번호, (default: 82)
 		    bodyJson.put("from","01053793197");					// Mandatory, 발신번호, 사전 등록된 발신번호만 사용 가능		
-		    //bodyJson.put("content","[책하루 인증 번호]"+rand);		// Mandatory(필수), 기본 메시지 내용, SMS: 최대 80byte, LMS, MMS: 최대 2000byte
+		    bodyJson.put("content","책하루 인증 번호는 "+"["+rand+"]"+"입니다.");		// Mandatory(필수), 기본 메시지 내용, SMS: 최대 80byte, LMS, MMS: 최대 2000byte
 		    bodyJson.put("messages", toArr);					// Mandatory(필수), 아래 항목들 참조 (messages.XXX), 최대 1,000개
 		    
-		    //String body = bodyJson.toJSONString();
-		    String body = bodyJson.toString();
+		    String body = bodyJson.toJSONString();
+		    //String body = bodyJson.toString();
 		    
 		    System.out.println(body);
 		    
@@ -126,16 +130,7 @@ public class NCP_sms{
 			}
 			return encodeBase64String;
 			}
-			
-		//난수 생성
-		public String CreateRandomMsg(String phone){
-			Random rand=new Random();
-			
-			String msg;
-			
-			return null;
-		}
-		
+
 		
 		}
 	

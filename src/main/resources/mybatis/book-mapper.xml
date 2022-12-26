@@ -2,9 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Book">
-
+	
 	<select id="selectList" resultType="kh.bookday.dto.BookDTO">
 		select b_img_url from book
+	</select>
+	
+	<select id="selectBookByIsbn" resultType="kh.bookday.dto.BookDTO">
+		select * from book where b_isbn=#{b_isbn}
+	</select>
+	
+	<select id="selectReviewByIsbn" resultType="kh.bookday.dto.ReviewDTO">
+		select * from review where b_isbn=#{b_isbn} order by rv_seq
+	</select>
+	
+	<insert id="insertReview">
+		insert into review(rv_seq,rv_writer_id,rv_writer_nn,rv_write_date,rv_content,b_isbn) values(review_seq.NEXTVAL,#{rv_writer_id},#{rv_writer_nn},sysdate,#{rv_content},#{b_isbn})
+	</insert>
+	
+	<delete id="deleteReview">
+		delete from review where b_isbn=#{b_isbn} and rv_seq=#{rv_seq}
+	</delete>
+	
+	<update id="updateReview">
+		update review set rv_content=#{rv_content} where b_isbn=#{b_isbn} and rv_seq=#{rv_seq}
+	</update>
+	
+	<select id="findReviewLikeByUser" resultType="boolean">
+		select count(*) from review_like where b_isbn = #{b_isbn} and rv_seq= #{rv_seq} and id= #{id}
+	</select>
+	
+	<select id="countReviewLike" resultType="int">
+		select count(*) from review_like where b_isbn = #{b_isbn} and rv_seq= #{rv_seq}
+	</select>
+	
+	<insert id="insertReviewLike">
+		insert into review_like values(review_like_seq.nextval, #{rv_seq}, #{id}, #{b_isbn}, #{rvl_check})
+	</insert>
+	
+	<delete id="deleteReviewLike">
+		delete from review_like where where b_isbn = #{b_isbn} and rv_seq= #{rv_seq} and id= #{id}
+	</delete>
+	
+	<select id="selectPostByIsbn" resultType="kh.bookday.dto.PostDTO">
+		select * from post where b_isbn=#{value}
 	</select>
 	
 </mapper>
