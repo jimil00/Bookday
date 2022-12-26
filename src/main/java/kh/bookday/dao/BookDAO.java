@@ -14,6 +14,8 @@ public class BookDAO {
 	@Autowired
 	private SqlSession db;
 	
-
+	public List<BookDTO> selectBookListBySw(String searchWord){
+		return db.selectList("Book.selectBookListBySw", searchWord);
+	}
 	
 }

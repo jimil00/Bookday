@@ -4,17 +4,22 @@
 <mapper namespace="Bookshelves">
 
 	<select id="selectRentalListById" resultType="kh.bookday.dto.RentalDTO">
-		select * from rental where id = #{id}
+		select * from rental where id = #{id} and rt_return_date>sysdate order by rt_rental_date desc
 	</select>
 	
 	<select id="selectWishlistListById" resultType="kh.bookday.dto.WishlistDTO">
-		select * from wishlist where id = #{id}
+		select * from wishlist where id = #{id} order by w_add_date desc
 	</select>
-	
 	
 	<select id="selectPostListById" resultType="kh.bookday.dto.PostDTO">
 		<![CDATA[
-		    select * from (select * from post order by p_seq desc) where p_writer_id = #{id} and rownum between 0 and 20
-		]]>
+          select *
+          from (select post.*, row_number() over (order by p_seq desc) rn from post order by p_seq desc)
+          where p_writer_id = #{id} and rn between #{min} and #{max}
+      ]]>
+	</select>
+
+	<select id="selectPostCount" resultType="int">
+          select count(*) from post
 	</select>
 </mapper>

@@ -23,7 +23,5 @@ public class BooknoteDAO {
 		db.insert("Booknote.insertPost", dto);
 	}
 	
-	public List<BookDTO> selectBookListBySw(String word){
-		return db.selectList("Booknote.selectBookListBySw", word);
-	}
+
 }

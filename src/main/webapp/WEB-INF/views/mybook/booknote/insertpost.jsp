@@ -16,26 +16,28 @@
 	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<!-- include libraries(jQuery, bootstrap) -->
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-	rel="stylesheet">
 <script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
 
-<!-- include summernote css/js -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+
 <link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css"
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
 	rel="stylesheet">
 <script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-en-US.js"></script>
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <style>
 @font-face {
-	font-family: 'NanumSquareNeo-Variable';
+	font-family: '나눔스퀘어네오';
 	src:
 		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
 		format('woff2');
@@ -45,12 +47,11 @@
 
 * {
 	box-sizing: border-box;
-	font-family: 'NanumSquareNeo-Variable';
+	font-family: '나눔스퀘어네오';
 }
 
 body {
 	margin: 8px;
-	line-height: inherit;
 }
 /* div {
 	border: 1px solid black;
@@ -69,8 +70,10 @@ button:hover {
 
 /*     header */
 .header {
+	min-width:978px;
 	height: 150px;
 	overflow: hidden;
+	line-height: initial;
 }
 
 /* logo */
@@ -108,7 +111,7 @@ button:hover {
 	width: 100%;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .searchTxt {
@@ -162,7 +165,6 @@ span.size-40 {
 	cursor: pointer;
 }
 
-
 /* login */
 .signBox {
 	display: flex;
@@ -181,6 +183,11 @@ span.size-40 {
 	text-decoration-color: #5397fc;
 }
 
+.signBox>a>p {
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+}
+
 #nick {
 	text-decoration: none;
 }
@@ -193,7 +200,7 @@ span.size-40 {
 /* headerHr */
 #headerHr {
 	display: block;
-	height: 1px;
+	height: 0px;
 	border: 0;
 	border-top: 1px solid rgb(216, 216, 216);
 	margin-top: 15px;
@@ -209,13 +216,15 @@ span.size-40 {
 
 /* body */
 .body {
-	overflow: hidden;
+	display:flex;
+	line-height: initial;
 }
 
 /* sidenavi */
 .sideNavi {
 	width: 10%;
-	float: left;
+	min-width: 97.8px;
+	
 }
 
 ul {
@@ -241,21 +250,24 @@ span.size-35 {
 
 .selected {
 	background-color: #5397fc50;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-span.size-35{
-cursor: pointer;
+span.size-35 {
+	cursor: pointer;
 }
 
 /* contents */
 .contents {
 	width: 90%;
-	float: left;
-	overflow: hidden;
+	overflow: hidden;	
+				min-width:880.2px;
+	
 }
 
 /* contentsHeader */
 .contentsHeader {
+
 	width: 100%;
 	margin-bottom: 30px;
 	font-size: 25px;
@@ -267,15 +279,19 @@ cursor: pointer;
 #contentsHeaderImg {
 	height: 100px;
 	width: 100px;
+	
 }
 
 #profile {
 	border-radius: 50%;
+		box-shadow: 2px 2px 2px 2px #80808050;
+	
 }
 
 /* contentsBody */
 .contentsBody {
 	width: 100%;
+	
 }
 
 /* contentsBodyTitle */
@@ -328,7 +344,7 @@ span.size-30 {
 	width: 244.5px;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .booknoteBookSearchTxt {
@@ -357,6 +373,94 @@ span.size-30 {
 	align-items: center;
 	justify-content: center;
 }
+/* ContentsBodyInsertBooknoteDate */
+.insertBooknoteDate {
+	height: 50px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.insertBooknoteDateTitle {
+	font-size: 15px;
+	margin-right: 10px;
+	padding-bottom: 10px;
+}
+
+.insertBooknoteDateInput {
+	position: relative;
+	bottom: 5px;
+	overflow: hidden;
+	height: 40px;
+	width: 260px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px 2px #80808050;
+}
+
+#demo {
+	float: left;
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	line-height: 40px;
+	position: absolute;
+	left: 10px;
+}
+
+.insertBooknoteDateBtn {
+	position: absolute;
+	right: 0px;
+	line-height: 100px;
+	border: none;
+	background-color: #ffffff;
+	color: #5397fc50;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* insertBooknoteTitle */
+.insertBooknoteTitle {
+	height: 50px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.insertBooknoteTitleTitle {
+	font-size: 15px;
+	margin-right: 10px;
+	padding-bottom: 10px;
+}
+
+.insertBooknoteTitleBox {
+	position: relative;
+	bottom: 5px;
+	overflow: hidden;
+	height: 40px;
+	width: 837px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px 2px #80808050;
+}
+
+#insertBooknoteTitleTxt {
+	float: left;
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	line-height: 40px;
+	position: absolute;
+	left: 10px;
+}
 
 /* ContentsBodyInsertBooknoteBtn */
 .insertBooknoteBtn {
@@ -378,7 +482,7 @@ span.size-30 {
 	background-color: #5397fc50;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 </style>
 <script>
@@ -539,6 +643,10 @@ span.size-30 {
 			</div>
 			<div class="contents">
 				<div class="contentsHeader">
+					<div id="contentsHeaderImg">
+						<img src="/resources/${dto.sysprofname }" width="100" height="100"
+							id="profile">
+					</div>
 					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
 						} 하루</div>
 				</div>
@@ -548,123 +656,165 @@ span.size-30 {
 						&nbsp <span class="material-symbols-outlined size-30">edit</span>
 					</div>
 					<div class="insertBooknote">
-						<div id="insertBooknoteBookInfo">
-							<div class="booknoteBookSearchTitle">책 검색</div>
-							<div class="booknoteBookSearchBox">
-								<input class="booknoteBookSearchTxt" type="text"
-									placeholder="검색어를 입력해 주세요" id="booknoteBookSearchWord"
-									name="booknoteBookSearchWord">
-								<button class="booknoteBookSearchBtn">
-									<span class="material-symbols-outlined"> search </span>
-								</button>
-								<!-- 책 검색을 해서 이거는 ajax해야 할 듯 나온 값을 폼으로 아래의 content와 보내주기 아래것도 ajax 댓글처럼 생각하면 된다.-->
+						<div class="bookInfo">
+							<div class="insertBooknoteBookInfo">
+								<div class="booknoteBookSearchTitle">책 검색</div>
+								<div class="booknoteBookSearchBox">
+									<input class="booknoteBookSearchTxt" type="text"
+										placeholder="검색어를 입력해 주세요" id="booknoteBookSearchWord"
+										name="booknoteBookSearchWord">
+									<button class="booknoteBookSearchBtn">
+										<span class="material-symbols-outlined"> search </span>
+									</button>
+									<!-- 책 검색을 해서 이거는 ajax해야 할 듯 나온 값을 폼으로 아래의 content와 보내주기 아래것도 ajax 댓글처럼 생각하면 된다.-->
+								</div>
 							</div>
-						</div>
-						<div class="insertBooknoteDate">
-							<div class="insertBooknoteDateTitle">읽은 기간 선택</div>
-							<div class="insertBooknoteDateInput">
-								<input type="text" id="demo" name="demo" value="" />
+							<div class="insertBooknoteDate">
+								<div class="insertBooknoteDateTitle">읽은 기간 선택</div>
+								<div class="insertBooknoteDateInput">
+									<input type="text" id="demo" name="demo" value="" />
+									<button class="insertBooknoteDateBtn">
+										<span class="material-symbols-outlined"> calendar_month
+										</span>
+									</button>
+								</div>
 							</div>
-						</div>
-						<div class="insertBooknoteTitle">
-							제목 <input type="text" id="booknoteTitle"
-								placeholder="제목을 입력해주세요." style="width: 100%;">
-						</div>
-						<div class="insertBooknoteContent">
-							<div id="summernote" name="booknoteContent"></div>
-						</div>
-						<div class="insertBooknoteBtn">
-							<button id="insertBooknoteBtn" type="submit">입력</button>
+							<div class="insertBooknoteTitle">
+								<div class="insertBooknoteTitleTitle">제목</div>
+								<div class="insertBooknoteTitleBox">
+									<input type="text" id="insertBooknoteTitleTxt"
+										placeholder="제목을 입력해주세요.">
+
+								</div>
+							</div>
+							<div class="insertBooknoteContent">
+								<div id="summernote" name="booknoteContent"></div>
+							</div>
+							<div class="insertBooknoteBtn">
+								<button id="insertBooknoteBtn" type="submit">입력</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="footer"></div>
 		</div>
-		<div class="footer"></div>
-	</div>
-	<script>
-		$("#logo_img").on("click", function() {
-			location.href = "/";
-		})
+		<script>
+			$("#logo_img").on("click", function() {
+				location.href = "/";
+			})
 
-		$("#searchword").on("keydown", function(e) {
-			if (e.keyCode == 13) {
-				$("#search").submit();
+			$("#searchword").on("keydown", function(e) {
+				if (e.keyCode == 13) {
+					$("#search").submit();
+				}
+			})
+			$("#notifications").on("click", function() {
+				location.href = "//toNotification";
+			})
+			$("#bookbag").on("click", function() {
+				location.href = "/delivery/toBookbag";
+			})
+			$("#bookshelves").on("click", function() {
+				location.href = "/bookshelves/selectBookshelvesListById";
+			})
+			$("#mypage").on("click", function() {
+				if (loginID == null) {
+					location.href = "/member/login";
+				}
+				location.href = "/member/toMypage";
+			})
+			$("#snBookshelves").on("click", function() {
+				location.href = "/bookshelves/selectBookshelvesListById";
+			})
+			$("#snStatistics").on("click", function() {
+				location.href = "/bookstatistics/select-";
+			})
+			$("#snCalendar").on("click", function() {
+				location.href = "/bookcalendar/select-";
+			})
+			$("#snBookmark").on("click", function() {
+				location.href = "/bookmark/selectBookmarkListById";
+			})
+			$("#snBooknote").on("click", function() {
+				location.href = "/booknote/selectPostListById";
+			})
+				$("#booknoteBookSearchWord").on("keydown", function(e){
+		if(e.keyCode == 13) {
+			var searchWord = $("#booknoteBookSearchWord").val();
+			$("#booknoteBookSearchWord").val("");
+			window.open("/book/toBookSearchPop?searchWord="
+					+ searchWord, "", "width=600,height=600");		
 			}
-		})
-		$("#notifications").on("click", function() {
-			location.href = "//toNotification";
-		})
-		$("#bookbag").on("click", function() {
-			location.href = "/delivery/toBookbag";
-		})
-		$("#bookshelves").on("click", function() {
-			location.href = "/bookshelves/selectBookshelvesListById";
-		})
-		$("#mypage").on("click", function() {
-			if (loginID == null) {
-				location.href = "/member/login";
-			}
-			location.href = "/member/toMypage";
-		})
-		$("#snBookshelves").on("click", function() {
-			location.href = "/bookshelves/selectBookshelvesListById";
-		})
-		$("#snStatistics").on("click", function() {
-			location.href = "/bookstatistics/select-";
-		})
-		$("#snCalendar").on("click", function() {
-			location.href = "/bookcalendar/select-";
-		})
-		$("#snBookmark").on("click", function() {
-			location.href = "/bookmark/selectBookmarkListById";
-		})
-		$("#snBooknote").on("click", function() {
-			location.href = "/booknote/selectPostListById";
-		})
-		$(".booknoteBookSearchBtn").on(
-				"click",
-				function() {
-					var word = $("#booknoteBookSearchWord").val();
-					window.open("/booknote/toBookSearchPop?word=" + word, "",
-							"width=400,height=600");
+	});
+			$(".booknoteBookSearchBtn").on(
+					"click",
+					function() {
+						var searchWord = $("#booknoteBookSearchWord").val();
+						window.open("/book/toBookSearchPop?searchWord="
+								+ searchWord, "", "width=600,height=600");
 
-				});
+					});
 
-		$(function() {
+			$(function() {
 
-			$('#demo')
-					.daterangepicker(
-							{
-								"locale" : {
-									"format" : "YYYY-MM-DD",
-									"separator" : " ~ ",
-									"applyLabel" : "확인",
-									"cancelLabel" : "취소",
-									"fromLabel" : "From",
-									"toLabel" : "To",
-									"customRangeLabel" : "Custom",
-									"weekLabel" : "W",
-									"daysOfWeek" : [ "일", "월", "화", "수", "목",
-											"금", "토" ],
-									"monthNames" : [ "1월", "2월", "3월", "4월",
-											"5월", "6월", "7월", "8월", "9월",
-											"10월", "11월", "12월" ],
-								},
-								"startDate" : new Date(),
-								"endDate" : new Date(),
-								"maxDate" : new Date(),
-								"drops" : "auto"
+				$(".insertBooknoteDateBtn").on("click", function() {
+					$("#demo").click();
+				})
+
+				$("#demo").daterangepicker(
+						{
+							"locale" : {
+								"format" : "YYYY-MM-DD",
+								"separator" : " ~ ",
+								"applyLabel" : "확인",
+								"cancelLabel" : "취소",
+								"fromLabel" : "From",
+								"toLabel" : "To",
+								"customRangeLabel" : "Custom",
+								"weekLabel" : "W",
+								"daysOfWeek" : [ "일", "월", "화", "수", "목", "금",
+										"토" ],
+								"monthNames" : [ "1월", "2월", "3월", "4월", "5월",
+										"6월", "7월", "8월", "9월", "10월", "11월",
+										"12월" ],
 							},
-							function(start, end, label) {
-								console.log('New date range selected: '
-										+ start.format('YYYY-MM-DD') + ' to '
-										+ end.format('YYYY-MM-DD'));
+							"startDate" : new Date(),
+							"endDate" : new Date(),
+							"maxDate" : new Date(),
+							"drops" : "auto"
+						},
 
-							});
+						function(start, end, label) {
+							console.log('New date range selected: '
+									+ start.format('YYYY-MM-DD') + ' to '
+									+ end.format('YYYY-MM-DD'));
 
-		});
-	</script>
+						});
+
+			});
+
+			function initSearchBook(b_isbn, b_genre, b_img_url, b_title,
+					b_writer, b_publish) {
+				var imgHTML = "";
+
+				$("#goodImage").html(imgHTML);
+				$("#goodTitle").html("[" + resKeyNm + "] " + goodsNm);
+				$("#goodsContents").html(booksInfo);
+
+				var displyCode = getCategoryCode(dispNm);
+				$("#goodsInfo").val(
+						goodsNo + "|@%" + resKeyNm + "|@%" + displyCode);
+
+				$("#goodsView").show();
+
+				$("#contentRating").val("0");
+				$("#compilationRating").val("0");
+				$("#hddGoodsTitle").val($("#goodTitle").html());
+
+				setCompilation();
+			}
+		</script>
 </body>
 
 </html>

@@ -7,5 +7,8 @@
 		select b_img_url from book
 	</select>
 	
+	<select id="selectBookListBySw" resultType="kh.bookday.dto.BookDTO">
+		select * from book where b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or b_genre like '%'||#{searchWord}||'%'		
+	</select>
 </mapper>
 

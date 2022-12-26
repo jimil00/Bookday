@@ -1,5 +1,6 @@
 package kh.bookday.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -24,8 +25,16 @@ public class BookshelvesDAO {
 		return db.selectList("Bookshelves.selectWishlistListById", id);
 	}
 	
-	public List<PostDTO> selectPostListById(String id){
-		return db.selectList("Bookshelves.selectPostListById", id);
+//	public List<PostDTO> selectPostListById(String id){
+//		return db.selectList("Bookshelves.selectPostListById", id);
+//	}
+	
+	public List<PostDTO> selectPostListById(HashMap<String, Object> data){
+		return db.selectList("Bookshelves.selectPostListById", data);
+	}
+
+	public int selectPostCount() {
+		return db.selectOne("Bookshelves.selectPostCount");
 	}
 }
 

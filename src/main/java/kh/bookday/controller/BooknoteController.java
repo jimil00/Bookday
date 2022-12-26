@@ -54,18 +54,18 @@ public class BooknoteController {
 	}
 	
 	@RequestMapping("toInsertPost")
-	public String toInsertPost() {
+	public String toInsertPost(Model model) {
+		// id session
+//		String id = String.valueOf(session.getAttribute("loginID"));
+		String id = "zxcvzxcv";
+		
+		MemberDTO dto = mservice.selectMemberById(id);
+		model.addAttribute("dto", dto);
+		
 		return "mybook/booknote/insertpost";
 	}
 	
-	@GetMapping("toBookSearchPop")
-	public String toBookSearchPop(String word, Model model) {
-		System.out.println(word);
-		List<BookDTO> blist = service.selectBookListBySw(word);
-		model.addAttribute("blist", blist);
-		
-		return "mybook/booksearchpop";
-	}
+
 
 	
 	@ExceptionHandler(Exception.class)

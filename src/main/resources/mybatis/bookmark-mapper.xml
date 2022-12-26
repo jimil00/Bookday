@@ -4,7 +4,14 @@
 <mapper namespace="Bookmark">
 
 	<select id="selectBookmarkListById" resultType="kh.bookday.dto.BookmarkDTO">
-		select * from bookmark where bm_writer_id = #{id}
+		select * from bookmark where bm_writer_id = #{id} order by bm_write_date desc
 	</select>
 	
+	<select id="selectBookmarkListBySw" resultType="kh.bookday.dto.BookmarkDTO">
+		select * from bookmark where b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or bm_content like '%'||#{searchWord}||'%' order by bm_writer_date desc
+	</select>
+	
+	<delete id="deleteBookmarkBySeq">
+		delete from bookmark where bm_seq = #{bm_seq}
+	</delete>
 </mapper>
