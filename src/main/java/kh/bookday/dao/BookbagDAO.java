@@ -23,38 +23,9 @@ public class BookbagDAO {
 		return db.selectList("Bookbag.selectBookbagListById", id);
 	}
 	
-	/* 월 구독 회원 정보 조회 */
-	public MonthSubMemberDTO selectMonthSubMemberById(String id) {
-		return db.selectOne("Bookbag.selectMonthSubMemberById", id);
-	}
-	
 	/* 담은 작품 삭제 */
 	public void deleteBookbagBySeq(int bookbag_seq) {
 		db.delete("Bookbag.deleteBookbagBySeq", bookbag_seq);
 	}
 	
-	/* 위시리스트 체크 */
-	public WishlistDTO selectWishlistByIdBisbn(Map<String, String> param) {
-		return db.selectOne("Bookbag.selectWishlistByIdBisbn", param);
-	}
-	
-	/* 위시리스트 추가 */
-	public void insertWishlist(WishlistDTO dto) {
-		db.insert("Bookbag.insertWishlist", dto);
-	}
-	
-	/* 회원 배송지 정보 입력 */
-	public void updateMemberAddressById(MemberDTO dto) {
-		db.update("Bookbag.updateMemberAddressById", dto);
-	}
-	
-	/* 월 구독 회원 등록 */
-	public void insertMonthSubMemberById(String id) {
-		db.insert("Bookbag.insertMonthSubMemberById", id);
-	}
-	
-	/* 회원 등급 변경 */
-	public void updateMemberGradeById(String id) {
-		db.update("Bookbag.updateMemberGradeById", id);
-	}
 }

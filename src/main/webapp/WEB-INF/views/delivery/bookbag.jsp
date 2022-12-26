@@ -391,7 +391,7 @@ span, #logoImg:hover {
 						                $.ajax({
 						                    url: "/delivery/selectWishlistByIdBisbn",
 						                    data: {
-						                        "id": "소원",
+						                        "id": "앙뚜",
 						                        "b_isbn": "${bookbag.b_isbn }"
 						                    }, success: function (result) {
 						                        if (result == "false") {
@@ -400,7 +400,7 @@ span, #logoImg:hover {
 						                            $.ajax({
 						                                url: "/delivery/insertWishlist",
 						                                data: {
-						                                    "id": "소원",
+						                                    "id": "앙뚜",
 						                                    "b_isbn": "${bookbag.b_isbn }",
 						                                    "b_img_url": "${bookbag.b_img_url }",
 						                                    "b_title": "${bookbag.b_title }",

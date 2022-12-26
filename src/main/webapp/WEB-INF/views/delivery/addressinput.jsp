@@ -137,7 +137,7 @@ div {
 					$.ajax({
 						url : "/delivery/updateMemberAddressById",
 						data : {
-							"id" : "소원",
+							"id" : "앙뚜",
 							"postcode" : $("#postcode").val(),
 							"address1" : $("#address1").val(),
 							"address2" : $("#address2").val(),

@@ -340,7 +340,7 @@ li {
 			}, function(rsp) {
 				if (rsp.success) {
 					var msg = '결제가 완료되었습니다.';
-					window.open("/delivery/toPaymentCompleted?id=소원", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=250, left=500, top=250");
+					window.open("/delivery/toPaymentCompleted?id=앙뚜", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=250, left=500, top=250");
 
 				} else {
 					var msg = '결제에 실패하였습니다.';

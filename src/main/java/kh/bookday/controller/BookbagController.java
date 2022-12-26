@@ -15,6 +15,7 @@ import kh.bookday.dto.MonthSubMemberDTO;
 import kh.bookday.dto.WishlistDTO;
 import kh.bookday.service.BookbagService;
 import kh.bookday.service.MemberService;
+import kh.bookday.service.WishlistService;
 
 @Controller
 @RequestMapping("/delivery/")
@@ -25,8 +26,11 @@ public class BookbagController {
 
 	@Autowired
 	private MemberService mservice;
+	
+	@Autowired
+	private WishlistService wservice;
 
-	String id = "소원";
+	String id = "앙뚜";
 
 	/* 책가방페이지 출력 */
 	@RequestMapping("selectBookbagListById")
@@ -42,7 +46,7 @@ public class BookbagController {
 		model.addAttribute("dto", dto);
 
 		/* 월 구독 회원 정보 조회 (남은 배송 횟수, 남은 대여 권수 출력) */
-		MonthSubMemberDTO sdto = service.selectMonthSubMemberById(id);
+		MonthSubMemberDTO sdto = mservice.selectMonthSubMemberById(id);
 		model.addAttribute("sdto", sdto);
 
 		return "delivery/bookbag";
@@ -60,7 +64,7 @@ public class BookbagController {
 	@RequestMapping("selectWishlistByIdBisbn")
 	public String selectWishlistByIdBisbn(String id, String b_isbn) {
 
-		WishlistDTO dto = service.selectWishlistByIdBisbn(id, b_isbn);
+		WishlistDTO dto = wservice.selectWishlistByIdBisbn(id, b_isbn);
 		System.out.println("위시리스트 체크 결과 : " + dto);
 
 		if(dto == null) { // 위시리스트에 담을 수 있는 상태
@@ -75,7 +79,7 @@ public class BookbagController {
 	@RequestMapping("insertWishlist")
 	public String insertWishlist(WishlistDTO dto) {
 
-		service.insertWishlist(dto);
+		wservice.insertWishlist(dto);
 		System.out.println("위시리스트 추가 완료");
 
 		return "redirect:/delivery/selectBookbagListById";
@@ -91,7 +95,7 @@ public class BookbagController {
 	@RequestMapping("updateMemberAddressById")
 	public String updateMemberAddressById(MemberDTO dto) {
 
-		service.updateMemberAddressById(dto);
+		mservice.updateMemberAddressById(dto);
 		System.out.println("배송지 정보 입력 완료");
 
 		return "redirect:/delivery/selectBookbagListById";
@@ -113,15 +117,15 @@ public class BookbagController {
 	public String toPaymentCompleted(String id, Model model) {
 
 		/* 월 구독 회원 등록 */
-		service.insertMonthSubMemberById(id);
+		mservice.insertMonthSubMemberById(id);
 
 		/* 회원 등급 변경 */
-		service.updateMemberGradeById(id);
+		mservice.updateMemberGradeById(id);
 
 		System.out.println(id + "-> 월 구독 회원 등록 완료");
 
 		/* 월 구독 회원 정보 조회 (구독기간 출력) */
-		MonthSubMemberDTO sdto = service.selectMonthSubMemberById(id);
+		MonthSubMemberDTO sdto = mservice.selectMonthSubMemberById(id);
 		model.addAttribute("sdto", sdto);
 
 		return "delivery/paymentCompleted";
