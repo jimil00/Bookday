@@ -18,8 +18,10 @@ import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.PostDTO;
 import kh.bookday.dto.RentalDTO;
 import kh.bookday.dto.WishlistDTO;
-import kh.bookday.service.BookshelvesService;
 import kh.bookday.service.MemberService;
+import kh.bookday.service.PostService;
+import kh.bookday.service.RentalService;
+import kh.bookday.service.WishlistService;
 
 @Controller
 @RequestMapping("bookshelves")
@@ -30,8 +32,14 @@ public class BookshelvesController {
 	private MemberService mservice;
 
 	@Autowired
-	private BookshelvesService service;
-
+	private RentalService rservice;
+	
+	@Autowired
+	private WishlistService wservice;
+	
+	@Autowired
+	private PostService pservice;
+	
 	@Autowired
 	private HttpSession session;
 
@@ -45,11 +53,11 @@ public class BookshelvesController {
 		model.addAttribute("dto", dto);
 
 		// 대여
-		List<RentalDTO> rlist = service.selectRentalListById(id);
+		List<RentalDTO> rlist = rservice.selectRentalListById(id);
 		model.addAttribute("rlist", rlist);
 
 		// 위시리스트
-		List<WishlistDTO> wlist = service.selectWishlistListById(id);
+		List<WishlistDTO> wlist = wservice.selectWishlistListById(id);
 		model.addAttribute("wlist", wlist);
 
 		// 책장
@@ -61,7 +69,7 @@ public class BookshelvesController {
 		// 책장
 		// 한 사람이 쓴 POST 쓴 것 
 		// Posted,Marked Books
-		List<PostDTO> plist = service.selectPostListById(id, 0);
+		List<PostDTO> plist = pservice.select20PostListById(id, 0);
 		model.addAttribute("plist", plist);
 
 		return "mybook/bookshelves";
@@ -72,7 +80,7 @@ public class BookshelvesController {
 	public String nextList(int count) {
 		String id = "zxcvzxcv";
 		System.out.println(count);
-		return new Gson().toJson(service.selectPostListById(id, count));
+		return new Gson().toJson(pservice.select20PostListById(id, count));
 	}
 
 	@ExceptionHandler(Exception.class)

@@ -112,23 +112,19 @@ table {
 	border-collapse: collapse;
 	margin: auto;
 }
-tr {
-height:140px;
 
-}
 td {
-padding: 15px 10px 15px 0;
+padding: 15px 15px 15px 0;
 	border-bottom: 1px solid rgb(216, 216, 216)
 }
 
-.booCover {
-	text-align: center;
-}
+
 
 .bookCover img {
 	width: 80px;
 	height: 120px;
 }
+
 .bookInfo{
 padding-top:13px;
 padding-bottom:17px;

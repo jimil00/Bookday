@@ -666,7 +666,6 @@ span.size-30 {
 									<button class="booknoteBookSearchBtn">
 										<span class="material-symbols-outlined"> search </span>
 									</button>
-									<!-- 책 검색을 해서 이거는 ajax해야 할 듯 나온 값을 폼으로 아래의 content와 보내주기 아래것도 ajax 댓글처럼 생각하면 된다.-->
 								</div>
 							</div>
 							<div class="insertBooknoteDate">

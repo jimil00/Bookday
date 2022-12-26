@@ -8,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kh.bookday.dto.BookDTO;
 import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.PostDTO;
-import kh.bookday.service.BooknoteService;
 import kh.bookday.service.MemberService;
+import kh.bookday.service.PostService;
 
 @Controller
 @RequestMapping("booknote")
@@ -25,7 +23,7 @@ public class BooknoteController {
 	private MemberService mservice;
 	
 	@Autowired
-	private BooknoteService service;
+	private PostService service;
 	
 	@Autowired
 	private HttpSession session;
