@@ -2,8 +2,6 @@ package kh.bookday.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.bookday.dto.BookbagDTO;
 import kh.bookday.dto.MemberDTO;
+import kh.bookday.dto.MonthSubMemberDTO;
 import kh.bookday.dto.WishlistDTO;
 import kh.bookday.service.BookbagService;
 import kh.bookday.service.MemberService;
@@ -27,20 +26,24 @@ public class BookbagController {
 	@Autowired
 	private MemberService mservice;
 
+	String id = "소원";
+
 	/* 책가방페이지 출력 */
 	@RequestMapping("selectBookbagListById")
 	public String selectBookbagListById(Model model) {
-
-		String id = "수진";
 
 		/* 책가방 리스트 출력 */
 		List<BookbagDTO> list = service.selectBookbagListById(id);
 		model.addAttribute("list", list);
 		System.out.println("리스트 사이즈 확인 : " + list.size());
 
-		/* 구독 여부 확인 */
+		/* 회원 정보 조회 (구독 여부 확인 & 배송지 정보 출력) */
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
+
+		/* 월 구독 회원 정보 조회 (남은 배송 횟수, 남은 대여 권수 출력) */
+		MonthSubMemberDTO sdto = service.selectMonthSubMemberById(id);
+		model.addAttribute("sdto", sdto);
 
 		return "delivery/bookbag";
 	}
@@ -57,9 +60,7 @@ public class BookbagController {
 	@RequestMapping("selectWishlistByIdBisbn")
 	public String selectWishlistByIdBisbn(String id, String b_isbn) {
 
-		System.out.println(id);
 		WishlistDTO dto = service.selectWishlistByIdBisbn(id, b_isbn);
-
 		System.out.println("위시리스트 체크 결과 : " + dto);
 
 		if(dto == null) { // 위시리스트에 담을 수 있는 상태
@@ -80,52 +81,63 @@ public class BookbagController {
 		return "redirect:/delivery/selectBookbagListById";
 	}
 
-	/* 회원 배송지 정보 입력 */
-	@RequestMapping("updateMemberById")
-	public String insertDestination(MemberDTO dto, Model model) {
+	/* 배송지 페이지로 이동 */
+	@RequestMapping("toAddressInput")
+	public String toAddressInput() {
+		return "delivery/addressinput";
+	}
 
-		service.updateMemberById(dto);
+	/* 회원 배송지 정보 입력 */
+	@RequestMapping("updateMemberAddressById")
+	public String updateMemberAddressById(MemberDTO dto) {
+
+		service.updateMemberAddressById(dto);
 		System.out.println("배송지 정보 입력 완료");
-		model.addAttribute("dto", dto);
-		System.out.println(dto);
-		// 이거 여기 없어도 되는 거 같은데?
 
 		return "redirect:/delivery/selectBookbagListById";
 	}
 
-	/* 결제페이지 */
+	/* 결제 페이지로 이동 */
 	@RequestMapping("toPayment")
-	public String toPayment() {
+	public String toPayment(Model model) {
+
+		/* 회원 정보 조회 (구독 여부 확인) */
+		MemberDTO dto = mservice.selectMemberById(id);
+		model.addAttribute("dto", dto);
+
 		return "delivery/payment";
 	}
-	
-	/* 결제완료페이지 */
+
+	/* 결제완료 페이지로 이동 */
 	@RequestMapping("toPaymentCompleted")
-	public String toPaymentCompleted(String id) {
-		
+	public String toPaymentCompleted(String id, Model model) {
+
 		/* 월 구독 회원 등록 */
 		service.insertMonthSubMemberById(id);
-		
+
 		/* 회원 등급 변경 */
 		service.updateMemberGradeById(id);
-		
+
 		System.out.println(id + "-> 월 구독 회원 등록 완료");
-		
+
+		/* 월 구독 회원 정보 조회 (구독기간 출력) */
+		MonthSubMemberDTO sdto = service.selectMonthSubMemberById(id);
+		model.addAttribute("sdto", sdto);
+
 		return "delivery/paymentCompleted";
 	}
 
-	/* 대여완료페이지 */
+	/* 대여완료 페이지로 이동 */
 	@RequestMapping("toRentalCompleted")
-	public String toRentalCompleted() {
+	public String toRentalCompleted(Model model) {
+
+		/* 회원 정보 조회 (배송지 정보 출력) */
+		MemberDTO dto = mservice.selectMemberById(id);
+		model.addAttribute("dto", dto);
+
 		return "delivery/rentalcompleted";
 	}
 
-	/* 배송지페이지 */
-	@RequestMapping("toDestination")
-	public String toDestination() {
-		return "delivery/destination";
-	}
-	
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();

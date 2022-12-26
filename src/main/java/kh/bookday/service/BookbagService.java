@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kh.bookday.dao.BookbagDAO;
 import kh.bookday.dto.BookbagDTO;
 import kh.bookday.dto.MemberDTO;
+import kh.bookday.dto.MonthSubMemberDTO;
 import kh.bookday.dto.WishlistDTO;
 
 @Service
@@ -21,6 +22,11 @@ public class BookbagService {
 	/* 책가방 리스트 출력 */
 	public List<BookbagDTO> selectBookbagListById(String id) {	
 		return dao.selectBookbagListById(id);
+	}
+	
+	/* 월 구독 회원 정보 조회 */
+	public MonthSubMemberDTO selectMonthSubMemberById(String id) {
+		return dao.selectMonthSubMemberById(id);
 	}
 	
 	/* 담은 작품 삭제 */
@@ -42,8 +48,8 @@ public class BookbagService {
 	}
 	
 	/* 회원 배송지 정보 입력 */
-	public void updateMemberById(MemberDTO dto) {
-		dao.updateMemberById(dto);
+	public void updateMemberAddressById(MemberDTO dto) {
+		dao.updateMemberAddressById(dto);
 	}
 	
 	/* 월 구독 회원 등록 */
@@ -55,4 +61,5 @@ public class BookbagService {
 	public void updateMemberGradeById(String id) {
 		dao.updateMemberGradeById(id);
 	}
+	
 }

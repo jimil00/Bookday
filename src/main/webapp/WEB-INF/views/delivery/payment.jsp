@@ -40,7 +40,7 @@ button:hover {
 	cursor: pointer;
 }
 
-/*     header */
+/* header */
 .header {
 	height: 150px;
 	overflow: hidden;
@@ -172,7 +172,7 @@ span.size-40 {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-/*     header */
+/* header */
 
 /* navi */
 .navi {
@@ -184,7 +184,6 @@ span.size-40 {
 .body {
 	overflow: hidden;
 	margin: auto;
-	/* height: 2000px; */
 }
 
 .body-top {
@@ -232,6 +231,7 @@ span.size-40 {
 }
 
 .li-title {
+	padding-left: 20px;
 	padding-bottom: 14px;
 	font-weight: bold;
 }
@@ -239,6 +239,7 @@ span.size-40 {
 li {
 	padding-bottom: 7px;
 }
+/* body */
 </style>
 </head>
 <body>
@@ -291,7 +292,14 @@ li {
 				<div class="main-left">
 					<div class="sub-div">30일 구독권 12,000원</div>
 					<div class="pay-btn-div">
+					<c:choose>
+					<c:when test="${dto.grade eq '미구독'}">
 						<button class="pay-btn" id="pay-btn">결제하기</button>
+					</c:when>
+					<c:otherwise>
+						<button class="pay-btn" id="disabled-pay-btn">이용 중</button>
+					</c:otherwise>
+					</c:choose>
 					</div>
 				</div>
 				<div class="main-right">
@@ -303,42 +311,48 @@ li {
 			</div>
 			<div class="body-bottom">
 				<div class="li-title">유의사항</div>
-				<li>한 달 10권 이하 대여 가능하며, 3번 이하의 배송 신청을 할 수 있습니다.</li>
-				<li>대여일은 도착한 날부터 산정되며, 반납일은 대여일부터 10일입니다.</li>
-				<li>반납일에 책가방을 문 앞에 두시면 수거합니다. 반납일을 꼭 지켜주세요!</li>
-				<li>종이책을 분실 또는 훼손하였을 경우 동일한 책으로 변상하셔야 합니다.</li>
-				<li>구독권은 결제 후 7일간 미사용 시 취소할 수 있습니다.</li>
-				<li>정기 구독 결제는 구독 기간 마지막 날 진행되며 결제 후 구독 기간은 자동 갱신됩니다.</li>
-				<li>정기 구독 갱신을 중단하고자 할 경우 구독 기간 종료 하루 전까지 구독을 해지하셔야 합니다.</li>
+				<ul>
+					<li>한 달 10권 이하 대여 가능하며, 3번 이하의 배송 신청을 할 수 있습니다.</li>
+					<li>대여일은 도착한 날부터 산정되며, 반납일은 대여일부터 10일입니다.</li>
+					<li>반납일에 책가방을 문 앞에 두시면 수거합니다. 반납일을 꼭 지켜주세요!</li>
+					<li>종이책을 분실 또는 훼손하였을 경우 동일한 책으로 변상하셔야 합니다.</li>
+					<li>구독권은 결제 후 7일간 미사용 시 취소할 수 있습니다.</li>
+					<li>정기 구독 결제는 구독 기간 마지막 날 진행되며 결제 후 구독 기간은 자동 갱신됩니다.</li>
+					<li>정기 구독 갱신을 중단하고자 할 경우 구독 기간 종료 하루 전까지 구독을 해지하셔야 합니다.</li>
+				</ul>
 			</div>
 		</div>
 		<div class="footer"></div>
 	</div>
 	<script>
 		$("#pay-btn").on("click", function() {
-// 			var IMP = window.IMP;
-// 			IMP.init('imp78130413');
-// 			IMP.request_pay({
-// 				pg : "kakaopay",
-// 				pay_method : 'kakaopay',
-// 				merchant_uid : 'merchant_' + new Date().getTime(),
-// 				name : '책하루 [30일 구독권]',
-// 				amount : 12000,
-// 				buyer_name : '구매자 이름',
-// 				buyer_email : '구매자 이메일',
-// 				buyer_tel : '구매자 전화번호'
-// 			}, function(rsp) {
-// 				if (rsp.success) {
-// 					var msg = '결제가 완료되었습니다.';
-					window.open("/delivery/toPaymentCompleted?id=솜", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=250, left=500, top=250");
+			var IMP = window.IMP;
+			IMP.init('imp78130413');
+			IMP.request_pay({
+				pg : "kakaopay",
+				pay_method : 'kakaopay',
+				merchant_uid : 'merchant_' + new Date().getTime(),
+				name : '책하루 [30일 구독권]',
+				amount : 12000,
+				buyer_name : '구매자 이름',
+				buyer_email : '구매자 이메일',
+				buyer_tel : '구매자 전화번호'
+			}, function(rsp) {
+				if (rsp.success) {
+					var msg = '결제가 완료되었습니다.';
+					window.open("/delivery/toPaymentCompleted?id=소원", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=250, left=500, top=250");
 
-// 				} else {
-// 					var msg = '결제에 실패하였습니다.';
-// 					rsp.error_msg;
-// 				}
-// 			});
+				} else {
+					var msg = '결제에 실패하였습니다.';
+					rsp.error_msg;
+				}
+			});
 		})
 
+		$("#disabled-pay-btn").on("click", function() {
+			alert("이미 이용 중인 구독권입니다.");
+		})
+		
 		$("#logoImg").on("click", function() {
 			location.href = "/";
 		})

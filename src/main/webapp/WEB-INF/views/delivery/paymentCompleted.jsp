@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
 
 <!DOCTYPE html>
 <html>
@@ -68,7 +70,7 @@ div {
 				<img src="/resources/bookday_logo_ver1(kor).png" id="logo-img">
 			</div>
 			<div class="title">30일 구독권이 결제 완료되었습니다!</div>
-			<div class="sub-date">구독기간 : 2022-12-23 ~ 2023-01-22</div>
+			<div class="sub-date">구독기간 : ${sdto.formedStartDate } ~ ${sdto.formedEndDate }</div>
 			<div class="btn-div">
 				<button class="btn" id="bookbag">책가방으로 이동</button>
 				<button class="btn" id="close">닫기</button>

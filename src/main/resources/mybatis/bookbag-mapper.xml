@@ -8,6 +8,11 @@
 		select * from bookbag where id = #{id}
 	</select>
 	
+	<!-- 월 구독 회원 정보 조회 -->
+	<select id="selectMonthSubMemberById" resultType="kh.bookday.dto.MonthSubMemberDTO">
+		select * from month_sub_member where id = #{id}
+	</select>
+	
 	<!-- 담은 작품 삭제 --> 
 	<delete id="deleteBookbagBySeq">
 		delete from bookbag where bookbag_seq = #{id}
@@ -24,7 +29,7 @@
 	</insert>
 	
 	<!-- 회원 배송지 정보 입력 -->
-	<update id="updateMemberById">
+	<update id="updateMemberAddressById">
 		update member set postcode = #{postcode}, address1 = #{address1}, address2 = #{address2}, reciver = #{reciver}, reciver_phone = #{reciver_phone} where id = #{id}
 	</update>
 	
