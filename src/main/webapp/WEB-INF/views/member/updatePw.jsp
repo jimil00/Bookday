@@ -53,7 +53,7 @@ input {
 	height: 40px;
 }
 
-button {
+button, .find_btn>input{
 	color:#5397fc;
 	transition-duration: 0.1s;
 	border: 1px solid #5397fc;
@@ -65,7 +65,7 @@ button {
 	height: 40px;
 }
 
-button:active {
+button,.find_btn>input:active {
 	margin-left: 5px;
 	margin-top: 5px;
 	box-shadow: none;
@@ -137,7 +137,8 @@ button:active {
                     		 $("#find_btn").remove();
                         	 
                         	 $(".find_btn").append(
-                        			 $("<button>").prop({
+                        			 $("<input>").prop({
+                        				 type:"button",
                         				 id:"check_btn",
                         				 value:"확인"
                         			 })
@@ -166,7 +167,8 @@ button:active {
                                  		 	$("#check_btn").remove();
                                         	 
                                         	 $(".find_btn").append(
-                                        			 $("<button>").prop({
+                                        			 $("<input>").prop({
+                                        				 type:"button",
                                         				 id:"update_btn",
                                         				 value:"확인"
                                         			 	})
@@ -209,9 +211,15 @@ button:active {
                                         	 
                                         	 $("#update_btn").on("click", function(){
                                         			
+                                        		 	let phone= $("#phone").val();
                                         			let updatePw = $("#updatePw").val();
-
-                                        			 //휴대폰 번호 여부 에이작스로 확인한 다음에 비밀번호 재설정 페이지로 이동 
+                                        			
+                                        			console.log(phone+":"+updatePw);
+                                        			
+                                        			if(phone == "" || updatePw == ""){
+                                        				alert("비밀번호를 입력해주세요.");
+                                        			}else{
+                                        				 //휴대폰 번호 여부 에이작스로 확인한 다음에 비밀번호 재설정 페이지로 이동 
                                         	        $.ajax({
                                         					url:"/member/updatePw",
                                         					data:{"updatePw":updatePw,
@@ -228,6 +236,8 @@ button:active {
                                         				}
 
                                         				})
+                                        			}
+                                        			
                                         		});
   
 											

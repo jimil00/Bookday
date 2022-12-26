@@ -15,6 +15,7 @@ public class ReviewDTO {
 	public ReviewDTO() {
 		super();
 	}
+	
 	public ReviewDTO(int rv_seq, String rv_writer_id, String rv_writer_nn, Timestamp rv_write_date, String rv_content,
 			String b_isbn) {
 		this.rv_seq = rv_seq;

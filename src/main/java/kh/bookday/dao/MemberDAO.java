@@ -36,15 +36,20 @@ public class MemberDAO {
 
 		return db.selectOne("Member.isLoginOk",param);
 	}
-
+	
 	// 회원가입
 	public int signUp(MemberDTO dto) {
 		return db.insert("Member.signUp", dto);
 	}
-
+	
 	// 아이디로 세션값 주기 위한 로직
 	public String selectIdByPhone(String phone) {
 		return db.selectOne("Member.selectIdByPhone", phone);
+	}
+	
+	// 이메일로 카톡 로그인 여부 확인하는 로직
+	public boolean selectByEmail(String email) {
+		return db.selectOne("Member.selectByEmail", email);
 	}
 	
 	//비번 재설정

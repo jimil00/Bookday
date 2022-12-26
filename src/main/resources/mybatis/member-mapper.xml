@@ -27,6 +27,11 @@
   		select * from member where phone = #{value}
   	</select>
   	
+  	<select id="selectByEmail" resultType="boolean">
+  		select count(*) from member where email = #{email}
+  	</select>
+  	
+  	
   	<update id="updatePw">
   		update member set pw=#{pw} where phone=#{phone}
   	</update>

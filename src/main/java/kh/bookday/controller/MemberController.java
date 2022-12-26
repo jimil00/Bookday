@@ -196,18 +196,27 @@ public class MemberController {
 		
 		System.out.println(userInfo.getId());
 		
-		//유의할 점: 이 로직을 통해 들어가면 uuid가 생성됨.
-		service.signUp(userInfo);
+		//카카오 최초 로그인인지 확인
+		//디비에 이메일 정보 확인
+		boolean result=service.selectByEmail(userInfo.getEmail());
 		
-		session.setAttribute("loginID", userInfo.getId());
-		session.setAttribute("nickname",userInfo.getNickname());
+		System.out.println(result);
+		
+		if(result) {
+			session.setAttribute("loginID", userInfo.getId());
+			session.setAttribute("nickname",userInfo.getNickname());
+		}else {
+			service.signUp(userInfo);
+			
+			session.setAttribute("loginID", userInfo.getId());
+			session.setAttribute("nickname",userInfo.getNickname());
+		}
 
 		return "redirect:/";
 	}
 	
-	
-//	//카카오 로그아웃 //그냥 세션값 사라짐 없어도 될 듯 
-//	@RequestMapping(value="kakaoLogout" , method=RequestMethod.GET)
+	//카카오 최초 로그인시 회원가입되는 로직
+//	@RequestMapping(value="kakaoSignup" , method=RequestMethod.GET)
 //	public String kakaoLogout(@RequestParam("code") String code, Model model) {
 //		
 //		session.invalidate();

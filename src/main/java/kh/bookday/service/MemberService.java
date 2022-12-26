@@ -61,10 +61,24 @@ public class MemberService {
 		//uuid 생성
 		String id =UUID.randomUUID().toString();
 		dto.setId(id);
+		
+		dao.signUp(dto);
 	}
-
+	
+	public void kakaoSignUp(MemberDTO dto) {
+		
+		//uuid 생성 X
+		dao.signUp(dto);
+		
+	}
+	
 	public String selectIdByPhone(String phone) {
 		return dao.selectIdByPhone(phone);
+	}
+	
+	
+	public boolean selectByEmail(String email) {
+		return dao.selectByEmail(email);
 	}
 
 	public void updatePw(String pw,String phone) {
@@ -89,7 +103,7 @@ public class MemberService {
 		System.out.println("회원가입 문자 인증: "+msg);
 
 		//메세지를 보내는 로직에 핸드폰 번호와 인증번호를 전달
-		sms.send_msg(phone, msg);
+		//sms.send_msg(phone, msg);
 
 		return msg;
 	}
