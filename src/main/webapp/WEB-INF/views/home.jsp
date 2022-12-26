@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>Home</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
 @font-face {
 	font-family: 'NanumSquareNeo-Variable';
@@ -25,7 +24,9 @@
 }
 
 /* div {
-	border: 1px solid black;
+
+   border: 1px solid black;
+
 } */
 .container {
 	margin: auto;
@@ -37,7 +38,7 @@ button:hover {
 	cursor: pointer;
 }
 
-/*     header */
+/* header */
 .header {
 	height: 150px;
 	overflow: hidden;
@@ -118,10 +119,10 @@ button:hover {
 }
 /* icon */
 .iconBox {
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
-}
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
 
 span.size-40 {
 	font-size: 40px;
@@ -129,9 +130,22 @@ span.size-40 {
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
 }
 
-span.size-40 {
+span, #logoImg:hover {
 	cursor: pointer;
 }
+
+/* headerHr */
+#headerHr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/* header */
+
 
 /* login */
 .signBox {
@@ -160,16 +174,9 @@ span.size-40 {
 	cursor: default;
 }
 
-/* headerHr */
-#headerHr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
-	margin-bottom: 15px;
+.login_form{
+	margin-top:200px;
 }
-/*     header */
 
 /* navi */
 .navi {
@@ -179,7 +186,7 @@ span.size-40 {
 
 /* body */
 .body {
-	height: 2000px;
+   height: 2000px;
 }
 </style>
 </head>
@@ -206,13 +213,16 @@ span.size-40 {
 						<c:when test="${empty loginID}">
 							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
 							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p class="user" id="test">상세 페이지 테스트</p></a>
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
-							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p class="user" id="test">상세 페이지 테스트</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
+
 				<div class="iconBox">
 					<span class="material-symbols-outlined size-40" id="notifications">notifications</span>
 					<span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
@@ -227,29 +237,29 @@ span.size-40 {
 		<div class="footer"></div>
 	</div>
 	<script>
-		$("#logoImg").on("click", function() {
-			location.href = "/";
-		})
-		$("#searchWord").on("keydown", function(e) {
-			if (e.keyCode == 13) {
-				$("#search").submit();
-			}
-		})
-		$("#notifications").on("click", function() {
-			location.href = "//toNotification";
-		})
-		$("#bookbag").on("click", function() {
-			location.href = "/delivery/selectBookbagListById";
-		})
-		$("#bookshelves").on("click", function() {
-			location.href = "/bookshelves/selectBookshelvesListById";
-		})
-		$("#mypage").on("click", function() {
-			if (loginID == null) {
-				location.href = "/member/login";
-			}
-			location.href = "/member/toMypage";
-		})
-	</script>
+      $("#logo_img").on("click", function() {
+         location.href = "/";
+      })
+      $("#searchword").on("keydown", function(e) {
+         if (e.keyCode == 13) {
+            $("#search").submit();
+         }
+      })
+      $("#notifications").on("click", function() {
+         location.href = "//toNotification";
+      })
+      $("#bookbag").on("click", function() {
+         location.href = "/delivery/selectBookbagListById";
+      })
+      $("#bookshelves").on("click", function() {
+         location.href = "/bookshelves/selectBookshelvesListById";
+      })
+      $("#mypage").on("click", function() {
+         if (loginID == null) {
+            location.href = "/member/tologin";
+         }
+         location.href = "/member/toMypage";
+      })
+   </script>
 </body>
 </html>
