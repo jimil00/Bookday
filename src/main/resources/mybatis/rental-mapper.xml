@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Rental">
+
+	<select id="selectRentalListById" resultType="kh.bookday.dto.RentalDTO">
+		select * from rental where id = #{id} and rt_return_date>sysdate order by rt_rental_date desc
+	</select>
+
+</mapper>

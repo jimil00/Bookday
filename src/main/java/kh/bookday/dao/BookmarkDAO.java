@@ -18,4 +18,11 @@ public class BookmarkDAO {
 		return db.selectList("Bookmark.selectBookmarkListById", id);
 	}
 	
+	public List<BookmarkDTO> selectBookmarkListBySw(String searchWord){
+		return db.selectList("Bookmark.selectBookmarkListBySw", searchWord);
+	}
+	
+	public void deleteBookmarkBySeq(int bm_seq) {
+		db.delete("Bookmark.deleteBookmarkBySeq", bm_seq);
+	}
 }

@@ -24,19 +24,13 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-body {
-	margin: 8px;
-	line-height: inherit;
-}
 /* div {
 	border: 1px solid black;
 } */
 .container {
 	margin: auto;
 	overflow: hidden;
-	width: 978px !important;
-	padding-left: 0px;
-	padding-right: 0px;
+	width: 978px;
 }
 
 button:hover {
@@ -84,7 +78,7 @@ button:hover {
 	width: 100%;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .searchTxt {
@@ -137,7 +131,6 @@ span.size-40 {
 span.size-40 {
 	cursor: pointer;
 }
-
 
 /* login */
 .signBox {
@@ -217,10 +210,11 @@ span.size-35 {
 
 .selected {
 	background-color: #5397fc50;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-span.size-35{
-cursor: pointer;
+span.size-35 {
+	cursor: pointer;
 }
 
 /* contents */
@@ -247,6 +241,7 @@ cursor: pointer;
 
 #profile {
 	border-radius: 50%;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 /* contentsBody */
@@ -294,7 +289,7 @@ span.size-30 {
 	width: 244.5px;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .bookmarkBookSearchTxt {
@@ -337,10 +332,10 @@ span.size-30 {
 
 .insertbookmarkContentBox {
 	height: 120px;
-	width: 870px;
+	width: 871px;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 	overflow: hidden;
 	position: relative;
 	overflow-y: auto;
@@ -356,7 +351,7 @@ span.size-30 {
 	position: absolute;
 	top: 55%;
 	transform: translate(0%, -50%);
-	right: 8px;
+	right: 5px;
 	width: 50px;
 	height: 30px;
 	font-size: 15px;
@@ -364,7 +359,7 @@ span.size-30 {
 	background-color: #5397fc50;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 /* contentsBodySearchBookmake */
@@ -391,7 +386,7 @@ span.size-30 {
 	width: 244.5px;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .bookmarkSearchTxt {
@@ -468,7 +463,7 @@ span.size-30 {
 
 .bookmarkContentsBtn {
 	float: right;
-	width: 14%;
+	width: 13%;
 	height: 50px;
 	display: flex;
 	justify-items: flex-end;
@@ -483,7 +478,7 @@ span.size-30 {
 	background-color: #5397fc50;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 </style>
 </head>
@@ -546,7 +541,7 @@ span.size-30 {
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/images/${dto.sysprofname }" width="100" height="100"
+						<img src="/resources/${dto.sysprofname }" width="100" height="100"
 							id="profile">
 					</div>
 					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
@@ -561,15 +556,12 @@ span.size-30 {
 						<div class="insertBookmarkBookInfo">
 							<div class="bookmarkBookSearchTitle">책 검색</div>
 							<div class="bookmarkBookSearchBox">
-								<form action="//search" id="bookmarkBookSearch" method="post">
 									<input class="bookmarkBookSearchTxt" type="text"
 										placeholder="검색어를 입력해 주세요" id="bookmarkBookSearchWord"
 										name="bookmarkBookSearchWord">
-									<button class="bookmarkBookSearchBtn" type="submit">
+									<button class="bookmarkBookSearchBtn">
 										<span class="material-symbols-outlined"> search </span>
 									</button>
-								</form>
-								<!--                     이거는 ajax해야 할 듯 나온 값을 폼으로 아래의 content와 보내주기 아래것도 ajax 댓글처럼 생각하면 된다.-->
 							</div>
 						</div>
 						<div class="insertBookmarkContent">
@@ -583,20 +575,17 @@ span.size-30 {
 					<div class="bookmarkSearch">
 						<div class="bookmarkSearchTitle">책갈피 검색</div>
 						<div class="bookmarkSearchBox">
-							<!--                     ajax -->
-							<form action="//search" id="bookmarkSearch" method="post">
 								<input class="bookmarkSearchTxt" type="text"
 									placeholder="검색어를 입력해 주세요" id="bookmarkSearchWord"
 									name="bookmarkSearchWord">
-								<button class="bookmarkSearchBtn" type="submit">
+								<button class="bookmarkSearchBtn">
 									<span class="material-symbols-outlined"> search </span>
 								</button>
-							</form>
 						</div>
 					</div>
 					<div class="selectBookmarkList">
 						<c:forEach var="bm" items="${list}">
-							<div class="bookmarkContents">
+							<div class="bookmarkContents" seq="${bm.bm_seq }" writer="${bm.bm_writer_id }"> 
 								<div class="bookmarkContentsImg">
 									<div class="bookmarkBookImg">
 										<img src="${bm.b_img_url }">
@@ -628,43 +617,77 @@ span.size-30 {
 		<script>
 			$("#logoImg").on("click", function() {
 				location.href = "/";
-			})
+			});
 
 			$("#searchWord").on("keydown", function(e) {
 				if (e.keyCode == 13) {
 					$("#search").submit();
 				}
-			})
+			});
 			$("#notifications").on("click", function() {
 				location.href = "//toNotification";
-			})
+			});
 			$("#bookbag").on("click", function() {
 				location.href = "/delivery/toBookbag";
-			})
+			});
 			$("#bookshelves").on("click", function() {
 				location.href = "/bookshelves/selectBookshelvesListById";
-			})
+			});
 			$("#mypage").on("click", function() {
 				if (loginID == null) {
 					location.href = "/member/login";
 				}
 				location.href = "/member/toMypage";
-			})
+			});
 			$("#snBookshelves").on("click", function() {
 				location.href = "/bookshelves/selectBookshelvesListById";
-			})
+			});
 			$("#snStatistics").on("click", function() {
 				location.href = "/bookstatistics/select-";
-			})
+			});
 			$("#snCalendar").on("click", function() {
 				location.href = "/bookcalendar/select-";
-			})
+			});
 			$("#snBookmark").on("click", function() {
 				location.href = "/bookmark/selectBookmarkListById";
-			})
+			});
 			$("#snBooknote").on("click", function() {
 				location.href = "/booknote/selectPostListById";
-			})
+			});
+			$("#bookmarkBookSearchWord").on("keydown", function(e){
+				if(e.keyCode == 13) {
+					var searchWord = $("#bookmarkBookSearchWord").val();
+					$("#bookmarkBookSearchWord").val("");
+					window.open("/book/toBookSearchPop?searchWord=" + searchWord, "", "width=600,height=600");
+				}
+			});		
+			$(".bookmarkBookSearchBtn").on("click", function() {
+				var searchWord = $("#bookmarkBookSearchWord").val();
+				window.open("/book/toBookSearchPop?searchWord=" + searchWord, "", "width=600,height=600");
+			});
+			$("#bookmarkSearchWord").on("keydown", function(e){
+				if(e.keyCode == 13) {
+					var searchWord = $("#bookmarkSearchWord").val();
+					$("#bookmarkSearchWord").val("");
+					location.href = "/bookmark/selectBookmarkListBySw?searchWord=" + searchWord;
+				}
+			});		
+			$(".bookmarkSearchBtn").on("click", function() {
+				var searchWord = $("#bookmarkSearchWord").val();
+				location.href = "/book/selectBookmarkListBySw?searchWord=" + searchWord;
+			});
+            $(document).on("click", ".deleteBookmarkContentsBtn", function () {
+                var bm_seq = $(this).closest(".bookmarkContentsBtn").siblings(".bookmarkContents").attr("seq");	
+        		var bm_writer_id = $(this).closest(".bookmarkContentsBtn").siblings(".bookmarkContents").attr("writer");
+     
+
+                if(confirm("북마크를 삭제하시겠습니까?")){
+					location.href="/bookmark/deleteBookmarkBySeq?bm_seq="+bm_seq+"&bm_writer_id="+bm_writer_id;
+				}else{
+					location.reload();
+				}
+
+            });
 		</script>
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,21 +18,29 @@ import kh.bookday.dto.PostDTO;
 import kh.bookday.dto.ReviewDTO;
 import kh.bookday.dto.ReviewLikeDTO;
 import kh.bookday.service.BookService;
+import kh.bookday.service.PostService;
 
 @Controller
 @RequestMapping("/book/")
 public class BookController {
 	
 	@Autowired
-	BookService service;
+	private BookService service;
 	
 	@Autowired
 	private HttpSession session;
 	
-//	@RequestMapping("toBookinfo")
-//	public String toBookinfo() {
-//		return "/book/bookinfo";
-//	}
+	// 책 검색 팝업
+	@GetMapping("toBookSearchPop")
+	public String toBookSearchPop(String searchWord, Model model) {
+		System.out.println(searchWord);
+		model.addAttribute("searchWord", searchWord);
+		List<BookDTO> blist = service.selectBookListBySw(searchWord);
+		model.addAttribute("blist", blist);
+		
+		return "mybook/booksearchpop";
+	}
+	
 	
 	//도서 정보 출력
 	@RequestMapping("selectBookinfo")

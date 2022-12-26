@@ -80,7 +80,7 @@ button:hover {
 	width: 100%;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .searchTxt {
@@ -162,7 +162,6 @@ span, #logoImg:hover {
 
 .signBox>a:hover {
 	color: #5397fc;
-	text-decoration-color: #5397fc;
 }
 
 #nick {

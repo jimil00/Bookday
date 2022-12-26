@@ -1,8 +1,5 @@
 package kh.bookday.service;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +18,11 @@ public class BookService {
 	
 	@Autowired
 	private BookDAO dao;
+	
+	// 도서 검색
+	public List<BookDTO> selectBookListBySw(String searchWord){
+		return dao.selectBookListBySw(searchWord);
+	}
 
 	
 	//해당 도서 정보 출력

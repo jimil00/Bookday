@@ -11,9 +11,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -59,6 +56,7 @@ button:hover {
 
 /*     header */
 .header {
+	min-width:978px;
 	height: 150px;
 	overflow: hidden;
 }
@@ -98,7 +96,7 @@ button:hover {
 	width: 100%;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .searchTxt {
@@ -192,6 +190,7 @@ span.size-40 {
 	border-top: 1px solid rgb(216, 216, 216);
 	margin-top: 15px;
 	margin-bottom: 15px;
+	opacity: inherit;
 }
 /*     header */
 
@@ -203,13 +202,14 @@ span.size-40 {
 
 /* body */
 .body {
-	overflow: hidden;
+	display:flex;
 }
 
 /* sidenavi */
 .sideNavi {
 	width: 10%;
-	float: left;
+		min-width: 97.8px;
+	
 }
 
 ul {
@@ -235,6 +235,7 @@ span.size-35 {
 
 .selected {
 	background-color: #5397fc50;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 span.size-35 {
@@ -242,6 +243,12 @@ span.size-35 {
 }
 
 /* contents */
+.contents {
+			min-width:880.2px;
+
+	width: 90%;
+	overflow: hidden;
+}
 .contentsHeader {
 	width: 100%;
 	margin-bottom: 30px;
@@ -258,13 +265,10 @@ span.size-35 {
 
 #profile {
 	border-radius: 50%;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-.contents {
-	width: 90%;
-	float: left;
-	overflow: hidden;
-}
+
 
 .rental {
 	width: 100%;
@@ -291,7 +295,7 @@ span.size-35 {
 }
 
 #wishlist {
-	margin-top: 30px;
+	margin-top: 70px;
 }
 
 #posted {
@@ -312,19 +316,22 @@ span.size-30 {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
-
+.book {
+	width: 80px;
+	height: 120px;
+	box-shadow: 2px 2px 2px 2px #80808050;
+	cursor: pointer;
+	margin-right:3px;
+	margin-left:3px;
+}
 .rentalBooks {
 	height: 140px;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: flex-end;
+			padding-bottom:4px;
+	
 }
-
-.rentalBook>img {
-	width: 80px;
-	box-shadow: 2px 2px 2px 2px #80808050;
-}
-
 .wishlistBooks {
 	position: relative;
 	height: 200px;
@@ -343,15 +350,13 @@ span.size-30 {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: flex-end;
-}
-
-.wishlistBook img {
-	width: 80px;
-	box-shadow: 2px 2px 2px 2px #80808050;
+		padding-bottom:4px;
+	
 }
 
 .carousel-indicators {
 	position: relative;
+	margin: 0;
 }
 
 .carousel-indicators [data-bs-target] {
@@ -364,14 +369,12 @@ span.size-30 {
 * .postedBooks {
 	height: 140px;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: flex-end;
+			padding-bottom:4px;
+	
 }
 
-.postedBook>img {
-	width: 80px;
-	box-shadow: 2px 2px 2px 2px #80808050;
-}
 </style>
 
 </head>
@@ -434,7 +437,7 @@ span.size-30 {
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/images/${dto.sysprofname }" width="100" height="100"
+						<img src="/resources/${dto.sysprofname }" width="100" height="100"
 							id="profile">
 					</div>
 					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
@@ -449,7 +452,7 @@ span.size-30 {
 						<div class="rentalBooks">
 							<c:forEach var="rental" items="${rlist}">
 								<div class="rentalBook">
-									<img src="${rental.b_img_url }">
+									<img src="${rental.b_img_url }" class="book" isbn="${rental.b_isbn }">
 								</div>
 							</c:forEach>
 						</div>
@@ -470,7 +473,7 @@ span.size-30 {
 											<c:forEach var="wishlist" items="${wlist }"
 												varStatus="wstatus">
 												<div class="wishlistBook" id="${wstatus.count }">
-													<img src="${wishlist.b_img_url }">
+													<img src="${wishlist.b_img_url }" class="book" isbn="${wishlist.b_isbn }">
 												</div>
 												<c:if test="${wstatus.count%10==0 }">
 										</div>
@@ -503,31 +506,29 @@ span.size-30 {
 					</div>
 
 					<div class="posted">
-						<div class="title" id="posted">
-							<div class="titleTxt">내 책장</div>
-							&nbsp <span class="material-symbols-outlined size-30">shelves</span>
-						</div>
-						<div class="postedBooks">
-							<c:forEach var="post" items="${plist }" varStatus="status">
-								<div class="postedBook" id="${status.count }">
-									<img src="${post.b_img_url }"> <input type="hidden"
-										value="${post.p_seq }">
-								</div>
-								<c:if test="${status.count%10==0 }">
-						</div>
-						<hr class="bookshelvesHr">
-						<div class="postedBooks">
-							</c:if>
-							</c:forEach>
-						</div>
-						<div class="postedsNavi">${navi }</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer"></div>
-	</div>
-	<script>
+                    <div class="title" id="posted">
+                        <div class="titleTxt">내 책장</div>
+                        &nbsp <span class="material-symbols-outlined size-30">shelves</span>
+                    </div>
+                    <c:forEach var="post" items="${plist }" varStatus="status">
+                        <c:if test="${status.count%10==1 }">
+                            <div class="postedBooks">
+                        </c:if>
+                        <div class="postedBook" id="${status.count }">
+                            <img src="${post.b_img_url }" class="book" isbn="${post.b_isbn }">
+                        </div>
+                        <c:if test="${status.count%10==0 || status.count == fn:length(plist)}">
+                            </div>
+                            <hr class="bookshelvesHr">
+                        </c:if>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer"></div>
+</div>
+<script>
 		$("#logoImg").on("click", function() {
 			location.href = "/";
 		})
@@ -566,8 +567,106 @@ span.size-30 {
 		})
 		$("#snBooknote").on("click", function() {
 			location.href = "/booknote/selectPostListById";
-		})<!-- Ajax Infinite Scroll -->
-	</script>
+		})
+		$(".book").on("click", function(){
+			var b_isbn = $(this)
+			location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
+		})
+		<!-- Ajax Infinite Scroll -->
+// 	    let count = 1
+// 	    $(window).scroll(function () {
+// 	        let isScrollBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight
+// 	        console.log(isScrollBottom)
+// 	        if (isScrollBottom) {
+// 	            $.getJSON("/bookshelves/nextList", {count: count})
+// 	                .done(res => {
+// 	                    console.log(res)
+
+// 	                    if (res != null) {
+
+// 	                        let postedbooks = $("<div>").addClass("postedBooks");
+// 	                        let postedbook = $("<div>").addClass("postedBook");
+// 	                        let book = $("<img>").addClass("book").attr("src","res[i].b_img_url").attr("isbn", "res[i].b_isbn");
+	                        
+// 	                        function getPostedbook(index) {
+// 	                            return "<div class='postedBook'>" +
+// 	                                "<img src='" + res[index].b_img_url +
+// 	                                "' class='book' isbn='" + res[index].b_isbn + "'></div>"
+// 	                        }
+
+// 	                        for (let i = 0; i < res.length; i++) {
+// 	                        	postedbook.append(book);
+	                        	
+// 	                        	if(i == 10){
+// 	                        		postedbooks.append(postedbook);
+// 	                        		postedbooks.after("<hr class='bookshelvesHr'>");
+// 	                        	}
+// 	                        }
+// 	                            if (i == 10) {
+// 	                            	postedbook.append(book);
+// 	                            	postedbooks.append(postedbook);
+// 	                            }
+	
+
+// 	                            $('.posted').append(getPostedbook(i));
+// 	                            if (i % 10 === 9 || i === res.length - 1) {
+// 	                                $('.posted').append("</div><hr class='bookshelvesHr'>")
+// 	                            }
+// 	                        }
+
+// 	                    }
+// 	                    count++
+// 	                })
+// 	        }
+<!-- Ajax Infinite Scroll -->
+
+    let count = 1
+    let timer;
+    $(window).scroll(function () {
+
+        let isScrollBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight
+
+        if (!timer) {
+            timer = setTimeout(() => {
+                timer = null;
+                if (isScrollBottom) {
+                    console.log(isScrollBottom)
+                    infinityScroll()
+                }
+            }, 25);
+        }
+    })
+
+    function infinityScroll() {
+        $.getJSON("/bookshelves/nextList", {count: count})
+            .done(res => {
+                console.log(res)
+                if (res != null) {
+                    setPostedAppend(res)
+                }
+            })
+    }
+
+    function setPostedAppend(res) {
+        let postedBooks = $("<div>").addClass("postedBooks")
+
+        for (let i = 0; i < res.length; i++) {
+            let postedbook = $("<div>").addClass("postedBook")
+            let img = $("<img class='book'>").attr("src", res[i].b_img_url).attr("isbn", res[i].b_isbn)
+
+            postedBooks.append(postedbook.append(img))
+
+            if (i % 10 === 9 || i === res.length - 1) {
+                let hr = $("<hr class='bookshelvesHr'>")
+                $('.posted').append(postedBooks).append(hr)
+                postedBooks = $("<div>").addClass("postedBooks")
+            }
+        }
+
+        count++
+    }
+
+</script>
 </body>
 
 </html>
