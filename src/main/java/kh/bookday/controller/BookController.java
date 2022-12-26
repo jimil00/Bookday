@@ -23,7 +23,7 @@ import kh.bookday.service.BookService;
 public class BookController {
 	
 	@Autowired
-	BookService service;
+	private BookService service;
 	
 	@Autowired
 	private HttpSession session;
@@ -34,8 +34,11 @@ public class BookController {
 //	}
 	
 	//도서 정보 출력
-	@RequestMapping("selectBookinfo")
+	@RequestMapping("selectBookinfo") //@RequestParam("rv_seq") String rv_seq
 	public String selectBookByIsbn(Model model, String b_isbn) {
+		
+		//아마 상세 페이지로 가는 이동이 완성되면 포스트로 값을 받아서
+		
 		
 		//도서 정보 출력
 		BookDTO dto=service.selectBookByIsbn(b_isbn);
@@ -44,9 +47,10 @@ public class BookController {
 		//댓글 리스트 출력
 		List<ReviewDTO> rlist=service.selectReviewByIsbn(b_isbn);
 		model.addAttribute("rlist",rlist);
+		System.out.println(rlist);
 		
-		//댓글 좋아요 여부 출력
-		//service.findReviewLike(b_isbn, b_isbn, b_isbn);
+		//댓글 좋아요 수 전체 출력
+		//int result=service.countReviewLike(b_isbn,rv_seq);
 		
 		//포스트 리스트 출력
 		List<PostDTO> plist=service.selectPostByIsbn(b_isbn);

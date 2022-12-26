@@ -16,6 +16,8 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+	href="https://unpkg.com/swiper/css/swiper.min.css">
 <style>
 @font-face {
 	font-family: 'NanumSquareNeo-Variable';
@@ -346,7 +348,6 @@ span, #logoImg:hover {
 	line-height: 30px;
 }
 
-
 .r_writer_info>p, .r_content {
 	display: inline-flex;
 	margin: 10px;
@@ -357,37 +358,31 @@ span, #logoImg:hover {
 	height: 50px;
 }
 
-.r_contents{
-	display:flex;
+.r_contents {
+	display: flex;
 }
 
 .r_content {
 	height: 30px;
-	margin:10px;	
+	margin: 10px;
 	resize: none;
 }
 
-.r_like{
-	position:relative;
-	left:70%;
+.r_like {
+	position: relative;
+	left: 70%;
 }
 
-.r_like_icon{
-	position:relative;
-	top:40%;
-
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 300,
-  'GRAD' 0,
-  'opsz' 48
+.r_like_icon {
+	position: relative;
+	top: 40%;
+	font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48
 }
 
-.r_like_count{
-	position:relative;
-	top:30%;
+.r_like_count {
+	position: relative;
+	top: 30%;
 }
-
 
 .r_content_blank {
 	margin-top: 30px;
@@ -400,15 +395,16 @@ span, #logoImg:hover {
 	left: 70%;
 }
 
-.user_btn>button,.fin_btn,.cancel_btn{
+.user_btn>button, .fin_btn, .cancel_btn {
 	outline: none;
 	color: #5397fc;
 	border-radius: 5px;
 	background-color: white;
 	border: 1px solid #5397fc;
 }
-.content{
-	border:none;
+
+.content {
+	border: none;
 }
 
 .paging {
@@ -517,6 +513,7 @@ span, #logoImg:hover {
 </head>
 
 <body>
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 	<div class="container">
 		<div class="header">
 			<div class="logo">
@@ -648,20 +645,23 @@ span, #logoImg:hover {
 												<c:if test="${loginID == r.rv_writer_id}">
 													<div class="user_btn">
 														<button type="button" class="r_update"
-															data-seq="${r.rv_seq}" data-content="${r.rv_content}" data-isbn="${r.b_isbn}">수정</button>
+															data-seq="${r.rv_seq}" data-content="${r.rv_content}"
+															data-isbn="${r.b_isbn}">수정</button>
 														<button type="button" class="r_delete"
 															data-seq="${r.rv_seq}">삭제</button>
 													</div>
 												</c:if>
 											</div>
 											<div class="r_contents">
-											<div class="r_content" >
-											<input type="text" readonly maxlength="200" value="${r.rv_content}" class="content">
-											</div>
-											<div class="r_like" <c:if test="${loginID == null}"> onclick="alert_open();"</c:if>>
-												<span class="r_like_icon material-symbols-outlined">thumb_up</span>
-												<span class="r_like_count">${l.rv_like_count}</span>
-											</div>
+												<div class="r_content">
+													<input type="text" readonly maxlength="200"
+														value="${r.rv_content}" class="content">
+												</div>
+												<div class="r_like"
+													<c:if test="${loginID == null}"> onclick="alert_open();"</c:if>>
+													<span class="r_like_icon material-symbols-outlined">thumb_up</span>
+													<span class="r_like_count">${l.rv_like_count}</span>
+												</div>
 											</div>
 										</div>
 										<hr>
@@ -689,19 +689,20 @@ span, #logoImg:hover {
 						<hr>
 						<p>포스트</p>
 					</div>
+							
 					<!-- foreach -->
 					<div class="flex-postBox">
 
-							<!-- 스와이프 기능으로 일단 앞에 3개만 출력 예정 -->
+						<!-- 스와이프 기능으로 일단 앞에 3개만 출력 예정 -->
 						<c:choose>
 							<c:when test="${not empty plist}">
 								<c:forEach items="${plist}" var="p">
 									<div class="post_box">
 										<div class="profile">
-										<%-- <c:if test="${not empty p.p_writer_profile}">
+											<%-- <c:if test="${not empty p.p_writer_profile}">
 											<img src="${p.p_writer_profile}" class="profile_img">
 										</c:if> --%>
-										<img src="/resources/basic.png" class="profile_img">
+											<img src="/resources/basic.png" class="profile_img">
 											<p>${p.p_writer_nn}님의포스트</p>
 										</div>
 										<hr>
@@ -713,10 +714,10 @@ span, #logoImg:hover {
 
 										<p class="post_content">${p.p_content}</p>
 									</div>
-							</c:forEach>
+								</c:forEach>
 							</c:when>
 							<c:otherwise>
-							 	<p class="post_title">작성된 포스트가 없습니다.</p>
+								<p class="post_title">작성된 포스트가 없습니다.</p>
 							</c:otherwise>
 						</c:choose>
 
@@ -735,9 +736,10 @@ span, #logoImg:hover {
 								<span class="like_icon">좋아요</span> <span class="like_count">234</span>
 							</div>
 
-							<p class="post_content">${p.p_content}여기는 포스트 콘텐츠 글이 들어가는 곳</p>
+							<p class="post_content">${p.p_content}여기는포스트콘텐츠글이들어가는 곳</p>
 						</div>
 
+						
 						<!-- 3 -->
 						<div class="post_box">
 
@@ -765,6 +767,36 @@ span, #logoImg:hover {
 				<div class="with-books">
 					<hr>
 					<p>함께 읽은 책</p>
+					
+					 
+				<!--6개씩 출력 로직 <c:choose>
+				<c:when test="${empty loginID}"> 
+					<div class="flex-box">
+						<div class="books_box">
+						<c:set var="i" value="0" />
+						<c:set var="j" value="1" />
+						<c:forEach var="w" items="${list}">
+							<c:if test="${i%j == 0 }">
+								<div class="book">
+							</c:if>
+							<img src="/resources/테스트.jpg" class="w_img_url">
+								<p class="w_title">왜 아가리로만 할까?</p>
+								<p class="w_writer">이상혁</p>
+							<!-- </div> -->
+							<!-- <c:if test="${i%j == j-1 }">
+					</div>
+					</c:if>
+					<c:set var="i" value="${i+1}" />
+					</c:forEach>
+				</div>
+			</div>
+		</c:when>
+	<c:otherwise>
+		<div>검색 결과가 없습니다.</div>
+	</c:otherwise>
+	</c:choose>
+	</div>-->
+						
 					<div class="flex-box">
 						<div class="books_box">
 
@@ -813,9 +845,7 @@ span, #logoImg:hover {
 		</div>
 	</div>
 	<script>
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 
 							//위시리스트에 담기 기능
 
@@ -881,116 +911,138 @@ span, #logoImg:hover {
 							});*/
 
 							$(document).on("click",".r_delete",function() {
-										
-												let rv_seq = $(this).attr("data-seq");
+
+												let rv_seq = $(this).attr(
+														"data-seq");
 												let b_isbn = $("#b_isbn").val();
 
 												if (confirm("리뷰를 삭제하시겠습니까?")) {
 													console.log(rv_seq);
-													location.href = "/book/deleteReview?rv_seq="+ rv_seq+"&b_isbn="+ b_isbn;
+													location.href = "/book/deleteReview?rv_seq="
+															+ rv_seq
+															+ "&b_isbn="
+															+ b_isbn;
 												} else {
-													
+
 													location.reload();
 												}
 											});
-							
 
 							$(document).on("click",".r_update",function() {
-								
-							/* var rv_seq=$(".r_update").data("seq");  */
-							/* 	 var rv_content=$(".r_update").data("content"); */
-								 
-							 	let rv_seq = $(this).attr("data-seq");
-								let b_isbn =$("#b_isbn").val();
-								 
-								 console.log(rv_seq);
 
-								 
-									/* $(".r_content>input").attr("readonly", false);
-		
-									$(".user_btn>button").css("display","none"); */
+										/* var rv_seq=$(".r_update").data("seq");  */
+										/* var rv_content=$(".r_update").data("content"); */
 
-									
-									$(this).closest(".r_title_box").find(".content").attr("readonly", false);
-									
-				                    $(this).closest(".r_title_box").find(".r_update,.r_delete").css("display", "none");
-									 
-									
-									
-									var input = $("<input>");
-									input.attr("type","button");
- 									input.attr("data-seq",rv_seq);
-									input.attr("data-isbn",b_isbn);
-									input.val("완료");
-									input.addClass("fin_btn");
-									
-									
-									var input2 = $("<input>");
-									input2.attr("type","button");
-									input2.val("취소");
-									input2.addClass("cancel_btn");
-									
-									 $(this).closest(".r_title_box").find(".user_btn").append(input);
-									
-									 $(this).closest(".r_title_box").find(".user_btn").append(input2);
-									
+										let rv_seq = $(this).attr("data-seq");
+										let b_isbn = $("#b_isbn").val();
+
+										console.log(rv_seq);
+
+										/* $(".r_content>input").attr("readonly", false);
+										
+										$(".user_btn>button").css("display","none"); */
+
+										$(this).closest(".r_title_box").find(
+												".content").attr("readonly",
+												false);
+
+										$(this).closest(".r_title_box").find(
+												".r_update,.r_delete").css(
+												"display", "none");
+
+										var input = $("<input>");
+										input.attr("type", "button");
+										input.attr("data-seq", rv_seq);
+										input.attr("data-isbn", b_isbn);
+										input.val("완료");
+										input.addClass("fin_btn");
+
+										var input2 = $("<input>");
+										input2.attr("type", "button");
+										input2.val("취소");
+										input2.addClass("cancel_btn");
+
+										$(this).closest(".r_title_box").find(
+												".user_btn").append(input);
+
+										$(this).closest(".r_title_box").find(
+												".user_btn").append(input2);
+
 									});
-							
-							 $(document).on("click", ".fin_btn", function(){
-								 
-								/* let rv_content=$(".r_content>input").val(); */
-								 
-						 		/* $(".fin_btn").data("content",rv_content); */
-								/* $(".fin_btn").data("seq",${r.rv_seq}); */
-									
-									/* let rv_seq = $(this).attr("data-seq"); */
-									let rv_seq =$(this).closest(".r_title_box").find(".rv_seq").val();
-									let rv_content=$(this).closest(".r_title_box").find(".content").val();
-									let b_isbn=$(this).attr("data-isbn");
-									
-									console.log(rv_content);
-									console.log(rv_seq);
-				
-									console.log(b_isbn);
-									
-									$.ajax({
-										url:"/book/updateReview",
-										type:"post",
-										data: {
-											"rv_seq":rv_seq,
-											"rv_content":rv_content,
-											"b_isbn":b_isbn
-										}
-									}).done(function(resp){
-										if(resp == "true"){
-											location.reload();
-										}
-									})
-	
-								});
-							 
-							 //수정 취소 버튼 눌렀을 때
-							 $(document).on("click", ".cancel_btn", function(){
-								 location.reload();
-							 });
-							 
-							 
-							
-							 //댓글 좋아요 기능
-							 
-							 
 
-							 
-							 
-							//포스트 스와이프로 작동/ 누르면 이동 -hammer.js
-							/* 	var hammertime = new Hammer(myElement, myOptions);
-								hammertime.on('pan', function(ev) {
-									console.log(ev);
-								}); */
+							$(document).on("click",".fin_btn",function() {
 
-								
-								
-								
+										/* let rv_content=$(".r_content>input").val(); */
+
+										/* $(".fin_btn").data("content",rv_content); */
+										/* $(".fin_btn").data("seq",${r.rv_seq}); */
+
+										/* let rv_seq = $(this).attr("data-seq"); */
+										let rv_seq = $(this).closest(
+												".r_title_box").find(".rv_seq")
+												.val();
+										let rv_content = $(this).closest(
+												".r_title_box")
+												.find(".content").val();
+										let b_isbn = $(this).attr("data-isbn");
+
+										console.log(rv_content);
+										console.log(rv_seq);
+
+										console.log(b_isbn);
+
+										$.ajax({
+											url : "/book/updateReview",
+											type : "post",
+											data : {
+												"rv_seq" : rv_seq,
+												"rv_content" : rv_content,
+												"b_isbn" : b_isbn
+											}
+										}).done(function(resp) {
+											if (resp == "true") {
+												location.reload();
+											}
+										})
+
+									});
+
+							//수정 취소 버튼 눌렀을 때
+							$(document).on("click", ".cancel_btn", function() {
+								location.reload();
+							});
+
+							//댓글 좋아요 기능
+
+							//포스트 스와이프로 작동/ 누르면 이동 - 기능 사용
+							var el = document.querySelector("body"); //가운데 흰 네모박스 DIV 엘리먼트
+							var mc = new Hammer.Manager(el); //Hammer 이벤트 관리자 생성 및 이벤트 등록
+							mc.add(new Hammer.Pan({ threshold: 0, pointers: 0 }));
+							mc.add(new Hammer.Swipe()).recognizeWith(mc.get('pan'));
+							mc.add(new Hammer.Pinch({ threshold: 0 })).recognizeWith([mc.get('pan'), mc.get('rotate')]);
+							
+							mc.on("pinchstart pinchmove", onPinch); //핀치 이벤트- 핸들러 등록
+							function onPinch(ev) {
+							    if(ev.type == 'pinchstart') {
+							    initScale = transform.scale || 1;
+							    }
+							    
+							    transform.scale = initScale * ev.scale;
+							    
+							    ElementUpdate(transform);
+							}
+							 
+							mc.on("swipe", onSwipe); // 스와이프 이벤트 - 핸들러 등록
+							function onSwipe(ev) {
+							    var angle = 50;
+							    transform.ry = (ev.direction & Hammer.DIRECTION_HORIZONTAL) ? 1 : 0;
+							    transform.rx = (ev.direction & Hammer.DIRECTION_VERTICAL) ? 1 : 0;
+							    transform.angle = (ev.direction & (Hammer.DIRECTION_RIGHT | Hammer.DIRECTION_UP)) ? angle : -angle;
+							    
+							    ElementUpdate(transform);
+							}
+							
+							
 							//함께 읽은 책 누르면 이동  
 
 						});
