@@ -16,8 +16,6 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link rel="stylesheet"
-	href="https://unpkg.com/swiper/css/swiper.min.css">
 <style>
 @font-face {
 	font-family: 'NanumSquareNeo-Variable';
@@ -513,7 +511,6 @@ span, #logoImg:hover {
 </head>
 
 <body>
-<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
 	<div class="container">
 		<div class="header">
 			<div class="logo">
@@ -658,9 +655,14 @@ span, #logoImg:hover {
 														value="${r.rv_content}" class="content">
 												</div>
 												<div class="r_like"
-													<c:if test="${loginID == null}"> onclick="alert_open();"</c:if>>
-													<span class="r_like_icon material-symbols-outlined">thumb_up</span>
-													<span class="r_like_count">${l.rv_like_count}</span>
+													<c:if test="${loginID == null}"> onclick="alert_open();"</c:if>
+													>
+												
+													<span class="r_like_icon material-symbols-outlined"
+														data-seq="${r.rv_seq}">thumb_up</span> 
+													
+														
+														<span class="r_like_count">${r.r_count_like}</span>
 												</div>
 											</div>
 										</div>
@@ -689,7 +691,7 @@ span, #logoImg:hover {
 						<hr>
 						<p>포스트</p>
 					</div>
-							
+
 					<!-- foreach -->
 					<div class="flex-postBox">
 
@@ -736,10 +738,10 @@ span, #logoImg:hover {
 								<span class="like_icon">좋아요</span> <span class="like_count">234</span>
 							</div>
 
-							<p class="post_content">${p.p_content}여기는포스트콘텐츠글이들어가는 곳</p>
+							<p class="post_content">${p.p_content}여기는포스트콘텐츠글이들어가는곳</p>
 						</div>
 
-						
+
 						<!-- 3 -->
 						<div class="post_box">
 
@@ -767,9 +769,9 @@ span, #logoImg:hover {
 				<div class="with-books">
 					<hr>
 					<p>함께 읽은 책</p>
-					
-					 
-				<!--6개씩 출력 로직 <c:choose>
+
+
+					<!--6개씩 출력 로직 <c:choose>
 				<c:when test="${empty loginID}"> 
 					<div class="flex-box">
 						<div class="books_box">
@@ -783,7 +785,7 @@ span, #logoImg:hover {
 								<p class="w_title">왜 아가리로만 할까?</p>
 								<p class="w_writer">이상혁</p>
 							<!-- </div> -->
-							<!-- <c:if test="${i%j == j-1 }">
+					<!-- <c:if test="${i%j == j-1 }">
 					</div>
 					</c:if>
 					<c:set var="i" value="${i+1}" />
@@ -796,7 +798,7 @@ span, #logoImg:hover {
 	</c:otherwise>
 	</c:choose>
 	</div>-->
-						
+
 					<div class="flex-box">
 						<div class="books_box">
 
@@ -844,8 +846,8 @@ span, #logoImg:hover {
 
 		</div>
 	</div>
-	<script>
-		$(document).ready(function() {
+<script>
+		$(document).ready(function(){
 
 							//위시리스트에 담기 기능
 
@@ -912,8 +914,7 @@ span, #logoImg:hover {
 
 							$(document).on("click",".r_delete",function() {
 
-												let rv_seq = $(this).attr(
-														"data-seq");
+												let rv_seq = $(this).attr("data-seq");
 												let b_isbn = $("#b_isbn").val();
 
 												if (confirm("리뷰를 삭제하시겠습니까?")) {
@@ -1011,11 +1012,82 @@ span, #logoImg:hover {
 							$(document).on("click", ".cancel_btn", function() {
 								location.reload();
 							});
-
+							
 							//댓글 좋아요 기능
+							//좋아요 누른 적이 있는지 확인
+						/* $(document).ready(function () {
+								
+	
+								let r_like_count=${r_like_count};
+								
+								let rv_seq = $(this).attr("data-seq");
+								
+							$.ajax({
+								url:"/book/findReviewLike",
+								data:{
+									"rv_seq" : rv_seq
+								}
+								
+							}).done(resp){
+								if(resp==true){
+								    $(".like").append();
+						            $(".like").prop('name',heartval)
+								}
+							}
+							});  */ 
+							
+							//좋아요 기능
+							 $(document).ready(function(){
+								
+							 	let r_like_count=$(".r_like_count").val();
+							 	
+							 	console.log(r_like_count);
+							 	
+							 	if(r_like_count > 0){
+							 		$(".r_like_icon").css("font-variation-settings","fill")
+							 					  )
+							 	}
+							 	
+							 	
+							 	
+								/* 
+									if(r_like_count > 0){
+										//좋아요 누른 상태에서 다시 누를 때
+										$(document).on("click",".r_like_icon",function(){
+											
+											let rv_seq = $(this).attr("data-seq");
+											
+											$.ajax({
+												type:"post",
+												url:"/book/deleteReviewLike",
+												data: {"rv_seq" : rv_seq}
+											}).done(resp){
+												console.log("취소 성공");
+											}
+										});
+										
+									}else{
+										//좋아요 안 눌렀을 때
+										$(document).on("click",".r_like_icon",function(){
+											
+											let rv_seq = $(this).attr("data-seq");
+										
+										$.ajax({
+											type:"post",
+											url: "/book/insertReviewLike",
+											data: {"rv_seq" : rv_seq}
+										}).done(resp){
+											console.log("좋아요 성공");
+										}
+										})
+									}
 
-							//포스트 스와이프로 작동/ 누르면 이동 - 기능 사용
-							var el = document.querySelector("body"); //가운데 흰 네모박스 DIV 엘리먼트
+								});  */
+								
+								
+
+							//포스트 스와이프로 작동 누르면 이동 - 기능 사용
+						 	var el = document.querySelector("body"); //가운데 흰 네모박스 DIV 엘리먼트
 							var mc = new Hammer.Manager(el); //Hammer 이벤트 관리자 생성 및 이벤트 등록
 							mc.add(new Hammer.Pan({ threshold: 0, pointers: 0 }));
 							mc.add(new Hammer.Swipe()).recognizeWith(mc.get('pan'));
@@ -1045,12 +1117,14 @@ span, #logoImg:hover {
 							
 							//함께 읽은 책 누르면 이동  
 
-						});
+					
+							
+		});
 
 		//리뷰 비회원 대비) 비로그인 상태에서 리뷰 달려고 하면 로그인 페이지로 이동
 		function alert_open() {
 			alert("로그인 후 이용해주세요.");
 		}
-	</script>
+</script>
 </body>
 </html>

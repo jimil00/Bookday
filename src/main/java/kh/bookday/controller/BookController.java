@@ -25,6 +25,14 @@ public class BookController {
 	@Autowired
 	private BookService service;
 	
+	
+	@Autowired
+	private PostService pservice;
+	
+	
+	@Autowired
+	private ReviewService rservice;
+	
 	@Autowired
 	private HttpSession session;
 	
@@ -39,7 +47,6 @@ public class BookController {
 		
 		//아마 상세 페이지로 가는 이동이 완성되면 포스트로 값을 받아서
 		
-		
 		//도서 정보 출력
 		BookDTO dto=service.selectBookByIsbn(b_isbn);
 		model.addAttribute("dto",dto);
@@ -47,10 +54,9 @@ public class BookController {
 		//댓글 리스트 출력
 		List<ReviewDTO> rlist=service.selectReviewByIsbn(b_isbn);
 		model.addAttribute("rlist",rlist);
-		System.out.println(rlist);
 		
-		//댓글 좋아요 수 전체 출력
-		//int result=service.countReviewLike(b_isbn,rv_seq);
+		//유저에 대한 댓글 좋아요 여부 출력
+		String.valueOf(service.findReviewLike(b_isbn,rv_seq));
 		
 		//포스트 리스트 출력
 		List<PostDTO> plist=service.selectPostByIsbn(b_isbn);
@@ -99,10 +105,24 @@ public class BookController {
 		return "true";
 	}
 	
+	//유저에 따른 좋아요 여부 확인
+	@ResponseBody
+	@RequestMapping("findReviewLike")
+	public String findReviewLike(String id, String rv_seq) {
+		
+		service.findReviewLike(id,rv_seq);
+		
+		return "book/bookinfo";
+	}
+	
+	
+	
 	//댓글 좋아요 누름
 	@ResponseBody
 	@RequestMapping("insertReviewLike")
 	public String insertReviewLike(ReviewLikeDTO dto) {
+		
+		dto.setId(String.valueOf(session.getAttribute("loginID")));
 		
 		service.insertReviewLike(dto);
 		
