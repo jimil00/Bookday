@@ -22,6 +22,7 @@ import com.google.gson.JsonParser;
 import kh.bookday.common.NCP_sms;
 import kh.bookday.dao.MemberDAO;
 import kh.bookday.dto.MemberDTO;
+import kh.bookday.dto.MonthSubMemberDTO;
 
 @Service
 public class MemberService {
@@ -237,5 +238,25 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		return userInfo;
+	}
+	
+	/* 회원 배송지 정보 입력 */
+	public void updateMemberAddressById(MemberDTO dto) {
+		dao.updateMemberAddressById(dto);
+	}
+	
+	/* 월 구독 회원 정보 조회 */
+	public MonthSubMemberDTO selectMonthSubMemberById(String id) {
+		return dao.selectMonthSubMemberById(id);
+	}
+	
+	/* 월 구독 회원 등록 */
+	public void insertMonthSubMemberById(String id) {
+		dao.insertMonthSubMemberById(id);
+	}
+	
+	/* 회원 등급 변경 */
+	public void updateMemberGradeById(String id) {
+		dao.updateMemberGradeById(id);
 	}
 }

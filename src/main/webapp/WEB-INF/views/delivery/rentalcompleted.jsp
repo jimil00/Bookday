@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,8 +169,103 @@ span, #logoImg:hover {
 }
 /* body */
 .body {
-	/* height: 2000px; */
-	
+	overflow: hidden;
+}
+
+.body-top {
+	overflow: hidden;
+	padding-bottom: 50px;
+}
+
+#check-icon {
+	float: left;
+	position: relative;
+	left: 36%;
+	line-height: 28px;
+	font-size: 30px;
+	font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 48
+}
+
+.check-text {
+	float: left;
+	position: relative;
+	left: 36%;
+	font-size: 25px;
+	padding-left: 5px;
+}
+
+.body-left {
+	/* overflow: auto; */
+	width: 47%;
+	float: left;
+}
+
+.left-main {
+	overflow: hidden;
+	width: 100%;
+	height: 170px;
+}
+
+.book-count {
+	float: left;
+	width: 6%;
+	height: 100%;
+	line-height: 150px;
+	padding-left: 8px;
+}
+
+.book-img-div {
+	float: left;
+	width: 23%;
+	height: 100%;
+}
+
+#book-img {
+	width: 93px;
+	height: 140px;
+}
+
+.book-detail-div {
+	float: left;
+	width: 70%;
+	height: 100%;
+}
+
+.book-detail {
+	height: 100%;
+}
+
+.body-right {
+	width: 45%;
+	float: right;
+}
+
+.right-main {
+	height: 170px;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+
+.right-bottom {
+	text-align: center;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.body-bottom {
+	padding-top: 100px;
+	text-align: center;
+	clear: both;
+}
+
+.bottom-btn {
+	margin-left: 13px;
+	width: 100px;
+	height: 40px;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	background-color: #5397fc;
 }
 </style>
 </head>
@@ -212,34 +309,98 @@ span, #logoImg:hover {
 		</div>
 		<hr id="headerHr">
 		<div class="navi"></div>
-		<div class="body">대여완료페이지</div>
+		<div class="body">
+			<div class="body-top">
+				<div class="material-symbols-outlined" id="check-icon">
+					check_circle</div>
+				<div class="check-text">대여가 완료되었습니다.</div>
+			</div>
+			<div class="body-left">
+				<hr style="margin-top: 5px;">
+				<div class="left-main">
+					<div class="book-count">1</div>
+					<div class="book-img-div">
+						<img
+							src="https://image.aladin.co.kr/product/28170/22/cover/k032835560_1.jpg"
+							id="book-img">
+					</div>
+					<div class="book-detail-div">
+						<div class="book-detail">
+							${bookbag.b_title } <br> ${bookbag.b_writer }
+						</div>
+					</div>
+				</div>
+				<hr style="margin-top: -14px;">
+			</div>
+			<div class="body-right">
+				<hr style="margin-top: 5px;">
+				<div class="right-main">
+					<div style="padding-bottom: 15px;">
+						<span style="font-weight: bold;">${dto.address1 }
+							(${dto.address2 })</span> 로 배달 예정입니다.
+					</div>
+					<div style="padding-bottom: 15px;">
+						총 <span style="font-weight: bold;">-</span> 권이 대여되었습니다.
+					</div>
+					<div style="padding-bottom: 15px;">
+						<c:set var="arrivalDate"
+							value="<%=new Date(new Date().getTime() + 60 * 60 * 24 * 1000 * 2)%>" />
+						<c:set var="returnDate"
+							value="<%=new Date(new Date().getTime() + 60 * 60 * 24 * 1000 * 12)%>" />
+						도착 예정일은 <span style="font-weight: bold;"><fmt:formatDate
+								value="${arrivalDate}" pattern="yyyy-MM-dd(E)" /></span> 입니다.
+					</div>
+					<div>
+						반납일 <span style="font-weight: bold;"><fmt:formatDate
+								value="${returnDate}" pattern="yyyy-MM-dd(E)" /></span> 입니다.
+					</div>
+				</div>
+				<hr style="margin-top: -14px;">
+				<div class="right-bottom">반납일에 책가방을 문 앞에 꼭 놓아주세요!</div>
+			</div>
+			<div class="body-bottom">
+				<button class="bottom-btn" type="button" id="home-btn">책하루
+					홈</button>
+				<button class="bottom-btn" type="button" id="mypage-btn">마이페이지</button>
+			</div>
+		</div>
 		<div class="footer"></div>
 	</div>
 	<script>
-      $("#logoImg").on("click", function() {
-         location.href = "/";
-      })
+		$("#home-btn").on("click", function() {
+			location.href = "/";
+		})
+		$("#mypage-btn").on("click", function() {
+			if (loginID == null) {
+				location.href = "/member/login";
+			}
+			location.href = "/member/toMypage";
+		})
 
-      $("#searchword").on("keydown", function(e) {
-         if (e.keyCode == 13) {
-            $("#search").submit();
-         }
-      })
-      $("#notifications").on("click", function() {
-         location.href = "//toNotification";
-      })
-      $("#bookbag").on("click", function() {
-         location.href = "/delivery/selectBookbagListById";
-      })
-      $("#bookshelves").on("click", function() {
-         location.href = "/bookshelves/selectAllBookshelves";
-      })
-      $("#mypage").on("click", function() {
-         if (loginID == null) {
-            location.href = "/member/login";
-         }
-         location.href = "/member/toMypage";
-      })
-   </script>
+		$("#logoImg").on("click", function() {
+			location.href = "/";
+		})
+
+		$("#searchword").on("keydown", function(e) {
+			if (e.keyCode == 13) {
+				$("#search").submit();
+			}
+		})
+		$("#notifications").on("click", function() {
+			location.href = "//toNotification";
+		})
+		$("#bookbag").on("click", function() {
+			location.href = "/delivery/selectBookbagListById";
+		})
+		$("#bookshelves").on("click", function() {
+			location.href = "/bookshelves/selectAllBookshelves";
+		})
+		$("#mypage").on("click", function() {
+			if (loginID == null) {
+				location.href = "/member/login";
+			}
+			location.href = "/member/toMypage";
+		})
+	</script>
 </body>
 </html>
