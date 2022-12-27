@@ -21,11 +21,11 @@ public class WishlistDAO {
 	
 	/* 위시리스트 체크 */
 	public WishlistDTO selectWishlistByIdBisbn(Map<String, String> param) {
-		return db.selectOne("Bookbag.selectWishlistByIdBisbn", param);
+		return db.selectOne("Wishlist.selectWishlistByIdBisbn", param);
 	}
 	
 	/* 위시리스트 추가 */
 	public void insertWishlist(WishlistDTO dto) {
-		db.insert("Bookbag.insertWishlist", dto);
+		db.insert("Wishlist.insertWishlist", dto);
 	}
 }

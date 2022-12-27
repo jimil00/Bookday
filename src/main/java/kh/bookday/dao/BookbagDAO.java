@@ -23,7 +23,7 @@ public class BookbagDAO {
 		return db.selectList("Bookbag.selectBookbagListById", id);
 	}
 	
-	/* 담은 작품 삭제 */
+	/* 책 삭제 */
 	public void deleteBookbagBySeq(int bookbag_seq) {
 		db.delete("Bookbag.deleteBookbagBySeq", bookbag_seq);
 	}

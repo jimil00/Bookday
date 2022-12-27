@@ -59,21 +59,26 @@ public class MemberDAO {
 	
 	/* 회원 배송지 정보 입력 */
 	public void updateMemberAddressById(MemberDTO dto) {
-		db.update("Bookbag.updateMemberAddressById", dto);
+		db.update("Member.updateMemberAddressById", dto);
 	}
 	
 	/* 회원 등급 변경 */
 	public void updateMemberGradeById(String id) {
-		db.update("Bookbag.updateMemberGradeById", id);
+		db.update("Member.updateMemberGradeById", id);
 	}
 	
 	/* 월 구독 회원 등록 */
 	public void insertMonthSubMemberById(String id) {
-		db.insert("Bookbag.insertMonthSubMemberById", id);
+		db.insert("Member.insertMonthSubMemberById", id);
 	}
 	
 	/* 월 구독 회원 정보 조회 */
 	public MonthSubMemberDTO selectMonthSubMemberById(String id) {
-		return db.selectOne("Bookbag.selectMonthSubMemberById", id);
+		return db.selectOne("Member.selectMonthSubMemberById", id);
+	}
+	
+	/* 월 구독 회원 남은 배송 횟수, 남은 대여 권수 계산 */
+	public void updateMonthSubMemberById(MonthSubMemberDTO dto) {
+		db.update("Member.updateMonthSubMemberById", dto);
 	}
 }
