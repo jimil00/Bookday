@@ -402,7 +402,7 @@ $(document).ready(function(){
             	  $("#pw").css("border-color","#5397fc");
             	  $("#check_icon4").css("display","block");
             	  
-            	  
+            	  //일치 확인
             	  if($("#pw").val()==$("#check_pw").val()){
                       $("#check_pw").css("border-color","#5397fc");
                       $("#check_icon5").css("display","block");
@@ -411,25 +411,7 @@ $(document).ready(function(){
                       	$("#signup_btn").attr("disabled", true);
                       }
             	  }
-            	  
-              
 
-           //비밀번호 일치 확인
-        /*   $("#check_pw").on("keyup",function(){
-			
-        	let pw=$("#pw").val();
-			let check_pw=$("#check_pw").val();
-
-          if($("#pw").val()==$("#check_pw").val()){
-          $("#check_pw").css("border-color","#5397fc");
-          }else{  
-        	 $("#check_pw").css("border-color","red");
-          	$("#signup_btn").attr("disabled", true);
-          }
-          
-          }); */
-		
-		   
 		});
 		
 });

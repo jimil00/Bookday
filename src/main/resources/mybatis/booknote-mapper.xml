@@ -4,14 +4,12 @@
 <mapper namespace="Booknote">
 
 	<select id="selectPostListById" resultType="kh.bookday.dto.PostDTO">
-		select * from post where p_writer_id = #{id}
+		select * from post where p_writer_id = #{id} order by p_write_date desc
 	</select>
 	
 	<insert id="insertPost">
 		insert into post values(post_seq.nextval, #{p_writer_id}, #{b_isbn}, #{b_img_url}, #{b_title}, #{b_writer}, #{b_genre}, #{p_writer_nn}, sysdate, #{p_title}, #{p_content}, 0, 0, 0)
 	</insert>
 
-	<select id="selectBookListBySw" resultType="kh.bookday.dto.BookDTO">
-		select * from book where b_title = '%'||#{word}||'%'
-	</select>
+
 </mapper>

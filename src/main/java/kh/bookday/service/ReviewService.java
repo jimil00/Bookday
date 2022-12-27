@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kh.bookday.dao.BookDAO;
+import kh.bookday.dao.ReviewDAO;
+import kh.bookday.dao.ReviewLikeDAO;
+import kh.bookday.dto.PagingDTO;
 import kh.bookday.dto.ReviewDTO;
 import kh.bookday.dto.ReviewLikeDTO;
 
@@ -15,7 +17,10 @@ import kh.bookday.dto.ReviewLikeDTO;
 public class ReviewService {
 	
 	@Autowired
-	private BookDAO dao;
+	private ReviewDAO dao;
+	
+	@Autowired
+	private ReviewLikeDAO rldao;
 	
 	//해당 도서 리뷰 출력
 		public List<ReviewDTO> selectReviewByIsbn(String b_isbn) {
@@ -45,18 +50,18 @@ public class ReviewService {
 			dao.updateReview(dto);
 		}
 
-		//로그인 유저에 대한 해당 도서 리뷰 좋아요 여부 파악
-			public boolean findReviewLike(String rv_seq, String id) {
+		//로그인 유저에 대한 해당 도서 리뷰들 좋아요 여부 파악
+			public List<ReviewLikeDTO> findReviewLike(String id, String b_isbn) {
 				Map<String, String> param=new HashMap<>();
-				param.put("rv_seq", rv_seq);
+				param.put("b_isbn", b_isbn);
 				param.put("id", id);
 				
-				return dao.findReviewLike(param);
+			return rldao.findReviewLike(param);
 			}
 		
 		//해당 도서 리뷰 좋아요 추가
 		public void insertReviewLike (ReviewLikeDTO dto) {
-			dao.insertReviewLike(dto);
+			rldao.insertReviewLike(dto);
 		}
 		
 		//해당 도서 리뷰 좋아요 삭제
@@ -66,7 +71,19 @@ public class ReviewService {
 				param.put("rv_seq", rv_seq);
 				param.put("id", id);
 				
-				dao.deleteReviewLike(param);
+				rldao.deleteReviewLike(param);
 			}
+		
+		//리뷰 총 갯수
+		public int countReview() {
+			return dao.countReview();
+		}
+
+		public List<PagingDTO> selectReview(PagingDTO page){
+			 List<PagingDTO> result = dao.selectReview(page);
+			return result;
+			 
+		}
+
 		
 }

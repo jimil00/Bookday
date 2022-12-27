@@ -25,10 +25,6 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-body {
-	margin: 8px;
-	line-height: inherit;
-}
 /* div {
 	border: 1px solid black;
 } */
@@ -85,7 +81,7 @@ button:hover {
 	width: 100%;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .searchTxt {
@@ -138,7 +134,6 @@ span.size-40 {
 span.size-40 {
 	cursor: pointer;
 }
-
 
 /* login */
 .signBox {
@@ -218,12 +213,12 @@ span.size-35 {
 
 .selected {
 	background-color: #5397fc50;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-span.size-35{
-cursor: pointer;
+span.size-35 {
+	cursor: pointer;
 }
-
 
 /* contents */
 .contents {
@@ -249,6 +244,8 @@ cursor: pointer;
 
 #profile {
 	border-radius: 50%;
+		box-shadow: 2px 2px 2px 2px #80808050;
+	
 }
 
 /* contentdBody */
@@ -271,12 +268,14 @@ span.size-30 {
 }
 
 /* contentsBodySearchPost */
+.postSandIBtn {
+	overflow: hidden;
+}
+
 .postSearch {
 	float: left;
 	height: 50px;
 	width: 50%;
-	margin-top: 25px;
-	margin-bottom: 25px;
 	display: flex;
 	align-items: center;
 }
@@ -295,7 +294,7 @@ span.size-30 {
 	width: 244.5px;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .postSearchTxt {
@@ -329,7 +328,7 @@ span.size-30 {
 .insertPostBtn {
 	float: left;
 	width: 50%;
-	height: 90px;
+	height: 50px;
 	position: relative;
 }
 
@@ -345,7 +344,7 @@ span.size-30 {
 	background-color: #5397fc50;
 	border: none;
 	border-radius: 5px;
-	box-shadow: 3px 3px 3px 3px #80808050;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 /* contentsBodyPostContents */
@@ -477,7 +476,7 @@ span.size-45 {
 							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
 						</c:otherwise>
 					</c:choose>
-				</div>				
+				</div>
 				<div class="iconBox">
 					<span class="material-symbols-outlined size-40" id="notifications">notifications</span>
 					<span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
@@ -506,7 +505,7 @@ span.size-45 {
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/images/${dto.sysprofname }" width="100" height="100"
+						<img src="/resources/${dto.sysprofname }" width="100" height="100"
 							id="profile">
 					</div>
 					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
@@ -517,23 +516,26 @@ span.size-45 {
 						<div class="titleTxt">POST</div>
 						&nbsp <span class="material-symbols-outlined size-30">edit</span>
 					</div>
-					<div class="postSearch">
-						<div class="postSearchTitle">포스트 검색</div>
-						<div class="postSearchBox">
-							<form action="/booknote/postSearch" id="postSearch" method="post">
-								<input class="postSearchTxt" type="text"
-									placeholder="검색어를 입력해 주세요" id="postSearchWord"
-									name="postSearchWord">
-								<button class="postSearchBtn" type="submit">
-									<span class="material-symbols-outlined"> search </span>
-								</button>
-							</form>
+					<div class="postSandIBtn">
+						<div class="postSearch">
+							<div class="postSearchTitle">포스트 검색</div>
+							<div class="postSearchBox">
+								<form action="/booknote/postSearch" id="postSearch"
+									method="post">
+									<input class="postSearchTxt" type="text"
+										placeholder="검색어를 입력해 주세요" id="postSearchWord"
+										name="postSearchWord">
+									<button class="postSearchBtn" type="submit">
+										<span class="material-symbols-outlined"> search </span>
+									</button>
+								</form>
+							</div>
+						</div>
+						<div class="insertPostBtn">
+							<button id="insertPostBtn">작성</button>
 						</div>
 					</div>
-					<div class="insertPostBtn">
-						<button id="insertPostBtn">작성</button>
-					</div>
-					<hr>
+					<hr class="bodyHr">
 					<div class="selectPostList">
 						<c:forEach var="i" items="${list}">
 							<div class="postContents">
@@ -551,7 +553,7 @@ span.size-45 {
 										</div>
 										<div class="postWritedate">${i.p_write_date }</div>
 									</div>
-									<hr>
+									<hr class="postlistHr">
 									<div class="postBody">
 										<div class="postContent">${i.p_content }</div>
 										<div class="postLike">
@@ -565,7 +567,7 @@ span.size-45 {
 							</div>
 						</c:forEach>
 					</div>
-					<hr>
+					<hr class="bodyHr">
 					<div class="postPage"></div>
 				</div>
 			</div>

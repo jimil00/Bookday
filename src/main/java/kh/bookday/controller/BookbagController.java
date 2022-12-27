@@ -3,6 +3,7 @@ package kh.bookday.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,9 @@ public class BookbagController {
 
 	@Autowired
 	private MemberService mservice;
+	
+	@Autowired
+	private HttpSession session;
 
 	/* 책가방페이지 출력 */
 	@RequestMapping("selectBookbagListById")
@@ -75,7 +79,10 @@ public class BookbagController {
 	public String insertWishlist(WishlistDTO dto) {
 		
 		service.insertWishlist(dto);
+		
 		System.out.println("위시리스트 추가 완료");
+		
+		System.out.println(dto);
 		
 		return "redirect:/delivery/selectBookbagListById";
 	}

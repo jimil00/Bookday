@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kh.bookday.dto.BookmarkDTO;
@@ -29,7 +30,7 @@ public class BookmarkController {
 	private HttpSession session;
 	
 	@RequestMapping("selectBookmarkListById")
-	public String selectBookmarListkById(Model model) throws Exception{
+	public String selectBookmarListkById(Model model) {
 		
 		// id session
 //		String id = String.valueOf(session.getAttribute("loginID"));
@@ -42,6 +43,40 @@ public class BookmarkController {
 		model.addAttribute("list", list);
 		
 		return "mybook/bookmark";
+	}
+	
+	@GetMapping("selectBookmarkListBySw")
+	public String selectBookmarkListBySw(String searchWord, Model model) {
+		
+		// id session
+//		String id = String.valueOf(session.getAttribute("loginID"));
+		String id = "zxcvzxcv";
+		
+		MemberDTO dto = mservice.selectMemberById(id);
+		model.addAttribute("dto", dto);
+		
+		model.addAttribute("searchWord", searchWord);
+		
+		List<BookmarkDTO> list = service.selectBookmarkListBySw(searchWord);
+		model.addAttribute("list", list);
+		
+		return "mybook/bookmark";
+		
+	}
+	@GetMapping("deleteBookmarkBySeq")
+	public String deleteBookmarkBySeq(int bm_seq, String bm_writer_id) {
+//		String id = String.valueOf(session.getAttribute("loginID"));
+		String id = "zxcvzxcv";
+		System.out.println(bm_seq);
+		System.out.println(bm_writer_id);
+		if(id.equals(bm_writer_id)) {
+			System.out.println("here");
+		service.deleteBookmarkBySeq(bm_seq);
+		
+		return "redirect:/bookmark/selectBookmarkListById";
+		}else {
+			return "error";
+		}
 	}
 	
 	@ExceptionHandler(Exception.class)
