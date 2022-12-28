@@ -1,6 +1,8 @@
 package kh.bookday.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.bookday.dto.BookDTO;
+import kh.bookday.dto.BookbagDTO;
 import kh.bookday.dto.PostDTO;
 import kh.bookday.dto.ReviewDTO;
 import kh.bookday.dto.ReviewLikeDTO;
+import kh.bookday.dto.WishlistDTO;
 import kh.bookday.service.BookService;
+import kh.bookday.service.BookbagService;
 import kh.bookday.service.PostService;
 import kh.bookday.service.ReviewService;
+import kh.bookday.service.WishlistService;
 
 @Controller
 @RequestMapping("/book/")
@@ -32,13 +38,17 @@ public class BookController {
 	@Autowired
 	private PostService pservice;
 	
-	
 	@Autowired
 	private ReviewService rservice;
 
-	
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private WishlistService wservice;
+	
+	@Autowired
+	private BookbagService bservice;
 	
 	// 책 검색 팝업
 	@GetMapping("toBookSearchPop")
@@ -68,39 +78,11 @@ public class BookController {
 		
 		String id=String.valueOf(session.getAttribute("loginID"));
 		
-		//좋아요 dto
-		/*ReviewLikeDTO like = new ReviewLikeDTO(){};
-		like.setRv_seq();
-		like.setId(id);*/
-		
+
 		//유저에 따른 댓글 좋아요 list
 		List<ReviewLikeDTO> rl_list=rservice.findReviewLike(id,b_isbn);
 		model.addAttribute("rl_list",rl_list);
-		
-
-		//리뷰 페이징
-//		int total = rservice.countReview();
-//		System.out.println("total의 값: "+total);
-//		
-//		if(nowPage == null && cntPerPage == null) {
-//			nowPage ="1";
-//			cntPerPage="5";
-//		}else if(nowPage == null) {
-//			nowPage="1";
-//		}else if(cntPerPage == null) {
-//			cntPerPage="5";
-//		}
-//		
-//		PagingDTO page = new PagingDTO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-//		System.out.println(page);
-//		//페이징 끝
-//		
-//		List<PagingDTO> dtolist = rservice.seeboardService(dto);
-//		List<PagingDTO> dtolist2 = rservice.selectReview(page);
-//		mv.addObject("dtolist",dtolist2);
-//		mv.setViewName("review");
-//		return mv;
-			
+					
 		//포스트 리스트 출력
 		List<PostDTO> plist=pservice.selectPostByIsbn(b_isbn);
 		model.addAttribute("plist",plist);
@@ -147,14 +129,14 @@ public class BookController {
 		return "true";
 	}
 	
-//	//유저에 따른 좋아요 여부 확인
+	//유저에 따른 좋아요 여부 확인
 //	@ResponseBody
 //	@RequestMapping("findReviewLike")
 //	public String findReviewLike(String id, Object rv_seq) {
 //		
 //		String user=(String.valueOf(session.getAttribute("loginID")));
 //		
-////		rservice.findReviewLike(user,rv_seq);
+//		rservice.findReviewLike(user,rv_seq);
 //		
 //		return String.valueOf(rservice.findReviewLike(user,rv_seq));
 //	}
@@ -175,9 +157,11 @@ public class BookController {
 	//댓글 좋아요 삭제
 	@ResponseBody
 	@RequestMapping("deleteReviewLike")
-	public String deleteReviewLike(String b_isbn, String rv_seq, String id) {
+	public String deleteReviewLike(String rv_seq, String id) {
 		
-		rservice.deleteReviewLike(b_isbn,rv_seq,id);
+		String id2=String.valueOf(session.getAttribute("loginID"));
+		
+		rservice.deleteReviewLike(rv_seq,id2);
 		
 		return "book/bookinfo";
 	}
@@ -191,6 +175,55 @@ public class BookController {
 		
 		return "book/bookinfo";
 	}
+	
+	//위시리스트로 도서 정보 이동
+	@RequestMapping("selectForWishlist")
+	public String selectForWishlist(String b_isbn) {
+		
+		WishlistDTO dto=service.selectForWishlist(b_isbn);
+		
+		dto.setId(String.valueOf(session.getAttribute("loginID")));
+		
+		//위시리스트에 insert
+		wservice.insertWishlist(dto);
+		
+		System.out.println(dto);
+		
+		return "redirect:/bookshelves/selectBookshelvesListById";
+		
+	}
+
+	
+	//책가방으로 이동
+	@RequestMapping("selectForBookbag")
+	public String selectForBookbag(String b_isbn) {
+		
+		BookbagDTO bdto=service.selectForBookbag(b_isbn);
+		
+		bdto.setId(String.valueOf(session.getAttribute("loginID")));
+		
+		//책가방으로 insert
+		bservice.insertBookbag(bdto);
+		
+		System.out.println(bdto);
+		
+		return "redirect:/delivery/selectBookbagListById";
+	}
+
+	
+	//포스트 작성으로 이동
+//	@RequestMapping("selectToWritePost")
+//	public String selectToWritePost(Model model, String b_isbn) {
+//		
+//		System.out.println("확인");
+//		
+//		Map <String,Object> ToPost = service.selectToWritePost(b_isbn);
+//		String p_writer_id=String.valueOf(session.getAttribute("loginID"));
+//		ToPost.put("p_writer_id", p_writer_id);
+//		model.addAttribute("ToPost",ToPost);
+//		
+//		return "redirect:/booknote/selectPostListById?"+p_writer_id;
+//	}
 	
 
 	@ExceptionHandler(Exception.class)

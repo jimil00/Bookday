@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kh.bookday.dto.PagingDTO;
 import kh.bookday.dto.ReviewDTO;
 import kh.bookday.dto.ReviewLikeDTO;
 
@@ -46,9 +45,9 @@ public class ReviewDAO {
 		}
 		
 		//페이징 작업을해서 해당 페이지의 게시글을 보는 기능.
-		public List<PagingDTO> selectReview(PagingDTO page) {
-			 List<PagingDTO> result = db.selectList("Review.selectReview", page);
-			return result;
-		}
+//		public List<PagingDTO> selectReview(PagingDTO page) {
+//			 List<PagingDTO> result = db.selectList("Review.selectReview", page);
+//			return result;
+//		}
 
 }

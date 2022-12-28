@@ -7,5 +7,14 @@
 		select * from wishlist where id = #{id} order by w_add_date desc
 	</select>
 	
+	<!-- 위시리스트 체크 -->
+	<select id="selectWishlistByIdBisbn" resultType="kh.bookday.dto.WishlistDTO">
+		select * from wishlist where id = #{id} and b_isbn = #{b_isbn}
+	</select>
+	
+	<!-- 위시리스트 추가 -->
+	<insert id="insertWishlist">
+		insert into wishlist values(wishlist_seq.nextval,#{id}, #{b_isbn}, #{b_img_url}, #{b_title}, #{b_writer}, #{b_genre}, default)
+	</insert>
 	
 </mapper>

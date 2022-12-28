@@ -10,6 +10,9 @@
 <meta charset="UTF-8">
 <title>Bookbag</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
@@ -144,7 +147,6 @@ span, #logoImg:hover {
 
 /* body */
 .body {
-	/* 	height: 2000px; */
 	overflow: hidden;
 }
 
@@ -154,18 +156,18 @@ span, #logoImg:hover {
 	font-weight: bold;
 }
 
-.top-checkbox-div {
+.bookbag-top-checkbox-div {
 	width: 50%;
 	float: left;
 }
 
-.top-btn-div {
+.bookbag-top-btn-div {
 	width: 50%;
 	float: left;
 	text-align: right;
 }
 
-.top-btn {
+.bookbag-top-btn {
 	margin-left: 5px;
 	border-radius: 4px;
 	border: 1px solid rgb(194, 193, 193);
@@ -174,46 +176,55 @@ span, #logoImg:hover {
 
 .body-left {
 	width: 70%;
+	overflow: hidden;
 	float: left;
-	border: 1px solid rgb(194, 193, 193);
 }
 
 .bookbag-top {
 	height: 50px;
-	padding-top: 30px;
+	padding-top: 25px;
 	padding-left: 15px;
 	padding-right: 18px;
 }
 
 .bookbag-main {
-	/* border: 1px solid black; */
 	overflow: hidden;
 	width: 100%;
 	height: 170px;
 }
 
-.bookbag-checkbox {
+.bookbag-main-checkbox {
 	float: left;
 	width: 6%;
-	height: 150px;
+	height: 100%;
 	line-height: 150px;
 	padding-left: 15px;
 }
 
-.bookbag-img {
+.book-img-div {
 	width: 16%;
 	height: 100%;
 	float: left;
 }
 
 #book-img {
-	width: auto;
+	width: 93px;
 	height: 140px;
 }
 
-.bookbag-detail {
+.bookbag-detail-div {
+	width: 75%;
 	height: 100%;
 	float: left;
+}
+
+.bookbag-detail-text {
+	height: 60%;
+}
+
+.bookbag-detail-btn {
+	height: 40%;
+	padding-top: 20px;
 }
 
 .detail-btn {
@@ -224,19 +235,53 @@ span, #logoImg:hover {
 
 .body-right {
 	width: 27%;
-	height: 150px;
+	overflow: hidden;
 	float: right;
 }
 
-.rental-detail {
+.sub-rental-info {
 	border: 1px solid rgb(194, 193, 193);
-	/* border-width: 1px; */
+}
+
+.rental-detail {
+	padding-left: 15px;
+	padding-top: 18px;
+	padding-bottom: 18px;
+	padding-right: 15px;
+}
+
+.address {
+	padding-left: 15px;
+	padding-top: 18px;
+	padding-bottom: 18px;
+	padding-right: 15px;
+}
+
+.rental-detail-title, .address-title {
+	font-weight: bold;
+	text-align: center;
+}
+
+.address-btn-div {
+	overflow: hidden;
+	text-align: center;
+}
+
+.address-btn {
+	width: 170px;
+	height: 35px;
+	text-align: center;
+	border-radius: 4px;
+	border: 1px solid rgb(194, 193, 193);
+	background-color: #ffffff;
+	color: #5397fc;
+	border-radius: 4px;
 }
 
 .sub-rental-btn {
-	margin-top: 8px;
+	margin-top: 10px;
 	width: 100%;
-	height: 40px;
+	height: 45px;
 	color: #ffffff;
 	border: none;
 	border-radius: 4px;
@@ -275,57 +320,63 @@ span, #logoImg:hover {
 		<hr>
 		<div class="navi"></div>
 		<div class="body">
-			<div class="body-top">
-				<div class="bookbag-count">책가방 (${fn:length(list)})</div>
-			</div>
-
 			<c:choose>
 				<c:when test="${fn:length(list) == 0}">
-					<div class="body-left">
+					<div class="body-top">
+						<div class="bookbag-count" style="padding-left: 5px;">책가방
+							(${fn:length(list)})</div>
+					</div>
+					<div class="body-left"
+						style="border: 1px solid rgb(194, 193, 193);">
 						<div class="bookbag-top"></div>
 						<div class="bookbag-main"
-							style="text-align: center; line-height: 120px;">책가방에 담긴 작품이
+							style="text-align: center; line-height: 125px;">책가방에 담긴 작품이
 							없습니다.</div>
 					</div>
 				</c:when>
 				<c:otherwise>
+					<div class="body-top">
+						<div class="bookbag-count" style="padding-left: 15px;">책가방
+							(${fn:length(list)})</div>
+					</div>
 					<div class="body-left">
 						<div class="bookbag-top">
-							<div class="top-checkbox-div">
-								<input type="checkbox" id="selectAll" name=""> <label
-									for="selectAll">전체 선택</label>
+							<div class="bookbag-top-checkbox-div">
+								<input type="checkbox" id="check-all"> <label>전체
+									선택</label>
 							</div>
-							<div class="top-btn-div">
-								<button class="top-btn">선택 위시리스트에 담기</button>
-								<button class="top-btn">선택 삭제</button>
+							<div class="bookbag-top-btn-div">
+								<button class="bookbag-top-btn">선택 위시리스트에 담기</button>
+								<button class="bookbag-top-btn">선택 삭제</button>
 							</div>
 						</div>
 						<hr style="width: 95%; margin-top: 5px;">
 						<c:forEach var="bookbag" items="${list}">
 							<div class="bookbag-main">
-								<div class="bookbag-checkbox">
-									<input type="checkbox" id="select" name=""> <label
-										for="select"></label>
+								<div class="bookbag-main-checkbox">
+									<input type="checkbox" class="check">
 								</div>
-								<div class="bookbag-img">
+								<div class="book-img-div">
 									<img src="${bookbag.b_img_url }" id="book-img">
 								</div>
-								<div class="bookbag-detail">
-									<div class="bookbag-detail-text" style="height: 50%;">
-										${bookbag.b_title }<br> ${bookbag.b_writer }<br> <input
+								<div class="bookbag-detail-div">
+									<div class="bookbag-detail-text">
+										${bookbag.b_title } <br> ${bookbag.b_writer }<br> <input
 											type="hidden" value="${bookbag.b_isbn }"> <input
 											type="hidden" value="${bookbag.b_genre }">
 									</div>
-									<div class="bookbag-detail-btn"
-										style="height: 50%; padding-top: 35px;">
-										<button class="detail-btn" type="button" id="w${bookbag.bookbag_seq }">위시리스트에 담기</button>
+									<div class="bookbag-detail-btn">
+										<button class="detail-btn" type="button"
+											id="w${bookbag.bookbag_seq }">위시리스트에 담기</button>
 										<button class="detail-btn" type="button"
 											id="d${bookbag.bookbag_seq }">삭제</button>
 									</div>
 								</div>
 							</div>
 							<hr style="width: 95%; margin-top: -14px;">
+
 							<script>
+								// 삭제 버튼 기능
 								$(function() {
 									$("#d${bookbag.bookbag_seq }").on("click",function() {
 										if (confirm("<${bookbag.b_title }> 작품을 삭제하시겠습니까?")) {
@@ -334,13 +385,13 @@ span, #logoImg:hover {
 										}
 									});
 								})
-								
+								// 위시리시트에 담기 버튼 기능
 								$(function () {
 						            $("#w${bookbag.bookbag_seq }").on("click", function () {
 						                $.ajax({
 						                    url: "/delivery/selectWishlistByIdBisbn",
 						                    data: {
-						                        "id": "지민",
+						                        "id": "앙뚜",
 						                        "b_isbn": "${bookbag.b_isbn }"
 						                    }, success: function (result) {
 						                        if (result == "false") {
@@ -349,7 +400,7 @@ span, #logoImg:hover {
 						                            $.ajax({
 						                                url: "/delivery/insertWishlist",
 						                                data: {
-						                                    "id": "지민",
+						                                    "id": "앙뚜",
 						                                    "b_isbn": "${bookbag.b_isbn }",
 						                                    "b_img_url": "${bookbag.b_img_url }",
 						                                    "b_title": "${bookbag.b_title }",
@@ -362,8 +413,8 @@ span, #logoImg:hover {
 						                        }
 						                    }
 						                });
-						           });
-					        });
+						           	});
+					        	});
 							</script>
 						</c:forEach>
 					</div>
@@ -373,10 +424,10 @@ span, #logoImg:hover {
 			<c:choose>
 				<c:when test="${dto.grade eq '미구독'}">
 					<div class="body-right">
-						<div class="rental-detail"
-							style="height: 140px; text-align: center; line-height: 140px;">
+						<div class="sub-rental-info"
+							style="height: 170px; text-align: center; line-height: 170px;">
 							종이책 구독 서비스를 이용해보세요!</div>
-						<div class="sub-rental">
+						<div class="sub-rental-btn-div">
 							<button class="sub-rental-btn" id="sub-btn">구독하기</button>
 						</div>
 					</div>
@@ -385,32 +436,110 @@ span, #logoImg:hover {
 					<c:set var="arrivalDate"
 						value="<%=new Date(new Date().getTime() + 60 * 60 * 24 * 1000 * 2)%>" />
 					<c:set var="returnDate"
-						value="<%=new Date(new Date().getTime() + 60 * 60 * 24 * 1000 * 12)%>" />
+						value="<%=new Date(new Date().getTime() + (60 * 60 * 24 * 1000 * 12))%>" />
 					<div class="body-right">
-						<div class="rental-detail"
-							style="height: 140px; padding-left: 5px;">
-							<p>
-								남은 배송 횟수 : 3회 <br> 남은 대여 권수 : 10권
-							</p>
-							<p>
-								대여할 책 : 10권<br> 도착예정일 :
-								<fmt:formatDate value="${arrivalDate}" pattern="yyyy-MM-dd(E)" />
-								<br> 반납일 :
-								<fmt:formatDate value="${returnDate}" pattern="yyyy-MM-dd(E)" />
+						<div class="sub-rental-info">
+							<div class="rental-detail">
+								<div class="rental-detail-title">대여 내역</div>
 								<br>
-							</p>
+								<div style="padding-bottom: 4px;">
+									대여할 책 : <span id="check-count-result"></span> 권
+								</div>
+								<div style="padding-bottom: 4px;">남은 배송 횟수 : ${sdto.delivery_count }권</div>
+								<div style="padding-bottom: 4px;">남은 대여 권수 : ${sdto.book_count }권</div>
+								<div style="padding-bottom: 4px;">
+									도착예정일 :
+									<fmt:formatDate value="${arrivalDate}" pattern="yyyy-MM-dd(E)" />
+								</div>
+								<div>
+									반납일 :
+									<fmt:formatDate value="${returnDate}" pattern="yyyy-MM-dd(E)" />
+								</div>
+							</div>
+							<hr style="margin-top: 0px; margin-bottom: 0px; width: 92%;">
+							<div class="address">
+								<div class="address-title">배송지 정보</div>
+								<br>
+								<div style="padding-bottom: 3px;">우편번호</div>
+								<div style="padding-bottom: 10px;">${dto.postcode }</div>
+								<div style="padding-bottom: 3px;">주소</div>
+								<div style="padding-bottom: 10px;">${dto.address1 }</div>
+								<div style="padding-bottom: 3px;">상세주소</div>
+								<div style="padding-bottom: 10px;">${dto.address2 }</div>
+								<div style="padding-bottom: 3px;">받으실 분</div>
+								<div style="padding-bottom: 10px;">${dto.reciver }</div>
+								<div style="padding-bottom: 3px;">휴대폰 번호</div>
+								<div>${dto.reciver_phone }</div>
+								<br>
+								<div class="address-btn-div">
+									<c:choose>
+										<c:when test="${dto.postcode eq null}">
+											<button class="address-btn">주소검색</button>
+										</c:when>
+										<c:otherwise>
+											<button class="address-btn">주소변경</button>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</div>
 						</div>
-						<div class="sub-rental">
+						<div class="sub-rental-btn-div">
 							<button class="sub-rental-btn" id="rental-btn">대여하기</button>
 						</div>
 					</div>
 				</c:otherwise>
 			</c:choose>
-
 		</div>
 		<div class="footer"></div>
 	</div>
 	<script>
+		// 주소검색, 주소변경 버튼 기능
+		$(".address-btn").on("click", function() {
+			window.open("/delivery/toAddressInput", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=500, left=500, top=150");
+		})
+		// 구독하기 버튼 기능
+		$("#sub-btn").on("click", function() {
+			location.href = "/delivery/toPayment";
+		})
+		// 대여하기 버튼 기능
+		$("#rental-btn").on("click", function() {
+			if (${fn:length(list) == 0}) {
+				alert("대여할 책이 없습니다.");
+			}else if (${dto.postcode eq null}) {
+				alert("배송지 정보를 입력해주세요.");
+			}else if($("#check-count-result").text() == 0) {
+				alert("대여할 책을 선택해주세요.");
+			}else {
+				 if(confirm("대여하시겠습니까?")){
+					location.href = "/delivery/toRentalCompleted";
+				 } 
+			}
+		})
+		
+		// 체크박스 기능
+		var checkCount = $('input[class=check]:checked').length;
+	    document.getElementById("check-count-result").innerText = checkCount;
+	    
+	    $(document).on('click', '#check-all', function () {
+	        if ($('#check-all').is(':checked')) {
+	            $('.check').prop('checked', true);
+	        } else {
+	            $('.check').prop('checked', false);
+	        }
+	        var checkCount = $('input[class=check]:checked').length;
+	        document.getElementById("check-count-result").innerText = checkCount;
+	    });
+	    
+		$(document).on('click', '.check', function () {
+	        if ($('input[class=check]:checked').length == $('.check').length) {
+	            $('#check-all').prop('checked', true);
+	        } else {
+	            $('#check-all').prop('checked', false);
+	        }
+	        var checkCount = $('input[class=check]:checked').length;
+	        document.getElementById("check-count-result").innerText = checkCount;
+	    });
+		
 		$("#logoImg").on("click", function() {
 			location.href = "/";
 		})
@@ -433,17 +562,6 @@ span, #logoImg:hover {
 				location.href = "/member/login";
 			}
 			location.href = "/member/toMypage";
-		})
-
-		$("#sub-btn").on("click", function() {
-			location.href = "/delivery/topayment";
-		})
-		$("#rental-btn").on("click", function() {
-			if(${fn:length(list) == 0}){
-				alert("대여할 책이 없습니다.");
-			}else if (confirm("대여하시겠습니까?")) {
-				location.href = "/delivery/toRentalCompleted";
-			}
 		})
 	</script>
 </body>

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import kh.bookday.dao.ReviewDAO;
 import kh.bookday.dao.ReviewLikeDAO;
-import kh.bookday.dto.PagingDTO;
 import kh.bookday.dto.ReviewDTO;
 import kh.bookday.dto.ReviewLikeDTO;
 
@@ -65,9 +64,8 @@ public class ReviewService {
 		}
 		
 		//해당 도서 리뷰 좋아요 삭제
-		public void deleteReviewLike (String b_isbn, String rv_seq, String id) {
+		public void deleteReviewLike (String rv_seq, String id) {
 				Map<String, String> param=new HashMap<>();
-				param.put("b_isbn", b_isbn);
 				param.put("rv_seq", rv_seq);
 				param.put("id", id);
 				
@@ -79,11 +77,11 @@ public class ReviewService {
 			return dao.countReview();
 		}
 
-		public List<PagingDTO> selectReview(PagingDTO page){
-			 List<PagingDTO> result = dao.selectReview(page);
-			return result;
-			 
-		}
+//		public List<PagingDTO> selectReview(PagingDTO page){
+//			 List<PagingDTO> result = dao.selectReview(page);
+//			return result;
+//			 
+//		}
 
 		
 }

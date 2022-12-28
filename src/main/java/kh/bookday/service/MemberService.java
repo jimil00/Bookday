@@ -22,6 +22,7 @@ import com.google.gson.JsonParser;
 import kh.bookday.common.NCP_sms;
 import kh.bookday.dao.MemberDAO;
 import kh.bookday.dto.MemberDTO;
+import kh.bookday.dto.MonthSubMemberDTO;
 
 @Service
 public class MemberService {
@@ -115,7 +116,12 @@ public class MemberService {
 		String refresh_Token="";
 		String grant_type="grant_type=authorization_code";
 		String client_id="&client_id=5d39c4a90d2cd9ef1649a8e6108ba988";
-		String redirect_uri= "&redirect_uri=http://localhost:8090/member/kakaoLogin";
+		
+		//상황에 따라 바꿔서 사용
+		String redirect_uri_shu= "&redirect_uri=http://localhost:8090/member/kakaoLogin";
+		String redirect_uri_test="&redirect_uri=http://localhost/member/kakaoLogin";
+		String redirect_uri= "&redirect_uri= http://13.125.80.112/member/kakaoLogin";
+		
 		String reqURL ="https://kauth.kakao.com/oauth/token";
 
 		try {
@@ -134,7 +140,7 @@ public class MemberService {
 			StringBuilder sb = new StringBuilder();
 			sb.append(grant_type);
 			sb.append(client_id);
-			sb.append(redirect_uri);
+			sb.append(redirect_uri_test);
 			sb.append("&code="+code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -237,5 +243,25 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		return userInfo;
+	}
+	
+	/* 회원 배송지 정보 입력 */
+	public void updateMemberAddressById(MemberDTO dto) {
+		dao.updateMemberAddressById(dto);
+	}
+	
+	/* 월 구독 회원 정보 조회 */
+	public MonthSubMemberDTO selectMonthSubMemberById(String id) {
+		return dao.selectMonthSubMemberById(id);
+	}
+	
+	/* 월 구독 회원 등록 */
+	public void insertMonthSubMemberById(String id) {
+		dao.insertMonthSubMemberById(id);
+	}
+	
+	/* 회원 등급 변경 */
+	public void updateMemberGradeById(String id) {
+		dao.updateMemberGradeById(id);
 	}
 }

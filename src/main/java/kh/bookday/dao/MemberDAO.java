@@ -1,14 +1,13 @@
 package kh.bookday.dao;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.bookday.dto.MemberDTO;
+import kh.bookday.dto.MonthSubMemberDTO;
 
 @Repository
 public class MemberDAO {
@@ -56,5 +55,30 @@ public class MemberDAO {
 	public int updatePw(Map<String, String> param) {
 		return db.update("Member.updatePw", param);
 
+	}
+	
+	/* 회원 배송지 정보 입력 */
+	public void updateMemberAddressById(MemberDTO dto) {
+		db.update("Member.updateMemberAddressById", dto);
+	}
+	
+	/* 회원 등급 변경 */
+	public void updateMemberGradeById(String id) {
+		db.update("Member.updateMemberGradeById", id);
+	}
+	
+	/* 월 구독 회원 등록 */
+	public void insertMonthSubMemberById(String id) {
+		db.insert("Member.insertMonthSubMemberById", id);
+	}
+	
+	/* 월 구독 회원 정보 조회 */
+	public MonthSubMemberDTO selectMonthSubMemberById(String id) {
+		return db.selectOne("Member.selectMonthSubMemberById", id);
+	}
+	
+	/* 월 구독 회원 남은 배송 횟수, 남은 대여 권수 계산 */
+	public void updateMonthSubMemberById(MonthSubMemberDTO dto) {
+		db.update("Member.updateMonthSubMemberById", dto);
 	}
 }

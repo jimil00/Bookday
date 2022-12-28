@@ -187,7 +187,6 @@ public class MemberController {
 		
 		String access_Token=service.getAccessToken(code);
 		
-		
 		MemberDTO userInfo =service.getUserInfo(access_Token);
 		
 		model.addAttribute("code", code);
@@ -196,8 +195,7 @@ public class MemberController {
 		
 		System.out.println(userInfo.getId());
 		
-		//카카오 최초 로그인인지 확인
-		//디비에 이메일 정보 확인
+		//카카오 최초 로그인인지 확인-> 디비에서 이메일 정보 확인
 		boolean result=service.selectByEmail(userInfo.getEmail());
 		
 		System.out.println(result);
@@ -206,7 +204,7 @@ public class MemberController {
 			session.setAttribute("loginID", userInfo.getId());
 			session.setAttribute("nickname",userInfo.getNickname());
 		}else {
-			service.signUp(userInfo);
+			service.kakaoSignUp(userInfo);
 			
 			session.setAttribute("loginID", userInfo.getId());
 			session.setAttribute("nickname",userInfo.getNickname());
@@ -215,15 +213,6 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//카카오 최초 로그인시 회원가입되는 로직
-//	@RequestMapping(value="kakaoSignup" , method=RequestMethod.GET)
-//	public String kakaoLogout(@RequestParam("code") String code, Model model) {
-//		
-//		session.invalidate();
-//		
-//		return "redirect:/";
-//	}
-//	
 
 	//에러 수집
 	@ExceptionHandler(Exception.class) 

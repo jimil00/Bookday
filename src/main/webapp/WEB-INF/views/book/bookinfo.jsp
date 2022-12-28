@@ -131,9 +131,8 @@ hr {
 
 .signBox>a {
 	margin: 5px;
-	text-decoration: underline;
+	text-decoration: none;
 	text-underline-offset: 5px;
-	text-decoration-color: grey;
 	color: black;
 }
 
@@ -195,6 +194,11 @@ span, #logoImg:hover {
 	/* margin-left: 38px; */
 }
 
+#label {
+	position: relative;
+	top: 5px;
+}
+
 .b_title {
 	margin-left: 20px;
 	margin-top: 5px;
@@ -241,14 +245,14 @@ span, #logoImg:hover {
 	bottom: 300px;
 }
 
-.post-link>button {
+.post-link>a>button {
 	border: 1px solid #5397fc;
 	background-color: white;
 	color: #5397fc;
 	border-radius: 5px;
 }
 
-.link_btn>input {
+.link_btn>a>input {
 	width: 343px;
 	height: 50px;
 	border: 1px solid #5397fc;
@@ -566,33 +570,42 @@ span, #logoImg:hover {
 				<form id="sendBookData">
 					<div class="box">
 						<div class="b_img">
-							<img src="${dto.b_img_url}" id="b_img">
+							<img src="${dto.b_img_url}" id="b_img" name="b_img_url">
 						</div>
 						<div class="b_title">
-							<p id="b_title">${dto.b_title}</p>
+							<p id="b_title" name="b_title">${dto.b_title}</p>
 							<div class="b_etc">
-								<p id="b_writer">${dto.b_writer}</p>
+								<p id="b_writer" name="b_writer">${dto.b_writer}</p>
 								<p class="line">|</p>
-								<p id="b_publisher">${dto.b_publisher}</p>
+								<p id="b_publisher" name="b_publisher">${dto.b_publisher}</p>
 								<p class="line">|</p>
 								<p id="b_publication_date">${dto.b_publication_date}</p>
 							</div>
 							<div class="b_genre">
-								<span class="material-symbols-outlined">label</span>
-								<p id="b_genre">${dto.b_genre}</p>
+								<span class="material-symbols-outlined" id="label">label</span>
+								<p id="b_genre" name="b_genre">${dto.b_genre}</p>
 							</div>
 							<div class="link_btn">
-								<a href="//insert?b_isbn=+"+${dto.b_isbn}></a><input type="button" value="위시리스트에 담기" id="to_wish"> 
-								<input type="button" value="책가방에 담기" id="to_bag" data-isbn="${dto.b_isbn}"> <span
-									class="material-symbols-outlined" id="heart"> favorite</span> <span
+								<a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
+									class="a_move"><input type="button" value="위시리스트에 담기"
+									id="to_wish"></a> <a
+									href="/book/selectForBookbag?b_isbn=${dto.b_isbn}"
+									class="a_move"><input type="button" value="책가방에 담기"
+									id="to_bag"></a> <span class="material-symbols-outlined"
+									id="heart"> favorite</span> <span
 									class="material-symbols-outlined size-40" id="bookbag2">shopping_bag</span>
 							</div>
-							<div class="post-link">
-								<button>
-									<span class="material-symbols-outlined" id="to_write">edit_square</span>
-									<br> <br>포스트 작성
-								</button>
-							</div>
+							<!-- post-link -->
+					<%-- 	<div class="post-link">
+								<a href="/book/selectToWritePost?b_isbn=${dto.b_isbn}"
+									class="a_move">
+									<button id="to_write">
+										<span class="material-symbols-outlined">edit_square</span> <br>
+										<br>포스트 작성
+									</button>
+								</a>
+							</div>  --%>
+							
 						</div>
 					</div>
 					<!--box -->
@@ -658,11 +671,55 @@ span, #logoImg:hover {
 													<input type="text" readonly maxlength="200"
 														value="${r.rv_content}" class="content">
 												</div>
+
+
 												<div class="r_like"
-													<c:if test="${loginID == null}"> style="pointer-events: none"</c:if>>
-													<i class="r_like_icon bi bi-hand-thumbs-up"></i> <span
-														class="r_like_count">${r.r_count_like}</span>
+													<c:if test="${loginID == null}"> onclick="alert_open();"</c:if>>
+
+
+													<c:set var="doneLoop" value="false" />
+													<c:set var="existFlag" value="false" />
+
+													<c:forEach items="${rl_list}" var="rl">
+														<c:if test="${rl.rv_seq == r.rv_seq}">
+															<c:set var="existFlag" value="true" />
+														</c:if>
+													</c:forEach>
+
+													<c:choose>
+														<c:when test="${existFlag}">
+															<c:forEach items="${rl_list}" var="rl">
+																<c:if test="${not doneLoop}">
+																	<c:choose>
+																		<c:when test="${rl.rv_seq == r.rv_seq}">
+																			<c:choose>
+																				<c:when test="${rl.id == loginID}">
+																					<i class="r_like_icon bi bi-hand-thumbs-up-fill"
+																						data-count="1"></i>
+																					<c:set var="doneLoop" value="true" />
+																				</c:when>
+																				<c:otherwise>
+																					<i class="r_like_icon bi bi-hand-thumbs-up"
+																						data-count="0"></i>
+																					<c:set var="doneLoop" value="true" />
+																				</c:otherwise>
+																			</c:choose>
+																		</c:when>
+																	</c:choose>
+																</c:if>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<i class="r_like_icon bi bi-hand-thumbs-up"
+																data-count="0"></i>
+														</c:otherwise>
+													</c:choose>
+													<span class="r_like_count">${r.r_count_like}</span>
 												</div>
+
+
+
+
 											</div>
 										</div>
 										<hr>
@@ -737,7 +794,7 @@ span, #logoImg:hover {
 
 						<div class="swiper-container">
 							<div class="swiper-wrapper">
-							<!-- foreach 문 -->
+								<!-- foreach 문 -->
 								<div class="swiper-slide">
 									<div class="book">
 										<img src="/resources/테스트.jpg" class="w_img_url">
@@ -749,19 +806,13 @@ span, #logoImg:hover {
 							</div>
 						</div>
 
+					</div><!-- flex-box -->
+				</div><!-- with-books -->
 
+		</div><!--detail-->
 
-					</div>
-				</div>
-				<!-- flex-box -->
-			</div>
-			<!-- with-books -->
-		</div>
-		<!--detail-->
-
-	</div>
-	<!--body-->
-
+	</div><!--body-->
+	
 	<div class="footer"></div>
 
 	</div>
@@ -772,51 +823,23 @@ slidesPerView:3,
 spaceBetween:30
 });
 
-var rlikeArray = [];
 
-<c:forEach items="${rl_list}" var="rl">
-
-	rlikeArray={rv_seq:"${rl.rv_seq}",id:"${rl.id}",b_isbn:"${rl.b_isbn}"};
-
-	console.log(rlikeArray);
-
-    	// 위에 list나 변수를 선언하고 alert 자리에 담으면 차례대로 값을 받는다.
-</c:forEach>
-console.log(rlikeArray);
 
     $(document).ready(function(){
     	
-    
-                        //위시리스트에 담기 기능
-                        $("#to_wish").on("click",function(){
-                        	console.log("?");
-                        	if(${loginID==null}){
-                        		alert("로그인 후 사용할 수 있습니다.");
-                        	}else{
-                        		
-                        		
-                        	// $("#sendBookData").attr("action","/delivery/insertWishlist").submit();}
-         
-                        	});
-                       
-                        //책가방에 담기 기능
-                         $("#to_bag").on("click",function(){
-                        	 if(${loginID==null}){
-                         		alert("로그인 후 사용할 수 있습니다.");
-                         	}else{
-                       	$("#sendBookData").attr("action","/delivery/").submit();}
-                        	
-                        });
-
-                        //포스트 작성 이동 기능
-                        $("#to_write").on("cilck",function(){
-                        	
-                        	 if(${loginID==null}){
-                          		alert("로그인 후 사용할 수 있습니다.");
-                          	}else{
-                        $("#sendBookData").attr("action","/post/").submit();}
-                        	
-                        });
+    	//로그인 상태가 아닐 때
+    	if(${loginID==null}){
+    		
+    				//링크 삭제
+    		 		$(".a_move").removeAttr("href");
+    		 	
+				    	   //위시리스트/책가방/포스트 작성 회원만 이동 기능
+				        $("#to_wish,#to_bag,#to_write").on("click",function(){
+				        	alert("로그인 후 사용할 수 있습니다.");
+				        
+				        	  });
+				          	}
+				        
 
                         //책소개 화살표 버튼 누르면 내용 보이기 / 숨기기(토글 사용)
                         //책 내용 기본으로 숨기기
@@ -866,10 +889,6 @@ console.log(rlikeArray);
 
                                     console.log(rv_seq);
 
-                                    /* $(".r_content>input").attr("readonly", false);
-                                    
-                                    $(".user_btn>button").css("display","none"); */
-
                                 $(this).closest(".r_title_box").find(".content").attr("readonly", false);
 
                                  $(this).closest(".r_title_box").find(".r_update,.r_delete").css("display", "none");
@@ -902,6 +921,7 @@ console.log(rlikeArray);
                                     /* $(".fin_btn").data("seq",${r.rv_seq}); */
 
                                     /* let rv_seq = $(this).attr("data-seq"); */
+                                    
                                     let rv_seq = $(this).closest(
                                             ".r_title_box").find(".rv_seq")
                                             .val();
@@ -937,72 +957,64 @@ console.log(rlikeArray);
                         });
                         
                         
-                        //댓글 좋아요 기능
-                      //  let like_result=${like_result};
-                             
-                          /*    console.log(like_result);
-                             
-
-                                if(like_result > 0){
-                                    
-                                    //좋아요 누른 상태에서 다시 누를 때
-                              	$(document).on("click",".r_like_icon",function(){
-                                        
-                                        let b_isbn = $("#b_isbn").val();
-                                        let rv_seq = $(this).closest(
-                                        ".r_title_box").find(".rv_seq")
-                                        .val();
-                                    
-                                        
-                                        $.ajax({
-                                            type:"post",
-                                            url:"/book/deleteReviewLike",
-                                            data: {"rv_seq" : rv_seq,
-                                                "b_isbn":b_isbn}
-                                        }).done(function(resp){
-                                            console.log("취소 성공");
-                                        })
-                                    });
-                                    
-                               }else{  
-                                    
-                               //유저가 좋아요 안 눌렀을 때
+                        //댓글 좋아요 기능    
+                               //유저가 좋아요 0번 눌렀을 때 실행
                               $(document).on("click",".r_like_icon",function(){
-                                        
-                
-                                 if("${loginID}"==null){
-                                        alert("로그인 후 이용해주세요.");
-                                }else{
-                                	  let b_isbn = $("#b_isbn").val();
-                                      let rv_seq = $(this).closest(
-                                      ".r_title_box").find(".rv_seq")
-                                      .val();
+                            	  
+                            	  let b_isbn = $("#b_isbn").val();
+                            	  
+                                  let rv_seq = $(this).closest(
+                                  ".r_title_box").find(".rv_seq").val();
                                   
-                                      console.log(b_isbn);
+                                  let r_like_icon =$(this).attr("data-count");
+                              
+                                  console.log(r_like_icon);
+                                        
+                                if(r_like_icon == 0 ){
                                       
                                   $.ajax({
                                       type:"post",
                                       url: "/book/insertReviewLike",
                                       data: {"rv_seq" : rv_seq,
-                                              "b_isbn":b_isbn,
-                                              "id":${loginID}}
+                                              "b_isbn":b_isbn
+                                              }
                                   }).done(function(resp){
                                      console.log("좋아요 성공");
                                      location.reload();
+
+                                  });
+                                  
+                               		 }else if(r_like_icon == 1){
+                               			 
+                               			 let b_isbn = $("#b_isbn").val();
+                                   	  
+                                         let rv_seq = $(this).closest(
+                                         ".r_title_box").find(".rv_seq").val();
+                               		 
+                               			 
+                               			 
+                               		 console.log("여기까지 오는지 확인");
+                               			 
+                               		 //취소 기능
+                               			 
+                               		  $.ajax({
+                                          type:"post",
+                                          url:"/book/deleteReviewLike",
+                                          data: {"rv_seq" : rv_seq}
+                                      }).done(function(resp){
+                                          console.log("취소 성공");
+                                          location.reload();
+                                      });
                                       
-                                //"class","r_like_icon bi bi-hand-thumbs-up-fill")
-                                     
-                                  })
                                		 }
+                               			 
+                               		 });
                                         
-                                    })	
+                                  
 
-                        //함께 읽은 책 누르면 이동  
-                        
-                               }); */
-                        
-    });
-
+                              //함께 읽은 책 출력
+    }); 
+   
     //리뷰 비회원 대비) 비로그인 상태에서 리뷰 달려고 하면 로그인 페이지로 이동
     function alert_open() {
         alert("로그인 후 이용해주세요.");

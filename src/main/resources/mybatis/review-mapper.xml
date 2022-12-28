@@ -32,15 +32,11 @@
 	</insert>
 	
 	<delete id="deleteReviewLike">
-		delete from review_like where where rv_seq= #{rv_seq} and id= #{id}
+		delete from review_like where rv_seq=#{rv_seq} and id=#{id}
 	</delete>
 
 	<select id="countReview" resultType="java.lang.Integer">
 		select count(*) from review
 	</select>
 	
-	<select id="selectReview" resultType="kh.bookday.dto.PagingDTO">
-	select * from (select ROWNUM RN, A.* from (SELECT * FROM review ORDER BY rv_seq DESC )A)where RN between #{start} and #{end}
-	</select>
-
 </mapper>

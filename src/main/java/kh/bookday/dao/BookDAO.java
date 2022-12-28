@@ -27,12 +27,27 @@ public class BookDAO {
 	public BookDTO selectBookByIsbn(String b_isbn) {
 		return db.selectOne("Book.selectBookByIsbn", b_isbn);
 	}
+	
+	//위시리스트로 이동
+	public BookDTO selectForWishlist(String b_isbn) {
+		return db.selectOne("Book.selectBookByIsbn", b_isbn);
+	}
+	
+	//책가방으로 이동
+		public BookDTO selectForBookbag(String b_isbn) {
+			return db.selectOne("Book.selectBookByIsbn", b_isbn);
+		}
+
+		//포스트 작성 페이지로 이동
+//			public Map <String,Object> selectToWritePost(String b_isbn) {
+//				return db.selectOne("Book.selectBookByIsbn", b_isbn);
+//			}
 
 
 	//해당 도서와 함께 담은 책 출력
 	//메서드명 구상 중
 //	public List<BookDTO> selectBooks(String b_isbn) {
-//		return db.selectList("selectPostByIsbn", b_isbn);
+//		return db.selectList("Book.selectPostByIsbn", b_isbn);
 //	}
 	
 	
