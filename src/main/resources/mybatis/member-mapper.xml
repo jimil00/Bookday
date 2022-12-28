@@ -20,7 +20,7 @@
 	</select>
   	
   	<insert id="signUp">
-  	insert into member values(#{id},#{phone},#{pw},#{name},#{nickname},#{email},0,0,0,default,0,0)
+  	insert into member values(#{id},#{phone},#{pw},#{name},#{nickname},#{email},'','','','','',default,0,0,default,default)
   	</insert>
   	
   	<select id="selectIdByPhone" resultType="String">

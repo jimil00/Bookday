@@ -78,12 +78,12 @@ div {
 		<div class="body">
 			<div style="padding-bottom: 13px;">
 				<input type="text" id="postcode" name="postcode" placeholder="우편번호"
-					disabled>
+					readonly>
 				<button type="button" id="search-btn">우편번호 찾기</button>
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="address1" name="address1"
-					placeholder="지번주소" disabled>
+					placeholder="주소" readonly>
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="address2" name="address2"
@@ -116,6 +116,18 @@ div {
 				top : '150'
 			});
 		}
+		document.getElementById("postcode").onclick = function() {
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							document.getElementById('postcode').value = data.zonecode;
+							document.getElementById("address1").value = data.roadAddress;
+						}
+					}).open({
+				left : '500',
+				top : '150'
+			});
+		}
 
 		$("#save-btn").on("click",function() {
 					if ($("#postcode").val() == ""
@@ -137,7 +149,7 @@ div {
 					$.ajax({
 						url : "/delivery/updateMemberAddressById",
 						data : {
-							"id" : "앙뚜",
+							"id" : "${loginID }",
 							"postcode" : $("#postcode").val(),
 							"address1" : $("#address1").val(),
 							"address2" : $("#address2").val(),

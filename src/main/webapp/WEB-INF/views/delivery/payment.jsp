@@ -316,7 +316,6 @@ li {
 					<li>대여일은 도착한 날부터 산정되며, 반납일은 대여일부터 10일입니다.</li>
 					<li>반납일에 책가방을 문 앞에 두시면 수거합니다. 반납일을 꼭 지켜주세요!</li>
 					<li>종이책을 분실 또는 훼손하였을 경우 동일한 책으로 변상하셔야 합니다.</li>
-					<li>구독권은 결제 후 7일간 미사용 시 취소할 수 있습니다.</li>
 					<li>정기 구독 결제는 구독 기간 마지막 날 진행되며 결제 후 구독 기간은 자동 갱신됩니다.</li>
 					<li>정기 구독 갱신을 중단하고자 할 경우 구독 기간 종료 하루 전까지 구독을 해지하셔야 합니다.</li>
 				</ul>
@@ -340,7 +339,7 @@ li {
 			}, function(rsp) {
 				if (rsp.success) {
 					var msg = '결제가 완료되었습니다.';
-					window.open("/delivery/toPaymentCompleted?id=앙뚜", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=250, left=500, top=250");
+					window.open("/delivery/toPaymentCompleted?id=${loginID }", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=250, left=500, top=250");
 
 				} else {
 					var msg = '결제에 실패하였습니다.';
