@@ -233,7 +233,7 @@ public class MemberService {
 			
 			userInfo.setId(id);
 			userInfo.setPw(UUID.randomUUID().toString()); //비밀번호 겹치지 않게 자동값 생성(보안에 매우 취약)
-			userInfo.setPhone("0"); //휴대폰 번호
+			//userInfo.setPhone("0"); //휴대폰 번호
 			userInfo.setEmail(email); //이메일
 			userInfo.setName(nickname); //이름(닉네임과 동일)
 			userInfo.setNickname(nickname);//닉네임(세션)

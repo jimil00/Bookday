@@ -282,12 +282,14 @@ $(document).ready(function(){
                                         	  
                                         	  //입력 값 수정 불가 & 버튼 2번 클릭 못하게 해야 될듯
                                         	  if(resp == false){
+                                        		  alert("인증번호가 일치합니다.")
                                         		  $("#verifi_code").css("border-color", "#5397fc");
                                         		  $("#phone").attr("readonly",true);
                                         		  $("#verifi_code").attr("readonly",true);
                                         		  $("#verfi_btn").attr("disabled", true); 
                                         		  $("#check_btn").attr("disabled", true);
                                         		   $("#signup_btn").attr("disabled", false);
+                                        		   
                                         	  }else{
                                         		  alert("인증번호가 틀립니다.");
                                         		  $("#verifi_code").css("border-color", "red");
