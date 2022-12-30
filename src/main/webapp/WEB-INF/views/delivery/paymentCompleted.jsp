@@ -56,12 +56,15 @@ div {
 	padding-bottom: 15px;
 }
 
+.btn-div {
+	padding-bottom: 15px;
+}
+
 .btn {
 	border-radius: 4px;
 	border: 1px solid rgb(194, 193, 193);
 	background-color: #ffffff;
 	color: #5397fc;
-	padding-bottom: 15px;
 }
 </style>
 <body>
