@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
+ <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
@@ -273,7 +275,6 @@ display:none;
 }
 
 </style>
-</style>
 </head>
 <body>
 	<div class="container">
@@ -283,7 +284,7 @@ display:none;
 			</div>
 			<div class="search">
 				<div class="searchBox">
-					<form action="//search" id="search" method="post">
+					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
 							id="searchWord" name="searchWord">
 						<button class="searchBtn" type="submit">
@@ -320,7 +321,57 @@ display:none;
 		</div>
 		<hr id="headerHr">
 		<div class="navi"></div>
-		<div class="body"></div>
+		<div class="body">
+			<div class="service_intro">
+				<div class="main_copy" data-aos="fade-up" data-aos-duration="2000">
+					<h1 id=main_headline">책과 하루를</h1>
+					<p id=headline2">책하루와 함께 독서로 하루를 정리해보세요!</p>
+				</div>
+				
+				<div class="main_img">
+					<div class="sun,moon">
+					<img src="" id="sun,moon">
+					</div>
+					
+					<img src="/resources/main_img_reading.png" class="readsing,person">
+				</div>
+				
+				<div class="booknote_copy" data-aos="fade-up" data-aos-duration="2000">
+					<h2 id="note_headline">나의 하루 독서를 기록해보세요</h2>
+					<p class="note_list">내가 읽었거나 읽고 싶은 책 검색</p>
+					<p class="note_list">마음에 드는 도서 책갈피</p>
+					<p class="note_list">나만의 독서 포스트 작성하고 공유</p>
+				</div>
+				
+				<div class="bookstats_copy" data-aos="fade-up" data-aos-duration="2000">
+					<h2 id="stats_headline">내 독서 기록을 한 눈에 </h2>
+					<p class="stats_list">월별로 내가 읽은 책 수 평균</p>
+					<p class="stats_list">가장 많이 읽은 책 장르</p>
+					<p class="stats_list">책하루 사용자 내 순위 통계</p>
+				</div>
+				
+				<div class="booksub_copy" data-aos="fade-up" data-aos-duration="2000">
+					<h2 id="sub_headline">매월 읽고 싶은 책들이 집으로</h2>
+					<p class="sub_list">종이책 대여 구독 서비스</p>
+					<p class="sub_list">대여 권수(달)/대여일</p>
+					<button id="move_btn">종이책 구독 시작하기</button>
+				</div>
+				
+			</div>
+			<div class="best_seller" data-aos="fade-up" data-aos-duration="2000">
+				<h2 id="best_headline">베스트셀러</h2>
+			</div>
+			<div class="steady_seller" data-aos="fade-up" data-aos-duration="2000">
+				<h2 id="steady_headline">스테디셀러</h2>
+			</div>
+			<div class="new_books" data-aos="fade-up" data-aos-duration="2000">
+				<h2 id="new_headline">신간도서</h2>
+			</div>
+			<div class="popular_post" data-aos="fade-up" data-aos-duration="2000">
+				<h2 id="popular_headline">인기 포스트</h2>
+			</div>
+		</div> <!-- body -->
+		
 		<div class="footer">
 
 			<hr>
@@ -340,12 +391,10 @@ display:none;
 					<div id="business_info_title">사업자 정보</div>
 					<span class="arrow_icon material-symbols-outlined" id="arrow_down2">keyboard_arrow_down</span>
 					<span class="arrow_icon material-symbols-outlined" id="arrow_up2">keyboard_arrow_up</span>
-
-
 				</div>
 
 				<div id="business_info_text">
-					<span>대표자 조성태 </span>
+					<span>대표자 성태조 </span>
 					<span> | </span>
 					<span> 사업자 등록번호 01-20-22015</span>
 					<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
@@ -397,6 +446,12 @@ display:none;
          location.href = "/member/toMypage";
          }
       })
+      
+      //스크롤 이벤트 라이브러리(AOS)선언
+       $( document ).ready( function() {
+        AOS.init();
+      } );
+      
       
         //footer: 사업자 정보 토글 기능
        $("#business_info_text").hide();
