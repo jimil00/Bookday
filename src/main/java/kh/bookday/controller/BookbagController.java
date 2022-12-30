@@ -34,7 +34,7 @@ public class BookbagController {
 
 	@Autowired
 	private WishlistService wservice;
-
+	
 	@Autowired
 	private RentalService rservice;
 
@@ -43,6 +43,7 @@ public class BookbagController {
 
 	// 체크된 체크박스의 값 담을 배열
 	String[] checkBoxArr = null;
+
 
 	/* 책가방페이지 출력 */
 	@RequestMapping("selectBookbagListById")
@@ -108,9 +109,13 @@ public class BookbagController {
 	/* 위시리스트 추가 */
 	@ResponseBody
 	@RequestMapping("insertWishlist")
-	public void insertWishlist(WishlistDTO dto) {
+	public String insertWishlist(WishlistDTO dto) {
+		
 		wservice.insertWishlist(dto);
 		System.out.println("위시리스트 추가 완료");
+
+
+		return "redirect:/delivery/selectBookbagListById";
 	}
 
 	/* 배송지 페이지로 이동 */

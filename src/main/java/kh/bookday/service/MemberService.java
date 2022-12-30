@@ -116,7 +116,11 @@ public class MemberService {
 		String refresh_Token="";
 		String grant_type="grant_type=authorization_code";
 		String client_id="&client_id=5d39c4a90d2cd9ef1649a8e6108ba988";
-		String redirect_uri= "&redirect_uri=http://localhost/member/kakaoLogin";
+
+		//상황에 따라 바꿔서 사용
+		String redirect_uri_shu= "&redirect_uri=http://localhost:8090/member/kakaoLogin";
+		String redirect_uri_test="&redirect_uri=http://localhost/member/kakaoLogin";
+		String redirect_uri= "&redirect_uri= http://13.125.80.112/member/kakaoLogin";
 		String reqURL ="https://kauth.kakao.com/oauth/token";
 
 		try {
@@ -135,7 +139,7 @@ public class MemberService {
 			StringBuilder sb = new StringBuilder();
 			sb.append(grant_type);
 			sb.append(client_id);
-			sb.append(redirect_uri);
+			sb.append(redirect_uri_test);
 			sb.append("&code="+code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -228,7 +232,7 @@ public class MemberService {
 			
 			userInfo.setId(id);
 			userInfo.setPw(UUID.randomUUID().toString()); //비밀번호 겹치지 않게 자동값 생성(보안에 매우 취약)
-			userInfo.setPhone("0"); //휴대폰 번호
+			//userInfo.setPhone("0"); //휴대폰 번호
 			userInfo.setEmail(email); //이메일
 			userInfo.setName(nickname); //이름(닉네임과 동일)
 			userInfo.setNickname(nickname);//닉네임(세션)

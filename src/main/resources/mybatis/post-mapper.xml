@@ -14,4 +14,10 @@
 	<select id="select20PostCount" resultType="int">
           select count(*) from post
 	</select>
+	
+		
+	<select id="selectPostByIsbn" resultType="kh.bookday.dto.PostDTO">
+		select * from post where b_isbn=#{value} order by p_seq
+	</select>
+	
 </mapper>
