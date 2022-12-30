@@ -38,19 +38,19 @@ public class BookDAO {
 			return db.selectOne("Book.selectBookByIsbn", b_isbn);
 		}
 
-		//베스트셀러 도서 출력 
+		//베스트셀러 도서 출력 (랭킹 높은 순)
 		public List<BookDTO> selectBestSeller() {
 			return db.selectList("Book.selectBestSeller");
 		}
 		
 		
-		//스테디셀러 도서 출력 
+		//스테디셀러 도서 출력 (출판일 오래된 순 + 랭킹 높은 순)
 		public List<BookDTO> selectSteadySeller() {
 			return db.selectList("Book.selectSteadySeller");
 		}
 		
 		
-		//신간 도서 출력 
+		//신간 도서 출력 (출판일 최신 순)
 		public List<BookDTO> selectNewBooks() {
 			return db.selectList("Book.selectNewBooks");
 		}

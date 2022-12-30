@@ -186,6 +186,8 @@ $(document).ready(function(){
 	
 	//기본적으로 버튼 비활성화
 	$("#signup_btn").attr("disabled", true);
+	//인증번호 입력 창도 비활성화
+	$("#verifi_code").attr("readonly", true); 
 	
 	$("#name, #nickname, #phone,#verifi_code,#email,#pw,#check_pw")
     .on("blur",function(){
@@ -260,6 +262,7 @@ $(document).ready(function(){
                         	   if(resp == true){ 
                         		   alert("인증번호가 발송되었습니다.");
                         		   $("#verfi_btn").attr("disabled", true); 
+                        		   $("#verifi_code").attr("readonly", false); 
                         		   
                         		   $("#phone").on("input",function(){
                         			   $("#verfi_btn").attr("disabled", false); 
