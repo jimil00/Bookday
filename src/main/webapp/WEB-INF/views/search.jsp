@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home</title>
+<title>Search</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -24,11 +24,10 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-/* div {
+div {
+/* 	border: 1px solid black; */
+}
 
-   border: 1px solid black;
-
-} */
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -185,94 +184,68 @@ span, #logoImg:hover {
 
 /* body */
 .body {
-	height: 2000px;
+	overflow: hidden;
 }
 
-/* footer */
-.footer {
-    margin:5px;
+.book-header, .post-header {
+	/* height: 50px; */
+	font-size: 25px;
 }
 
-.f_header{
-    display: inline-flex;
-    margin-top:10px;
+.book {
+	overflow: hidden;
 }
 
-.f_header>a>img{
-    width:200px;
+.book-main {
+	overflow: hidden;
+	width: 140px;
+	text-align: center;
+	float: left;
+	margin-left: 19px;
+	margin-bottom: 20px;
+	margin-top: 10px;
 }
 
-.sns_icon{
-  position: relative;
-  top:1px;
-  left:595px;
+.book-img {
+	width: 120px;
+	height: 180px;
 }
 
-.sns_icon>a>img{
-	  height:20px;
+.b_title {
+	overflow: hidden;
+	display: -webkit-box;
+	width: 100%;
+	height: 37px;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
 }
 
-.business_info{
-    margin-top:30px;
+.b_writer {
+    overflow: hidden;
+    height: 25px;
+    padding-top: 5px;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space:nowrap;
 }
 
-#business_info_title{
-    font-size: x-small;
-    color: #808080d6;
+.post {
+	padding-top: 40px;
+	overflow: hidden;
 }
 
-.business_info>span{
-    margin-top:5px;
+.post-main {
+	width: 250px;
+	height: 300px;
+	float: left;
+	margin-left: 55px;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	border: 1px solid;
 }
-
-.f_intro{
-    margin-top:15px;
-    margin-bottom:20px;
-    font-size: small;
 }
-
-.f_intro>span{
-   color:#4d4b4bc1;
-  
-}
-
-.f_line{
-    color: #808080d6;
-}
-
-.business_info{
-    margin-top:20px;
-}
-#business_info_text{
-    margin-top:10px;
-    font-size: x-small;
-    color: #808080d6;
-}
-.inline_info{
-    display: inline-flex;
-}
-
-#arrow_down2,#arrow_up2{
-    position: relative;
-    bottom:6px;
-    color: #808080d6;
-}
-
-#arrow_up2{
-display:none;
-}
-
-.sns_icon>a>img{
-    width:40px;
-    height:40px;
-}
-
-.copyright{
-    margin-top:5px;
-    font-size: x-small;
-}
-
-</style>
 </style>
 </head>
 <body>
@@ -285,7 +258,7 @@ display:none;
 				<div class="searchBox">
 					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord">
+							id="searchWord" name="searchWord" value=${searchWord }>
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -298,14 +271,14 @@ display:none;
 						<c:when test="${empty loginID}">
 							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
 							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267">
-							<p class="user" id="test">상세 페이지 테스트</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
+									class="user" id="test">상세 페이지 테스트</p></a>
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
 							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267">
-							<p class="user" id="test">상세 페이지 테스트</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
+									class="user" id="test">상세 페이지 테스트</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -320,53 +293,40 @@ display:none;
 		</div>
 		<hr id="headerHr">
 		<div class="navi"></div>
-		<div class="body"></div>
-		<div class="footer">
-
-			<hr>
-			<div class="f_header">
-				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
-
-				<div class="sns_icon">
-					<a href="#"><img src="/resources/instagram.png" id="insta"></a>
-					<a href="#"><img src="/resources/facebook.png" id="facebook"></a> 
-					<a href="#"><img src="/resources/twitter_black.png" id="twitter"></a>
-					<a href="#"><img src="/resources/youtube.png" id="youtube"></a>
-				</div>
-
+		<div class="body">
+			<div class="book">
+				<div class="book-header">도서</div>
+				<hr>
+				<c:forEach var="book" items="${blist }">
+					<div class="book-main">
+						<img class="book-img" src="${book.b_img_url }">
+						<div class="b_title" title="${book.b_title }">${book.b_title }</div>
+						<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
+					</div>
+				</c:forEach>
 			</div>
-			<div class="business_info">
-				<div class="inline_info">
-					<div id="business_info_title">사업자 정보</div>
-					<span class="arrow_icon material-symbols-outlined" id="arrow_down2">keyboard_arrow_down</span>
-					<span class="arrow_icon material-symbols-outlined" id="arrow_up2">keyboard_arrow_up</span>
-
-
+			<div class="post">
+				<div class="post-header">포스트</div>
+				<hr>
+				<div class="post-main">
+					<div class="p_writer">지민님의 포스트</div>
+					<div class="p_title">포스트 제목</div>
+					<div class="p_like_count">좋아요 수</div>
+					<div class="p_content">포스트 내용</div>
 				</div>
-
-				<div id="business_info_text">
-					<span>대표자 조성태 </span>
-					<span> | </span>
-					<span> 사업자 등록번호 01-20-22015</span>
-					<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
-					<span>대표전화 1544-9970 </span>
-					<span> | </span>
-					<span> 이메일 help@bookday.com</span>
+				<div class="post-main">
+					<div class="">지민님의 포스트</div>
+				</div>
+				<div class="post-main">
+					<div class="">지민님의 포스트</div>
+				</div>
+				<div class="post-main">
+					<div class="">지민님의 포스트</div>
 				</div>
 			</div>
-
-			<div class="f_intro">
-				<span>회사소개</span> <span class="f_line">|</span> <span>이용약관</span> <span
-					class="f_line">|</span> <span>개인정보처리방침</span> <span class="f_line">|</span>
-				<span>청소년보호정책</span> <span class="f_line">|</span> <span>제휴
-					문의</span>
-			</div>
-			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
-			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
 		</div>
-
+		<div class="footer"></div>
 	</div>
-
 	<script>
       $("#logo_img").on("click", function() {
          location.href = "/";
@@ -397,25 +357,6 @@ display:none;
          location.href = "/member/toMypage";
          }
       })
-      
-        //footer: 사업자 정보 토글 기능
-       $("#business_info_text").hide();
-
-                    $("#business_info_title, #arrow_down2").click(function() {
-
-                        $("#business_info_text").slideToggle(200);
-
-                            $("#arrow_up2").css("display", "block");
-                            $("#arrow_down2").css("display", "none"); 
- 
-                    });
-
-                    $("#arrow_up2").click(function() {
-                        $("#business_info_text").slideToggle(200);
-
-                        $("#arrow_down2").css("display", "block");
-                        $("#arrow_up2").css("display", "none");
-                    });
    </script>
 </body>
 </html>
