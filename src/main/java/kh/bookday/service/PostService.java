@@ -25,28 +25,10 @@ public class PostService {
 
 	@Autowired
 	private PostCommentDAO cdao;
-
-	// 포스트 리스트 출력
-	public List<PostDTO> selectPostListById(String id){
-		List<PostDTO> plist = dao.selectPostListById(id);
-		for(PostDTO post: plist) {
-			post.setP_content(Jsoup.parse(post.getP_content()).text());
-		}
-		return plist;
-	}
 	
-	// 포스트 리스트 좋아요 출력
-	public List<PostLikeDTO> selectPostLikeListById(String id){
-		List<PostLikeDTO> llist = ldao.selectPostLikeListById(id);
-		return llist;
-	}
 	
-	// 포스트 입력
-	public int insertPost(PostDTO dto) {
-		return dao.insertPost(dto);
-	}
-	
-	// 책장에 포스트 올린 책 출력(무한 스크롤)
+// JIN
+	// 책장 페이지) 포스트 올린 책 20개씩 출력(무한 스크롤)
 	public List<PostDTO> select20PostListById(String id, int count) {
 
 		if (dao.select20PostCount() < (count * 20) + 1) {
@@ -60,53 +42,89 @@ public class PostService {
 
 		return dao.select20PostListById(data);
 	}
-	
-	// 포스트 출력
+
+	// 포스트 페이지) 포스트 리스트 출력
+	public List<PostDTO> selectPostListById(String id){
+		List<PostDTO> plist = dao.selectPostListById(id);
+		for(PostDTO post: plist) {
+			post.setP_content(Jsoup.parse(post.getP_content()).text());
+		}
+		return plist;
+	}
+
+	// 포스트 페이지) 포스트 리스트 좋아요 출력
+	public List<PostLikeDTO> selectPostLikeListById(String id){
+		List<PostLikeDTO> llist = ldao.selectPostLikeListById(id);
+		return llist;
+	}
+
+	// 포스트 페이지) 포스트 입력 속 도서 검색
+	public List<PostDTO> selectPostListBySw(String searchWord){
+		return dao.selectPostListBySw(searchWord);
+	}
+
+	// 포스트 페이지) 포스트 입력
+	public int insertPost(PostDTO dto) { // p_seq받아오는 걸로 바꾸기
+		return dao.insertPost(dto);
+	}
+
+	// 포스트 페이지) 포스트 디테일 출력
 	public PostDTO selectPostByPseq(int p_seq) {
 		return dao.selectPostByPseq(p_seq);
 	}
-	
-	// 포스트 좋아요 출력
-	public boolean selectPostLike(PostLikeDTO dto) {
-		boolean result = ldao.selectPostLike(dto);
-		return result;
+
+	// 포스트 페이지) 포스트 디테일 좋아요 출력
+	public boolean selectPostLike(PostLikeDTO ldto) {
+		return ldao.selectPostLike(ldto);
 	}
-	
-	// 포스트 좋아요 입력
+
+	// 포스트 페이지) 포스트 좋아요 입력
 	public String insertPostLike(PostLikeDTO dto) {
 		int result = 0;
 		if(!ldao.selectPostLike(dto)) {
 			result = ldao.insertPostLike(dto);
+			dao.updatePLCUp(dto.getP_seq());
 		}
 		return String.valueOf(result);
 	}
-	// 포스트 좋아요 삭제
-	public void deletePostLike(PostLikeDTO dto) {
-		ldao.deletePostLike(dto);
-	}
 	
-	// 포스트 댓글 출력
+	// 포스트 페이지)  포스트 좋아요 삭제
+	public String deletePostLike(PostLikeDTO dto) {
+		int result = 0;
+		if(ldao.selectPostLike(dto)) {
+			result = ldao.deletePostLike(dto);
+			dao.updatePLCDown(dto.getP_seq());
+		}
+		return String.valueOf(result);
+	}
+
+	// 포스트 페이지) 포스트 댓글 출력
 	public List<PostCommentDTO> selectPostCListByPseq(int p_seq){
 		return cdao.selectPostCListByPseq(p_seq);
 	}
-	
-	// 댓글 리스트 출력
+
+	// 포스트 페이지) 댓글 리스트 출력
 	public List<PostCommentDTO> selectPCListByPseq(PostCommentDTO dto){
 		return cdao.selectPCListByPseq(dto);
 	}
-	
-	// 댓글 입력
-	public int insertPostComment(PostCommentDTO dto) {
-		return cdao.insertPostComment(dto);
+
+	// 포스트 페이지) 댓글 입력
+	public void insertPostComment(PostCommentDTO dto) {
+		cdao.insertPostComment(dto);
+		dao.updatePCCUp(dto.getP_seq());
+
+	}
+	// 포스트 페이지) 댓글 삭제
+	public void deletePostComment(PostCommentDTO dto) {
+		cdao.deletePostComment(dto.getPc_seq());
+		dao.updatePCCDown(dto.getP_seq());
+	}
+// JIN
+
+	// 해당 도서에 대한 포스트 출력
+	public List<PostDTO> selectPostByIsbn(String b_isbn) {
+		return dao.selectPostByIsbn(b_isbn);
 	}
 
-	//해당 도서에 대한 포스트 출력
-		public List<PostDTO> selectPostByIsbn(String b_isbn) {
-			return dao.selectPostByIsbn(b_isbn);
-		}
 
-	// 포스토 속 도서 검색
-	public List<PostDTO> selectPostListBySw(String searchWord){
-		return dao.selectPostListBySw(searchWord);
-	}
 }

@@ -22,7 +22,12 @@ public class PostCommentDAO {
 		return db.selectList("PostComment.selectPCListByPseq", dto);
 	}
 	
-	public int insertPostComment(PostCommentDTO dto) {
-		return db.insert("PostComment.insertPostComment", dto);
+	public void insertPostComment(PostCommentDTO dto) {
+		db.insert("PostComment.insertPostComment", dto);
+	}
+
+	public void deletePostComment(int pc_seq) {
+		// TODO Auto-generated method stub
+		
 	}
 }

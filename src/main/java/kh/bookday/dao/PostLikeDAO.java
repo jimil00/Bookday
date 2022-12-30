@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.bookday.dto.PostDTO;
 import kh.bookday.dto.PostLikeDTO;
 
 @Repository
@@ -18,15 +19,15 @@ public class PostLikeDAO {
 		return db.selectList("PostLike.selectPostLikeListById", id);
 	}
 	
-	public boolean selectPostLike(PostLikeDTO dto) {
-		return db.selectOne("PostLike.selectPostLike", dto);
+	public boolean selectPostLike(PostLikeDTO ldto) {
+		return db.selectOne("PostLike.selectPostLike", ldto);
 	}
 	
 	public int insertPostLike(PostLikeDTO dto) {
 		return db.insert("PostLike.insertPostLike", dto);
 	}
 
-	public void deletePostLike(PostLikeDTO dto) {
-		db.delete("PostLike.deletePostLike", dto);
+	public int deletePostLike(PostLikeDTO dto) {
+		return db.delete("PostLike.deletePostLike", dto);
 	}
 }

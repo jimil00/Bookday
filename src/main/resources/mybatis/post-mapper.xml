@@ -14,6 +14,14 @@
 		select * from post where p_writer_id = #{id} order by p_seq desc
 	</select>
 	
+	<update id="updatePLCUp">
+		update post set p_like_count = p_like_count + 1 where p_seq = #{p_seq}
+	</update>
+	
+	<update id="updatePLCDown">
+		update post set p_like_count = p_like_count -1 where p_seq = #{p_seq}
+	</update>
+	
 	<select id="select20PostListById" resultType="kh.bookday.dto.PostDTO">
 		<![CDATA[
           select *

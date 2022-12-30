@@ -64,7 +64,7 @@ public class BookController {
 	//도서 정보 출력
 	@RequestMapping("selectBookinfo") //@RequestParam("rv_seq") String rv_seq  @RequestParam(value="nowPage", required=false)String nowPage @RequestParam(value="cntPerPage", required=false)String cntPerPage
 	public String selectBookByIsbn(Model model, String b_isbn) {
-		
+		session.setAttribute("loginID", "zxcvzxcv");
 		//아마 상세 페이지로 가는 이동이 완성되면 포스트로 값을 받아서
 		
 		//도서 정보 출력
@@ -144,8 +144,11 @@ public class BookController {
 	@ResponseBody
 	@RequestMapping("insertReviewLike")
 	public String insertReviewLike(ReviewLikeDTO dto) {
+		session.setAttribute("loginID", "zxcvzxcv");
 		
 		dto.setId(String.valueOf(session.getAttribute("loginID")));
+		
+		System.out.println(dto.getId());
 		rservice.insertReviewLike(dto);
 		System.out.println(dto);
 		

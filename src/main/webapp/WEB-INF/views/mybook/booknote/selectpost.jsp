@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -355,10 +355,13 @@ span.size-30 {
 	padding: 10px 10px 10px 10px;
 }
 
+.postLike{
+	color: #80808050;
+		text-align: center;
+	
+}
 .postLikeCount {
 	padding: 10px 10px 10px 10px;
-	text-align: center;
-	color: #80808050;
 }
 
 span.size-45 {
@@ -377,12 +380,14 @@ span.size-45 {
 }
 
 .pcContents {
+	width: 100%;
 	display: flex;
 	align-content: center;
 	padding: 10px 10px 10px 10px;
 }
 
 .pcWriterImg {
+	width: 6%;
 	display: flex;
 	align-items: center;
 	margin-right: 15px;
@@ -395,6 +400,9 @@ span.size-45 {
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
+.pcContentsTxt{
+width: 94%;
+}
 .pcContentsInfo {
 	display: flex;
 	margin-bottom: 10px;
@@ -418,6 +426,9 @@ span.size-20 {
 	align-items: flex-end;
 }
 
+.pcBtn{
+margin-left: auto;
+}
 .insertPc {
 	padding: 10px 10px 10px 10px;
 	display: flex;
@@ -436,7 +447,7 @@ span.size-20 {
 	overflow: hidden;
 	position: relative;
 	overflow-y: auto;
-	 resize: none;
+	resize: none;
 }
 
 .insertPcBtn {
@@ -529,8 +540,8 @@ span.size-20 {
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/resources/${mdto.sysprofname }" width="100" height="100"
-							id="profile">
+						<img src="/resources/${mdto.sysprofname }" width="100"
+							height="100" id="profile">
 					</div>
 					<div id="contentsHeaderTxt">${mdto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${mdto.signup_date
 						} 하루</div>
@@ -577,7 +588,7 @@ span.size-20 {
 							</div>
 							<hr class="selectPHr">
 							<div class="postContent">${dto.p_content }</div>
-							<div class="postLikeCount"
+							<div class="postLike"  pseq="${dto.p_seq }" isbn=${dto.b_isbn } like="${result}"
 								<c:if test="${result}">style="color: #5397fc;"</c:if>>
 								<div class="postLikeIcon">
 									<span class="material-symbols-outlined size-45">
@@ -594,35 +605,37 @@ span.size-20 {
 								</div>
 								<hr class="selectPHr">
 								<div class="postComments">
-																	<c:forEach var="i" items="${list}">
-																	<div class="pcContents" seq="${i.pc_seq }">
-																		<div class="pcWriterImg">
-																			<img src="/images/${i.sysprofname }">
-																		</div>
-																		<div class="pcContentsTxt">
-																			<div class="pcContentsInfo">
-																				<div class="pcWriter">
-																					<span class="material-symbols-outlined size-20">
-																						cloud </span><span class="pcWriterNn">${i.pc_writer_nn }</span><span class="material-symbols-outlined size-20">
-																						cloud </span>
-																				</div>
-																				<div class="pcWriteDate">&nbsp&nbsp${i.pc_write_date }</div>
-																			</div>
-																			<div class="pcContent">
-																				${i.pc_content }
-																			</div>
-																		</div>
-																		<c:choose>
-																		<c:when test="${loginID == i.pc_writer_id }"><div class="pcBtn"><button>수정</button><button>삭제</button></div></c:when>
-																		</c:choose>
-																	</div>
-																	</c:forEach>
+									<c:forEach var="i" items="${list}">
+										<div class="pcContents" seq="${i.pc_seq }">
+											<div class="pcWriterImg">
+												<img src="/images/${i.sysprofname }">
+											</div>
+											<div class="pcContentsTxt">
+												<div class="pcContentsInfo">
+													<div class="pcWriter">
+														<span class="material-symbols-outlined size-20">
+															cloud </span><span class="pcWriterNn">${i.pc_writer_nn }</span><span
+															class="material-symbols-outlined size-20"> cloud </span>
+													</div>
+													<div class="pcWriteDate">&nbsp&nbsp${i.pc_write_date
+														}</div>
+												<c:if test="${loginID == i.pc_writer_id }">
+													<div class="pcBtn">
+														<button>수정</button>
+														<button>삭제</button>
+													</div>
+												</c:if>
+												</div>
+												<div class="pcContent">${i.pc_content }</div>
+											</div>
+										</div>
+									</c:forEach>
 								</div>
 								<hr class="selectPHr">
 								<div class="insertPc">
 									<div class="insertPcContent">
 										<textarea class="insertPcContentBox" maxlength="200"></textarea>
-<!-- 										<div class="insertPcContentBox" contenteditable="true"></div> -->
+										<!-- 										<div class="insertPcContentBox" contenteditable="true"></div> -->
 									</div>
 									<div class="insertPcBtn">
 										<button id="insertPcBtn">입력</button>
@@ -746,17 +759,18 @@ span.size-20 {
                             let pcContent = $("<div>").addClass("pcContent").html(res[i].pc_content);
 
                             pcContentsTxt.append(pcContentsInfo);
-                            pcContentsTxt.append(pcContent);
-                            pcContents.append(pcContentsTxt);
-
                             if (window.sessionStorage.getItem("loginID") == res[i].pc_writer_id) {
                                 let pcBtn = $("<div>").addClass("pcBtn");
                                 let updatePcBtn = $("<button>").addClass("updatePcBtn").attr("type", "button").text("수정");
                                 let deletePcBtn = $("<button>").addClass("deleteBtn").attr("type", "button").text("삭제");
 
                                 pcBtn.append(updatePcBtn).append(deletePcBtn);
-                                pcContents.append(pcBtn);
+                                pcContentsTxt.append(pcBtn);
                             }
+                            pcContentsTxt.append(pcContent);
+                            pcContents.append(pcContentsTxt);
+
+
                             $(".postComments").append(pcContents);
                         }
                     }
@@ -792,6 +806,50 @@ span.size-20 {
 							insertPostComment(pc_content);
 						}
                     });
+                    
+        			$(".postLike").on("click", function(){
+        				let p_like = $(this).attr("like");
+        				let p_seq = $(this).attr("pseq");
+        				let b_isbn = $(this).attr("isbn");
+        				let tmp = event.target
+        				console.log(p_like);
+        				if(p_like == "false"){
+        					console.log("good");
+        				$.ajax({
+                            url: "/booknote/insertPostLike",
+                            type: "post",
+                            data: {
+                                "p_seq": p_seq,
+                                "b_isbn": b_isbn
+                            }
+        				}).done(function(data){
+        					console.log(data);
+        				
+//         						console.log()
+//         						$(tmp).attr("like","true");
+//         						$(tmp).attr("style", "color:blue;");
+                                location.reload();
+        					
+        				})
+        				}else{
+        					$.ajax({
+        	                    url: "/booknote/deletePostLike",
+        	                    type: "post",
+        	                    data: {
+        	                        "p_seq": p_seq,
+        	                        "b_isbn": b_isbn
+        	                    }
+        					}).done(function(data){
+        						console.log(data);
+
+        						
+//         							$(tmp).attr("like","false");
+//         							$(tmp).attr("style", "color:grey;");
+                                    location.reload();
+        						
+        					})
+        				}
+        			})
             </script>
 </body>
 </html>
