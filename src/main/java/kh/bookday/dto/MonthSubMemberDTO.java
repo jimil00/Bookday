@@ -9,18 +9,18 @@ public class MonthSubMemberDTO {
 	private Timestamp start_date;
 	private Timestamp end_date;
 	private int delivery_count;
-	private int book_count;
+	private int rental_count;
 
 
 	public MonthSubMemberDTO() {
 		super();
 	}
-	public MonthSubMemberDTO(String id, Timestamp start_date, Timestamp end_date, int delivery_count, int book_count) {
+	public MonthSubMemberDTO(String id, Timestamp start_date, Timestamp end_date, int delivery_count, int rental_count) {
 		this.id = id;
 		this.start_date = start_date;
 		this.end_date = end_date;
 		this.delivery_count = delivery_count;
-		this.book_count = book_count;
+		this.rental_count = rental_count;
 	}
 
 
@@ -48,11 +48,11 @@ public class MonthSubMemberDTO {
 	public void setDelivery_count(int delivery_count) {
 		this.delivery_count = delivery_count;
 	}
-	public int getBook_count() {
-		return book_count;
+	public int getRental_count() {
+		return rental_count;
 	}
-	public void setBook_count(int book_count) {
-		this.book_count = book_count;
+	public void setRental_count(int rental_count) {
+		this.rental_count = rental_count;
 	}
 	
 	// 날짜 변환 메소드

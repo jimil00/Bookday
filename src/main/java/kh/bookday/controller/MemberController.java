@@ -205,6 +205,9 @@ public class MemberController {
 			session.setAttribute("nickname",userInfo.getNickname());
 		}else {
 			service.kakaoSignUp(userInfo);
+
+			System.out.println(userInfo);
+
 			
 			session.setAttribute("loginID", userInfo.getId());
 			session.setAttribute("nickname",userInfo.getNickname());

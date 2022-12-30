@@ -61,6 +61,7 @@ div {
 	border: 1px solid rgb(194, 193, 193);
 	background-color: #ffffff;
 	color: #5397fc;
+	padding-bottom: 15px;
 }
 </style>
 <body>
@@ -70,7 +71,7 @@ div {
 				<img src="/resources/bookday_logo_ver1(kor).png" id="logo-img">
 			</div>
 			<div class="title">30일 구독권이 결제 완료되었습니다!</div>
-			<div class="sub-date">구독기간 : ${sdto.formedStartDate } ~ ${sdto.formedEndDate }</div>
+			<div class="sub-date">구독기간 : ${dto.formedStartDate } ~ ${dto.formedEndDate }</div>
 			<div class="btn-div">
 				<button class="btn" id="bookbag">책가방으로 이동</button>
 				<button class="btn" id="close">닫기</button>
