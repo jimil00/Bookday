@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,8 @@
 }
 
 div {
-/* 	border: 1px solid black; */
+	/* 	border: 1px solid black; */
+	
 }
 
 .container {
@@ -196,6 +198,10 @@ span, #logoImg:hover {
 	overflow: hidden;
 }
 
+.body-hr {
+		border-top: 1px solid rgb(216, 216, 216);
+}
+
 .book-main {
 	overflow: hidden;
 	width: 140px;
@@ -223,12 +229,12 @@ span, #logoImg:hover {
 }
 
 .b_writer {
-    overflow: hidden;
-    height: 25px;
-    padding-top: 5px;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    white-space:nowrap;
+	overflow: hidden;
+	height: 25px;
+	padding-top: 5px;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .post {
@@ -237,14 +243,16 @@ span, #logoImg:hover {
 }
 
 .post-main {
+	overflow: hidden;
 	width: 250px;
 	height: 300px;
 	float: left;
+	text-align: center;
 	margin-left: 55px;
 	margin-bottom: 20px;
 	margin-top: 10px;
-	border: 1px solid;
-}
+	border: 1px solid #5397fc;
+	border-radius: 15px;
 }
 </style>
 </head>
@@ -296,39 +304,49 @@ span, #logoImg:hover {
 		<div class="body">
 			<div class="book">
 				<div class="book-header">도서</div>
-				<hr>
-				<c:forEach var="book" items="${blist }">
-					<div class="book-main">
-						<img class="book-img" src="${book.b_img_url }">
-						<div class="b_title" title="${book.b_title }">${book.b_title }</div>
-						<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
-					</div>
-				</c:forEach>
+				<hr class="body-hr">
+				<c:choose>
+					<c:when test="${fn:length(blist) == 0}">
+						<div style="padding-top: 20px; text-align: center;">'${searchWord }'
+							에 대한 검색 결과가 없습니다.</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="book" items="${blist }">
+							<div class="book-main">
+								<img class="book-img" src="${book.b_img_url }">
+								<div class="b_title" title="${book.b_title }">${book.b_title }</div>
+								<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="post">
 				<div class="post-header">포스트</div>
-				<hr>
-				<div class="post-main">
-					<div class="p_writer">지민님의 포스트</div>
-					<div class="p_title">포스트 제목</div>
-					<div class="p_like_count">좋아요 수</div>
-					<div class="p_content">포스트 내용</div>
-				</div>
-				<div class="post-main">
-					<div class="">지민님의 포스트</div>
-				</div>
-				<div class="post-main">
-					<div class="">지민님의 포스트</div>
-				</div>
-				<div class="post-main">
-					<div class="">지민님의 포스트</div>
-				</div>
+				<hr class="body-hr">
+				<c:choose>
+					<c:when test="${fn:length(plist) == 0}">
+						<div style="padding-top: 20px; text-align: center;">작성된 포스트가
+							없습니다.</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="post" items="${plist }">
+							<div class="post-main"><br>
+								<div class="p_writer"><span style="font-weight: bold;">${post.p_writer_nn }</span> 님의포스트</div>
+								<div class="p_like_count"> <span class="p_like_icon material-symbols-outlined" data-count="0">thumb_up</span>${post.p_like_count }</div>
+								<hr class="body-hr">
+								<div class="p_title">${post.p_title }</div>
+								<div class="p_content">${post.p_content }</div>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<div class="footer"></div>
 	</div>
 	<script>
-      $("#logo_img").on("click", function() {
+      $("#logoImg").on("click", function() {
          location.href = "/";
       })
       $("#searchword").on("keydown", function(e) {
