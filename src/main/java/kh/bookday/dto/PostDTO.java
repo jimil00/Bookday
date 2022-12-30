@@ -11,6 +11,10 @@ public class PostDTO {
 	private String b_title;
 	private String b_writer;
 	private String b_genre;
+	private String b_publisher;
+	private String b_publication_date;
+	private String dyst_read;
+	private String dyfn_read;
 	private String p_writer_nn;
 	private Timestamp p_write_date;
 	private String p_title;
@@ -24,9 +28,9 @@ public class PostDTO {
 		super();
 	}
 	public PostDTO(int p_seq, String p_writer_id, String b_isbn, String b_img_url, String b_title, String b_writer,
-			String b_genre, String p_writer_nn, Timestamp p_write_date, String p_title, String p_content,
-			int p_view_count, int p_comment_count, int p_like_count) {
-		super();
+			String b_genre, String b_publisher, String b_publication_date, String dyst_read, String dyfn_read,
+			String p_writer_nn, Timestamp p_write_date, String p_title, String p_content, int p_view_count,
+			int p_comment_count, int p_like_count) {
 		this.p_seq = p_seq;
 		this.p_writer_id = p_writer_id;
 		this.b_isbn = b_isbn;
@@ -34,6 +38,10 @@ public class PostDTO {
 		this.b_title = b_title;
 		this.b_writer = b_writer;
 		this.b_genre = b_genre;
+		this.b_publisher = b_publisher;
+		this.b_publication_date = b_publication_date;
+		this.dyst_read = dyst_read;
+		this.dyfn_read = dyfn_read;
 		this.p_writer_nn = p_writer_nn;
 		this.p_write_date = p_write_date;
 		this.p_title = p_title;
@@ -42,8 +50,8 @@ public class PostDTO {
 		this.p_comment_count = p_comment_count;
 		this.p_like_count = p_like_count;
 	}
-
-
+	
+	
 	public int getP_seq() {
 		return p_seq;
 	}
@@ -85,6 +93,30 @@ public class PostDTO {
 	}
 	public void setB_genre(String b_genre) {
 		this.b_genre = b_genre;
+	}
+	public String getB_publisher() {
+		return b_publisher;
+	}
+	public void setB_publisher(String b_publisher) {
+		this.b_publisher = b_publisher;
+	}
+	public String getB_publication_date() {
+		return b_publication_date;
+	}
+	public void setB_publication_date(String b_publication_date) {
+		this.b_publication_date = b_publication_date;
+	}
+	public String getDyst_read() {
+		return dyst_read;
+	}
+	public void setDyst_read(String dyst_read) {
+		this.dyst_read = dyst_read;
+	}
+	public String getDyfn_read() {
+		return dyfn_read;
+	}
+	public void setDyfn_read(String dyfn_read) {
+		this.dyfn_read = dyfn_read;
 	}
 	public String getP_writer_nn() {
 		return p_writer_nn;
@@ -128,5 +160,5 @@ public class PostDTO {
 	public void setP_like_count(int p_like_count) {
 		this.p_like_count = p_like_count;
 	}
-	
+
 }

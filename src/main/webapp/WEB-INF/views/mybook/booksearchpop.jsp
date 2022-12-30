@@ -119,7 +119,9 @@ padding: 15px 15px 15px 0;
 }
 
 
-
+.bookCover{
+width:80px;
+}
 .bookCover img {
 	width: 80px;
 	height: 120px;
@@ -141,8 +143,15 @@ color: black;
 	font-size:16px;
 	
 }
-.bookPublish{
-font-size:13px;}
+.bookPublisher{
+font-size:13px;
+}
+.between{
+font-size:13px;
+}
+.bookPublicationDate{
+font-size:13px;
+}
 .select {
 	width: 50px;
 	height: 30px;
@@ -184,7 +193,7 @@ font-size:13px;}
 							</p>
 							<p>
 								<span class="bookWriter">${book.b_writer}</span></p>
-								<span class="bookPublish">출판사&nbsp${book.b_publisher}&nbsp|&nbsp출판연도&nbsp${book.b_publication_date}</span>
+								<span class="bookPublisher">${book.b_publisher}</span><span class="between">&nbsp|&nbsp</span><span class="bookPublicationDate">${book.b_publication_date}</span>
 							</td>
 						<td>
 							<button class="select" value="${book.b_isbn}">선택</button>
@@ -213,10 +222,12 @@ font-size:13px;}
                     var b_img_url = $(this).closest("tr").find("img").attr("src");
                     var b_title = $(this).closest("tr").find(".bookTitle").children("a").html();
                     var b_writer = $(this).closest("tr").find(".bookWriter").html();
-                    var b_publish = $(this).closest("tr").find(".bookPublish").html();
+                    var b_publisher = $(this).closest("tr").find(".bookPublisher").html();
+                    var b_publication_date = $(this).closest("tr").find(".bookPublicationDate").html();
 
-					console.log(b_isbn+ b_genre+b_img_url+b_title+b_writer+b_publish);
-                    opener.initSearchBook(b_genre, b_img_url, b_title, b_writer, b_publish);
+					console.log(b_isbn+ b_genre+b_img_url+b_title+b_writer+b_publisher+b_publication_date);
+                    window.opener.initSearchBook(b_isbn, b_genre, b_img_url, b_title, b_writer, b_publisher, b_publication_date);
+                    window.self.close();
                 });
             </script>
 </body>

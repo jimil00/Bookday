@@ -3,6 +3,17 @@
 
 <mapper namespace="Post">
 
+	<insert id="insertPost">
+		insert into post values(post_seq.nextval, #{p_writer_id}, #{b_isbn}, #{b_img_url}, #{b_title}, #{b_writer}, #{b_genre}, #{b_publisher}, #{b_publication_date}, #{dyst_read}, #{dyfn_read}, #{p_writer_nn}, sysdate, #{p_title}, #{p_content}, 0, 0, 0)
+		<selectKey order="AFTER" keyProperty="p_seq" resultType="int">
+			select post_seq.currval from dual
+		</selectKey>
+	</insert>
+	
+	<select id="selectPostListById" resultType="kh.bookday.dto.PostDTO">
+		select * from post where p_writer_id = #{id} order by p_write_date desc
+	</select>
+	
 	<select id="select20PostListById" resultType="kh.bookday.dto.PostDTO">
 		<![CDATA[
           select *
@@ -13,5 +24,9 @@
 
 	<select id="select20PostCount" resultType="int">
           select count(*) from post
+	</select>
+	
+	<select id="selectPostByPseq" resultType="kh.bookday.dto.PostDTO">
+		select * from post where p_seq = #{p_seq}
 	</select>
 </mapper>

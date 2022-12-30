@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -348,6 +350,12 @@ span.size-30 {
 }
 
 /* contentsBodyPostContents */
+.emptyPostContents{
+	font-size: 15px;
+	margin-top: 20px;
+	margin-bottom:20px;
+	text-align: center;
+}
 .postContents {
 	width: 100%;
 	height: auto;
@@ -392,7 +400,10 @@ span.size-30 {
 	font-size: 17px;
 	font-weight: 200;
 }
-
+.postTitle a{
+	text-decoration: none;
+	color: black;
+}
 .postCommentCount {
 	color: #5397fc;
 }
@@ -405,20 +416,28 @@ span.size-30 {
 }
 
 .postContent {
+	width: 83%;
 	height: auto;
 	font-size: 14px;
 	height: auto;
 	display: flex;
 	flex-wrap: wrap;
+	   text-overflow: ellipsis;
+   overflow: hidden;
+   word-break: break-word;
+   display: -webkit-box;
+   -webkit-line-clamp: 7;
+   -webkit-box-orient: vertical;
+}
+.postContent>p>span{
+font-size: 14px !important;
 }
 
 .postBody {
+	height: 106.4px;
 	display: flex;
 }
 
-.postContent {
-	width: 83%;
-}
 
 .postLike {
 	width: 17%;
@@ -537,6 +556,13 @@ span.size-45 {
 					</div>
 					<hr class="bodyHr">
 					<div class="selectPostList">
+					                        <c:choose>
+                            <c:when test="${empty list}">
+                            
+                                <div class="emptyPostContents">포스트가 없습니다.</div>
+					<hr class="bodyHr">
+                       </c:when>
+                       <c:otherwise>
 						<c:forEach var="i" items="${list}">
 							<div class="postContents">
 								<div class="postContentsImg">
@@ -549,13 +575,14 @@ span.size-45 {
 										}>&nbsp${i.b_writer }</div>
 									<div class="postHeader">
 										<div class="postTitle">
-											${i.p_title } <span class="postCommentCount">[${i.p_comment_count }]</span>
+											<a href="/booknote/selectPostByPseq?p_seq=${i.p_seq }">${i.p_title }</a> <span class="postCommentCount">[${i.p_comment_count }]</span>
 										</div>
 										<div class="postWritedate">${i.p_write_date }</div>
 									</div>
 									<hr class="postlistHr">
 									<div class="postBody">
-										<div class="postContent">${i.p_content }</div>
+										<div class="postContent">${i.p_content }
+										</div>
 										<div class="postLike">
 											<div class="postLikeIcon">
 												<span class="material-symbols-outlined size-45">thumb_up</span>
@@ -568,6 +595,8 @@ span.size-45 {
 						</c:forEach>
 					</div>
 					<hr class="bodyHr">
+					</c:otherwise>
+					</c:choose>
 					<div class="postPage"></div>
 				</div>
 			</div>

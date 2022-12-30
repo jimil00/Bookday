@@ -17,11 +17,11 @@ public class PostDAO {
 
 	
 	public List<PostDTO> selectPostListById(String id){
-		return db.selectList("Booknote.selectPostListById", id);
+		return db.selectList("Post.selectPostListById", id);
 	}
 	
-	public void insertPost(PostDTO dto) {
-		db.insert("Booknote.insertPost", dto);
+	public int insertPost(PostDTO dto) {
+		return db.insert("Post.insertPost", dto);
 	}
 
 	public List<PostDTO> select20PostListById(HashMap<String, Object> data){
@@ -30,5 +30,9 @@ public class PostDAO {
 
 	public int select20PostCount() {
 		return db.selectOne("Post.select20PostCount");
+	}
+	
+	public PostDTO selectPostByPseq(int p_seq) {
+		return db.selectOne("Post.selectPostByPseq", p_seq);
 	}
 }

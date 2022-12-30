@@ -6,6 +6,7 @@ public class PostCommentDTO {
 	
 	private int pc_seq;
 	private String pc_writer_id;
+	private String sysprofname;
 	private String pc_writer_nn;
 	private String pc_content;
 	private Timestamp pc_write_date;
@@ -15,10 +16,11 @@ public class PostCommentDTO {
 	public PostCommentDTO() {
 		super();
 	}
-	public PostCommentDTO(int pc_seq, String pc_writer_id, String pc_writer_nn, String pc_content,
+	public PostCommentDTO(int pc_seq, String pc_writer_id, String sysprofname, String pc_writer_nn, String pc_content,
 			Timestamp pc_write_date, int p_seq) {
 		this.pc_seq = pc_seq;
 		this.pc_writer_id = pc_writer_id;
+		this.sysprofname = sysprofname;
 		this.pc_writer_nn = pc_writer_nn;
 		this.pc_content = pc_content;
 		this.pc_write_date = pc_write_date;
@@ -37,6 +39,12 @@ public class PostCommentDTO {
 	}
 	public void setPc_writer_id(String pc_writer_id) {
 		this.pc_writer_id = pc_writer_id;
+	}
+	public String getSysprofname() {
+		return sysprofname;
+	}
+	public void setSysprofname(String sysprofname) {
+		this.sysprofname = sysprofname;
 	}
 	public String getPc_writer_nn() {
 		return pc_writer_nn;
@@ -62,5 +70,6 @@ public class PostCommentDTO {
 	public void setP_seq(int p_seq) {
 		this.p_seq = p_seq;
 	}
+
 	
 }
