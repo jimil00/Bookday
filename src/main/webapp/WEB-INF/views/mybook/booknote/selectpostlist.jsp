@@ -563,7 +563,7 @@ span.size-45 {
 					<hr class="bodyHr">
                     </c:when>
                     <c:otherwise>
-						<c:forEach var="i" items="${list}" var="like" items="${llist }">
+						<c:forEach var="i" items="${list}" varStatus="status">
 							<div class="postContents">
 								<div class="postContentsImg">
 									<div class="postBookImg">
@@ -584,7 +584,7 @@ span.size-45 {
 										<div class="postContent">${i.p_content }
 										</div>
                                         
-                                        <div class="postLike" seq="${i.p_seq }" isbn="${i.b_isbn }" <c:if test="${i.p_seq == like.p_seq}">like="true" style="color: #5397fc;"</c:if>>
+                                        <div class="postLike" seq="${i.p_seq }" isbn="${i.b_isbn }" <c:if test="${i.p_seq == like[status.index].p_seq}">like="true" style="color: #5397fc;"</c:if>>
 											<div class="postLikeIcon">
 												<span class="material-symbols-outlined size-45">thumb_up</span>
 											</div>
