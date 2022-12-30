@@ -41,4 +41,10 @@ public class PostDAO {
 	public List<PostDTO> selectPostListBySw(String searchWord){
 		return db.selectList("Post.selectPostListBySw", searchWord);
 	}
+	
+	//인기 포스트 출력
+	public List<PostDTO> selectPopularPost() {
+		return db.selectList("Post.selectPopularPost");
+	}
+	
 }

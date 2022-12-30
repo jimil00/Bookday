@@ -14,6 +14,21 @@
 	<select id="selectBookByIsbn" resultType="kh.bookday.dto.BookDTO">
 		select * from book where b_isbn=#{b_isbn}
 	</select>
+	
+	<!-- 베스트셀러 출력 -->
+	<select id="selectBestSeller" resultType="kh.bookday.dto.BookDTO">
+		select * from book where <![CDATA[rownum <= 6]]> order by b_publication_date desc
+	</select>
+	
+	<!-- 스테디셀러 출력 -->
+	 <select id="selectSteadySeller" resultType="kh.bookday.dto.BookDTO">
+		select * from book where <![CDATA[rownum <= 6]]> order by b_publication_date desc
+	</select> 
+	
+	<!-- 신간 도서 출력 -->
+	 <select id="selectNewBooks" resultType="kh.bookday.dto.BookDTO">
+		select * from book where <![CDATA[rownum <= 6]]> order by b_publication_date desc
+	</select> 
 		
 </mapper>
 

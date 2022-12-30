@@ -60,7 +60,6 @@ public class BookController {
 		return "mybook/booksearchpop";
 	}
 	
-	
 	//도서 정보 출력
 	@RequestMapping("selectBookinfo") //@RequestParam("rv_seq") String rv_seq  @RequestParam(value="nowPage", required=false)String nowPage @RequestParam(value="cntPerPage", required=false)String cntPerPage
 	public String selectBookByIsbn(Model model, String b_isbn) {
@@ -71,13 +70,13 @@ public class BookController {
 		BookDTO dto=service.selectBookByIsbn(b_isbn);
 		model.addAttribute("dto",dto);
 		
-		//댓글 리스트 출력
+		//리뷰 리스트 출력
 		List<ReviewDTO> rlist=rservice.selectReviewByIsbn(b_isbn);
 		model.addAttribute("rlist",rlist);
 		
 		String id=String.valueOf(session.getAttribute("loginID"));		
 
-		//유저에 따른 댓글 좋아요 list
+		//유저에 따른 리뷰 좋아요 list
 		List<ReviewLikeDTO> rl_list=rservice.findReviewLike(id,b_isbn);
 		model.addAttribute("rl_list",rl_list);
 					
