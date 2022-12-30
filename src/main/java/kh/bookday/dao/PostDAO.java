@@ -15,13 +15,13 @@ public class PostDAO {
 	@Autowired
 	private SqlSession db;
 
-	
+
 	public List<PostDTO> selectPostListById(String id){
-		return db.selectList("Post.selectPostListById", id);
+		return db.selectList("Booknote.selectPostListById", id);
 	}
-	
-	public int insertPost(PostDTO dto) {
-		return db.insert("Post.insertPost", dto);
+
+	public void insertPost(PostDTO dto) {
+		db.insert("Booknote.insertPost", dto);
 	}
 
 	public List<PostDTO> select20PostListById(HashMap<String, Object> data){
@@ -31,13 +31,14 @@ public class PostDAO {
 	public int select20PostCount() {
 		return db.selectOne("Post.select20PostCount");
 	}
-	
-	public PostDTO selectPostByPseq(int p_seq) {
-		return db.selectOne("Post.selectPostByPseq", p_seq);
-	}
 
 	//해당 도서 포스트 출력
 	public List<PostDTO> selectPostByIsbn(String b_isbn) {
 		return db.selectList("Post.selectPostByIsbn", b_isbn);
+	}
+
+	// 포스트 속 책 검색
+	public List<PostDTO> selectPostListBySw(String searchWord){
+		return db.selectList("Post.selectPostListBySw", searchWord);
 	}
 }

@@ -2,7 +2,6 @@ package kh.bookday.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class PostService {
 
 	@Autowired
 	private PostCommentDAO cdao;
-	
+
 	// 포스트 리스트 출력
 	public List<PostDTO> selectPostListById(String id){
 		List<PostDTO> plist = dao.selectPostListById(id);
@@ -106,4 +105,8 @@ public class PostService {
 			return dao.selectPostByIsbn(b_isbn);
 		}
 
+	// 포스토 속 도서 검색
+	public List<PostDTO> selectPostListBySw(String searchWord){
+		return dao.selectPostListBySw(searchWord);
+	}
 }

@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kh.bookday.dto.BookDTO;
+import kh.bookday.dto.PostDTO;
 import kh.bookday.service.BookService;
+import kh.bookday.service.PostService;
 
 @Controller
 @RequestMapping("/search/")
@@ -16,6 +18,9 @@ public class SearchController {
 	
 	@Autowired
 	private BookService service;
+	
+	@Autowired
+	private PostService pservice;
 
 	/* 검색페이지로 이동 */
 	@RequestMapping("toSearch")
@@ -25,6 +30,10 @@ public class SearchController {
 		List<BookDTO> blist = service.selectBookListBySw(searchWord);
 		System.out.println(blist.get(0).getB_title());
 		model.addAttribute("blist", blist);
+		
+		List<PostDTO> plist = pservice.selectPostListBySw(searchWord);
+//		System.out.println(plist.get(0).getB_title());
+		model.addAttribute("plist", plist);
 		return "search";
 	}
 	
