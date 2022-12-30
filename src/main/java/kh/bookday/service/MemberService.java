@@ -116,7 +116,7 @@ public class MemberService {
 		String refresh_Token="";
 		String grant_type="grant_type=authorization_code";
 		String client_id="&client_id=5d39c4a90d2cd9ef1649a8e6108ba988";
-		String redirect_uri= "&redirect_uri=http://localhost:8090/member/kakaoLogin";
+		String redirect_uri= "&redirect_uri=http://localhost/member/kakaoLogin";
 		String reqURL ="https://kauth.kakao.com/oauth/token";
 
 		try {
@@ -258,5 +258,10 @@ public class MemberService {
 	/* 회원 등급 변경 */
 	public void updateMemberGradeById(String id) {
 		dao.updateMemberGradeById(id);
+	}
+	
+	/* 월 구독 회원 남은 배송 횟수, 남은 대여 권수 계산 */
+	public void updateMonthSubMemberById(MonthSubMemberDTO dto) {
+		dao.updateMonthSubMemberById(dto);
 	}
 }

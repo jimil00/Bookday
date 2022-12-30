@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import kh.bookday.dto.BookbagDTO;
 import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.MonthSubMemberDTO;
+import kh.bookday.dto.RentalDTO;
 import kh.bookday.dto.WishlistDTO;
 
 @Repository
@@ -26,6 +27,11 @@ public class BookbagDAO {
 	/* 책 삭제 */
 	public void deleteBookbagBySeq(int bookbag_seq) {
 		db.delete("Bookbag.deleteBookbagBySeq", bookbag_seq);
+	}
+	
+	/* 책 출력 */
+	public  BookbagDTO selectBookbagBySeq(int bookbag_seq) {
+		return db.selectOne("Bookbag.selectBookbagBySeq", bookbag_seq);
 	}
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.bookday.dao.BookbagDAO;
 import kh.bookday.dto.BookbagDTO;
+import kh.bookday.dto.RentalDTO;
 
 @Service
 public class BookbagService {
@@ -19,9 +20,14 @@ public class BookbagService {
 		return dao.selectBookbagListById(id);
 	}
 	
-	/* 담은 작품 삭제 */
+	/* 책 삭제 */
 	public void deleteBookbagBySeq(int bookbag_seq) {
 		dao.deleteBookbagBySeq(bookbag_seq);
+	}
+	
+	/* 책 출력 */
+	public BookbagDTO selectBookbagBySeq(int bookbag_seq) {	
+		return dao.selectBookbagBySeq(bookbag_seq);
 	}
 	
 }

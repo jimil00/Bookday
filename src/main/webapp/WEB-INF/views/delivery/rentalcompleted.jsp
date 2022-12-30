@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.Date"%>
 <!DOCTYPE html>
@@ -317,20 +318,22 @@ span, #logoImg:hover {
 			</div>
 			<div class="body-left">
 				<hr style="margin-top: 5px;">
+				<c:forEach var="rental" items="${list}" varStatus="status">
 				<div class="left-main">
-					<div class="book-count">1</div>
+					<div class="book-count">${status.count}</div>
 					<div class="book-img-div">
 						<img
-							src="https://image.aladin.co.kr/product/28170/22/cover/k032835560_1.jpg"
+							src="${rental.b_img_url }"
 							id="book-img">
 					</div>
 					<div class="book-detail-div">
 						<div class="book-detail">
-							${bookbag.b_title } <br> ${bookbag.b_writer }
+							${rental.b_title } <br><br> ${rental.b_writer }
 						</div>
 					</div>
 				</div>
 				<hr style="margin-top: -14px;">
+				</c:forEach>
 			</div>
 			<div class="body-right">
 				<hr style="margin-top: 5px;">
@@ -340,7 +343,7 @@ span, #logoImg:hover {
 							(${dto.address2 })</span> 로 배달 예정입니다.
 					</div>
 					<div style="padding-bottom: 15px;">
-						총 <span style="font-weight: bold;">-</span> 권이 대여되었습니다.
+						총 <span style="font-weight: bold;">${fn:length(list)}</span> 권이 대여되었습니다.
 					</div>
 					<div style="padding-bottom: 15px;">
 						<c:set var="arrivalDate"

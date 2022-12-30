@@ -248,7 +248,11 @@ span, #logoImg:hover {
          location.href = "//toNotification";
       })
       $("#bookbag").on("click", function() {
-         location.href = "/delivery/selectBookbagListById";
+    	  if(${loginID == null}) {
+              location.href = "/member/toLogin";
+    	  }else {
+         	  location.href = "/delivery/selectBookbagListById?id=${loginID }";
+    	  }
       })
       $("#bookshelves").on("click", function() {
          location.href = "/bookshelves/selectBookshelvesListById";
@@ -256,8 +260,10 @@ span, #logoImg:hover {
       $("#mypage").on("click", function() {
          if (loginID == null) {
             location.href = "/member/tologin";
-         }
+            return false;
+         }else {
          location.href = "/member/toMypage";
+         }
       })
    </script>
 </body>
