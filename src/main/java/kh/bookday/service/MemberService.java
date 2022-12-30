@@ -139,7 +139,7 @@ public class MemberService {
 			StringBuilder sb = new StringBuilder();
 			sb.append(grant_type);
 			sb.append(client_id);
-			sb.append(redirect_uri_test);
+			sb.append(redirect_uri_shu);
 			sb.append("&code="+code);
 			bw.write(sb.toString());
 			bw.flush();

@@ -195,7 +195,15 @@ span, #logoImg:hover {
 	margin-top:100px;
 }
 
+.main_copy{
+	position:relative;
+	
+}
+
 /* book */
+.flex-box{
+display:inline-flex;
+}
 .with-books {
 overflow:hidden;
 }
@@ -207,19 +215,19 @@ margin-left: 0px;
 .book{
 margin-left:20px;
 } 
-.w_img_url {
+.b_img_url {
 width: 150px;
 }
 
-.w_title, .w_writer {
+.b_title, .b_writer {
 margin: 0px;
 }
 
-.w_title {
+.b_title {
 line-height: 17px;
 }
 
-.w_writer {
+.b_writer {
 line-height: 40px;
 font-size: small;
 }
@@ -339,7 +347,6 @@ margin: 0px;
 
 .f_intro>span{
    color:#4d4b4bc1;
-  
 }
 
 .f_line{
@@ -427,10 +434,10 @@ display:none;
 		<div class="navi"></div>
 		<div class="body">
 			<div class="service_intro">
-				<div class="main_copy" data-aos="fade-up" data-aos-duration="2000">
+			<div class="main_copy" data-aos="fade-up" data-aos-duration="2000">
 					<h1 id=main_headline">책과 하루를</h1>
 					<p id=headline2">책하루와 함께 독서로 하루를 정리해보세요!</p>
-				</div>
+			</div>
 				
 				<div class="main_img">
 					<div class="sun,moon">
@@ -465,36 +472,60 @@ display:none;
 			<div class="best_seller" data-aos="fade-up" data-aos-duration="2000">
 				<h2 id="best_headline">베스트셀러</h2>
 				
+				 <div class="flex-box">
+				 <c:choose>
+                    <c:when test="${not empty b_list}">
+                        <c:forEach items="${b_list}" var="b">
 				 <div class="book_box">
                        <div class="book">
-                           <img src="/resources/테스트.jpg" class="w_img_url">
-                             <p class="w_title">왜 아가리로만 할까?</p>
-                             <p class="w_writer">이상혁</p>
+                           <img src="${b.b_img_url}" class="b_img_url">
+                             <p class="b_title">${b.b_title}</p>
+                             <p class="b_writer">${b.b_writer}</p>
                        </div>
+                 </div>
+                 </c:forEach>
+                 </c:when>
+                 </c:choose>
                  </div>
 				
 			</div>
 			<div class="steady_seller" data-aos="fade-up" data-aos-duration="2000">
 				<h2 id="steady_headline">스테디셀러</h2>
 				
+				  <div class="flex-box">
+				 <c:choose>
+                    <c:when test="${not empty s_list}">
+                        <c:forEach items="${s_list}" var="s">
 				 <div class="book_box">
                        <div class="book">
-                           <img src="/resources/테스트.jpg" class="w_img_url">
-                             <p class="w_title">왜 아가리로만 할까?</p>
-                             <p class="w_writer">이상혁</p>
+                           <img src="${s.b_img_url}" class="b_img_url">
+                             <p class="b_title">${s.b_title}</p>
+                             <p class="b_writer">${s.b_writer}</p>
                        </div>
+                 </div>
+                 </c:forEach>
+                 </c:when>
+                 </c:choose>
                  </div>
 				
 			</div>
 			<div class="new_books" data-aos="fade-up" data-aos-duration="2000">
 				<h2 id="new_headline">신간도서</h2>
 				
+				 <div class="flex-box">
+				 <c:choose>
+                    <c:when test="${not empty n_list}">
+                        <c:forEach items="${n_list}" var="n">
 				 <div class="book_box">
                        <div class="book">
-                           <img src="/resources/테스트.jpg" class="w_img_url">
-                             <p class="w_title">왜 아가리로만 할까?</p>
-                             <p class="w_writer">이상혁</p>
+                           <img src="${n.b_img_url}" class="b_img_url">
+                             <p class="b_title">${n.b_title}</p>
+                             <p class="b_writer">${n.b_writer}</p>
                        </div>
+                 </div>
+                 </c:forEach>
+                 </c:when>
+                 </c:choose>
                  </div>
 				
 			</div>
