@@ -26,8 +26,7 @@
 }
 
 div {
-	/* 	border: 1px solid black; */
-	
+/* 	border: 1px solid black; */
 }
 
 .container {
@@ -199,7 +198,7 @@ span, #logoImg:hover {
 }
 
 .body-hr {
-		border-top: 1px solid rgb(216, 216, 216);
+	border-top: 1px solid rgb(216, 216, 216);
 }
 
 .book-main {
@@ -247,12 +246,27 @@ span, #logoImg:hover {
 	width: 250px;
 	height: 300px;
 	float: left;
-	text-align: center;
+/* 	text-align: center; */
 	margin-left: 55px;
 	margin-bottom: 20px;
 	margin-top: 10px;
 	border: 1px solid #5397fc;
 	border-radius: 15px;
+}
+
+.profile-img {
+	width: 50px;
+/* 	height: fit-content; */
+	border-radius: 50%;
+	margin-right:30px;
+
+}
+
+.p_like_icon {
+	padding-left: 15px;
+	position: relative;
+	top: 5px;
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 </style>
 </head>
@@ -313,7 +327,7 @@ span, #logoImg:hover {
 					<c:otherwise>
 						<c:forEach var="book" items="${blist }">
 							<div class="book-main">
-								<img class="book-img" src="${book.b_img_url }">
+								<a href=""><img class="book-img" src="${book.b_img_url }"></a>
 								<div class="b_title" title="${book.b_title }">${book.b_title }</div>
 								<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
 							</div>
@@ -331,9 +345,14 @@ span, #logoImg:hover {
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="post" items="${plist }">
-							<div class="post-main"><br>
-								<div class="p_writer"><span style="font-weight: bold;">${post.p_writer_nn }</span> 님의포스트</div>
-								<div class="p_like_count"> <span class="p_like_icon material-symbols-outlined" data-count="0">thumb_up</span>${post.p_like_count }</div>
+							<div class="post-main">
+								<br>
+								<div>
+									<span><img src="/resources/basic.png" class="profile-img"></span>
+									<span class="p_write" style="font-weight: bold;">${post.p_writer_nn }</span>
+									님의 포스트 <span class="p_like_count"> <span
+										class="p_like_icon material-symbols-outlined" data-count="0">thumb_up</span>  ${post.p_like_count }</span>
+								</div>
 								<hr class="body-hr">
 								<div class="p_title">${post.p_title }</div>
 								<div class="p_content">${post.p_content }</div>
