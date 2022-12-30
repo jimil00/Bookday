@@ -25,6 +25,12 @@ public class BookbagService {
 		dao.deleteBookbagBySeq(bookbag_seq);
 	}
 	
+
+	/* 책가방에 책 추가 */
+	public void insertBookbag(BookbagDTO dto) {
+		dao.insertBookbag(dto);
+		}
+
 	/* 책 출력 */
 	public BookbagDTO selectBookbagBySeq(int bookbag_seq) {	
 		return dao.selectBookbagBySeq(bookbag_seq);

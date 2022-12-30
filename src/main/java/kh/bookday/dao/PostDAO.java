@@ -35,4 +35,9 @@ public class PostDAO {
 	public PostDTO selectPostByPseq(int p_seq) {
 		return db.selectOne("Post.selectPostByPseq", p_seq);
 	}
+
+	//해당 도서 포스트 출력
+	public List<PostDTO> selectPostByIsbn(String b_isbn) {
+		return db.selectList("Post.selectPostByIsbn", b_isbn);
+	}
 }

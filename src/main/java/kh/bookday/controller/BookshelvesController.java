@@ -60,21 +60,14 @@ public class BookshelvesController {
 		List<WishlistDTO> wlist = wservice.selectWishlistListById(id);
 		model.addAttribute("wlist", wlist);
 
-		// 책장
-		// 한 사람이 쓴 POST 쓴 것 
-		// Posted,Marked Books
-		//		List<PostDTO> plist = service.selectPostListById(id);
-		//		model.addAttribute("plist", plist);
-
-		// 책장
-		// 한 사람이 쓴 POST 쓴 것 
-		// Posted,Marked Books
+		// 내 책장 첫 20개 출력
 		List<PostDTO> plist = pservice.select20PostListById(id, 0);
 		model.addAttribute("plist", plist);
 
 		return "mybook/bookshelves";
 	}
-
+	
+	// 내 책장 다음 20개씩 출력(무한 스크롤)
 	@GetMapping("nextList")
 	@ResponseBody
 	public String nextList(int count) {

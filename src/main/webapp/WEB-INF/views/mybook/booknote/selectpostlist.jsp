@@ -445,16 +445,17 @@ font-size: 14px !important;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: #5397fc;
+	color: #80808050;
 }
 
 .postLikeIcon {
 	display: inline-block;
 	width: auto;
+	cursor: pointer;
 }
 
 span.size-45 {
-	/* pointer-events: none; 내글도 내가 좋아요 할 수 있다면?*/
+	cursor: pointer;
 	font-size: 45px;
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
 }
@@ -556,14 +557,13 @@ span.size-45 {
 					</div>
 					<hr class="bodyHr">
 					<div class="selectPostList">
-					                        <c:choose>
-                            <c:when test="${empty list}">
-                            
-                                <div class="emptyPostContents">포스트가 없습니다.</div>
+					<c:choose>
+                    <c:when test="${empty list}">
+					<div class="emptyPostContents">포스트가 없습니다.</div>
 					<hr class="bodyHr">
-                       </c:when>
-                       <c:otherwise>
-						<c:forEach var="i" items="${list}">
+                    </c:when>
+                    <c:otherwise>
+						<c:forEach var="i" items="${list}" var="like" items="${llist }">
 							<div class="postContents">
 								<div class="postContentsImg">
 									<div class="postBookImg">
@@ -583,12 +583,14 @@ span.size-45 {
 									<div class="postBody">
 										<div class="postContent">${i.p_content }
 										</div>
-										<div class="postLike">
+                                        
+                                        <div class="postLike" seq="${i.p_seq }" isbn="${i.b_isbn }" <c:if test="${i.p_seq == like.p_seq}">like="true" style="color: #5397fc;"</c:if>>
 											<div class="postLikeIcon">
 												<span class="material-symbols-outlined size-45">thumb_up</span>
 											</div>
 											<div class="postLikeCount">${i.p_like_count }</div>
 										</div>
+
 									</div>
 								</div>
 							</div>
@@ -645,6 +647,42 @@ span.size-45 {
 			$("#insertPostBtn").on("click", function() {
 				location.href = "/booknote/toInsertPost";
 			})
+			
+			$(".postLike").on("click", function(){
+				let p_like = $(this).attr("like");
+				let p_seq = $(this).attr("seq");
+				let b_isbn = $(this).attr("isbn");
+				if(p_like == "false"){
+				$.ajax({
+                    url: "/booknote/insertPostLike",
+                    type: "post",
+                    data: {
+                        "p_seq": p_seq,
+                        "b_isbn": b_isbn
+                    }
+				}).done(function(data){
+					if(data == 1){
+						$(this).attr("like", "true");
+						$(this).attr("style", "color: #5397fc;");
+					}
+				})
+				}else{
+					$.ajax({
+	                    url: "/booknote/deletePostLike",
+	                    type: "post",
+	                    data: {
+	                        "p_seq": p_seq,
+	                        "b_isbn": b_isbn
+	                    }
+					}).done(function(data){
+						if(data == 1){
+							$(this).attr("like", "false");
+							$(this).attr("style", "color: #80808050;");
+						}
+					})
+				}
+			})
+
 		</script>
 </body>
 

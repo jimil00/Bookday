@@ -13,6 +13,11 @@
 		delete from bookbag where bookbag_seq = #{bookbag_seq}
 	</delete>
 	
+	<!-- 책 추가 --> 
+	<insert id="insertBookbag">
+		insert into bookbag values(bookbag_seq.nextval,#{id},#{b_isbn},#{b_img_url},#{b_title},#{b_writer})
+	</insert>
+	
 	<!-- 책 출력 -->
 	<select id="selectBookbagBySeq" resultType="kh.bookday.dto.BookbagDTO">
 		select * from bookbag where bookbag_seq = #{bookbag_seq}

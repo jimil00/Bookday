@@ -6,20 +6,18 @@ public class ReviewLikeDTO {
 	private int rv_seq;
 	private String id;
 	private String b_isbn;
-	private int rvl_check;
 	
 	
 	public ReviewLikeDTO() {
 		super();
 	}
-	public ReviewLikeDTO(int rvl_seq, int rv_seq, String id, String b_isbn, int rvl_check) {
+	
+	public ReviewLikeDTO(int rvl_seq, int rv_seq, String id, String b_isbn) {
 		this.rvl_seq = rvl_seq;
 		this.rv_seq = rv_seq;
 		this.id = id;
 		this.b_isbn = b_isbn;
-		this.rvl_check = rvl_check;
 	}
-	
 	
 	public int getRvl_seq() {
 		return rvl_seq;
@@ -45,11 +43,6 @@ public class ReviewLikeDTO {
 	public void setB_isbn(String b_isbn) {
 		this.b_isbn = b_isbn;
 	}
-	public int getRvl_check() {
-		return rvl_check;
-	}
-	public void setRvl_check(int rvl_check) {
-		this.rvl_check = rvl_check;
-	}
+
 	
 }

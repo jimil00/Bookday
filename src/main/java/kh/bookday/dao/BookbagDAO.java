@@ -29,9 +29,17 @@ public class BookbagDAO {
 		db.delete("Bookbag.deleteBookbagBySeq", bookbag_seq);
 	}
 	
+
+	/* 책 추가 */
+	public void insertBookbag(BookbagDTO dto) {
+		db.insert("Bookbag.insertBookbag", dto);
+	}
+
+
 	/* 책 출력 */
 	public  BookbagDTO selectBookbagBySeq(int bookbag_seq) {
 		return db.selectOne("Bookbag.selectBookbagBySeq", bookbag_seq);
+
 	}
 	
 }

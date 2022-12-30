@@ -11,7 +11,7 @@
 	</insert>
 	
 	<select id="selectPostListById" resultType="kh.bookday.dto.PostDTO">
-		select * from post where p_writer_id = #{id} order by p_write_date desc
+		select * from post where p_writer_id = #{id} order by p_seq desc
 	</select>
 	
 	<select id="select20PostListById" resultType="kh.bookday.dto.PostDTO">
@@ -29,4 +29,9 @@
 	<select id="selectPostByPseq" resultType="kh.bookday.dto.PostDTO">
 		select * from post where p_seq = #{p_seq}
 	</select>
+		
+	<select id="selectPostByIsbn" resultType="kh.bookday.dto.PostDTO">
+		select * from post where b_isbn=#{value} order by p_seq
+	</select>
+	
 </mapper>

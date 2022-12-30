@@ -82,7 +82,7 @@ position:absolute;
 	color:#5397fc;
 }
 
-#ph_result, #nk_result {
+#ph_result, #nk_result, #pw_result {
 	width: 85%;
 	margin-top:2%;
 	text-align: right;
@@ -158,9 +158,10 @@ position:absolute;
 				</div>
 				<div class="box">
 					<div>
-						<input type="password" placeholder="비밀번호(한글 및 # $ ^ & * 제외)" name="pw" id="pw"
+						<input type="password" placeholder="비밀번호(한글 및 # $ ^ & * 제외) 16자 이내" name="pw" id="pw"
 							minlength="8" maxlength="16">
 							<span class="material-symbols-outlined" id="check_icon4">check</span>
+							<div id="pw_result"></div>
 						<!-- <span class="material-symbols-outlined">visibility</span> -->
 					</div>
 				</div>
@@ -187,7 +188,7 @@ $(document).ready(function(){
 	$("#signup_btn").attr("disabled", true);
 	
 	$("#name, #nickname, #phone,#verifi_code,#email,#pw,#check_pw")
-    .on("keyup",function(){
+    .on("blur",function(){
     	
 	let name= $("#name").val();
      let nickname=$("#nickname").val();
@@ -201,7 +202,7 @@ $(document).ready(function(){
      let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
      let phoneRegex=/^010\d{3,4}\d{4}$/;
      let emailRegex=/^[a-z 0-9 A-Z]{6,8}@[a-z]{5,6}.com$/;
-     let pwRegex=/^[A-Z a-z 0-9 ! @ %]{8,10}$/;
+     let pwRegex=/^[A-Z a-z 0-9 ! @ % -]{8,16}$/;
 	
      if(name=="" || nickname=="" || phone=="" 
          || verifi_code=="" || email=="" || pw=="" || check_pw==""
@@ -212,6 +213,7 @@ $(document).ready(function(){
            console.log(name+":"+nickname+":"+phone+":"+verifi_code+":"+email+":1"+pw+":2"+check_pw);
    			
            $("#signup_btn").attr("disabled", true);
+           
            }else{
         	   $("#signup_btn").attr("disabled", false);
            }
@@ -280,12 +282,14 @@ $(document).ready(function(){
                                         	  
                                         	  //입력 값 수정 불가 & 버튼 2번 클릭 못하게 해야 될듯
                                         	  if(resp == false){
+                                        		  alert("인증번호가 일치합니다.")
                                         		  $("#verifi_code").css("border-color", "#5397fc");
                                         		  $("#phone").attr("readonly",true);
                                         		  $("#verifi_code").attr("readonly",true);
                                         		  $("#verfi_btn").attr("disabled", true); 
                                         		  $("#check_btn").attr("disabled", true);
                                         		   $("#signup_btn").attr("disabled", false);
+                                        		   
                                         	  }else{
                                         		  alert("인증번호가 틀립니다.");
                                         		  $("#verifi_code").css("border-color", "red");
@@ -391,18 +395,21 @@ $(document).ready(function(){
 		let pw=$("#pw").val();
 		let check_pw=$("#check_pw").val();
         
-        let pwRegex=/^[A-Z a-z 0-9 ! @ $ %]{8,16}$/;
+        let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
 
 		   //비밀번호 유효성 검사 및 중복 검사
 		   if(!pwRegex.test(pw) && pw != ""){
                 $("#pw").css("border-color","red");
+                $("#pw_result").css("color","red");
+                $("#pw_result").html("유효하지 않은 비밀번호입니다.");
               }else if(pw == ""){
             	  $("#pw").css("border-color","#d5d5d5");
               }else{ 
             	  $("#pw").css("border-color","#5397fc");
+            	  $("#pw_result").html("");
             	  $("#check_icon4").css("display","block");
-            	  
-            	  
+
+            	  //일치 확인
             	  if($("#pw").val()==$("#check_pw").val()){
                       $("#check_pw").css("border-color","#5397fc");
                       $("#check_icon5").css("display","block");
@@ -411,25 +418,7 @@ $(document).ready(function(){
                       	$("#signup_btn").attr("disabled", true);
                       }
             	  }
-            	  
-              
 
-           //비밀번호 일치 확인
-        /*   $("#check_pw").on("keyup",function(){
-			
-        	let pw=$("#pw").val();
-			let check_pw=$("#check_pw").val();
-
-          if($("#pw").val()==$("#check_pw").val()){
-          $("#check_pw").css("border-color","#5397fc");
-          }else{  
-        	 $("#check_pw").css("border-color","red");
-          	$("#signup_btn").attr("disabled", true);
-          }
-          
-          }); */
-		
-		   
 		});
 		
 });
