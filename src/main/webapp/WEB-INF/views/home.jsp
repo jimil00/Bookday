@@ -190,6 +190,15 @@ span, #logoImg:hover {
 	height: 2000px;
 }
 
+.booknote_copy ,.bookstats_copy ,.booksub_copy {
+	text-align:center;
+	margin-top:100px;
+}
+
+
+
+
+
 /* footer */
 .footer {
     margin:5px;
@@ -360,6 +369,7 @@ display:none;
 			</div>
 			<div class="best_seller" data-aos="fade-up" data-aos-duration="2000">
 				<h2 id="best_headline">베스트셀러</h2>
+				
 			</div>
 			<div class="steady_seller" data-aos="fade-up" data-aos-duration="2000">
 				<h2 id="steady_headline">스테디셀러</h2>
@@ -369,6 +379,7 @@ display:none;
 			</div>
 			<div class="popular_post" data-aos="fade-up" data-aos-duration="2000">
 				<h2 id="popular_headline">인기 포스트</h2>
+				
 			</div>
 		</div> <!-- body -->
 		

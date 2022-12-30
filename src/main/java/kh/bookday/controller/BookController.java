@@ -127,20 +127,7 @@ public class BookController {
 		System.out.println(dto.getRv_content());
 		 
 		return "true";
-	}
-	
-	//유저에 따른 좋아요 여부 확인
-//	@ResponseBody
-//	@RequestMapping("findReviewLike")
-//	public String findReviewLike(String id, Object rv_seq) {
-//		
-//		String user=(String.valueOf(session.getAttribute("loginID")));
-//		
-//		rservice.findReviewLike(user,rv_seq);
-//		
-//		return String.valueOf(rservice.findReviewLike(user,rv_seq));
-//	}
-	
+	}	
 	
 	//댓글 좋아요 누름
 	@ResponseBody
