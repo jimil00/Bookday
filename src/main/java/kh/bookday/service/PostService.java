@@ -27,6 +27,7 @@ public class PostService {
 	private PostCommentDAO cdao;
 	
 	
+
 // JIN
 	// 책장 페이지) 포스트 올린 책 20개씩 출력(무한 스크롤)
 	public List<PostDTO> select20PostListById(String id, int count) {
@@ -58,10 +59,6 @@ public class PostService {
 		return llist;
 	}
 
-	// 포스트 페이지) 포스트 입력 속 도서 검색
-	public List<PostDTO> selectPostListBySw(String searchWord){
-		return dao.selectPostListBySw(searchWord);
-	}
 
 	// 포스트 페이지) 포스트 입력
 	public int insertPost(PostDTO dto) { // p_seq받아오는 걸로 바꾸기
@@ -126,5 +123,14 @@ public class PostService {
 		return dao.selectPostByIsbn(b_isbn);
 	}
 
+	//인기 포스트 출력
+	public List<PostDTO> selectPopularPost() {
+		return dao.selectPopularPost();
+	}
+		
+	// 포스트 속 도서 검색
+	public List<PostDTO> selectPostListBySw(String searchWord){
+		return dao.selectPostListBySw(searchWord);
+	}
 
 }

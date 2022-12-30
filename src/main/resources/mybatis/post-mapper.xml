@@ -47,4 +47,9 @@
 		select * from post where b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or b_genre like '%'||#{searchWord}||'%'		
 	</select>
 	
+	<!-- 인기 포스트 출력 -->
+	<select id="selectPopularPost" resultType="kh.bookday.dto.PostDTO">
+		select * from post where  <![CDATA[rownum <= 6]]> order by P_LIKE_COUNT desc
+	</select>
+	
 </mapper>
