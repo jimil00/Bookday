@@ -42,10 +42,10 @@ public class PostService {
 	}
 	
 	// 포스트 입력
-//	public int insertPost(PostDTO dto) {
-//		return dao.insertPost(dto);
-//	}
-	
+	public int insertPost(PostDTO dto) {
+		return dao.insertPost(dto);
+	}
+
 	// 책장에 포스트 올린 책 출력(무한 스크롤)
 	public List<PostDTO> select20PostListById(String id, int count) {
 
@@ -62,9 +62,9 @@ public class PostService {
 	}
 	
 	// 포스트 출력
-//	public PostDTO selectPostByPseq(int p_seq) {
-//		return dao.selectPostByPseq(p_seq);
-//	}
+	public PostDTO selectPostByPseq(int p_seq) {
+		return dao.selectPostByPseq(p_seq);
+	}
 	
 	// 포스트 좋아요 출력
 	public boolean selectPostLike(PostLikeDTO dto) {

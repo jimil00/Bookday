@@ -25,15 +25,20 @@ public class SearchController {
 	/* 검색페이지로 이동 */
 	@RequestMapping("toSearch")
 	public String toSearch(String searchWord, Model model) {
+		
 		System.out.println(searchWord);
 		model.addAttribute("searchWord", searchWord);
-		List<BookDTO> blist = service.selectBookListBySw(searchWord);
-		System.out.println(blist.get(0).getB_title());
-		model.addAttribute("blist", blist);
 		
+		// 책 검색
+		List<BookDTO> blist = service.selectBookListBySw(searchWord);
+		model.addAttribute("blist", blist);
+		System.out.println(blist.size());
+		
+		// 포스트 검색
 		List<PostDTO> plist = pservice.selectPostListBySw(searchWord);
-//		System.out.println(plist.get(0).getB_title());
+		System.out.println(plist.size());
 		model.addAttribute("plist", plist);
+		
 		return "search";
 	}
 	
