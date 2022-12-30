@@ -620,23 +620,37 @@ span.size-30 {
 // 	        }
 <!-- Ajax Infinite Scroll -->
 
-    let count = 1
-    let timer;
-    $(window).scroll(function () {
-
-        let isScrollBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight
-
-        if (!timer) {
-            timer = setTimeout(() => {
-                timer = null;
-                if (isScrollBottom) {
-                    console.log(isScrollBottom)
-                    infinityScroll()
-                }
-            }, 25);
+     let count = 1
+//     let timer;
+//     $(window).scroll(function () {
+//         let isScrollBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 30;
+//         if (!timer) {	
+//             timer = setTimeout(() => {
+//                 timer = null;
+//                 console.log(isScrollBottom);
+//                 if (isScrollBottom) {
+//                     infinityScroll()
+//                     $(window).scrollTop($(window).scrollTop());
+//                 }
+//             }, 100);
+//         }
+//     })
+    
+    var _throttleTimer = null;
+    var _throttleDelay = 100;
+    $(window).on('scroll', function (e) {
+    //throttle event:
+    clearTimeout(_throttleTimer);
+    let element = $(window);
+    _throttleTimer = setTimeout(function () {
+        if(Math.ceil(document.documentElement.scrollHeight - element.scrollTop()) === element.height())  {
+        	infinityScroll(); 
+      		$(window).scrollTop($(window).scrollTop());
         }
-    })
+    }, _throttleDelay);
+   });
 
+    
     function infinityScroll() {
         $.getJSON("/bookshelves/nextList", {count: count})
             .done(res => {

@@ -33,7 +33,6 @@ public class BookController {
 	
 	@Autowired
 	private BookService service;
-
 	
 	@Autowired
 	private PostService pservice;
@@ -76,8 +75,7 @@ public class BookController {
 		List<ReviewDTO> rlist=rservice.selectReviewByIsbn(b_isbn);
 		model.addAttribute("rlist",rlist);
 		
-		String id=String.valueOf(session.getAttribute("loginID"));
-		
+		String id=String.valueOf(session.getAttribute("loginID"));		
 
 		//유저에 따른 댓글 좋아요 list
 		List<ReviewLikeDTO> rl_list=rservice.findReviewLike(id,b_isbn);
@@ -102,7 +100,7 @@ public class BookController {
 		return "redirect:/book/selectBookinfo?b_isbn="+dto.getB_isbn();
 	}
 	
-	//댓글 삭제
+	//리뷰 삭제
 	@RequestMapping("deleteReview")
 	public String deleteReview(String b_isbn, String rv_seq, String rv_writer_id) {
 		
@@ -114,7 +112,7 @@ public class BookController {
 		return "redirect:/book/selectBookinfo?b_isbn="+b_isbn;
 	}
 	
-	//댓글 수정
+	//리뷰 수정
 	@ResponseBody
 	@RequestMapping("updateReview")
 	public String updateReview(ReviewDTO dto) {
@@ -129,7 +127,7 @@ public class BookController {
 		return "true";
 	}	
 	
-	//댓글 좋아요 누름
+	//리뷰 좋아요 누름
 	@ResponseBody
 	@RequestMapping("insertReviewLike")
 	public String insertReviewLike(ReviewLikeDTO dto) {
@@ -141,7 +139,7 @@ public class BookController {
 		return "true";
 	}
 	
-	//댓글 좋아요 삭제
+	//리뷰 좋아요 삭제
 	@ResponseBody
 	@RequestMapping("deleteReviewLike")
 	public String deleteReviewLike(String rv_seq, String id) {

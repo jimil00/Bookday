@@ -15,11 +15,11 @@ public class PostDAO {
 	@Autowired
 	private SqlSession db;
 
-	
+
 	public List<PostDTO> selectPostListById(String id){
 		return db.selectList("Booknote.selectPostListById", id);
 	}
-	
+
 	public void insertPost(PostDTO dto) {
 		db.insert("Booknote.insertPost", dto);
 	}
@@ -35,5 +35,10 @@ public class PostDAO {
 	//해당 도서 포스트 출력
 	public List<PostDTO> selectPostByIsbn(String b_isbn) {
 		return db.selectList("Post.selectPostByIsbn", b_isbn);
+	}
+
+	// 포스트 속 책 검색
+	public List<PostDTO> selectPostListBySw(String searchWord){
+		return db.selectList("Post.selectPostListBySw", searchWord);
 	}
 }
