@@ -931,12 +931,10 @@ display:none;
         <div id="business_info_title">사업자 정보</div>
         <span class="arrow_icon material-symbols-outlined" id="arrow_down2">keyboard_arrow_down</span> 
         <span class="arrow_icon material-symbols-outlined" id="arrow_up2">keyboard_arrow_up</span>
-
-  
     </div>
 
         <div id="business_info_text">
-       <span>대표자 조성태 </span><span>|</span><span> 사업자 등록번호 01-20-22015</span>
+       <span>대표자 성태조 </span><span>|</span><span> 사업자 등록번호 01-20-22015</span>
         <p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
         <span>대표전화 1544-9970 </span><span>|</span><span> 이메일 help@bookday.com</span>
     </div>
@@ -954,7 +952,7 @@ display:none;
         <span>제휴 문의</span>
     </div>
     <p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
-    <p class="copyright">©BOOKDAY Corp.</p>
+   <!--  <p class="copyright">©BOOKDAY Corp.</p> -->
 </div>
 
 </div>
