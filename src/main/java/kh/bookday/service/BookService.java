@@ -54,6 +54,7 @@ public class BookService {
 			dto.setB_img_url(dao.selectBookByIsbn(b_isbn).getB_img_url());
 			dto.setB_title(dao.selectBookByIsbn(b_isbn).getB_title());
 			dto.setB_writer(dao.selectBookByIsbn(b_isbn).getB_writer());
+			dto.setB_genre(dao.selectBookByIsbn(b_isbn).getB_genre());
 			
 			return dto;	
 		}
