@@ -270,7 +270,6 @@ display:none;
 .copyright{
     margin-top:5px;
     font-size: x-small;
-  /*  text-align: center; */
 }
 
 </style>
@@ -363,7 +362,7 @@ display:none;
 					문의</span>
 			</div>
 			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
-			<p class="copyright">©BOOKDAY Corp.</p>
+			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
 		</div>
 
 	</div>
