@@ -10,6 +10,7 @@ import kh.bookday.dao.BookDAO;
 import kh.bookday.dao.PostCommentDAO;
 import kh.bookday.dao.PostDAO;
 import kh.bookday.dao.PostLikeDAO;
+import kh.bookday.dto.BookDTO;
 import kh.bookday.dto.PostDTO;
 
 @Service
@@ -24,15 +25,15 @@ public class PostService {
 	@Autowired
 	private PostCommentDAO cdao;
 
-	
+
 	public List<PostDTO> selectPostListById(String id){
 		return dao.selectPostListById(id);
 	}
-	
+
 	public void insertPost(PostDTO dto) {
 		dao.insertPost(dto);
 	}
-	
+
 	public List<PostDTO> select20PostListById(String id, int count) {
 
 		if (dao.select20PostCount() < (count * 20) + 1) {
@@ -46,10 +47,14 @@ public class PostService {
 
 		return dao.select20PostListById(data);
 	}
-	
-	//해당 도서에 대한 포스트 출력
-		public List<PostDTO> selectPostByIsbn(String b_isbn) {
-			return dao.selectPostByIsbn(b_isbn);
-		}
 
+	//해당 도서에 대한 포스트 출력
+	public List<PostDTO> selectPostByIsbn(String b_isbn) {
+		return dao.selectPostByIsbn(b_isbn);
+	}
+
+	// 포스토 속 도서 검색
+	public List<PostDTO> selectPostListBySw(String searchWord){
+		return dao.selectPostListBySw(searchWord);
+	}
 }

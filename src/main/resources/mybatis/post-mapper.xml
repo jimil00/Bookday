@@ -20,4 +20,9 @@
 		select * from post where b_isbn=#{value} order by p_seq
 	</select>
 	
+	<!-- 포스트 속 도서 검색 -->
+	<select id="selectPostListBySw" resultType="kh.bookday.dto.PostDTO">
+		select * from post where b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or b_genre like '%'||#{searchWord}||'%'		
+	</select>
+	
 </mapper>
