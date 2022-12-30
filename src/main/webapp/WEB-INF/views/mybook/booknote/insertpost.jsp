@@ -53,6 +53,7 @@
 body {
 	margin: 8px;
 }
+
 /* div {
 	border: 1px solid black;
 } */
@@ -67,10 +68,13 @@ body {
 button:hover {
 	cursor: pointer;
 }
-
+button:focus{ 	
+    border: none;
+    outline:none;
+    }
 /*     header */
 .header {
-	min-width:978px;
+	min-width: 978px;
 	height: 150px;
 	overflow: hidden;
 	line-height: initial;
@@ -94,6 +98,7 @@ button:hover {
 #logoImg:hover {
 	cursor: pointer;
 }
+
 /* search */
 .search {
 	float: left;
@@ -124,6 +129,8 @@ button:hover {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+		right: 40px;
+	
 }
 
 .searchBtn {
@@ -148,6 +155,7 @@ button:hover {
 	width: 20%;
 	height: 100%;
 }
+
 /* icon */
 .iconBox {
 	position: absolute;
@@ -206,6 +214,7 @@ span.size-40 {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
+
 /*     header */
 
 /* navi */
@@ -216,7 +225,7 @@ span.size-40 {
 
 /* body */
 .body {
-	display:flex;
+	display: flex;
 	line-height: initial;
 }
 
@@ -224,7 +233,6 @@ span.size-40 {
 .sideNavi {
 	width: 10%;
 	min-width: 97.8px;
-	
 }
 
 ul {
@@ -260,14 +268,12 @@ span.size-35 {
 /* contents */
 .contents {
 	width: 90%;
-	overflow: hidden;	
-				min-width:880.2px;
-	
+	overflow: hidden;
+	min-width: 880.2px;
 }
 
 /* contentsHeader */
 .contentsHeader {
-
 	width: 100%;
 	margin-bottom: 30px;
 	font-size: 25px;
@@ -279,19 +285,16 @@ span.size-35 {
 #contentsHeaderImg {
 	height: 100px;
 	width: 100px;
-	
 }
 
 #profile {
 	border-radius: 50%;
-		box-shadow: 2px 2px 2px 2px #80808050;
-	
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 /* contentsBody */
 .contentsBody {
 	width: 100%;
-	
 }
 
 /* contentsBodyTitle */
@@ -320,6 +323,12 @@ span.size-30 {
 
 .insertBooknoteHeader {
 	width: 100%;
+}
+
+.divider {
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 8px;
+	margin-bottom: 15px;
 }
 
 /* ContentsBodyInsertBooknoteSearchBookInfo */
@@ -357,6 +366,7 @@ span.size-30 {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right: 40px;
 }
 
 .booknoteBookSearchBtn {
@@ -373,6 +383,39 @@ span.size-30 {
 	align-items: center;
 	justify-content: center;
 }
+
+
+.searchResultBookInfo td {
+	padding: 15px 15px 15px 0;
+}
+
+.bookCover img {
+	width: 80px;
+	height: 120px;
+}
+
+.bookInfo {
+	padding-top: 13px;
+}
+
+.bookGenre {
+	font-size: 13px;
+}
+
+.bookTitle>a {
+	font-size: 16px;
+	text-decoration: none;
+	color: black;
+}
+
+.bookWriter {
+	font-size: 16px;
+}
+
+.bookPublish {
+	font-size: 13px;
+}
+
 /* ContentsBodyInsertBooknoteDate */
 .insertBooknoteDate {
 	height: 50px;
@@ -431,6 +474,8 @@ span.size-30 {
 	width: 100%;
 	display: flex;
 	align-items: center;
+		margin-bottom: 8px;
+	
 }
 
 .insertBooknoteTitleTitle {
@@ -460,6 +505,7 @@ span.size-30 {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right:10px;
 }
 
 /* ContentsBodyInsertBooknoteBtn */
@@ -486,104 +532,124 @@ span.size-30 {
 }
 </style>
 <script>
-	$(document)
-			.ready(
-					function() {
-						$('#summernote')
-								.summernote(
-										{
-											lang : 'ko-KR',
-											height : 400,
-											placeholder : "내용을 입력해주세요.",
-											fontNames : [ '나눔스퀘어네오' ],
-											// addDefaultFonts: false,
-											fontNamesIgnoreCheck : [ '나눔스퀘어네오' ],
-											callbacks : {
-												onImageUpload : function(image) {
-													console.log("works")
-													data = new FormData();
-													data.append("image",
-															image[0]);
+                $(document)
+                    .ready(
+                        function () {
+                            $('#summernote')
+                                .summernote(
+                                    {
+                                        lang: 'ko-KR',
+                                        height: 400,
+                                        placeholder: "내용을 입력해주세요.",
+                                        fontNames: ['나눔스퀘어네오'],
+                                        // addDefaultFonts: false,
+                                        fontNamesIgnoreCheck: ['나눔스퀘어네오'],
+                                        callbacks: {
+                                            onImageUpload: function (image) {
+                                                console.log("works")
+                                                data = new FormData();
+                                                data.append("image",
+                                                    image[0]);
 
-													$
-															.ajax({
-																data : data,
-																type : "post",
-																url : "/imageupload.board",
-																cache : false,
-																contentType : false,
-																processData : false,
-																success : function(
-																		url) {
-																	console
-																			.log(url)
-																	var image = $(
-																			'<img>')
-																			.attr(
-																					'src',
-																					url);
-																	$(
-																			"#summernote")
-																			.summernote(
-																					"insertNode",
-																					image[0]);
-																},
-																error : function(
-																		a, b, c) {
-																	console
-																			.log(a);
-																	console
-																			.log(b);
-																	console
-																			.log(c);
-																}
-															});
-												}
-											}
-										});
+                                                $
+                                                    .ajax({
+                                                        data: data,
+                                                        type: "post",
+                                                        url: "/imageupload.board",
+                                                        cache: false,
+                                                        contentType: false,
+                                                        processData: false,
+                                                        success: function (
+                                                            url) {
+                                                            console
+                                                                .log(url)
+                                                            var image = $(
+                                                                '<img>')
+                                                                .attr(
+                                                                    'src',
+                                                                    url);
+                                                            $(
+                                                                "#summernote")
+                                                                .summernote(
+                                                                    "insertNode",
+                                                                    image[0]);
+                                                        },
+                                                        error: function (
+                                                            a, b, c) {
+                                                            console
+                                                                .log(a);
+                                                            console
+                                                                .log(b);
+                                                            console
+                                                                .log(c);
+                                                        }
+                                                    });
+                                            }
+                                        }
+                                    });
 
-						$('#insertBoardContents').on('click', function() {
+                            $('#insertBooknoteBtn').on('click', function () {
 
-							saveContent();
-						});
-						function saveContent() {
+                                saveContent();
+                            });
+                            function saveContent() {
 
-							//값 가져오기
-							var summernoteContent = $('#summernote')
-									.summernote('code'); //썸머노트(설명)
-							console.log("summernoteContent : "
-									+ summernoteContent);
-							var b_category = $("#b_category").val();
-							var b_title = $("#b_title").val();
+                                //값 가져오기
+                                var summernoteContent = $('#summernote')
+                                    .summernote('code'); //썸머노트(설명)
+                                console.log("summernoteContent : "
+                                    + summernoteContent);
+                                var b_isbn = $(".searchResultBookInfo").attr("isbn");
+                                var b_img_url = $("#b_img_url").attr("src");
+                                var b_title = $("#b_title").html();
+                                var b_writer = $(".bookWriter").html();
+                                var b_genre = $(".bookGenre").html();
+                                var b_publisher = $(".bookPublisher").html();
+                                var b_publication_date = $(".bookPublicationDate").html();
+								var dyst_read = $("#demo").attr("start");
+								var dyfn_read = $("#demo").attr("finish");
+								var p_writer_nn = $("#contentsHeaderTxt").attr("p_writer_nn");
+                                var p_title = $("#insertBooknoteTitleTxt").val();
+								
+                                if (p_title == "") {
+                                    alert('제목을 입력해주세요.');
+                                    return false;
+                                }
+                                if ($('#summernote').summernote('isEmpty')) {
+                                    alert("내용을 입력해주세요.");
+                                    return false;
+                                }
+                                $
+                                    .ajax({
+                                        url: "/booknote/insertPost",
+                                        type: "post",
+                                        data: {
+                                            "b_isbn": b_isbn,
+                                            "b_img_url": b_img_url,
+                                            "b_title": b_title,
+                                            "b_writer": b_writer,
+                                            "b_genre": b_genre,
+                                            "b_publisher": b_publisher,
+                                            "b_publication_date": b_publication_date,
+                                            "dyst_read": dyst_read,
+                                            "dyfn_read": dyfn_read,
+                                            "p_writer_nn": p_writer_nn,
+                                            "p_title": p_title,
+                                            "p_content": summernoteContent
+                                        },		
 
-							if (b_title == "") {
-								alert('제목을 입력해주세요.');
-								return false;
-							}
-							if ($('#summernote').summernote('isEmpty')) {
-								alert("내용을 입력해주세요.");
-								return false;
-							}
-
-							$
-									.ajax({
-										url : "/insertBoardContents.board",
-										type : "post",
-										data : {
-											"b_category" : b_category,
-											"b_title" : b_title,
-											"b_content" : summernoteContent
-										},
-										success : function(data) {
-											var b_seq = data;
-											location.href = "/selectBoardContents.board?b_seq="
-													+ b_seq;
-										}
-									});
-						}
-						;
-					});
-</script>
+                                        success: function (data) {
+                                            var p_seq = data;
+//                                             location.href = "/booknote/selectPostByPseq?p_seq="
+//                                                 + p_seq;
+                                            location.href = "/booknote/selectPostListById"
+                                                
+                                        }
+                                    });
+                            }
+                            ;
+                        });
+            </script>
 </head>
 
 <body>
@@ -607,12 +673,20 @@ span.size-30 {
 				<div class="signBox">
 					<c:choose>
 						<c:when test="${empty loginID}">
-							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
-							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
+							<a href="/member/toLogin">
+								<p class="user" id="login">로그인</p>
+							</a>
+							<a href="/member/toSignup">
+								<p class="user" id="signup">회원가입</p>
+							</a>
 						</c:when>
 						<c:otherwise>
-							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
-							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+							<a id="nick">
+								<p class="user" id="user">${nickname}님</p>
+							</a>
+							<a href="/member/logOut">
+								<p class="user" id="logout">로그아웃</p>
+							</a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -647,7 +721,7 @@ span.size-30 {
 						<img src="/resources/${dto.sysprofname }" width="100" height="100"
 							id="profile">
 					</div>
-					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
+					<div id="contentsHeaderTxt" p_writer_nn="${dto.nickname }">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
 						} 하루</div>
 				</div>
 				<div class="contentsBody">
@@ -668,152 +742,185 @@ span.size-30 {
 									</button>
 								</div>
 							</div>
-							<div class="insertBooknoteDate">
-								<div class="insertBooknoteDateTitle">읽은 기간 선택</div>
-								<div class="insertBooknoteDateInput">
-									<input type="text" id="demo" name="demo" value="" />
-									<button class="insertBooknoteDateBtn">
-										<span class="material-symbols-outlined"> calendar_month
-										</span>
-									</button>
-								</div>
-							</div>
-							<div class="insertBooknoteTitle">
-								<div class="insertBooknoteTitleTitle">제목</div>
-								<div class="insertBooknoteTitleBox">
-									<input type="text" id="insertBooknoteTitleTxt"
-										placeholder="제목을 입력해주세요.">
-
-								</div>
-							</div>
-							<div class="insertBooknoteContent">
-								<div id="summernote" name="booknoteContent"></div>
-							</div>
-							<div class="insertBooknoteBtn">
-								<button id="insertBooknoteBtn" type="submit">입력</button>
-							</div>
 						</div>
+					</div>
+					<hr class="divider">
+					<div class="insertBooknoteDate">
+						<div class="insertBooknoteDateTitle">읽은 기간 선택</div>
+						<div class="insertBooknoteDateInput">
+							<input type="text" id="demo" name="demo"/>
+							<button class="insertBooknoteDateBtn">
+								<span class="material-symbols-outlined"> calendar_month </span>
+							</button>
+						</div>
+					</div>
+					<hr class="divider">
+					<div class="insertBooknoteTitle">
+						<div class="insertBooknoteTitleTitle">제목</div>
+						<div class="insertBooknoteTitleBox">
+							<input type="text" id="insertBooknoteTitleTxt"
+								placeholder="제목을 입력해주세요.">
+
+						</div>
+					</div>
+					<div class="insertBooknoteContent">
+						<div id="summernote" name="booknoteContent"></div>
+					</div>
+					<div class="insertBooknoteBtn">
+						<button id="insertBooknoteBtn">입력</button>
 					</div>
 				</div>
 			</div>
-			<div class="footer"></div>
 		</div>
-		<script>
-			$("#logo_img").on("click", function() {
-				location.href = "/";
-			})
+	</div>
+	<div class="footer"></div>
+	<script>
+                $("#logo_img").on("click", function () {
+                    location.href = "/";
+                })
 
-			$("#searchword").on("keydown", function(e) {
-				if (e.keyCode == 13) {
-					$("#search").submit();
-				}
-			})
-			$("#notifications").on("click", function() {
-				location.href = "//toNotification";
-			})
-			$("#bookbag").on("click", function() {
-				location.href = "/delivery/toBookbag";
-			})
-			$("#bookshelves").on("click", function() {
-				location.href = "/bookshelves/selectBookshelvesListById";
-			})
-			$("#mypage").on("click", function() {
-				if (loginID == null) {
-					location.href = "/member/login";
-				}
-				location.href = "/member/toMypage";
-			})
-			$("#snBookshelves").on("click", function() {
-				location.href = "/bookshelves/selectBookshelvesListById";
-			})
-			$("#snStatistics").on("click", function() {
-				location.href = "/bookstatistics/select-";
-			})
-			$("#snCalendar").on("click", function() {
-				location.href = "/bookcalendar/select-";
-			})
-			$("#snBookmark").on("click", function() {
-				location.href = "/bookmark/selectBookmarkListById";
-			})
-			$("#snBooknote").on("click", function() {
-				location.href = "/booknote/selectPostListById";
-			})
-				$("#booknoteBookSearchWord").on("keydown", function(e){
-		if(e.keyCode == 13) {
-			var searchWord = $("#booknoteBookSearchWord").val();
-			$("#booknoteBookSearchWord").val("");
-			window.open("/book/toBookSearchPop?searchWord="
-					+ searchWord, "", "width=600,height=600");		
-			}
-	});
-			$(".booknoteBookSearchBtn").on(
-					"click",
-					function() {
-						var searchWord = $("#booknoteBookSearchWord").val();
-						window.open("/book/toBookSearchPop?searchWord="
-								+ searchWord, "", "width=600,height=600");
+                $("#searchword").on("keydown", function (e) {
+                    if (e.keyCode == 13) {
+                        $("#search").submit();
+                    }
+                })
+                $("#notifications").on("click", function () {
+                    location.href = "//toNotification";
+                })
+                $("#bookbag").on("click", function () {
+                    location.href = "/delivery/toBookbag";
+                })
+                $("#bookshelves").on("click", function () {
+                    location.href = "/bookshelves/selectBookshelvesListById";
+                })
+                $("#mypage").on("click", function () {
+                    if (loginID == null) {
+                        location.href = "/member/login";
+                    }
+                    location.href = "/member/toMypage";
+                })
+                $("#snBookshelves").on("click", function () {
+                    location.href = "/bookshelves/selectBookshelvesListById";
+                })
+                $("#snStatistics").on("click", function () {
+                    location.href = "/bookstatistics/select-";
+                })
+                $("#snCalendar").on("click", function () {
+                    location.href = "/bookcalendar/select-";
+                })
+                $("#snBookmark").on("click", function () {
+                    location.href = "/bookmark/selectBookmarkListById";
+                })
+                $("#snBooknote").on("click", function () {
+                    location.href = "/booknote/selectPostListById";
+                })
+                $("#booknoteBookSearchWord").on("keydown", function (e) {
+                    if (e.keyCode == 13) {
+                        var searchWord = $("#booknoteBookSearchWord").val();
+                        $("#booknoteBookSearchWord").val("");
+                        window.open("/book/toBookSearchPop?searchWord="
+                            + searchWord, "", "width=600,height=600");
+                    }
+                });
+                $(".booknoteBookSearchBtn").on(
+                    "click",
+                    function () {
+                        var searchWord = $("#booknoteBookSearchWord").val();
+                        window.open("/book/toBookSearchPop?searchWord="
+                            + searchWord, "", "width=600,height=600");
 
-					});
+                    });
 
-			$(function() {
+                $(function () {
 
-				$(".insertBooknoteDateBtn").on("click", function() {
-					$("#demo").click();
-				})
+                    $(".insertBooknoteDateBtn").on("click", function () {
+                        $("#demo").click();
+                    })
 
-				$("#demo").daterangepicker(
-						{
-							"locale" : {
-								"format" : "YYYY-MM-DD",
-								"separator" : " ~ ",
-								"applyLabel" : "확인",
-								"cancelLabel" : "취소",
-								"fromLabel" : "From",
-								"toLabel" : "To",
-								"customRangeLabel" : "Custom",
-								"weekLabel" : "W",
-								"daysOfWeek" : [ "일", "월", "화", "수", "목", "금",
-										"토" ],
-								"monthNames" : [ "1월", "2월", "3월", "4월", "5월",
-										"6월", "7월", "8월", "9월", "10월", "11월",
-										"12월" ],
-							},
-							"startDate" : new Date(),
-							"endDate" : new Date(),
-							"maxDate" : new Date(),
-							"drops" : "auto"
-						},
+                    $("#demo").daterangepicker(
+                        {
+                            "locale": {
+                                "format": "YYYY-MM-DD",
+                                "separator": " ~ ",
+                                "applyLabel": "확인",
+                                "cancelLabel": "취소",
+                                "fromLabel": "From",
+                                "toLabel": "To",
+                                "customRangeLabel": "Custom",
+                                "weekLabel": "W",
+                                "daysOfWeek": ["일", "월", "화", "수", "목", "금",
+                                    "토"],
+                                "monthNames": ["1월", "2월", "3월", "4월", "5월",
+                                    "6월", "7월", "8월", "9월", "10월", "11월",
+                                    "12월"],
+                            },
+                            "startDate": new Date(),
+                            "endDate": new Date(),
+                            "maxDate": new Date(),
+                            "drops": "auto"
+                        },
 
-						function(start, end, label) {
-							console.log('New date range selected: '
-									+ start.format('YYYY-MM-DD') + ' to '
-									+ end.format('YYYY-MM-DD'));
+                        function (start, end, label) {
+                            console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+                        	$("#demo").attr("start", start.format('YYYYMMDD'));
+                        	$("#demo").attr("finish", end.format('YYYYMMDD'));
 
-						});
+                        });
+                });
 
-			});
+                function initSearchBook(b_isbn, b_genre, b_img_url, b_title,
+                    b_writer, b_publisher, b_publication_date) {
 
-			function initSearchBook(b_isbn, b_genre, b_img_url, b_title,
-					b_writer, b_publish) {
-				var imgHTML = "";
+                    let tdBookCover = $("<td>").addClass("bookCover");
+                    let tdBookCoverA = $("<a>").attr("href","#");
+                    let tdBookCoverImg = $("<img>").attr("src", b_img_url).attr("id", "b_img_url");
 
-				$("#goodImage").html(imgHTML);
-				$("#goodTitle").html("[" + resKeyNm + "] " + goodsNm);
-				$("#goodsContents").html(booksInfo);
+                    tdBookCoverA.append(tdBookCoverImg);
+                    tdBookCover.append(tdBookCoverA);
 
-				var displyCode = getCategoryCode(dispNm);
-				$("#goodsInfo").val(
-						goodsNo + "|@%" + resKeyNm + "|@%" + displyCode);
 
-				$("#goodsView").show();
+                    let p1 = $("<p>");
+                    let spanBookGenre = $("<span>").addClass("bookGenre").html(b_genre);
+                       
+                    let p2 = $("<p>");
+                    let spanBookTitle = $("<span>").addClass("bookTitle");
+                    let aBookTitle = $("<a>").attr("href","#").attr("id", "b_title").html(b_title);
+                    
+                    let p3 = $("<p>");
+                    let spanBookWriter = $("<span>").addClass("bookWriter").html(b_writer);
 
-				$("#contentRating").val("0");
-				$("#compilationRating").val("0");
-				$("#hddGoodsTitle").val($("#goodTitle").html());
+                    let spanBookPublisher = $("<span>").addClass("bookPublisher").html(b_publisher);
+                    let spanBetween = $("<span>").addClass("between").html("&nbsp|&nbsp");
+                    let spanBookPublicationDate = $("<span>").addClass("bookPublicationDate").html(b_publication_date);
+                    
+                    p1.append(spanBookGenre);
+                    
+                    spanBookTitle.append(aBookTitle);
+                    p2.append(spanBookTitle);
 
-				setCompilation();
-			}
-		</script>
+                    p3.append(spanBookWriter);
+
+                    let tdBookInfo = $("<td>").addClass("bookInfo");
+                    tdBookInfo.append(p1);
+                    tdBookInfo.append(p2);
+                    tdBookInfo.append(p3);
+                    tdBookInfo.append(spanBookPublisher).append(spanBetween).append(spanBookPublicationDate);
+
+                    let tr = $("<tr>");
+                    tr.append(tdBookCover);
+                    tr.append(tdBookInfo);
+
+                    let table = $("<table>");
+                    table.append(tr);
+
+                    let divSearchResultBookInfo = $("<div>").addClass("searchResultBookInfo").attr("isbn", b_isbn);
+                    divSearchResultBookInfo.append(table);
+
+                    $(".bookInfo").append(divSearchResultBookInfo);
+
+
+                }
+            </script>
 </body>
 
 </html>

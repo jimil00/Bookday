@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -348,6 +350,12 @@ span.size-30 {
 }
 
 /* contentsBodyPostContents */
+.emptyPostContents{
+	font-size: 15px;
+	margin-top: 20px;
+	margin-bottom:20px;
+	text-align: center;
+}
 .postContents {
 	width: 100%;
 	height: auto;
@@ -392,7 +400,10 @@ span.size-30 {
 	font-size: 17px;
 	font-weight: 200;
 }
-
+.postTitle a{
+	text-decoration: none;
+	color: black;
+}
 .postCommentCount {
 	color: #5397fc;
 }
@@ -405,20 +416,28 @@ span.size-30 {
 }
 
 .postContent {
+	width: 83%;
 	height: auto;
 	font-size: 14px;
 	height: auto;
 	display: flex;
 	flex-wrap: wrap;
+	   text-overflow: ellipsis;
+   overflow: hidden;
+   word-break: break-word;
+   display: -webkit-box;
+   -webkit-line-clamp: 7;
+   -webkit-box-orient: vertical;
+}
+.postContent>p>span{
+font-size: 14px !important;
 }
 
 .postBody {
+	height: 106.4px;
 	display: flex;
 }
 
-.postContent {
-	width: 83%;
-}
 
 .postLike {
 	width: 17%;
@@ -426,16 +445,17 @@ span.size-30 {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: #5397fc;
+	color: #80808050;
 }
 
 .postLikeIcon {
 	display: inline-block;
 	width: auto;
+	cursor: pointer;
 }
 
 span.size-45 {
-	/* pointer-events: none; 내글도 내가 좋아요 할 수 있다면?*/
+	cursor: pointer;
 	font-size: 45px;
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
 }
@@ -537,7 +557,13 @@ span.size-45 {
 					</div>
 					<hr class="bodyHr">
 					<div class="selectPostList">
-						<c:forEach var="i" items="${list}">
+					<c:choose>
+                    <c:when test="${empty list}">
+					<div class="emptyPostContents">포스트가 없습니다.</div>
+					<hr class="bodyHr">
+                    </c:when>
+                    <c:otherwise>
+						<c:forEach var="i" items="${list}" var="like" items="${llist }">
 							<div class="postContents">
 								<div class="postContentsImg">
 									<div class="postBookImg">
@@ -549,25 +575,30 @@ span.size-45 {
 										}>&nbsp${i.b_writer }</div>
 									<div class="postHeader">
 										<div class="postTitle">
-											${i.p_title } <span class="postCommentCount">[${i.p_comment_count }]</span>
+											<a href="/booknote/selectPostByPseq?p_seq=${i.p_seq }">${i.p_title }</a> <span class="postCommentCount">[${i.p_comment_count }]</span>
 										</div>
 										<div class="postWritedate">${i.p_write_date }</div>
 									</div>
 									<hr class="postlistHr">
 									<div class="postBody">
-										<div class="postContent">${i.p_content }</div>
-										<div class="postLike">
+										<div class="postContent">${i.p_content }
+										</div>
+                                        
+                                        <div class="postLike" seq="${i.p_seq }" isbn="${i.b_isbn }" <c:if test="${i.p_seq == like.p_seq}">like="true" style="color: #5397fc;"</c:if>>
 											<div class="postLikeIcon">
 												<span class="material-symbols-outlined size-45">thumb_up</span>
 											</div>
 											<div class="postLikeCount">${i.p_like_count }</div>
 										</div>
+
 									</div>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 					<hr class="bodyHr">
+					</c:otherwise>
+					</c:choose>
 					<div class="postPage"></div>
 				</div>
 			</div>
@@ -616,6 +647,42 @@ span.size-45 {
 			$("#insertPostBtn").on("click", function() {
 				location.href = "/booknote/toInsertPost";
 			})
+			
+			$(".postLike").on("click", function(){
+				let p_like = $(this).attr("like");
+				let p_seq = $(this).attr("seq");
+				let b_isbn = $(this).attr("isbn");
+				if(p_like == "false"){
+				$.ajax({
+                    url: "/booknote/insertPostLike",
+                    type: "post",
+                    data: {
+                        "p_seq": p_seq,
+                        "b_isbn": b_isbn
+                    }
+				}).done(function(data){
+					if(data == 1){
+						$(this).attr("like", "true");
+						$(this).attr("style", "color: #5397fc;");
+					}
+				})
+				}else{
+					$.ajax({
+	                    url: "/booknote/deletePostLike",
+	                    type: "post",
+	                    data: {
+	                        "p_seq": p_seq,
+	                        "b_isbn": b_isbn
+	                    }
+					}).done(function(data){
+						if(data == 1){
+							$(this).attr("like", "false");
+							$(this).attr("style", "color: #80808050;");
+						}
+					})
+				}
+			})
+
 		</script>
 </body>
 
