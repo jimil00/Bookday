@@ -29,7 +29,7 @@ public class BookbagDAO {
 		db.delete("Bookbag.deleteBookbagBySeq", bookbag_seq);
 	}
 	
-
+//shu
 	/* 책 추가 */
 	public void insertBookbag(BookbagDTO dto) {
 		db.insert("Bookbag.insertBookbag", dto);

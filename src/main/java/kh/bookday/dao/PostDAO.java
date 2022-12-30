@@ -15,27 +15,52 @@ public class PostDAO {
 	@Autowired
 	private SqlSession db;
 
-
+	// JIN
+	// 포스트 리스트 마이북 포스트 페이지에 아이디로 출력
 	public List<PostDTO> selectPostListById(String id){
-		return db.selectList("Booknote.selectPostListById", id);
-	}
-	
-	
-	public PostDTO selectPostByPseq(int p_seq) {
-			return db.selectOne("Booknote.selectPostByPseq",p_seq);
-		}
 
+		return db.selectList("Post.selectPostListById", id);
+	}
+
+	// 포스트 리스트 좋아요 +1
+	public void updatePLCUp(int p_seq) {
+		db.update("Post.updatePLCUp", p_seq);
+	}
+
+	// 포스트 리스트 좋아요 -1
+	public void updatePLCDown(int p_seq) {
+		db.update("Post.updatePLCDown", p_seq);
+	}
+
+	// 포스트 입력
 	public int insertPost(PostDTO dto) {
-		return db.insert("Booknote.insertPost", dto);
+		return db.insert("Post.insertPost", dto);
 	}
 
+	// 포스트 리스트 책장에 20개 먼저 아이디로 출력
 	public List<PostDTO> select20PostListById(HashMap<String, Object> data){
 		return db.selectList("Post.select20PostListById", data);
 	}
 
+	// 포스트 20
 	public int select20PostCount() {
 		return db.selectOne("Post.select20PostCount");
 	}
+
+	public PostDTO selectPostByPseq(int p_seq){
+		return db.selectOne("Post.selectPostByPseq", p_seq);
+	}
+
+	// 포스트 댓글 입력시 댓글 수 +1
+	public void updatePCCUp(int p_seq) {
+		db.update("Post.updatePCCUp", p_seq);
+	}
+
+	// 포스트 댓글 삭제시 댓글 수 -1
+	public void updatePCCDown(int p_seq) {
+		db.update("Post.updatePCCDown", p_seq);
+	}
+	// JIN
 
 	//해당 도서 포스트 출력
 	public List<PostDTO> selectPostByIsbn(String b_isbn) {
@@ -46,10 +71,12 @@ public class PostDAO {
 	public List<PostDTO> selectPostListBySw(String searchWord){
 		return db.selectList("Post.selectPostListBySw", searchWord);
 	}
-	
+
+//shu
 	//인기 포스트 출력
 	public List<PostDTO> selectPopularPost() {
 		return db.selectList("Post.selectPopularPost");
+
 	}
-	
+
 }
