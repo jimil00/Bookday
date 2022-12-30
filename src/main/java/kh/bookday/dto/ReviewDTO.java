@@ -10,6 +10,7 @@ public class ReviewDTO {
 	private Timestamp rv_write_date;
 	private String rv_content;
 	private String b_isbn;
+	private int r_count_like;
 	
 	
 	public ReviewDTO() {
@@ -24,8 +25,8 @@ public class ReviewDTO {
 		this.rv_write_date = rv_write_date;
 		this.rv_content = rv_content;
 		this.b_isbn = b_isbn;
-	}
 	
+	}
 	
 	public int getRv_seq() {
 		return rv_seq;
@@ -63,5 +64,14 @@ public class ReviewDTO {
 	public void setB_isbn(String b_isbn) {
 		this.b_isbn = b_isbn;
 	}
+
+	public int getR_count_like() {
+		return r_count_like;
+	}
+
+	public void setR_count_like(int r_count_like) {
+		this.r_count_like = r_count_like;
+	}
+	
 	
 }

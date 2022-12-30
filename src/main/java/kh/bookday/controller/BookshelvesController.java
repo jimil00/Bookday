@@ -47,7 +47,7 @@ public class BookshelvesController {
 	public String selectBookshelvesListById(Model model) throws Exception{
 		// id session
 		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+		String id = "2584859670";
 
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
