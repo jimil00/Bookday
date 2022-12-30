@@ -1007,10 +1007,20 @@ $(document).ready(function(){
                  });
 
 	
-	
-    
     //로그인 상태가 아닐 때
      if(${loginID==null}){
+    	 
+    //엔터키로 값이 넘어가는 이벤트 막기(input창만 막기-검색창은 x)
+	 $(document).keypress(function(e) { 
+
+	      	if (e.keyCode == 13 && $("#input").val() != "") {
+	      		e.preventDefault(); 
+	      		alert("로그인 후 이용해주세요.");
+	      		$("#input").val("");
+	      	}
+			
+	      	
+	      });
         
                 //링크 삭제
                 $(".a_move").removeAttr("href");
@@ -1150,6 +1160,8 @@ $(document).ready(function(){
                               let r_like_icon =$(this).attr("data-count");
                           
                               console.log(r_like_icon);
+                              console.log(b_isbn);
+                              console.log(rv_seq);
                                     
                             if(r_like_icon == 0 ){
                                   
@@ -1161,7 +1173,7 @@ $(document).ready(function(){
                                           }
                               }).done(function(resp){
                                  console.log("좋아요 성공");
-                                 location.reload();
+                                  location.reload();
 
                               });
                               
@@ -1201,6 +1213,7 @@ $(document).ready(function(){
 //리뷰 비회원 대비) 비로그인 상태에서 리뷰 달려고 하면 로그인 페이지로 이동
 function alert_open() {
     alert("로그인 후 이용해주세요.");
+    $("#input").val("");
 }
 </script>
 </body>

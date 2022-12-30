@@ -14,6 +14,14 @@
 		select * from post where p_writer_id = #{id} order by p_seq desc
 	</select>
 	
+	<update id="updatePLCUp">
+		update post set p_like_count = p_like_count + 1 where p_seq = #{p_seq}
+	</update>
+	
+	<update id="updatePLCDown">
+		update post set p_like_count = p_like_count -1 where p_seq = #{p_seq}
+	</update>
+	
 	<select id="select20PostListById" resultType="kh.bookday.dto.PostDTO">
 		<![CDATA[
           select *
@@ -34,9 +42,18 @@
 		select * from post where b_isbn=#{value} order by p_seq
 	</select>
 	
-	<!-- 지민 - 검색 시 포스트 출력 -->
+<!-- 지민 -->
+
+	<!-- 검색 시 포스트 출력 -->
 	<select id="selectPostListBySw" resultType="kh.bookday.dto.PostDTO">
 		select * from post where b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or b_genre like '%'||#{searchWord}||'%'		
+	</select>
+	
+<!-- 지민 -->
+	
+	<!-- 인기 포스트 출력 -->
+	<select id="selectPopularPost" resultType="kh.bookday.dto.PostDTO">
+		select * from post where  <![CDATA[rownum <= 6]]> order by P_LIKE_COUNT desc
 	</select>
 	
 </mapper>

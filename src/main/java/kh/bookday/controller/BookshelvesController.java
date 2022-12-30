@@ -72,7 +72,6 @@ public class BookshelvesController {
 	@ResponseBody
 	public String nextList(int count) {
 		String id = "zxcvzxcv";
-		System.out.println(count);
 		return new Gson().toJson(pservice.select20PostListById(id, count));
 	}
 

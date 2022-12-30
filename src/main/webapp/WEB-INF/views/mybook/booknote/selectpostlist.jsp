@@ -246,8 +246,7 @@ span.size-35 {
 
 #profile {
 	border-radius: 50%;
-		box-shadow: 2px 2px 2px 2px #80808050;
-	
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 /* contentdBody */
@@ -350,12 +349,13 @@ span.size-30 {
 }
 
 /* contentsBodyPostContents */
-.emptyPostContents{
+.emptyPostContents {
 	font-size: 15px;
 	margin-top: 20px;
-	margin-bottom:20px;
+	margin-bottom: 20px;
 	text-align: center;
 }
+
 .postContents {
 	width: 100%;
 	height: auto;
@@ -400,10 +400,12 @@ span.size-30 {
 	font-size: 17px;
 	font-weight: 200;
 }
-.postTitle a{
+
+.postTitle a {
 	text-decoration: none;
 	color: black;
 }
+
 .postCommentCount {
 	color: #5397fc;
 }
@@ -422,15 +424,16 @@ span.size-30 {
 	height: auto;
 	display: flex;
 	flex-wrap: wrap;
-	   text-overflow: ellipsis;
-   overflow: hidden;
-   word-break: break-word;
-   display: -webkit-box;
-   -webkit-line-clamp: 7;
-   -webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
 }
-.postContent>p>span{
-font-size: 14px !important;
+
+.postContent>p>span {
+	font-size: 14px !important;
 }
 
 .postBody {
@@ -438,9 +441,13 @@ font-size: 14px !important;
 	display: flex;
 }
 
+.pLike {
+	width: 17%;
+	display: flex;
+	justify-content: center;
+}
 
 .postLike {
-	width: 17%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -557,48 +564,85 @@ span.size-45 {
 					</div>
 					<hr class="bodyHr">
 					<div class="selectPostList">
-					<c:choose>
-                    <c:when test="${empty list}">
-					<div class="emptyPostContents">포스트가 없습니다.</div>
-					<hr class="bodyHr">
-                    </c:when>
-                    <c:otherwise>
-						<c:forEach var="i" items="${list}" var="like" items="${llist }">
-							<div class="postContents">
-								<div class="postContentsImg">
-									<div class="postBookImg">
-										<img src="${i.b_img_url }">
-									</div>
-								</div>
-								<div class="postContentsTxt">
-									<div class="postBookInfo"><${i.b_title
-										}>&nbsp${i.b_writer }</div>
-									<div class="postHeader">
-										<div class="postTitle">
-											<a href="/booknote/selectPostByPseq?p_seq=${i.p_seq }">${i.p_title }</a> <span class="postCommentCount">[${i.p_comment_count }]</span>
-										</div>
-										<div class="postWritedate">${i.p_write_date }</div>
-									</div>
-									<hr class="postlistHr">
-									<div class="postBody">
-										<div class="postContent">${i.p_content }
-										</div>
-                                        
-                                        <div class="postLike" seq="${i.p_seq }" isbn="${i.b_isbn }" <c:if test="${i.p_seq == like.p_seq}">like="true" style="color: #5397fc;"</c:if>>
-											<div class="postLikeIcon">
-												<span class="material-symbols-outlined size-45">thumb_up</span>
+						<c:choose>
+							<c:when test="${empty list}">
+								<div class="emptyPostContents">포스트가 없습니다.</div>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="i" items="${list}" varStatus="status">
+									<div class="postContents">
+										<div class="postContentsImg">
+											<div class="postBookImg">
+												<img src="${i.b_img_url }">
 											</div>
-											<div class="postLikeCount">${i.p_like_count }</div>
 										</div>
+										<div class="postContentsTxt">
+											<div class="postBookInfo"><${i.b_title
+												}>&nbsp${i.b_writer }</div>
+											<div class="postHeader">
+												<div class="postTitle">
+													<a href="/booknote/selectPostByPseq?p_seq=${i.p_seq }">${i.p_title }</a>
+													<span class="postCommentCount">[${i.p_comment_count }]</span>
+												</div>
+												<div class="postWritedate">${i.p_write_date }</div>
+											</div>
+											<hr class="postlistHr">
+											<div class="postBody">
+												<div class="postContent">${i.p_content }</div>
+												<div class="pLike">
+													<c:set var="doneLoop" value="false" />
+													<c:set var="existFlag" value="false" />
 
+													<c:forEach var="like" items="${llist}">
+														<c:if test="${i.p_seq == like.p_seq}">
+															<c:set var="existFlag" value="true" />
+														</c:if>
+													</c:forEach>
+													<c:choose>
+														<c:when test="${existFlag}">
+															<c:forEach var="like" items="${llist}">
+																<c:if test="${not doneLoop}">
+																	<c:choose>
+																		<c:when test="${i.p_seq == like.p_seq}">
+
+																			<div class="postLike" pseq="${i.p_seq }"
+																				lseq="${like.p_seq }" isbn="${i.b_isbn }"
+																				like="true" style="color: #5397fc">
+
+																				<div class="postLikeIcon">
+																					<span class="material-symbols-outlined size-45">thumb_up</span>
+																				</div>
+																				<div class="postLikeCount">${i.p_like_count }</div>
+																			</div>
+																			<c:set var="doneLoop" value="true" />
+																		</c:when>
+
+																	</c:choose>
+																</c:if>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<div class="postLike" pseq="${i.p_seq }"
+																lseq="${like.p_seq }" isbn="${i.b_isbn }" like="false"
+																style="color: #80808050">
+
+																<div class="postLikeIcon">
+																	<span class="material-symbols-outlined size-45">thumb_up</span>
+																</div>
+																<div class="postLikeCount">${i.p_like_count }</div>
+															</div>
+														</c:otherwise>
+													</c:choose>
+												</div>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-						</c:forEach>
+								</c:forEach>
 					</div>
-					<hr class="bodyHr">
 					</c:otherwise>
 					</c:choose>
+					<hr class="bodyHr">
+
 					<div class="postPage"></div>
 				</div>
 			</div>
@@ -650,9 +694,12 @@ span.size-45 {
 			
 			$(".postLike").on("click", function(){
 				let p_like = $(this).attr("like");
-				let p_seq = $(this).attr("seq");
+				let p_seq = $(this).attr("pseq");
 				let b_isbn = $(this).attr("isbn");
+				let tmp = event.target
+				console.log(p_like);
 				if(p_like == "false"){
+					console.log("good");
 				$.ajax({
                     url: "/booknote/insertPostLike",
                     type: "post",
@@ -661,10 +708,13 @@ span.size-45 {
                         "b_isbn": b_isbn
                     }
 				}).done(function(data){
-					if(data == 1){
-						$(this).attr("like", "true");
-						$(this).attr("style", "color: #5397fc;");
-					}
+					console.log(data);
+				
+// 						console.log()
+// 						$(tmp).attr("like","true");
+// 						$(tmp).attr("style", "color:blue;");
+                        location.reload();
+					
 				})
 				}else{
 					$.ajax({
@@ -675,10 +725,13 @@ span.size-45 {
 	                        "b_isbn": b_isbn
 	                    }
 					}).done(function(data){
-						if(data == 1){
-							$(this).attr("like", "false");
-							$(this).attr("style", "color: #80808050;");
-						}
+						console.log(data);
+
+						
+// 							$(tmp).attr("like","false");
+// 							$(tmp).attr("style", "color:grey;");
+                            location.reload();
+						
 					})
 				}
 			})

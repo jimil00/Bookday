@@ -60,24 +60,23 @@ public class BookController {
 		return "mybook/booksearchpop";
 	}
 	
-	
 	//도서 정보 출력
 	@RequestMapping("selectBookinfo") //@RequestParam("rv_seq") String rv_seq  @RequestParam(value="nowPage", required=false)String nowPage @RequestParam(value="cntPerPage", required=false)String cntPerPage
 	public String selectBookByIsbn(Model model, String b_isbn) {
-		
+		session.setAttribute("loginID", "zxcvzxcv");
 		//아마 상세 페이지로 가는 이동이 완성되면 포스트로 값을 받아서
 		
 		//도서 정보 출력
 		BookDTO dto=service.selectBookByIsbn(b_isbn);
 		model.addAttribute("dto",dto);
 		
-		//댓글 리스트 출력
+		//리뷰 리스트 출력
 		List<ReviewDTO> rlist=rservice.selectReviewByIsbn(b_isbn);
 		model.addAttribute("rlist",rlist);
 		
 		String id=String.valueOf(session.getAttribute("loginID"));		
 
-		//유저에 따른 댓글 좋아요 list
+		//유저에 따른 리뷰 좋아요 list
 		List<ReviewLikeDTO> rl_list=rservice.findReviewLike(id,b_isbn);
 		model.addAttribute("rl_list",rl_list);
 					
@@ -125,27 +124,17 @@ public class BookController {
 		System.out.println(dto.getRv_content());
 		 
 		return "true";
-	}
-	
-	//유저에 따른 좋아요 여부 확인
-//	@ResponseBody
-//	@RequestMapping("findReviewLike")
-//	public String findReviewLike(String id, Object rv_seq) {
-//		
-//		String user=(String.valueOf(session.getAttribute("loginID")));
-//		
-//		rservice.findReviewLike(user,rv_seq);
-//		
-//		return String.valueOf(rservice.findReviewLike(user,rv_seq));
-//	}
-	
+	}	
 	
 	//리뷰 좋아요 누름
 	@ResponseBody
 	@RequestMapping("insertReviewLike")
 	public String insertReviewLike(ReviewLikeDTO dto) {
+		session.setAttribute("loginID", "zxcvzxcv");
 		
 		dto.setId(String.valueOf(session.getAttribute("loginID")));
+		
+		System.out.println(dto.getId());
 		rservice.insertReviewLike(dto);
 		System.out.println(dto);
 		

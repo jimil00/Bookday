@@ -36,9 +36,12 @@ public class BooknoteController {
 
 	@RequestMapping("selectPostListById")
 	public String selectPostListById(Model model) {
+		
 		// id session
 		//		String id = String.valueOf(session.getAttribute("loginID"));
 		String id = "zxcvzxcv";
+		session.setAttribute("loginID", id);
+
 		
 		// 회원정보 
 		MemberDTO dto = mservice.selectMemberById(id);
@@ -63,8 +66,21 @@ public class BooknoteController {
 		// id session
 		//		String id = String.valueOf(session.getAttribute("loginID"));
 		String id = "zxcvzxcv";
-
+		dto.setId(id);
+		dto.setP_writer_id(id);
 		String result = service.insertPostLike(dto);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("deletePostLike")
+	public String deletePostLike(PostLikeDTO dto) {
+		// id session
+		//		String id = String.valueOf(session.getAttribute("loginID"));
+		String id = "zxcvzxcv";
+		dto.setId(id);
+		dto.setP_writer_id(id);
+		String result = service.deletePostLike(dto);
 		return result;
 	}
 
@@ -106,8 +122,11 @@ public class BooknoteController {
 		PostDTO dto = service.selectPostByPseq(p_seq);
 		model.addAttribute("dto", dto);
 		
-//		boolean result = service.selectPostLike();
-//		model.addAttribute("result", result);
+		PostLikeDTO ldto = new PostLikeDTO();
+		ldto.setP_seq(p_seq);
+		ldto.setId(id);
+		boolean result = service.selectPostLike(ldto);
+		model.addAttribute("result", result);
 
 		List<PostCommentDTO> list = service.selectPostCListByPseq(p_seq);
 		model.addAttribute("list", list);
@@ -138,6 +157,8 @@ public class BooknoteController {
 		System.out.println(result);
 		return result;
 	}
+	
+	
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
