@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>Search</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
 @font-face {
 	font-family: 'NanumSquareNeo-Variable';
@@ -23,11 +24,10 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-/* div {
+div {
+/* 	border: 1px solid black; */
+}
 
-   border: 1px solid black;
-
-} */
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -119,10 +119,10 @@ button:hover {
 }
 /* icon */
 .iconBox {
-            position: absolute;
-            bottom: 0px;
-            right: 0px;
-        }
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
 
 span.size-40 {
 	font-size: 40px;
@@ -145,7 +145,6 @@ span, #logoImg:hover {
 }
 
 /* header */
-
 
 /* login */
 .signBox {
@@ -173,8 +172,8 @@ span, #logoImg:hover {
 	cursor: default;
 }
 
-.login_form{
-	margin-top:200px;
+.login_form {
+	margin-top: 200px;
 }
 
 /* navi */
@@ -185,7 +184,67 @@ span, #logoImg:hover {
 
 /* body */
 .body {
-   height: 2000px;
+	overflow: hidden;
+}
+
+.book-header, .post-header {
+	/* height: 50px; */
+	font-size: 25px;
+}
+
+.book {
+	overflow: hidden;
+}
+
+.book-main {
+	overflow: hidden;
+	width: 140px;
+	text-align: center;
+	float: left;
+	margin-left: 19px;
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+
+.book-img {
+	width: 120px;
+	height: 180px;
+}
+
+.b_title {
+	overflow: hidden;
+	display: -webkit-box;
+	width: 100%;
+	height: 37px;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+}
+
+.b_writer {
+    overflow: hidden;
+    height: 25px;
+    padding-top: 5px;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+
+.post {
+	padding-top: 40px;
+	overflow: hidden;
+}
+
+.post-main {
+	width: 250px;
+	height: 300px;
+	float: left;
+	margin-left: 55px;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	border: 1px solid;
+}
 }
 </style>
 </head>
@@ -199,7 +258,7 @@ span, #logoImg:hover {
 				<div class="searchBox">
 					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord">
+							id="searchWord" name="searchWord" value=${searchWord }>
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -212,12 +271,14 @@ span, #logoImg:hover {
 						<c:when test="${empty loginID}">
 							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
 							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p class="user" id="test">상세 페이지 테스트</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
+									class="user" id="test">상세 페이지 테스트</p></a>
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
 							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p class="user" id="test">상세 페이지 테스트</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
+									class="user" id="test">상세 페이지 테스트</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -232,7 +293,38 @@ span, #logoImg:hover {
 		</div>
 		<hr id="headerHr">
 		<div class="navi"></div>
-		<div class="body"></div>
+		<div class="body">
+			<div class="book">
+				<div class="book-header">도서</div>
+				<hr>
+				<c:forEach var="book" items="${blist }">
+					<div class="book-main">
+						<img class="book-img" src="${book.b_img_url }">
+						<div class="b_title" title="${book.b_title }">${book.b_title }</div>
+						<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
+					</div>
+				</c:forEach>
+			</div>
+			<div class="post">
+				<div class="post-header">포스트</div>
+				<hr>
+				<div class="post-main">
+					<div class="p_writer">지민님의 포스트</div>
+					<div class="p_title">포스트 제목</div>
+					<div class="p_like_count">좋아요 수</div>
+					<div class="p_content">포스트 내용</div>
+				</div>
+				<div class="post-main">
+					<div class="">지민님의 포스트</div>
+				</div>
+				<div class="post-main">
+					<div class="">지민님의 포스트</div>
+				</div>
+				<div class="post-main">
+					<div class="">지민님의 포스트</div>
+				</div>
+			</div>
+		</div>
 		<div class="footer"></div>
 	</div>
 	<script>
