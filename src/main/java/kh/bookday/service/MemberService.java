@@ -62,22 +62,22 @@ public class MemberService {
 		//uuid 생성
 		String id =UUID.randomUUID().toString();
 		dto.setId(id);
-		
+
 		dao.signUp(dto);
 	}
-	
+
 	public void kakaoSignUp(MemberDTO dto) {
-		
+
 		//uuid 생성 X
 		dao.signUp(dto);
-		
+
 	}
-	
+
 	public String selectIdByPhone(String phone) {
 		return dao.selectIdByPhone(phone);
 	}
-	
-	
+
+
 	public boolean selectByEmail(String email) {
 		return dao.selectByEmail(email);
 	}
@@ -139,7 +139,7 @@ public class MemberService {
 			StringBuilder sb = new StringBuilder();
 			sb.append(grant_type);
 			sb.append(client_id);
-			sb.append(redirect_uri_shu);
+			sb.append(redirect_uri_test);
 			sb.append("&code="+code);
 			bw.write(sb.toString());
 			bw.flush();
@@ -171,7 +171,7 @@ public class MemberService {
 
 			br.close();
 			bw.close();
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -184,7 +184,7 @@ public class MemberService {
 	//카카오 로그인 유저 정보 조회
 	@SuppressWarnings("deprecation")
 	public MemberDTO getUserInfo(String access_Token){
-		
+
 		MemberDTO userInfo = new MemberDTO();
 		String reqURL = "https://kapi.kakao.com/v2/user/me";
 		String Authorization="bearer "+ access_Token;
@@ -228,44 +228,46 @@ public class MemberService {
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
 
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-		
-			
+
+
 			userInfo.setId(id);
 			userInfo.setPw(UUID.randomUUID().toString()); //비밀번호 겹치지 않게 자동값 생성(보안에 매우 취약)
 			userInfo.setPhone(""); //휴대폰 번호
 			userInfo.setEmail(email); //이메일
 			userInfo.setName(nickname); //이름(닉네임과 동일)
 			userInfo.setNickname(nickname);//닉네임(세션)
-			
-			
+
+
 		}catch(IOException e){
 			e.printStackTrace();
 		}
 		return userInfo;
 	}
-	
-	/* 회원 배송지 정보 입력 */
+
+	// 지민
+	// 회원 배송지 정보 입력
 	public void updateMemberAddressById(MemberDTO dto) {
 		dao.updateMemberAddressById(dto);
 	}
-	
-	/* 월 구독 회원 정보 조회 */
+
+	// 월 구독 회원 정보 조회
 	public MonthSubMemberDTO selectMonthSubMemberById(String id) {
 		return dao.selectMonthSubMemberById(id);
 	}
-	
-	/* 월 구독 회원 등록 */
+
+	// 월 구독 회원 등록
 	public void insertMonthSubMemberById(String id) {
 		dao.insertMonthSubMemberById(id);
 	}
-	
-	/* 회원 등급 변경 */
+
+	// 회원 등급 변경
 	public void updateMemberGradeById(String id) {
 		dao.updateMemberGradeById(id);
 	}
-	
-	/* 월 구독 회원 남은 배송 횟수, 남은 대여 권수 계산 */
+
+	// 월 구독 회원 남은 배송 횟수, 남은 대여 권수 계산
 	public void updateMonthSubMemberById(MonthSubMemberDTO dto) {
 		dao.updateMonthSubMemberById(dto);
 	}
+	// 지민
 }

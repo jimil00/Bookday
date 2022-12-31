@@ -190,8 +190,7 @@ span, #logoImg:hover {
 }
 
 .book-header, .post-header {
-	/* height: 50px; */
-	font-size: 25px;
+	font-size: 20px;
 }
 
 .book {
@@ -219,22 +218,19 @@ span, #logoImg:hover {
 
 .b_title {
 	overflow: hidden;
-	display: -webkit-box;
-	width: 100%;
-	height: 37px;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
+	height: 23px;
 	word-wrap: break-word;
 	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .b_writer {
 	overflow: hidden;
-	height: 25px;
-	padding-top: 5px;
+	height: 23px;
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	font-size: 14px;
 }
 
 .post {
@@ -250,7 +246,7 @@ span, #logoImg:hover {
 	/* 	text-align: center; */
 	margin-left: 55px;
 	margin-bottom: 20px;
-	margin-top: 10px;
+	margin-top: 15px;
 	border: 1px solid #5397fc;
 	border-radius: 15px;
 }
@@ -267,7 +263,7 @@ span, #logoImg:hover {
 }
 
 .profile-img {
-	width: 60px;
+	width: 55px;
 	height: auto;
 	border-radius: 50%;
 }
@@ -292,14 +288,13 @@ span, #logoImg:hover {
 	float: left;
 	position: relative;
 	font-size: 18px;
-	top: 3px;
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 
 .like-text {
 	float: left;
 	position: relative;
-	line-height: 25px;
+	line-height: 20px;
 	padding-left: 3px;
 	font-size: 13px;
 }
@@ -379,7 +374,7 @@ span, #logoImg:hover {
 		<div class="navi"></div>
 		<div class="body">
 			<div class="book">
-				<div class="book-header">도서</div>
+				<div class="book-header">도서 검색 결과 (${fn:length(blist)})</div>
 				<hr class="body-hr">
 				<c:choose>
 					<c:when test="${fn:length(blist) == 0}">
@@ -389,7 +384,7 @@ span, #logoImg:hover {
 					<c:otherwise>
 						<c:forEach var="book" items="${blist }">
 							<div class="book-main">
-								<a href=""><img class="book-img" src="${book.b_img_url }"></a>
+								<a href="/book/selectBookinfo?b_isbn=${book.b_isbn }"><img class="book-img" src="${book.b_img_url }"></a>
 								<div class="b_title" title="${book.b_title }">${book.b_title }</div>
 								<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
 							</div>
@@ -398,7 +393,7 @@ span, #logoImg:hover {
 				</c:choose>
 			</div>
 			<div class="post">
-				<div class="post-header">포스트</div>
+				<div class="post-header">포스트 검색 결과 (${fn:length(plist)})</div>
 				<hr class="body-hr">
 				<c:choose>
 					<c:when test="${fn:length(plist) == 0}">
@@ -421,8 +416,8 @@ span, #logoImg:hover {
 									</div>
 								</div>
 								<hr class="body-hr">
-								<div class="p-title">${post.p_title }</div>
-								<div class="p-content">${post.p_content }</div>
+								<div class="p-title" title="${post.p_title }">${post.p_title }</div>
+								<div class="p-content"><a href="/" style="text-decoration-line: none; color: black;">${post.p_content }</a></div>
 							</div>
 						</c:forEach>
 					</c:otherwise>

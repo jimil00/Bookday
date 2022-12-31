@@ -28,7 +28,7 @@ public class PostService {
 	
 	
 
-// JIN
+// 수진
 	// 책장 페이지) 포스트 올린 책 20개씩 출력(무한 스크롤)
 	public List<PostDTO> select20PostListById(String id, int count) {
 
@@ -112,11 +112,20 @@ public class PostService {
 
 	}
 	// 포스트 페이지) 댓글 삭제
-	public void deletePostComment(PostCommentDTO dto) {
-		cdao.deletePostComment(dto.getPc_seq());
-		dao.updatePCCDown(dto.getP_seq());
+	public void deletePostComment(int pc_seq) {
+		cdao.deletePostComment(pc_seq);
+		dao.updatePCCDown(pc_seq);
 	}
-// JIN
+	
+	// 포스트 검색
+	public List<PostDTO> selectSearchPostList(String id, String searchWord){
+		HashMap<String, String> param = new HashMap<>();
+		param.put("id", id);
+		param.put("searchWord", searchWord);
+
+		return dao.selectSearchPostList(param);
+	}
+// 수진
 
 	// 해당 도서에 대한 포스트 출력
 	public List<PostDTO> selectPostByIsbn(String b_isbn) {
@@ -129,12 +138,10 @@ public class PostService {
 	}
 		
 // 지민	
-	
 	// 검색 시 포스트 출력
 	public List<PostDTO> selectPostListBySw(String searchWord){
 		return dao.selectPostListBySw(searchWord);
 	}
-
 // 지민
 
 }

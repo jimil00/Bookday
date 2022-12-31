@@ -19,12 +19,12 @@ public class WishlistDAO {
 		return db.selectList("Wishlist.selectWishlistListById", id);
 	}
 	
-	/* 위시리스트 체크 */
+	// 위시리스트 체크
 	public WishlistDTO selectWishlistByIdBisbn(Map<String, String> param) {
 		return db.selectOne("Wishlist.selectWishlistByIdBisbn", param);
 	}
 	
-	/* 위시리스트 추가 */
+	// 위시리스트 추가
 	public void insertWishlist(WishlistDTO dto) {
 		db.insert("Wishlist.insertWishlist", dto);
 	}

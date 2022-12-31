@@ -20,12 +20,12 @@ public class RentalService {
 		return dao.selectRentalListById(id);
 	}
 	
-	/* 대여 테이블 입력 */
+	// 대여 테이블 입력 
 	public void insertRental(RentalDTO dto) {
 		dao.insertRental(dto);
 	}
 	
-	/* 방금 대여한 책 리스트 출력 */
+	// 방금 대여한 책 리스트 출력
 	public List<RentalDTO> selectRentalListByIdRownum(String id, int rownum){
 		Map<String, Object> param = new HashMap<>();
 		param.put("id", id);

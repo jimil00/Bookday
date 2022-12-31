@@ -49,6 +49,7 @@ public class BookController {
 	@Autowired
 	private BookbagService bservice;
 	
+	// 수진
 	// 책 검색 팝업
 	@GetMapping("toBookSearchPop")
 	public String toBookSearchPop(String searchWord, Model model) {
@@ -59,6 +60,7 @@ public class BookController {
 		
 		return "mybook/booksearchpop";
 	}
+	// 수진
 	
 	//도서 정보 출력
 	@RequestMapping("selectBookinfo") //@RequestParam("rv_seq") String rv_seq  @RequestParam(value="nowPage", required=false)String nowPage @RequestParam(value="cntPerPage", required=false)String cntPerPage

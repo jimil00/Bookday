@@ -3,6 +3,7 @@
 
 <mapper namespace="PostLike">
 
+<!-- 수진 -->
 	<select id="selectPostLikeListById" resultType="kh.bookday.dto.PostLikeDTO">
 		select * from post_like where id = #{id} order by p_seq
 	</select>
@@ -18,5 +19,6 @@
 	<delete id="deletePostLike">
 		delete from post_like where id = #{id} and p_seq = #{p_seq}
 	</delete>
-	
+<!-- 수진 -->
+		
 </mapper>

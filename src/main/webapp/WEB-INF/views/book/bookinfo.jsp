@@ -627,7 +627,7 @@ display:none;
         </div>
         <div class="search">
             <div class="searchBox">
-                <form action="//search" id="search" method="post">
+                <form action="/search/toSearch" id="search" method="post">
                     <input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
                         id="searchWord" name="searchWord">
                     <button class="searchBtn" type="submit">

@@ -468,11 +468,19 @@ display:none;
 				
 				<div class="booknote_copy" data-aos="fade-up" data-aos-duration="2000">
 					<h2 id="note_headline">나의 하루 독서를 기록해보세요</h2>
+					
 					<div class="detail">
 					<p class="note_list">읽은 책이나 읽고 싶은 책 검색</p>
 					<p class="note_list">마음에 드는 도서 책갈피</p>
 					<p class="note_list">나만의 독서 포스트 작성하고 공유</p>
 					</div>
+					
+					<div class="detail">
+					<img src="테스트.jpg">
+					<img src="테스트.jpg">
+					<img src="테스트.jpg">
+					</div>
+					
 				</div>
 				
 				<div class="bookstats_copy" data-aos="fade-up" data-aos-duration="2000">
@@ -490,11 +498,9 @@ display:none;
 					<p class="sub_list">종이책 대여 구독 서비스</p>
 					<p class="sub_list">대여 권수(달)/대여일</p>
 					</div>
-					<button id="move_btn">종이책 구독 시작하기</button>
-					
+					<button id="sub-btn">종이책 구독 시작하기</button>
 				</div>
-				
-			</div>
+
 			<div class="best_seller" data-aos="fade-up" data-aos-duration="2000">
 				<h2 id="best_headline">베스트셀러</h2>
 				
@@ -668,6 +674,14 @@ display:none;
          location.href = "/member/toMypage";
          }
       })
+      // 구독하기 버튼 기능
+		$("#sub-btn").on("click", function() {
+			 if(${loginID == null}) {
+	              location.href = "/member/toLogin";
+	    	  }else {
+	         	  location.href = "/delivery/toPayment?id=${loginID }";
+	    	  }
+		})
       
       //스크롤 이벤트 라이브러리(AOS)선언
        $( document ).ready( function() {
