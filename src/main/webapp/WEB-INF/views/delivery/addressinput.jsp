@@ -78,24 +78,24 @@ div {
 		<div class="body">
 			<div style="padding-bottom: 13px;">
 				<input type="text" id="postcode" name="postcode" placeholder="우편번호"
-					readonly>
+					readonly value="${dto.postcode }">
 				<button type="button" id="search-btn">우편번호 찾기</button>
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="address1" name="address1"
-					placeholder="주소" readonly>
+					placeholder="주소" readonly value="${dto.address1 }">
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="address2" name="address2"
-					placeholder="상세주소">
+					placeholder="상세주소" value="${dto.address2 }">
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="reciver" name="reciver"
-					placeholder="받으실 분">
+					placeholder="받으실 분" value="${dto.reciver }">
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="reciver_phone"
-					name="reciver_phone" placeholder="휴대폰 번호">
+					name="reciver_phone" placeholder="휴대폰 번호" value="${dto.reciver_phone }">
 			</div>
 			<div>
 				<button type="button" id="save-btn" style="width: 280px;">저장</button>
