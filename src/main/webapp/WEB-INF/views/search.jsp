@@ -199,7 +199,7 @@ span, #logoImg:hover {
 }
 
 .body-hr {
-		border-top: 1px solid rgb(216, 216, 216);
+	border-top: 1px solid rgb(216, 216, 216);
 }
 
 .book-main {
@@ -247,12 +247,88 @@ span, #logoImg:hover {
 	width: 250px;
 	height: 300px;
 	float: left;
-	text-align: center;
+	/* 	text-align: center; */
 	margin-left: 55px;
 	margin-bottom: 20px;
 	margin-top: 10px;
 	border: 1px solid #5397fc;
 	border-radius: 15px;
+}
+
+.post-main-top {
+	overflow: hidden;
+	/* height: 60px; */
+}
+
+.profile-img-div {
+	float: left;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.profile-img {
+	width: 60px;
+	height: auto;
+	border-radius: 50%;
+}
+
+.p-writer {
+	padding-top: 10px;
+	height: 30px;
+	overflow: hidden;
+	width: 150px;
+	display: inline-block;
+	font-weight: bold;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.p-like {
+	overflow: hidden;
+}
+
+.like-icon {
+	float: left;
+	position: relative;
+	font-size: 18px;
+	top: 3px;
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
+}
+
+.like-text {
+	float: left;
+	position: relative;
+	line-height: 25px;
+	padding-left: 3px;
+	font-size: 13px;
+}
+
+.p-title {
+	overflow: hidden;
+	width: 100%;
+	height: 30px;
+	font-weight: bold;
+	padding-top: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.p-content {
+	overflow: hidden;
+	font-size: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: -webkit-box;
+	width: 100%;
+	height: 150px;
+	-webkit-line-clamp: 9;
+	-webkit-box-orient: vertical;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
 }
 </style>
 </head>
@@ -313,7 +389,7 @@ span, #logoImg:hover {
 					<c:otherwise>
 						<c:forEach var="book" items="${blist }">
 							<div class="book-main">
-								<img class="book-img" src="${book.b_img_url }">
+								<a href=""><img class="book-img" src="${book.b_img_url }"></a>
 								<div class="b_title" title="${book.b_title }">${book.b_title }</div>
 								<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
 							</div>
@@ -331,12 +407,22 @@ span, #logoImg:hover {
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="post" items="${plist }">
-							<div class="post-main"><br>
-								<div class="p_writer"><span style="font-weight: bold;">${post.p_writer_nn }</span> 님의포스트</div>
-								<div class="p_like_count"> <span class="p_like_icon material-symbols-outlined" data-count="0">thumb_up</span>${post.p_like_count }</div>
+							<div class="post-main">
+								<br>
+								<div class="post-main-top">
+									<div class="profile-img-div">
+										<img src="/resources/basic.png" class="profile-img">
+									</div>
+									<div class="p-writer">${post.p_writer_nn }</div>
+									<div class="p-like">
+										<div class="like-icon material-symbols-outlined"
+											data-count="0">thumb_up</div>
+										<div class="like-text">${post.p_like_count }</div>
+									</div>
+								</div>
 								<hr class="body-hr">
-								<div class="p_title">${post.p_title }</div>
-								<div class="p_content">${post.p_content }</div>
+								<div class="p-title">${post.p_title }</div>
+								<div class="p-content">${post.p_content }</div>
 							</div>
 						</c:forEach>
 					</c:otherwise>

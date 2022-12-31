@@ -401,7 +401,7 @@ $(document).ready(function(){
 		   if(!pwRegex.test(pw) && pw != ""){
                 $("#pw").css("border-color","red");
                 $("#pw_result").css("color","red");
-                $("#pw_result").html("유효하지 않은 비밀번호입니다.");
+                $("#pw_result").html("유효하지 않은 비밀번호: 영문자,숫자,!,@,$,%,- 만 사용 가능");
               }else if(pw == ""){
             	  $("#pw").css("border-color","#d5d5d5");
               }else{ 
