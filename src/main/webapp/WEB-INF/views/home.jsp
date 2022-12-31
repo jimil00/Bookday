@@ -200,6 +200,12 @@ span, #logoImg:hover {
 	
 }
 
+.detail{
+	display:flex;
+	justify-content: space-between;
+	
+}
+
 .reading{
 	height:fit-content;
 }
@@ -444,7 +450,7 @@ display:none;
 			</div>
 		</div>
 		<hr id="headerHr">
-		<div class="navi"></div>
+ 		<div class="navi"></div>
 		<div class="body">
 			<div class="service_intro">
 			<div class="main_copy" data-aos="fade-up" data-aos-duration="2000">
@@ -462,26 +468,39 @@ display:none;
 				
 				<div class="booknote_copy" data-aos="fade-up" data-aos-duration="2000">
 					<h2 id="note_headline">나의 하루 독서를 기록해보세요</h2>
+					
+					<div class="detail">
 					<p class="note_list">읽은 책이나 읽고 싶은 책 검색</p>
 					<p class="note_list">마음에 드는 도서 책갈피</p>
 					<p class="note_list">나만의 독서 포스트 작성하고 공유</p>
+					</div>
+					
+					<div class="detail">
+					<img src="테스트.jpg">
+					<img src="테스트.jpg">
+					<img src="테스트.jpg">
+					</div>
+					
 				</div>
 				
 				<div class="bookstats_copy" data-aos="fade-up" data-aos-duration="2000">
 					<h2 id="stats_headline">내 독서 기록을 한 눈에 </h2>
+					<div class="detail">
 					<p class="stats_list">월별로 내가 읽은 책 수 평균</p>
 					<p class="stats_list">가장 많이 읽은 책 장르</p>
 					<p class="stats_list">책하루 사용자 내 순위 통계</p>
+					</div>
 				</div>
 				
 				<div class="booksub_copy" data-aos="fade-up" data-aos-duration="2000">
 					<h2 id="sub_headline">매월 읽고 싶은 책들이 집으로</h2>
+					<div class="detail">
 					<p class="sub_list">종이책 대여 구독 서비스</p>
 					<p class="sub_list">대여 권수(달)/대여일</p>
+					</div>
 					<button id="sub-btn">종이책 구독 시작하기</button>
 				</div>
-				
-			</div>
+
 			<div class="best_seller" data-aos="fade-up" data-aos-duration="2000">
 				<h2 id="best_headline">베스트셀러</h2>
 				
@@ -492,8 +511,10 @@ display:none;
 				 <div class="book_box">
                        <div class="book">
                            <img src="${b.b_img_url}" class="b_img_url">
+                           <div>
                              <p class="b_title">${b.b_title}</p>
                              <p class="b_writer">${b.b_writer}</p>
+                           </div> 
                        </div>
                  </div>
                  </c:forEach>
