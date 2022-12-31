@@ -471,87 +471,100 @@ span.size-45 {
 	display: inline-block;
 	width: auto;
 }
+
+/*footerHr*/
+.footerHr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
 /* footer */
 .footer {
-    margin:5px;
+	margin: 5px;
 }
 
-.f_header{
-    display: inline-flex;
-    margin-top:10px;
+.f_header {
+	display: inline-flex;
+	margin-top: 10px;
 }
 
-.f_header>a>img{
-    width:200px;
+.f_header>a>img {
+	width: 200px;
 }
 
-.sns_icon{
-  position: relative;
-  top:1px;
-  left:595px;
+.sns_icon {
+	position: relative;
+	top: 1px;
+	left: 595px;
 }
 
-.sns_icon>a>img{
-	  height:20px;
+.sns_icon>a>img {
+	height: 20px;
 }
 
-.business_info{
-    margin-top:30px;
+.business_info {
+	margin-top: 30px;
 }
 
-#business_info_title{
-    font-size: x-small;
-    color: #808080d6;
+#business_info_title {
+	font-size: x-small;
+	color: #808080d6;
 }
 
-.business_info>span{
-    margin-top:5px;
+.business_info>span {
+	margin-top: 5px;
 }
 
-.f_intro{
-    margin-top:15px;
-    margin-bottom:20px;
-    font-size: small;
+.f_intro {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	font-size: small;
 }
 
-.f_intro>span{
-   color:#4d4b4bc1;
+.f_intro>span {
+	color: #4d4b4bc1;
 }
 
-.f_line{
-    color: #808080d6;
+.f_line {
+	color: #808080d6;
 }
 
-.business_info{
-    margin-top:20px;
-}
-#business_info_text{
-    margin-top:10px;
-    font-size: x-small;
-    color: #808080d6;
-}
-.inline_info{
-    display: inline-flex;
+.business_info {
+	margin-top: 20px;
 }
 
-#arrow_down2,#arrow_up2{
-    position: relative;
-    bottom:6px;
-    color: #808080d6;
+#business_info_text {
+	margin-top: 10px;
+	font-size: x-small;
+	color: #808080d6;
 }
 
-#arrow_up2{
-display:none;
+.inline_info {
+	display: inline-flex;
 }
 
-.sns_icon>a>img{
-    width:40px;
-    height:40px;
+#arrow_down2, #arrow_up2 {
+	position: relative;
+	bottom: 6px;
+	color: #808080d6;
 }
 
-.copyright{
-    margin-top:5px;
-    font-size: x-small;
+#arrow_up2 {
+	display: none;
+}
+
+.sns_icon>a>img {
+	width: 40px;
+	height: 40px;
+}
+
+.copyright {
+	margin-top: 5px;
+	font-size: x-small;
 }
 </style>
 </head>
@@ -630,12 +643,12 @@ display:none;
 							<div class="postSearchTitle">포스트 검색</div>
 							<div class="postSearchBox">
 
-									<input class="postSearchTxt" type="text"
-										placeholder="검색어를 입력해 주세요" id="postSearchWord"
-										name="postSearchWord">
-									<button class="postSearchBtn" type="button">
-										<span class="material-symbols-outlined"> search </span>
-									</button>
+								<input class="postSearchTxt" type="text"
+									placeholder="검색어를 입력해 주세요" id="postSearchWord"
+									name="postSearchWord">
+								<button class="postSearchBtn" type="button">
+									<span class="material-symbols-outlined"> search </span>
+								</button>
 							</div>
 						</div>
 						<div class="insertPostBtn">
@@ -726,17 +739,18 @@ display:none;
 					<div class="postPage"></div>
 				</div>
 			</div>
+		</div>
+		<hr class="footerHr">
 		<div class="footer">
-
-			<hr>
 			<div class="f_header">
 				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
 
 				<div class="sns_icon">
 					<a href="#"><img src="/resources/instagram.png" id="insta"></a>
-					<a href="#"><img src="/resources/facebook.png" id="facebook"></a> 
-					<a href="#"><img src="/resources/twitter_black.png" id="twitter"></a>
-					<a href="#"><img src="/resources/youtube.png" id="youtube"></a>
+					<a href="#"><img src="/resources/facebook.png" id="facebook"></a>
+					<a href="#"><img src="/resources/twitter_black.png"
+						id="twitter"></a> <a href="#"><img
+						src="/resources/youtube.png" id="youtube"></a>
 				</div>
 
 			</div>
@@ -748,13 +762,11 @@ display:none;
 				</div>
 
 				<div id="business_info_text">
-					<span>대표자 성태조 </span>
-					<span> | </span>
-					<span> 사업자 등록번호 01-20-22015</span>
+					<span>대표자 성태조 </span> <span> | </span> <span> 사업자 등록번호
+						01-20-22015</span>
 					<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
-					<span>대표전화 1544-9970 </span>
-					<span> | </span>
-					<span> 이메일 help@bookday.com</span>
+					<span>대표전화 1544-9970 </span> <span> | </span> <span> 이메일
+						help@bookday.com</span>
 				</div>
 			</div>
 
@@ -766,8 +778,9 @@ display:none;
 			</div>
 			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
 			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
-		</div>		</div>
-		<script>
+		</div>
+	</div>
+	<script>
 			$("#logoImg").on("click", function() {
 				location.href = "/";
 			})

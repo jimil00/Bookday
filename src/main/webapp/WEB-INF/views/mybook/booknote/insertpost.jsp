@@ -530,6 +530,17 @@ span.size-30 {
 	border-radius: 5px;
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
+
+/*footerHr*/
+.footerHr{
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
 /* footer */
 .footer {
     margin:5px;
@@ -688,11 +699,13 @@ display:none;
                                 var b_genre = $(".bookGenre").html();
                                 var b_publisher = $(".bookPublisher").html();
                                 var b_publication_date = $(".bookPublicationDate").html();
+                                var start = $("#demo").attr("start");
+                                var finish = $("#demo").attr("finish");
 								var dyst_read = $("#demo").attr("start");
 								var dyfn_read = $("#demo").attr("finish");
 								var p_writer_nn = $("#contentsHeaderTxt").attr("p_writer_nn");
                                 var p_title = $("#insertBooknoteTitleTxt").val();
-								
+								console.log(dyst_read);
                                 if (p_title == "") {
                                     alert('제목을 입력해주세요.');
                                     return false;
@@ -830,7 +843,7 @@ display:none;
 					<div class="insertBooknoteDate">
 						<div class="insertBooknoteDateTitle">읽은 기간 선택</div>
 						<div class="insertBooknoteDateInput">
-							<input type="text" id="demo" name="demo"/>
+							<input type="text" id="demo" name="demo" start="<%=new java.util.Date()%>" finish="<%=new java.util.Date()%>">
 							<button class="insertBooknoteDateBtn">
 								<span class="material-symbols-outlined"> calendar_month </span>
 							</button>
@@ -854,10 +867,9 @@ display:none;
 				</div>
 			</div>
 		</div>
-	</div>
+		<hr class="footerHr">
 		<div class="footer">
 
-			<hr>
 			<div class="f_header">
 				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
 
@@ -895,8 +907,11 @@ display:none;
 			</div>
 			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
 			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
-		</div>	<script>
-                $("#logo_img").on("click", function () {
+		</div>	
+	</div>
+		
+<script>
+                $("#logoImg").on("click", function () {
                     location.href = "/";
                 })
 
@@ -965,7 +980,7 @@ display:none;
                     $("#demo").daterangepicker(
                         {
                             "locale": {
-                                "format": "YYYY-MM-DD",
+                                "format": "YYYY.MM.DD",
                                 "separator": " ~ ",
                                 "applyLabel": "확인",
                                 "cancelLabel": "취소",
@@ -987,8 +1002,8 @@ display:none;
 
                         function (start, end, label) {
                             console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-                        	$("#demo").attr("start", start.format('YYYYMMDD'));
-                        	$("#demo").attr("finish", end.format('YYYYMMDD'));
+                        	$("#demo").attr("start", start.format('YYYY.MM.DD'));
+                        	$("#demo").attr("finish", end.format('YYYY.MM.DD'));
 
                         });
                 });

@@ -67,9 +67,7 @@ public class MemberController {
 			session.setAttribute("loginID",id);
 			
 			MemberDTO dto=service.selectMemberById(id);
-			String nickname=dto.getNickname();
-			System.out.println(nickname);
-			session.setAttribute("nickname",nickname);
+			session.setAttribute("nickname",dto.getNickname());
 			
 		}
 		

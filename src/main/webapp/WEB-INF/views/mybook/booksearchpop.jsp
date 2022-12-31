@@ -24,18 +24,21 @@
 	box-sizing: border-box;
 	font-family: 'NanumSquareNeo-Variable';
 }
+
 .header {
 	display: flex;
 	height: 150px;
-	padding:5px;
+	padding: 5px;
 	margin: 5px;
 }
-.container{
+
+.container {
 	max-width: 700px;
 	margin: auto;
 }
-button{
-cursor:pointer;
+
+button {
+	cursor: pointer;
 }
 /* logo */
 .logo {
@@ -103,8 +106,8 @@ cursor:pointer;
 }
 
 hr {
-	margin-top:10px;
-	margin-bottom:0px;
+	margin-top: 10px;
+	margin-bottom: 0px;
 }
 
 table {
@@ -114,44 +117,50 @@ table {
 }
 
 td {
-padding: 15px 15px 15px 0;
+	padding: 15px 15px 15px 0;
 	border-bottom: 1px solid rgb(216, 216, 216)
 }
 
-
-.bookCover{
-width:80px;
+.bookCover {
+	width: 80px;
 }
+
 .bookCover img {
 	width: 80px;
 	height: 120px;
 }
 
-.bookInfo{
-padding-top:13px;
-padding-bottom:17px;
+.bookInfo {
+	padding-top: 13px;
+	padding-bottom: 17px;
 }
-.bookGenre{
-font-size:13px;
+
+.bookGenre {
+	font-size: 13px;
 }
-.bookTitle>a{
-font-size:16px;
-text-decoration:none;
-color: black;
+
+.bookTitle>a {
+	font-size: 16px;
+	text-decoration: none;
+	color: black;
 }
-.bookWriter{
-	font-size:16px;
-	
+
+.bookWriter {
+	font-size: 16px;
 }
-.bookPublisher{
-font-size:13px;
+
+.bookPublisher {
+	font-size: 13px;
 }
-.between{
-font-size:13px;
+
+.between {
+	font-size: 13px;
 }
-.bookPublicationDate{
-font-size:13px;
+
+.bookPublicationDate {
+	font-size: 13px;
 }
+
 .select {
 	width: 50px;
 	height: 30px;
@@ -172,29 +181,30 @@ font-size:13px;
 			</div>
 			<div class="search">
 				<div class="searchBox">
-						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord" value=${searchWord }>
-						<button class="searchBtn" type="submit">
-							<span class="material-symbols-outlined"> search </span>
-						</button>
+					<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
+						id="searchWord" name="searchWord" value=${searchWord }>
+					<button class="searchBtn" type="submit">
+						<span class="material-symbols-outlined"> search </span>
+					</button>
 				</div>
 			</div>
 		</div>
-		<hr>
+		<hr class="footerHr">
 		<div class="body">
 			<table>
 				<c:forEach var="book" items="${blist }">
 					<tr>
-						<td class="bookCover"><a href="#"><img src="${book.b_img_url}"></a></td>
-						<td class="bookInfo">
-							<span class="bookGenre">${book.b_genre}</span>
+						<td class="bookCover"><a href="#"><img
+								src="${book.b_img_url}"></a></td>
+						<td class="bookInfo"><span class="bookGenre">${book.b_genre}</span>
 							<p>
 								<span class="bookTitle"><a href="#">${book.b_title}</a></span>
 							</p>
 							<p>
-								<span class="bookWriter">${book.b_writer}</span></p>
-								<span class="bookPublisher">${book.b_publisher}</span><span class="between">&nbsp|&nbsp</span><span class="bookPublicationDate">${book.b_publication_date}</span>
-							</td>
+								<span class="bookWriter">${book.b_writer}</span>
+							</p> <span class="bookPublisher">${book.b_publisher}</span><span
+							class="between">&nbsp|&nbsp</span><span
+							class="bookPublicationDate">${book.b_publication_date}</span></td>
 						<td>
 							<button class="select" value="${book.b_isbn}">선택</button>
 						</td>
@@ -206,30 +216,47 @@ font-size:13px;
 	</div>
 
 	<script>
-	$("#searchWord").on("keydown", function(e){
-		if(e.keyCode == 13) {
+		$("#searchWord").on(
+				"keydown",
+				function(e) {
+					if (e.keyCode == 13) {
+						var searchWord = $("#searchWord").val();
+						location.href = "/book/toBookSearchPop?searchWord="
+								+ searchWord;
+					}
+				});
+		$(".searchBtn").on("click", function() {
 			var searchWord = $("#searchWord").val();
-			location.href="/book/toBookSearchPop?searchWord=" + searchWord;
-		}
-	});		
-	$(".searchBtn").on("click", function() {
-		var searchWord = $("#searchWord").val();
-		location.href="/book/toBookSearchPop?searchWord=" + searchWord;
-	});
-                $(document).on("click", ".select", function () {
-                	var b_isbn = $(this).val();
-                    var b_genre = $(this).closest("tr").find(".bookGenre").html();
-                    var b_img_url = $(this).closest("tr").find("img").attr("src");
-                    var b_title = $(this).closest("tr").find(".bookTitle").children("a").html();
-                    var b_writer = $(this).closest("tr").find(".bookWriter").html();
-                    var b_publisher = $(this).closest("tr").find(".bookPublisher").html();
-                    var b_publication_date = $(this).closest("tr").find(".bookPublicationDate").html();
+			location.href = "/book/toBookSearchPop?searchWord=" + searchWord;
+		});
+		$(document)
+				.on(
+						"click",
+						".select",
+						function() {
+							var b_isbn = $(this).val();
+							var b_genre = $(this).closest("tr").find(
+									".bookGenre").html();
+							var b_img_url = $(this).closest("tr").find("img")
+									.attr("src");
+							var b_title = $(this).closest("tr").find(
+									".bookTitle").children("a").html();
+							var b_writer = $(this).closest("tr").find(
+									".bookWriter").html();
+							var b_publisher = $(this).closest("tr").find(
+									".bookPublisher").html();
+							var b_publication_date = $(this).closest("tr")
+									.find(".bookPublicationDate").html();
 
-					console.log(b_isbn+ b_genre+b_img_url+b_title+b_writer+b_publisher+b_publication_date);
-                    window.opener.initSearchBook(b_isbn, b_genre, b_img_url, b_title, b_writer, b_publisher, b_publication_date);
-                    window.self.close();
-                });
-            </script>
+							console.log(b_isbn + b_genre + b_img_url + b_title
+									+ b_writer + b_publisher
+									+ b_publication_date);
+							window.opener.initSearchBook(b_isbn, b_genre,
+									b_img_url, b_title, b_writer, b_publisher,
+									b_publication_date);
+							window.self.close();
+						});
+	</script>
 </body>
 
 </html>
