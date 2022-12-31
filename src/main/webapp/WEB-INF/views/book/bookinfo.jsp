@@ -180,6 +180,7 @@ overflow:hidden;
 
 .box, .b_etc, .post-link, .link_btn, #b_genre {
 display: inline-flex;
+
 }
 
 .box {
@@ -243,6 +244,7 @@ position: absolute;
 position: absolute;
 right: 0px;
 bottom: 300px;
+width:100%;
 }
 
 .post-link>a>button {
@@ -261,7 +263,7 @@ color: #5397fc;
 border-radius: 5px;
 }
 
-.link_btn>span {
+.link_btn>a>span {
 position: relative;
 color: #5397fc;
 }
@@ -347,6 +349,7 @@ border: 1px solid #5397fc;
 .r_content_box {
 margin: 20px;
 margin-top: 0px;
+
 }
 
 .r_title_box {
@@ -371,6 +374,7 @@ display: flex;
 height: 30px;
 margin: 10px;
 resize: none;
+width:auto;
 }
 
 .r_like {
@@ -410,6 +414,14 @@ border: 1px solid #5397fc;
 
 .content {
 border: none;
+resize: none;
+width: auto;
+height:fit-content;
+overflow: hidden;
+}
+
+.content:focus {
+  outline: none;
 }
 
 .paging {
@@ -694,9 +706,14 @@ display:none;
                                 id="to_wish"></a> <a
                                 href="/book/selectForBookbag?b_isbn=${dto.b_isbn}"
                                 class="a_move"><input type="button" value="책가방에 담기"
-                                id="to_bag"></a> <span class="material-symbols-outlined"
-                                id="heart"> favorite</span> <span
-                                class="material-symbols-outlined size-40" id="bookbag2">shopping_bag</span>
+                                id="to_bag"></a> 
+                               <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
+                                class="a_move">
+                                <span class="material-symbols-outlined" id="heart"> favorite</span>
+                                </a>
+                                <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
+                                class="a_move"><span class="material-symbols-outlined size-40" id="bookbag2">shopping_bag</span>
+                                </a>
                         </div>
                         <!-- post-link -->
                 <%-- 	<div class="post-link">
@@ -770,7 +787,7 @@ display:none;
                                         </div>
                                         <div class="r_contents">
                                             <div class="r_content">
-                                                <input type="text" readonly value="${r.rv_content}" class="content">
+                                                <textarea readonly class="content">${r.rv_content}</textarea>
                                             </div>
 
 
