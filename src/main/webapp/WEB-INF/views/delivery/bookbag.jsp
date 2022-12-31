@@ -387,11 +387,10 @@ span, #logoImg:hover {
 						<div class="bookbag-count" style="padding-left: 5px;">책가방
 							(${fn:length(list)})</div>
 					</div>
-					<div class="body-left"
-						style="border: 1px solid rgb(194, 193, 193);">
+					<div class="body-left">
 						<div class="bookbag-top"></div>
 						<div class="bookbag-main"
-							style="text-align: center; line-height: 125px;">책가방에 담긴 작품이
+							style="text-align: center; height:552px; line-height: 552px;">책가방에 담긴 작품이
 							없습니다.</div>
 					</div>
 				</c:when>
@@ -419,7 +418,7 @@ span, #logoImg:hover {
 										value="${bookbag.bookbag_seq }">
 								</div>
 								<div class="book-img-div">
-									<img src="${bookbag.b_img_url }" id="book-img">
+									<a href="/book/selectBookinfo?b_isbn=${bookbag.b_isbn }"><img src="${bookbag.b_img_url }" id="book-img"></a>
 								</div>
 								<div class="bookbag-detail-div">
 									<div class="bookbag-detail-text">
@@ -634,7 +633,7 @@ span, #logoImg:hover {
 						if(${sdto.delivery_count < 1}) {
 							alert("구독 기간 내 신청 가능한 배송 횟수를 모두 사용하였습니다.");
 						}else if(${sdto.rental_count < 1}) {
-							alert("구독 기간 내 대여 가능한 권수를 모두 사용하였습니다.");
+							alert("구독 기간 내 대여 가능한 권수를 초과하였습니다.");
 						}else if(${sdto.rental_count } < $("#check-count-result").text()) {
 							alert("현재 대여 가능한 권수를 초과하였습니다.");
 						}else if(${fn:length(list) == 0}) {
