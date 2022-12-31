@@ -739,8 +739,7 @@ display:none;
                         <form action="/book/insertReview">
                             <div class="input-box">
                                 <input type="hidden" value="${dto.b_isbn}" name="b_isbn"
-                                    id="b_isbn"> <input type="text"
-                                    placeholder="내용을 입력해주세요." id="input" name="rv_content">
+                                    id="b_isbn"> <input type="text" placeholder="내용을 입력해주세요." id="input" name="rv_content" maxlength="200">
                                 <button
                                     <c:if test="${loginID == null}"> type="button" onclick="alert_open();"</c:if>
                                     id="input_btn">작성</button>
@@ -771,8 +770,7 @@ display:none;
                                         </div>
                                         <div class="r_contents">
                                             <div class="r_content">
-                                                <input type="text" readonly maxlength="200"
-                                                    value="${r.rv_content}" class="content">
+                                                <input type="text" readonly value="${r.rv_content}" class="content">
                                             </div>
 
 
