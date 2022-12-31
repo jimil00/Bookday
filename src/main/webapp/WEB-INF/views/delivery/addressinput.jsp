@@ -64,9 +64,10 @@ div {
 	height: 40px;
 	border-radius: 4px;
 	border: 1px solid rgb(194, 193, 193);
-	background-color: #ffffff;
-	color: #5397fc;
+	background-color: #5397fc;
+	color: #ffffff;
 }
+
 </style>
 <body>
 	<div class="container">
@@ -78,24 +79,24 @@ div {
 		<div class="body">
 			<div style="padding-bottom: 13px;">
 				<input type="text" id="postcode" name="postcode" placeholder="우편번호"
-					readonly>
+					readonly value="${dto.postcode }">
 				<button type="button" id="search-btn">우편번호 찾기</button>
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="address1" name="address1"
-					placeholder="주소" readonly>
+					placeholder="주소" readonly value="${dto.address1 }">
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="address2" name="address2"
-					placeholder="상세주소">
+					placeholder="상세주소" value="${dto.address2 }" maxlength="50">
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="reciver" name="reciver"
-					placeholder="받으실 분">
+					placeholder="받으실 분" value="${dto.reciver }" maxlength="10">
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="reciver_phone"
-					name="reciver_phone" placeholder="휴대폰 번호">
+					name="reciver_phone" placeholder="휴대폰 번호" value="${dto.reciver_phone }" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 			</div>
 			<div>
 				<button type="button" id="save-btn" style="width: 280px;">저장</button>
@@ -105,6 +106,18 @@ div {
 
 	<script>
 		document.getElementById("search-btn").onclick = function() {
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							document.getElementById('postcode').value = data.zonecode;
+							document.getElementById("address1").value = data.roadAddress;
+						}
+					}).open({
+				left : '500',
+				top : '150'
+			});
+		}
+		document.getElementById("address1").onclick = function() {
 			new daum.Postcode(
 					{
 						oncomplete : function(data) {
@@ -128,6 +141,11 @@ div {
 				top : '150'
 			});
 		}
+		
+		$("#logo-img").on("click", function() {
+			opener.location.href="/"; 
+			window.close();
+		})
 
 		$("#save-btn").on("click",function() {
 					if ($("#postcode").val() == ""
