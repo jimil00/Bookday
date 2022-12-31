@@ -56,7 +56,7 @@ button:hover {
 
 /*     header */
 .header {
-	min-width:978px;
+	min-width: 978px;
 	height: 150px;
 	overflow: hidden;
 }
@@ -202,14 +202,13 @@ span.size-40 {
 
 /* body */
 .body {
-	display:flex;
+	display: flex;
 }
 
 /* sidenavi */
 .sideNavi {
 	width: 10%;
-		min-width: 97.8px;
-	
+	min-width: 97.8px;
 }
 
 ul {
@@ -244,11 +243,11 @@ span.size-35 {
 
 /* contents */
 .contents {
-			min-width:880.2px;
-
+	min-width: 880.2px;
 	width: 90%;
 	overflow: hidden;
 }
+
 .contentsHeader {
 	width: 100%;
 	margin-bottom: 30px;
@@ -267,8 +266,6 @@ span.size-35 {
 	border-radius: 50%;
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
-
-
 
 .rental {
 	width: 100%;
@@ -316,22 +313,24 @@ span.size-30 {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+
 .book {
 	width: 80px;
 	height: 120px;
 	box-shadow: 2px 2px 2px 2px #80808050;
 	cursor: pointer;
-	margin-right:3px;
-	margin-left:3px;
+	margin-right: 3px;
+	margin-left: 3px;
 }
+
 .rentalBooks {
 	height: 140px;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: flex-end;
-			padding-bottom:4px;
-	
+	padding-bottom: 4px;
 }
+
 .wishlistBooks {
 	position: relative;
 	height: 200px;
@@ -350,8 +349,7 @@ span.size-30 {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: flex-end;
-		padding-bottom:4px;
-	
+	padding-bottom: 4px;
 }
 
 .carousel-indicators {
@@ -371,90 +369,103 @@ span.size-30 {
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
-			padding-bottom:4px;
-	
+	padding-bottom: 4px;
 }
+
+/*footerHr*/
+.footerHr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+	opacity: inherit;
+}
+
 /* footer */
 .footer {
-    margin:5px;
+	margin: 5px;
 }
 
-.f_header{
-    display: inline-flex;
-    margin-top:10px;
+.f_header {
+	display: inline-flex;
+	margin-top: 10px;
 }
 
-.f_header>a>img{
-    width:200px;
+.f_header>a>img {
+	width: 200px;
 }
 
-.sns_icon{
-  position: relative;
-  top:1px;
-  left:595px;
+.sns_icon {
+	position: relative;
+	top: 1px;
+	left: 595px;
 }
 
-.sns_icon>a>img{
-	  height:20px;
+.sns_icon>a>img {
+	height: 20px;
 }
 
-.business_info{
-    margin-top:30px;
+.business_info {
+	margin-top: 30px;
 }
 
-#business_info_title{
-    font-size: x-small;
-    color: #808080d6;
+#business_info_title {
+	font-size: x-small;
+	color: #808080d6;
 }
 
-.business_info>span{
-    margin-top:5px;
+.business_info>span {
+	margin-top: 5px;
 }
 
-.f_intro{
-    margin-top:15px;
-    margin-bottom:20px;
-    font-size: small;
+.f_intro {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	font-size: small;
 }
 
-.f_intro>span{
-   color:#4d4b4bc1;
+.f_intro>span {
+	color: #4d4b4bc1;
 }
 
-.f_line{
-    color: #808080d6;
+.f_line {
+	color: #808080d6;
 }
 
-.business_info{
-    margin-top:20px;
-}
-#business_info_text{
-    margin-top:10px;
-    font-size: x-small;
-    color: #808080d6;
-}
-.inline_info{
-    display: inline-flex;
+.business_info {
+	margin-top: 20px;
 }
 
-#arrow_down2,#arrow_up2{
-    position: relative;
-    bottom:6px;
-    color: #808080d6;
+#business_info_text {
+	margin-top: 10px;
+	font-size: x-small;
+	color: #808080d6;
 }
 
-#arrow_up2{
-display:none;
+.inline_info {
+	display: inline-flex;
 }
 
-.sns_icon>a>img{
-    width:40px;
-    height:40px;
+#arrow_down2, #arrow_up2 {
+	position: relative;
+	bottom: 6px;
+	color: #808080d6;
 }
 
-.copyright{
-    margin-top:5px;
-    font-size: x-small;
+#arrow_up2 {
+	display: none;
+}
+
+.sns_icon>a>img {
+	width: 40px;
+	height: 40px;
+}
+
+.copyright {
+	margin-top: 5px;
+	font-size: x-small;
 }
 </style>
 
@@ -533,7 +544,8 @@ display:none;
 						<div class="rentalBooks">
 							<c:forEach var="rental" items="${rlist}">
 								<div class="rentalBook">
-									<img src="${rental.b_img_url }" class="book" isbn="${rental.b_isbn }">
+									<img src="${rental.b_img_url }" class="book"
+										isbn="${rental.b_isbn }">
 								</div>
 							</c:forEach>
 						</div>
@@ -554,7 +566,8 @@ display:none;
 											<c:forEach var="wishlist" items="${wlist }"
 												varStatus="wstatus">
 												<div class="wishlistBook" id="${wstatus.count }">
-													<img src="${wishlist.b_img_url }" class="book" isbn="${wishlist.b_isbn }">
+													<img src="${wishlist.b_img_url }" class="book"
+														isbn="${wishlist.b_isbn }">
 												</div>
 												<c:if test="${wstatus.count%10==0 }">
 										</div>
@@ -587,37 +600,41 @@ display:none;
 					</div>
 
 					<div class="posted">
-                    <div class="title" id="posted">
-                        <div class="titleTxt">내 책장</div>
-                        &nbsp <span class="material-symbols-outlined size-30">shelves</span>
-                    </div>
-                    <c:forEach var="post" items="${plist }" varStatus="status">
-                        <c:if test="${status.count%10==1 }">
-                            <div class="postedBooks">
-                        </c:if>
-                        <div class="postedBook" id="${status.count }">
-                            <img src="${post.b_img_url }" class="book" isbn="${post.b_isbn }">
-                        </div>
-                        <c:if test="${status.count%10==0 || status.count == fn:length(plist)}">
-                            </div>
-                            <hr class="bookshelvesHr">
-                        </c:if>
-                    </c:forEach>
-                </div>
-            </div>
-        </div>
-    </div>
-    		<div class="footer">
+						<div class="title" id="posted">
+							<div class="titleTxt">내 책장</div>
+							&nbsp <span class="material-symbols-outlined size-30">shelves</span>
+						</div>
+						<c:forEach var="post" items="${plist }" varStatus="status">
+							<c:if test="${status.count%10==1 }">
+								<div class="postedBooks">
+							</c:if>
+							<div class="postedBook" id="${status.count }">
+								<img src="${post.b_img_url }" class="book"
+									isbn="${post.b_isbn }">
+							</div>
+							<c:if
+								test="${status.count%10==0 || status.count == fn:length(plist)}">
+					</div>
+					<hr class="bookshelvesHr">
+					</c:if>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		</div>
+		<hr class="footerHr">
 
-			<hr>
+		<div class="footer">
+
 			<div class="f_header">
 				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
 
 				<div class="sns_icon">
 					<a href="#"><img src="/resources/instagram.png" id="insta"></a>
-					<a href="#"><img src="/resources/facebook.png" id="facebook"></a> 
-					<a href="#"><img src="/resources/twitter_black.png" id="twitter"></a>
-					<a href="#"><img src="/resources/youtube.png" id="youtube"></a>
+					<a href="#"><img src="/resources/facebook.png" id="facebook"></a>
+					<a href="#"><img src="/resources/twitter_black.png"
+						id="twitter"></a> <a href="#"><img
+						src="/resources/youtube.png" id="youtube"></a>
 				</div>
 
 			</div>
@@ -629,13 +646,11 @@ display:none;
 				</div>
 
 				<div id="business_info_text">
-					<span>대표자 성태조 </span>
-					<span> | </span>
-					<span> 사업자 등록번호 01-20-22015</span>
+					<span>대표자 성태조 </span> <span> | </span> <span> 사업자 등록번호
+						01-20-22015</span>
 					<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
-					<span>대표전화 1544-9970 </span>
-					<span> | </span>
-					<span> 이메일 help@bookday.com</span>
+					<span>대표전화 1544-9970 </span> <span> | </span> <span> 이메일
+						help@bookday.com</span>
 				</div>
 			</div>
 
@@ -648,8 +663,8 @@ display:none;
 			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
 			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
 		</div>
-</div>
-<script>
+	</div>
+	<script>
 		$("#logoImg").on("click", function() {
 			location.href = "/";
 		})

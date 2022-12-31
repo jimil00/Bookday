@@ -45,9 +45,8 @@ public class BookshelvesController {
 
 	@RequestMapping("selectBookshelvesListById")
 	public String selectBookshelvesListById(Model model) throws Exception{
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+
+		String id = String.valueOf(session.getAttribute("loginID"));
 
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
@@ -71,7 +70,9 @@ public class BookshelvesController {
 	@GetMapping("nextList")
 	@ResponseBody
 	public String nextList(int count) {
-		String id = "zxcvzxcv";
+		
+		String id = String.valueOf(session.getAttribute("loginID"));
+		
 		return new Gson().toJson(pservice.select20PostListById(id, count));
 	}
 

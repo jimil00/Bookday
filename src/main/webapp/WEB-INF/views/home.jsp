@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -12,22 +12,22 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <style>
 @font-face {
-	font-family: 'NanumSquareNeo-Variable';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
+   font-family: 'NanumSquareNeo-Variable';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+      format('woff2');
+   font-weight: normal;
+   font-style: normal;
 }
 
 * {
-	box-sizing: border-box;
-	font-family: 'NanumSquareNeo-Variable';
+   box-sizing: border-box;
+   font-family: 'NanumSquareNeo-Variable';
 }
 
 /* div {
@@ -36,161 +36,162 @@
 
 } */
 .container {
-	margin: auto;
-	overflow: hidden;
-	width: 978px;
+   margin: auto;
+   overflow: hidden;
+   width: 978px;
 }
 
 button:hover {
-	cursor: pointer;
+   cursor: pointer;
 }
 
 /* header */
 .header {
-	height: 150px;
-	overflow: hidden;
+   height: 150px;
+   overflow: hidden;
 }
 
 /* logo */
 .logo {
-	float: left;
-	position: relative;
-	height: 100%;
-	width: 55%;
+   float: left;
+   position: relative;
+   height: 100%;
+   width: 55%;
 }
 
 #logoImg {
-	height: 50%;
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
+   height: 50%;
+   position: absolute;
+   bottom: 0px;
+   left: 0px;
 }
 
 #logoImg:hover {
-	cursor: pointer;
+   cursor: pointer;
 }
 
 /* search */
 .search {
-	float: left;
-	position: relative;
-	height: 100%;
-	width: 25%;
+   float: left;
+   position: relative;
+   height: 100%;
+   width: 25%;
 }
 
 .searchBox {
-	position: absolute;
-	bottom: 5px;
-	left: 0px;
-	overflow: hidden;
-	height: 40px;
-	width: 100%;
-	border: none;
-	border-radius: 5px;
-	box-shadow: 2px 2px 2px 2px #80808050;
+   position: absolute;
+   bottom: 5px;
+   left: 0px;
+   overflow: hidden;
+   height: 40px;
+   width: 100%;
+   border: none;
+   border-radius: 5px;
+   box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .searchTxt {
-	float: left;
-	padding: 0;
-	background: none;
-	border: none;
-	outline: none;
-	font-size: 15px;
-	line-height: 40px;
-	position: absolute;
-	left: 10px;
+   float: left;
+   padding: 0;
+   background: none;
+   border: none;
+   outline: none;
+   font-size: 15px;
+   line-height: 40px;
+   position: absolute;
+   left: 10px;
 }
 
 .searchBtn {
-	position: absolute;
-	right: 0px;
-	line-height: 100px;
-	border: none;
-	background-color: #ffffff;
-	color: #5397fc50;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+   position: absolute;
+   right: 0px;
+   line-height: 100px;
+   border: none;
+   background-color: #ffffff;
+   color: #5397fc50;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 /* member */
 .member {
-	float: left;
-	position: relative;
-	width: 20%;
-	height: 100%;
+   float: left;
+   position: relative;
+   width: 20%;
+   height: 100%;
 }
 /* icon */
 .iconBox {
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
+   position: absolute;
+   bottom: 0px;
+   right: 0px;
 }
 
 span.size-40 {
-	font-size: 40px;
-	color: black;
-	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
+   font-size: 40px;
+   color: black;
+   font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
 }
 
 span, #logoImg:hover {
-	cursor: pointer;
+   cursor: pointer;
 }
 
 /* headerHr */
 #headerHr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
-	margin-bottom: 15px;
+   display: block;
+   height: 1px;
+   border: 0;
+   border-top: 1px solid rgb(216, 216, 216);
+   margin-top: 15px;
+   margin-bottom: 15px;
 }
 
 /* header */
 
 /* login */
 .signBox {
-	display: flex;
-	justify-content: flex-end;
+   display: flex;
+   justify-content: flex-end;
 }
 
 .signBox>a {
-	margin: 5px;
-	text-decoration: none;
-	text-underline-offset: 5px;
-	color: black;
+   margin: 5px;
+   text-decoration: none;
+   text-underline-offset: 5px;
+   color: black;
 }
 
 .signBox>a:hover {
-	color: #5397fc;
+   color: #5397fc;
 }
 
 #nick {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 #nick:hover {
-	color: black;
-	cursor: default;
+   color: black;
+   cursor: default;
 }
 
 .login_form {
-	margin-top: 200px;
+   margin-top: 200px;
 }
 
 /* navi */
 .navi {
-	width: 100%;
-	height: 50px;
+   width: 100%;
+   height: 50px;
 }
 
 /* body */
 .body {
+<<<<<<< HEAD
 	/* height: 2000px; */
 	
 }
@@ -210,7 +211,6 @@ span, #logoImg:hover {
 
 .main_copy {
 	/*  position:relative;*/
-	
 }
 
 .detail {
@@ -309,6 +309,7 @@ height:fit-content;
 /* post*/
 .popular_post>div {
 	display: inline-flex;
+
 }
 
 .flex-postBox {
@@ -655,25 +656,6 @@ height:fit-content;
 
 						</div>
 					</div>
-
-
-
-
-
-					<%-- 	 <div class="flex-box">
-				 <c:choose>
-                    <c:when test="${not empty n_list}">
-                        <c:forEach items="${n_list}" var="n">
-				 <div class="book_box">
-                       <div class="book">
-                           <img src="${n.b_img_url}" class="b_img_url">
-                       </div>
-                 </div>
-                 </c:forEach>
-                 </c:when>
-                 </c:choose>
-                 </div> --%>
-
 				</div>
 				<div class="popular_post" data-aos="fade-up"
 					data-aos-duration="2000">
@@ -759,6 +741,7 @@ height:fit-content;
 		</div>
 
 		<script>
+
       $("#logo_img").on("click", function() {
          location.href = "/";
       })
@@ -771,11 +754,11 @@ height:fit-content;
          location.href = "//toNotification";
       })
       $("#bookbag").on("click", function() {
-    	  if(${loginID == null}) {
+         if(${loginID == null}) {
               location.href = "/member/toLogin";
-    	  }else {
-         	  location.href = "/delivery/selectBookbagListById?id=${loginID }";
-    	  }
+         }else {
+              location.href = "/delivery/selectBookbagListById?id=${loginID }";
+         }
       })
       $("#bookshelves").on("click", function() {
          location.href = "/bookshelves/selectBookshelvesListById";
@@ -789,13 +772,13 @@ height:fit-content;
          }
       })
       // 구독하기 버튼 기능
-		$("#sub-btn").on("click", function() {
-			 if(${loginID == null}) {
-	              location.href = "/member/toLogin";
-	    	  }else {
-	         	  location.href = "/delivery/toPayment?id=${loginID }";
-	    	  }
-		})
+      $("#sub-btn").on("click", function() {
+          if(${loginID == null}) {
+                 location.href = "/member/toLogin";
+            }else {
+                 location.href = "/delivery/toPayment?id=${loginID }";
+            }
+      })
       
       //스크롤 이벤트 라이브러리(AOS)선언
        $( document ).ready( function() {

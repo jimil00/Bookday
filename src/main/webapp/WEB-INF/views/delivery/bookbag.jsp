@@ -339,6 +339,7 @@ span, #logoImg:hover {
 </head>
 <body>
 	<div class="container">
+${loginID }	
 		<div class="header">
 			<div class="logo">
 				<img src="/resources/bookday_logotitle.png" id="logoImg">
@@ -387,11 +388,10 @@ span, #logoImg:hover {
 						<div class="bookbag-count" style="padding-left: 5px;">책가방
 							(${fn:length(list)})</div>
 					</div>
-					<div class="body-left"
-						style="border: 1px solid rgb(194, 193, 193);">
+					<div class="body-left">
 						<div class="bookbag-top"></div>
 						<div class="bookbag-main"
-							style="text-align: center; line-height: 125px;">책가방에 담긴 작품이
+							style="text-align: center; height:552px; line-height: 552px;">책가방에 담긴 작품이
 							없습니다.</div>
 					</div>
 				</c:when>
@@ -419,7 +419,7 @@ span, #logoImg:hover {
 										value="${bookbag.bookbag_seq }">
 								</div>
 								<div class="book-img-div">
-									<img src="${bookbag.b_img_url }" id="book-img">
+									<a href="/book/selectBookinfo?b_isbn=${bookbag.b_isbn }"><img src="${bookbag.b_img_url }" id="book-img"></a>
 								</div>
 								<div class="bookbag-detail-div">
 									<div class="bookbag-detail-text">
@@ -626,7 +626,7 @@ span, #logoImg:hover {
 				    
 					// 주소검색, 주소변경 버튼 기능
 					$(".address-btn").on("click", function() {
-						window.open("/delivery/toAddressInput", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=500, left=500, top=150");
+						window.open("/delivery/toAddressInput?id=${loginID }", "_blank", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=500, left=500, top=150");
 					})
 					
 					// 대여하기 버튼 기능
@@ -634,7 +634,7 @@ span, #logoImg:hover {
 						if(${sdto.delivery_count < 1}) {
 							alert("구독 기간 내 신청 가능한 배송 횟수를 모두 사용하였습니다.");
 						}else if(${sdto.rental_count < 1}) {
-							alert("구독 기간 내 대여 가능한 권수를 모두 사용하였습니다.");
+							alert("구독 기간 내 대여 가능한 권수를 초과하였습니다.");
 						}else if(${sdto.rental_count } < $("#check-count-result").text()) {
 							alert("현재 대여 가능한 권수를 초과하였습니다.");
 						}else if(${fn:length(list) == 0}) {
