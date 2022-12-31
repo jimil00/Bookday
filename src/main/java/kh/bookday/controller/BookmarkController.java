@@ -32,9 +32,7 @@ public class BookmarkController {
 	@RequestMapping("selectBookmarkListById")
 	public String selectBookmarListkById(Model model) {
 		
-		// id session
-//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+		String id = String.valueOf(session.getAttribute("loginID"));
 		
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
@@ -48,9 +46,7 @@ public class BookmarkController {
 	@GetMapping("selectBookmarkListBySw")
 	public String selectBookmarkListBySw(String searchWord, Model model) {
 		
-		// id session
-//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+		String id = String.valueOf(session.getAttribute("loginID"));
 		
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
@@ -65,8 +61,9 @@ public class BookmarkController {
 	}
 	@GetMapping("deleteBookmarkBySeq")
 	public String deleteBookmarkBySeq(int bm_seq, String bm_writer_id) {
-//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+		
+		String id = String.valueOf(session.getAttribute("loginID"));
+
 		System.out.println(bm_seq);
 		System.out.println(bm_writer_id);
 		if(id.equals(bm_writer_id)) {

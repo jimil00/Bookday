@@ -65,7 +65,8 @@ public class BookController {
 	//도서 정보 출력
 	@RequestMapping("selectBookinfo") //@RequestParam("rv_seq") String rv_seq  @RequestParam(value="nowPage", required=false)String nowPage @RequestParam(value="cntPerPage", required=false)String cntPerPage
 	public String selectBookByIsbn(Model model, String b_isbn) {
-		session.setAttribute("loginID", "zxcvzxcv");
+
+		String id = String.valueOf(session.getAttribute("loginID"));
 		//아마 상세 페이지로 가는 이동이 완성되면 포스트로 값을 받아서
 		
 		//도서 정보 출력
@@ -76,8 +77,6 @@ public class BookController {
 		List<ReviewDTO> rlist=rservice.selectReviewByIsbn(b_isbn);
 		model.addAttribute("rlist",rlist);
 		
-		String id=String.valueOf(session.getAttribute("loginID"));		
-
 		//유저에 따른 리뷰 좋아요 list
 		List<ReviewLikeDTO> rl_list=rservice.findReviewLike(id,b_isbn);
 		model.addAttribute("rl_list",rl_list);
@@ -132,7 +131,6 @@ public class BookController {
 	@ResponseBody
 	@RequestMapping("insertReviewLike")
 	public String insertReviewLike(ReviewLikeDTO dto) {
-		session.setAttribute("loginID", "zxcvzxcv");
 		
 		dto.setId(String.valueOf(session.getAttribute("loginID")));
 		
@@ -148,9 +146,9 @@ public class BookController {
 	@RequestMapping("deleteReviewLike")
 	public String deleteReviewLike(String rv_seq, String id) {
 		
-		String id2=String.valueOf(session.getAttribute("loginID"));
+		id = String.valueOf(session.getAttribute("loginID"));
 		
-		rservice.deleteReviewLike(rv_seq,id2);
+		rservice.deleteReviewLike(rv_seq,id);
 		
 		return "book/bookinfo";
 	}

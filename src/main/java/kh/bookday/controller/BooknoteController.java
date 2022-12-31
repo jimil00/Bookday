@@ -38,11 +38,7 @@ public class BooknoteController {
 	@RequestMapping("selectPostListById")
 	public String selectPostListById(Model model) {
 		
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
-		session.setAttribute("loginID", id);
-
+		String id = String.valueOf(session.getAttribute("loginID"));
 		
 		// 회원정보 
 		MemberDTO dto = mservice.selectMemberById(id);
@@ -55,7 +51,6 @@ public class BooknoteController {
 		// 포스트 좋아요 리스트
 		List<PostLikeDTO> llist = service.selectPostLikeListById(id);
 		model.addAttribute("llist", llist);
-		System.out.println(llist.size());
 		
 		return "mybook/booknote/selectpostlist";
 	}	
@@ -64,9 +59,9 @@ public class BooknoteController {
 	@ResponseBody
 	@RequestMapping("insertPostLike")
 	public String insertPostLike(PostLikeDTO dto) {
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+		
+		String id = String.valueOf(session.getAttribute("loginID"));
+		
 		dto.setId(id);
 		dto.setP_writer_id(id);
 		String result = service.insertPostLike(dto);
@@ -77,9 +72,9 @@ public class BooknoteController {
 	@ResponseBody
 	@RequestMapping("deletePostLike")
 	public String deletePostLike(PostLikeDTO dto) {
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+		
+		String id = String.valueOf(session.getAttribute("loginID"));
+		
 		dto.setId(id);
 		dto.setP_writer_id(id);
 		String result = service.deletePostLike(dto);
@@ -89,9 +84,8 @@ public class BooknoteController {
 	// 포스트 입력 페이지로
 	@RequestMapping("toInsertPost")
 	public String toInsertPost(Model model) {
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+
+		String id = String.valueOf(session.getAttribute("loginID"));
 
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
@@ -103,10 +97,12 @@ public class BooknoteController {
 	@ResponseBody
 	@RequestMapping("insertPost")
 	public String insertPost(PostDTO dto, Model model) {
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+		System.out.println(dto.getDyst_read());
+		String id = String.valueOf(session.getAttribute("loginID"));
+		
+		String nickname = String.valueOf(session.getAttribute("nickname"));
 		dto.setP_writer_id(id);
+		dto.setP_writer_nn(nickname);
 
 		int p_seq = service.insertPost(dto);
 
@@ -116,12 +112,8 @@ public class BooknoteController {
 	// 포스트 디테일 출력
 	@RequestMapping("selectPostByPseq")
 	public String selectPostByPseq(int p_seq, Model model) {
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-//		String id = "zxcvzxcv";
-		
-		session.setAttribute("loginID", "zxcvzxcv");
-				String id = String.valueOf(session.getAttribute("loginID"));
+
+		String id = String.valueOf(session.getAttribute("loginID"));
 
 		// 회원 정보
 		MemberDTO mdto = mservice.selectMemberById(id);
@@ -141,7 +133,6 @@ public class BooknoteController {
 		// 포스트 댓글 출력 foreach
 		List<PostCommentDTO> list = service.selectPostCListByPseq(p_seq);
 		model.addAttribute("list", list);
-		System.out.println(list.size());
 
 		return "mybook/booknote/selectpost";
 	}
@@ -150,7 +141,7 @@ public class BooknoteController {
 	@ResponseBody
 	@RequestMapping("selectPCListByPseq")
 	public String selectPCListByPseq(PostCommentDTO dto) {
-		session.setAttribute("loginID", "zxcvzxcv");
+
 		String id = String.valueOf(session.getAttribute("loginID"));
 		// 버튼 뜨는지 꼭 다시 확인
 		return new Gson().toJson(service.selectPCListByPseq(dto));
@@ -160,13 +151,12 @@ public class BooknoteController {
 	@ResponseBody
 	@RequestMapping("insertPostComment")
 	public void insertPostComment(PostCommentDTO dto) {
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-//		String id = "zxcvzxcv";
-		session.setAttribute("loginID", "zxcvzxcv");
+
 		String id = String.valueOf(session.getAttribute("loginID"));
+System.out.println(id);
 		
 		MemberDTO mdto = mservice.selectMemberById(id);
+		System.out.println(mdto.getId());
 		dto.setPc_writer_id(mdto.getId());
 		dto.setPc_writer_nn(mdto.getNickname());
 		dto.setSysprofname(mdto.getSysprofname());
@@ -177,10 +167,7 @@ public class BooknoteController {
 	@ResponseBody
 	@RequestMapping("deletePostComment")
 	public void deletePostComment(int pc_seq) {
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-//		String id = "zxcvzxcv";
-		session.setAttribute("loginID", "zxcvzxcv");
+
 		String id = String.valueOf(session.getAttribute("loginID"));
 		// session이랑 지우려는 댓글 아이디가 같을 떄 는 프론트에서
 
@@ -190,12 +177,8 @@ public class BooknoteController {
 	@GetMapping("selectSearchPostList")
 	public String selectSearchPostList(String searchWord, Model model) {
 		
-		// id session
-		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
-		session.setAttribute("loginID", id);
+		String id = String.valueOf(session.getAttribute("loginID"));
 
-		
 		// 회원정보 
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);

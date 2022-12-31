@@ -339,6 +339,7 @@ span, #logoImg:hover {
 </head>
 <body>
 	<div class="container">
+${loginID }	
 		<div class="header">
 			<div class="logo">
 				<img src="/resources/bookday_logotitle.png" id="logoImg">

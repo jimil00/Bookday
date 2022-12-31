@@ -201,8 +201,17 @@ span, #logoImg:hover {
 	
 }
 
+<<<<<<<
+HEAD
+.reading {
+	height: fit-content; ======= . detail { display : flex;
+	justify-content: space-between;
+}
+
 .reading {
 	height: fit-content;
+	>>>>>>>
+	c8d6ad55f286c3e2da2b9fc5839c1751e1c2e8c6
 }
 
 /* book */
@@ -473,123 +482,139 @@ span, #logoImg:hover {
 				<div class="booknote_copy" data-aos="fade-up"
 					data-aos-duration="2000">
 					<h2 id="note_headline">나의 하루 독서를 기록해보세요</h2>
-					<p class="note_list">읽은 책이나 읽고 싶은 책 검색</p>
-					<p class="note_list">마음에 드는 도서 책갈피</p>
-					<p class="note_list">나만의 독서 포스트 작성하고 공유</p>
+
+					<div class="detail">
+						<p class="note_list">읽은 책이나 읽고 싶은 책 검색</p>
+						<p class="note_list">마음에 드는 도서 책갈피</p>
+						<p class="note_list">나만의 독서 포스트 작성하고 공유</p>
+					</div>
+
+					<div class="detail">
+						<img src="테스트.jpg"> <img src="테스트.jpg"> <img
+							src="테스트.jpg">
+					</div>
+
 				</div>
 
 				<div class="bookstats_copy" data-aos="fade-up"
 					data-aos-duration="2000">
 					<h2 id="stats_headline">내 독서 기록을 한 눈에</h2>
-					<p class="stats_list">월별로 내가 읽은 책 수 평균</p>
-					<p class="stats_list">가장 많이 읽은 책 장르</p>
-					<p class="stats_list">책하루 사용자 내 순위 통계</p>
+					<div class="detail">
+						<p class="stats_list">월별로 내가 읽은 책 수 평균</p>
+						<p class="stats_list">가장 많이 읽은 책 장르</p>
+						<p class="stats_list">책하루 사용자 내 순위 통계</p>
+					</div>
 				</div>
 
 				<div class="booksub_copy" data-aos="fade-up"
 					data-aos-duration="2000">
 					<h2 id="sub_headline">매월 읽고 싶은 책들이 집으로</h2>
-					<p class="sub_list">종이책 대여 구독 서비스</p>
-					<p class="sub_list">대여 권수(달)/대여일</p>
+					<div class="detail">
+						<p class="sub_list">종이책 대여 구독 서비스</p>
+						<p class="sub_list">대여 권수(달)/대여일</p>
+					</div>
 					<button id="sub-btn">종이책 구독 시작하기</button>
 				</div>
 
-			</div>
-			<div class="best_seller" data-aos="fade-up" data-aos-duration="2000">
-				<h2 id="best_headline">베스트셀러</h2>
+				<div class="best_seller" data-aos="fade-up" data-aos-duration="2000">
+					<h2 id="best_headline">베스트셀러</h2>
 
-				<div class="flex-box">
-					<c:choose>
-						<c:when test="${not empty b_list}">
-							<c:forEach items="${b_list}" var="b">
-								<div class="book_box">
-									<div class="book">
-										<img src="${b.b_img_url}" class="b_img_url">
-										<p class="b_title">${b.b_title}</p>
-										<p class="b_writer">${b.b_writer}</p>
-									</div>
-								</div>
-							</c:forEach>
-						</c:when>
-					</c:choose>
-				</div>
-
-			</div>
-			<div class="steady_seller" data-aos="fade-up"
-				data-aos-duration="2000">
-				<h2 id="steady_headline">스테디셀러</h2>
-
-				<div class="flex-box">
-					<c:choose>
-						<c:when test="${not empty s_list}">
-							<c:forEach items="${s_list}" var="s">
-								<div class="book_box">
-									<div class="book">
-										<img src="${s.b_img_url}" class="b_img_url">
-										<p class="b_title">${s.b_title}</p>
-										<p class="b_writer">${s.b_writer}</p>
-									</div>
-								</div>
-							</c:forEach>
-						</c:when>
-					</c:choose>
-				</div>
-
-			</div>
-			<div class="new_books" data-aos="fade-up" data-aos-duration="2000">
-				<h2 id="new_headline">신간도서</h2>
-
-				<div class="flex-box">
-					<c:choose>
-						<c:when test="${not empty n_list}">
-							<c:forEach items="${n_list}" var="n">
-								<div class="book_box">
-									<div class="book">
-										<img src="${n.b_img_url}" class="b_img_url">
-										<p class="b_title">${n.b_title}</p>
-										<p class="b_writer">${n.b_writer}</p>
-									</div>
-								</div>
-							</c:forEach>
-						</c:when>
-					</c:choose>
-				</div>
-
-			</div>
-			<div class="popular_post" data-aos="fade-up" data-aos-duration="2000">
-				<h2 id="popular_headline">인기 포스트</h2>
-
-				<c:choose>
-					<c:when test="${not empty plist}">
-						<c:forEach items="${plist}" var="p">
-
-							<div class="flex-postBox">
-
-								<div class="post_box">
-									<div class="profile">
-										<img src="/resources/basic.png" class="profile_img">
-										<p>${p.p_writer_nn}님의 포스트</p>
-									</div>
-									<hr>
-
-									<div class="p_title_box">
-										<p class="post_title">${p.p_title}</p>
-										<div id="p_like">
-											<span class="p_like_icon material-symbols-outlined"
-												data-count="0">thumb_up</span> <span class="like_count">${p.p_like_count}</span>
+					<div class="flex-box">
+						<c:choose>
+							<c:when test="${not empty b_list}">
+								<c:forEach items="${b_list}" var="b">
+									<div class="book_box">
+										<div class="book">
+											<img src="${b.b_img_url}" class="b_img_url">
+											<div>
+												<p class="b_title">${b.b_title}</p>
+												<p class="b_writer">${b.b_writer}</p>
+											</div>
 										</div>
 									</div>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+					</div>
 
-									<p class="post_content">${p.p_content}</p>
+				</div>
+				<div class="steady_seller" data-aos="fade-up"
+					data-aos-duration="2000">
+					<h2 id="steady_headline">스테디셀러</h2>
 
+					<div class="flex-box">
+						<c:choose>
+							<c:when test="${not empty s_list}">
+								<c:forEach items="${s_list}" var="s">
+									<div class="book_box">
+										<div class="book">
+											<img src="${s.b_img_url}" class="b_img_url">
+											<p class="b_title">${s.b_title}</p>
+											<p class="b_writer">${s.b_writer}</p>
+										</div>
+									</div>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+					</div>
+
+				</div>
+				<div class="new_books" data-aos="fade-up" data-aos-duration="2000">
+					<h2 id="new_headline">신간도서</h2>
+
+					<div class="flex-box">
+						<c:choose>
+							<c:when test="${not empty n_list}">
+								<c:forEach items="${n_list}" var="n">
+									<div class="book_box">
+										<div class="book">
+											<img src="${n.b_img_url}" class="b_img_url">
+											<p class="b_title">${n.b_title}</p>
+											<p class="b_writer">${n.b_writer}</p>
+										</div>
+									</div>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+					</div>
+
+				</div>
+				<div class="popular_post" data-aos="fade-up"
+					data-aos-duration="2000">
+					<h2 id="popular_headline">인기 포스트</h2>
+
+					<c:choose>
+						<c:when test="${not empty plist}">
+							<c:forEach items="${plist}" var="p">
+
+								<div class="flex-postBox">
+
+									<div class="post_box">
+										<div class="profile">
+											<img src="/resources/basic.png" class="profile_img">
+											<p>${p.p_writer_nn}님의포스트</p>
+										</div>
+										<hr>
+
+										<div class="p_title_box">
+											<p class="post_title">${p.p_title}</p>
+											<div id="p_like">
+												<span class="p_like_icon material-symbols-outlined"
+													data-count="0">thumb_up</span> <span class="like_count">${p.p_like_count}</span>
+											</div>
+										</div>
+
+										<p class="post_content">${p.p_content}</p>
+
+									</div>
 								</div>
-							</div>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<div>포스트를 작성해주세요</div>
-					</c:otherwise>
-				</c:choose>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<div>포스트를 작성해주세요</div>
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
 		</div>
 		<!-- body -->

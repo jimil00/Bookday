@@ -699,11 +699,13 @@ display:none;
                                 var b_genre = $(".bookGenre").html();
                                 var b_publisher = $(".bookPublisher").html();
                                 var b_publication_date = $(".bookPublicationDate").html();
+                                var start = $("#demo").attr("start");
+                                var finish = $("#demo").attr("finish");
 								var dyst_read = $("#demo").attr("start");
 								var dyfn_read = $("#demo").attr("finish");
 								var p_writer_nn = $("#contentsHeaderTxt").attr("p_writer_nn");
                                 var p_title = $("#insertBooknoteTitleTxt").val();
-								
+								console.log(dyst_read);
                                 if (p_title == "") {
                                     alert('제목을 입력해주세요.');
                                     return false;
@@ -841,7 +843,7 @@ display:none;
 					<div class="insertBooknoteDate">
 						<div class="insertBooknoteDateTitle">읽은 기간 선택</div>
 						<div class="insertBooknoteDateInput">
-							<input type="text" id="demo" name="demo"/>
+							<input type="text" id="demo" name="demo" start="<%=new java.util.Date()%>" finish="<%=new java.util.Date()%>">
 							<button class="insertBooknoteDateBtn">
 								<span class="material-symbols-outlined"> calendar_month </span>
 							</button>
@@ -978,7 +980,7 @@ display:none;
                     $("#demo").daterangepicker(
                         {
                             "locale": {
-                                "format": "YYYY-MM-DD",
+                                "format": "YYYY.MM.DD",
                                 "separator": " ~ ",
                                 "applyLabel": "확인",
                                 "cancelLabel": "취소",
@@ -1000,8 +1002,8 @@ display:none;
 
                         function (start, end, label) {
                             console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-                        	$("#demo").attr("start", start.format('YYYYMMDD'));
-                        	$("#demo").attr("finish", end.format('YYYYMMDD'));
+                        	$("#demo").attr("start", start.format('YYYY.MM.DD'));
+                        	$("#demo").attr("finish", end.format('YYYY.MM.DD'));
 
                         });
                 });
