@@ -29,12 +29,12 @@ public class SearchController {
 		System.out.println(searchWord);
 		model.addAttribute("searchWord", searchWord);
 		
-		// 책 검색
+		// 책 출력
 		List<BookDTO> blist = service.selectBookListBySw(searchWord);
 		model.addAttribute("blist", blist);
 		System.out.println(blist.size());
 		
-		// 포스트 검색
+		// 포스트 출력
 		List<PostDTO> plist = pservice.selectPostListBySw(searchWord);
 		System.out.println(plist.size());
 		model.addAttribute("plist", plist);

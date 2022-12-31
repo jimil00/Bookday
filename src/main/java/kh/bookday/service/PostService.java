@@ -128,9 +128,13 @@ public class PostService {
 		return dao.selectPopularPost();
 	}
 		
-	// 포스트 속 도서 검색
+// 지민	
+	
+	// 검색 시 포스트 출력
 	public List<PostDTO> selectPostListBySw(String searchWord){
 		return dao.selectPostListBySw(searchWord);
 	}
+
+// 지민
 
 }
