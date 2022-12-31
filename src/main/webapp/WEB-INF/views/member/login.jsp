@@ -147,11 +147,10 @@ button:disabled {
 .links {
 margin-top: 5%;
 display:inline-flex;
-justify-content: space-evenly;
 }
 
-.links>p{
-	margin:20px;
+.links>a{
+	margin:10px;
 } 
 
 

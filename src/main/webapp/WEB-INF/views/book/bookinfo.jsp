@@ -238,6 +238,7 @@ margin: 0px;
 margin-left: 20px;
 top: 85%;
 position: absolute;
+justify-content: space-evenly;
 }
 
 .post-link {
@@ -255,7 +256,7 @@ border-radius: 5px;
 }
 
 .link_btn>a>input {
-width: 343px;
+width: 330px;
 height: 50px;
 border: 1px solid #5397fc;
 background-color: white;
@@ -264,20 +265,36 @@ border-radius: 5px;
 }
 
 .link_btn>a>span {
-position: relative;
 color: #5397fc;
 }
 
+.link_btn>a>input {
+	cursor: pointer;
+}
+
+#to_wish{
+	
+}
+
+#to_bag{
+	margin-left:26px;
+}
+
+
 #heart {
-right: 82%;
+position: relative;
+right: 660px;
 top: 13px;
 font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48
 }
 
 #bookbag2 {
-right: 40%;
-top: 5px;
-font-variation-settings: 'FILL' 0, 'wght' 150, 'GRAD' 0, 'opsz' 48
+position: relative;
+right: 335px;
+top:8px;
+font-size:35px;
+font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 20
+
 }
 
 #to_write {
@@ -415,13 +432,12 @@ border: 1px solid #5397fc;
 .content {
 border: none;
 resize: none;
-width: auto;
 height:fit-content;
 overflow: hidden;
 }
 
 .content:focus {
-  outline: none;
+ outline: none;
 }
 
 .paging {
@@ -443,7 +459,8 @@ margin: 20px;
         .post_list,
         .with-books>p {
             margin: 20px; 
-        } */
+} */
+        
 .flex-postBox {
 display: flex;
 justify-content: space-between;
@@ -709,7 +726,7 @@ display:none;
                                 id="to_bag"></a> 
                                <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
                                 class="a_move">
-                                <span class="material-symbols-outlined" id="heart"> favorite</span>
+                                <span class="material-symbols-outlined" id="heart">favorite</span>
                                 </a>
                                 <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
                                 class="a_move"><span class="material-symbols-outlined size-40" id="bookbag2">shopping_bag</span>
