@@ -237,15 +237,12 @@ $(document).ready(function(){
             $.ajax({
               url: "/member/checkByPhone",
               data: { "phone": phone },
-              beforeSend:function(request){ 
-          		ajax_last_num = ajax_last_num + 1
-             
-            },success:function(request){ 
-        		if(current_ajax_num == ajax_last_num - 1){
+              async : false
+
+            }).done(function (resp){
 
               console.log(resp);
 
-              //이 자식이 문제
               if (resp == true) {//휴대폰이 존재하므로 사용할 수 없는 경우
                 $("#phone").css("border-color", "red");
                 alert("이미 사용 중인 번호입니다.");
@@ -254,14 +251,22 @@ $(document).ready(function(){
               } else { //휴대폰이 존재하지 않으므로 사용할 수 있는 경우
                 $("#phone").css("border-color", "#5397fc");
               
+                //$("#phone").attr("readonly", true); 
+                
+                $("#phone").on("input",function(){
+                	alert("핸드폰 번호를 다시 입력합니다.");
+                	location.reload();
+                });
+              
                 $("#verfi_btn").on("click", function(){	
-                	 
+                	
                 	if(confirm("인증하시겠습니까?")){
                 		//인증 번호 발송되는 에이작스
                 		 $.ajax({
                             url: "/member/createAuthNum",
                              data: {"phone": phone },
-                		 	
+                		 	async : false
+
 
                            }).done(function (resp) {
                         	   
@@ -273,29 +278,52 @@ $(document).ready(function(){
                         		   $("#phone").on("input",function(){
                         			   $("#verfi_btn").attr("disabled", false); 
                         			   location.reload();
-                        			   });
+                        			   
+                                       		   });
                         		   
-                        		   
-                        		   
+                        		    //확인 버튼 눌렀을 때
+                                   $("#check_btn").on("click",function(){
+                        			   
+                        			   let verifi_code=$("#verifi_code").val();
+                        			   
+                        			   $.ajax({
+                                           url: "/member/doAuthNumMatch",
+                                           data: {"code": verifi_code}
+
+                                          }).done(function (resp) {
+                                        	  
+                                        	  console.log(resp);
+                                        	  
+                                        	  //입력 값 수정 불가 & 버튼 2번 클릭 못하게 해야 될듯
+                                        	  if(resp == false){
+                                        		  alert("인증번호가 일치합니다.")
+                                        		  $("#verifi_code").css("border-color", "#5397fc");
+                                        		  $("#phone").attr("readonly",true);
+                                        		  $("#verifi_code").attr("readonly",true);
+                                        		  $("#verfi_btn").attr("disabled", true); 
+                                        		  $("#check_btn").attr("disabled", true);
+                                        		   $("#signup_btn").attr("disabled", false);
+                                        		   
+                                        	  }else{
+                                        		  alert("인증번호가 틀립니다.");
+                                        		  $("#verifi_code").css("border-color", "red");
+                                        		  $("#signup_btn").attr("disabled", true);
+                                        	  }
+                                          });
+                        		   });
                         	   }
                            });
-                		
-                		
                 	}else{
                 		$("#phone").val("");
                 		location.reload();
                 		}
-                });
+                })
             
               }
-              
-        		}
 
             })
-            
-          });
+          }
 
-	}
 	});
 	
 		

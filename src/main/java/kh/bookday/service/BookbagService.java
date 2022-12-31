@@ -26,7 +26,7 @@ public class BookbagService {
 	}
 	
 //shu
-	/* 책가방에 책 추가 */
+	//책가방에 책 추가
 	public void insertBookbag(BookbagDTO dto) {
 		dao.insertBookbag(dto);
 		}
