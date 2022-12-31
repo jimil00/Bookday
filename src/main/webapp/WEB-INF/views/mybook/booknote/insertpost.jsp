@@ -129,7 +129,7 @@ button:focus{
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
-		right: 40px;
+	right: 40px;
 	
 }
 
@@ -386,7 +386,7 @@ span.size-30 {
 
 
 .searchResultBookInfo td {
-	padding: 15px 15px 15px 0;
+	padding: 15px 15px 15px 15px;
 }
 
 .bookCover img {
@@ -412,7 +412,7 @@ span.size-30 {
 	font-size: 16px;
 }
 
-.bookPublish {
+.bookPublisher, .between, .bookPublicationDate {
 	font-size: 13px;
 }
 
@@ -757,7 +757,7 @@ display:none;
 				<div class="searchBox">
 					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord">
+							id="searchWord" name="searchWord" maxlength="100">
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -831,7 +831,7 @@ display:none;
 								<div class="booknoteBookSearchBox">
 									<input class="booknoteBookSearchTxt" type="text"
 										placeholder="검색어를 입력해 주세요" id="booknoteBookSearchWord"
-										name="booknoteBookSearchWord">
+										name="booknoteBookSearchWord" maxlength="100">
 									<button class="booknoteBookSearchBtn">
 										<span class="material-symbols-outlined"> search </span>
 									</button>
@@ -854,7 +854,7 @@ display:none;
 						<div class="insertBooknoteTitleTitle">제목</div>
 						<div class="insertBooknoteTitleBox">
 							<input type="text" id="insertBooknoteTitleTxt"
-								placeholder="제목을 입력해주세요.">
+								placeholder="제목을 입력해주세요." maxlength="200">
 
 						</div>
 					</div>

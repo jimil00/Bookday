@@ -96,6 +96,7 @@ button:hover {
    line-height: 40px;
    position: absolute;
    left: 10px;
+   right: 40px;
 }
 
 .searchBtn {
@@ -423,13 +424,11 @@ display:none;
          </div>
          <div class="search">
             <div class="searchBox">
-               <form action="/search/toSearch" id="search" method="post">
                   <input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-                     id="searchWord" name="searchWord">
+                     id="searchWord" name="searchWord" maxlength="100">
                   <button class="searchBtn" type="submit">
                      <span class="material-symbols-outlined"> search </span>
                   </button>
-               </form>
             </div>
          </div>
          <div class="member">
