@@ -18,12 +18,12 @@
 	
 	<!-- 베스트셀러 출력 -->
 	<select id="selectBestSeller" resultType="kh.bookday.dto.BookDTO">
-		select * from book where <![CDATA[rownum <= 6]]> order by b_ranking desc
+		select * from book where <![CDATA[rownum <= 6]]> order by b_ranking
 	</select>
 	
 	<!-- 스테디셀러 출력 -->
 	 <select id="selectSteadySeller" resultType="kh.bookday.dto.BookDTO">
-		select * from book where <![CDATA[rownum <= 6]]> order by b_ranking desc, b_publication_date
+		select * from book where <![CDATA[rownum <= 6]]> order by b_publication_date, b_ranking 
 	</select> 
 	
 	<!-- 신간 도서 출력 -->

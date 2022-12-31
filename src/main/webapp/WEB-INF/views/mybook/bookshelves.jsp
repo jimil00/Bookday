@@ -468,7 +468,7 @@ display:none;
 			</div>
 			<div class="search">
 				<div class="searchBox">
-					<form action="//search" id="search" method="post">
+					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
 							id="searchWord" name="searchWord">
 						<button class="searchBtn" type="submit">
@@ -671,7 +671,13 @@ display:none;
 		$("#mypage").on("click", function() {
 			if (loginID == null) {
 				location.href = "/member/login";
-			}
+			}$("#bookbag").on("click", function() {
+		    	  if(${loginID == null}) {
+		              location.href = "/member/toLogin";
+		    	  }else {
+		         	  location.href = "/delivery/selectBookbagListById?id=${loginID }";
+		    	  }
+		      })
 			location.href = "/member/toMypage";
 		})
 		$("#snBookshelves").on("click", function() {

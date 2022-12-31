@@ -196,14 +196,19 @@ span, #logoImg:hover {
 }
 
 .main_copy{
-	position:relative;
+	/*  position:relative;*/
 	
+}
+
+.reading{
+	height:fit-content;
 }
 
 /* book */
 .flex-box{
 display:inline-flex;
 }
+
 .with-books {
 overflow:hidden;
 }
@@ -216,7 +221,8 @@ margin-left: 0px;
 margin-left:20px;
 } 
 .b_img_url {
-width: 150px;
+ width:140px;
+
 }
 
 .b_title, .b_writer {
@@ -237,6 +243,7 @@ font-size: small;
 .popular_post>div{
 	display: inline-flex;
 }
+
 .flex-postBox {
 display: flex;
 justify-content: space-between;
@@ -293,8 +300,14 @@ font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 
 .post_content {
 margin: 0px;
-padding-left: 10px;
-padding-right: 10px;
+padding:10px;
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+line-height: 30px;
+-webkit-line-clamp: 5; /* 표시하고자 하는 라인 수 */
+-webkit-box-orient: vertical;
+
 }
 
 .post_title {
@@ -444,12 +457,12 @@ display:none;
 					<img src="" id="sun,moon">
 					</div>
 					
-					<img src="/resources/main_img_reading.png" class="readsing,person">
+					<img src="/resources/main_img.png" class="reading">
 				</div>
 				
 				<div class="booknote_copy" data-aos="fade-up" data-aos-duration="2000">
 					<h2 id="note_headline">나의 하루 독서를 기록해보세요</h2>
-					<p class="note_list">내가 읽었거나 읽고 싶은 책 검색</p>
+					<p class="note_list">읽은 책이나 읽고 싶은 책 검색</p>
 					<p class="note_list">마음에 드는 도서 책갈피</p>
 					<p class="note_list">나만의 독서 포스트 작성하고 공유</p>
 				</div>
@@ -465,7 +478,7 @@ display:none;
 					<h2 id="sub_headline">매월 읽고 싶은 책들이 집으로</h2>
 					<p class="sub_list">종이책 대여 구독 서비스</p>
 					<p class="sub_list">대여 권수(달)/대여일</p>
-					<button id="move_btn">종이책 구독 시작하기</button>
+					<button id="sub-btn">종이책 구독 시작하기</button>
 				</div>
 				
 			</div>
@@ -559,6 +572,9 @@ display:none;
                                     </div>
                                 </c:forEach>
                             </c:when>
+                            <c:otherwise>
+                            <div>포스트를 작성해주세요</div>
+                            </c:otherwise>
                             </c:choose>
 			</div>
 		</div> <!-- body -->
@@ -637,6 +653,14 @@ display:none;
          location.href = "/member/toMypage";
          }
       })
+      // 구독하기 버튼 기능
+		$("#sub-btn").on("click", function() {
+			 if(${loginID == null}) {
+	              location.href = "/member/toLogin";
+	    	  }else {
+	         	  location.href = "/delivery/toPayment?id=${loginID }";
+	    	  }
+		})
       
       //스크롤 이벤트 라이브러리(AOS)선언
        $( document ).ready( function() {

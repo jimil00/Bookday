@@ -186,6 +186,8 @@ $(document).ready(function(){
 	
 	//기본적으로 버튼 비활성화
 	$("#signup_btn").attr("disabled", true);
+	//인증번호 입력 창도 비활성화
+	$("#verifi_code").attr("readonly", true); 
 	
 	$("#name, #nickname, #phone,#verifi_code,#email,#pw,#check_pw")
     .on("blur",function(){
@@ -234,7 +236,8 @@ $(document).ready(function(){
             //핸드폰 중복 검사
             $.ajax({
               url: "/member/checkByPhone",
-              data: { "phone": phone }
+              data: { "phone": phone },
+              async : false
 
             }).done(function (resp){
 
@@ -247,19 +250,30 @@ $(document).ready(function(){
                 
               } else { //휴대폰이 존재하지 않으므로 사용할 수 있는 경우
                 $("#phone").css("border-color", "#5397fc");
+              
+                //$("#phone").attr("readonly", true); 
+                
+                $("#phone").on("input",function(){
+                	alert("핸드폰 번호를 다시 입력합니다.");
+                	location.reload();
+                });
+              
                 $("#verfi_btn").on("click", function(){	
                 	
                 	if(confirm("인증하시겠습니까?")){
                 		//인증 번호 발송되는 에이작스
                 		 $.ajax({
                             url: "/member/createAuthNum",
-                             data: {"phone": phone }
+                             data: {"phone": phone },
+                		 	async : false
+
 
                            }).done(function (resp) {
                         	   
                         	   if(resp == true){ 
                         		   alert("인증번호가 발송되었습니다.");
                         		   $("#verfi_btn").attr("disabled", true); 
+                        		   $("#verifi_code").attr("readonly", false); 
                         		   
                         		   $("#phone").on("input",function(){
                         			   $("#verfi_btn").attr("disabled", false); 
@@ -390,7 +404,7 @@ $(document).ready(function(){
 
 		});
        
-		$("#pw,#check_pw").on("blur",function(){
+		$("#pw,#check_pw").on("input",function(){
 
 		let pw=$("#pw").val();
 		let check_pw=$("#check_pw").val();
@@ -415,7 +429,7 @@ $(document).ready(function(){
                       $("#check_icon5").css("display","block");
                       }else{  
                     	 $("#check_pw").css("border-color","red");
-                      	$("#signup_btn").attr("disabled", true);
+                      	//$("#signup_btn").attr("disabled", true);
                       }
             	  }
 

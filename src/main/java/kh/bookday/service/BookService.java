@@ -73,7 +73,7 @@ public class BookService {
 			
 		//신간 도서 출력 
 		public List<BookDTO> selectNewBooks() {
-				return dao.selectSteadySeller();
+				return dao.selectNewBooks();
 			}
 			
 

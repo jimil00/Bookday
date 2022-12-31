@@ -573,7 +573,7 @@ display:none;
 			</div>
 			<div class="search">
 				<div class="searchBox">
-					<form action="//search" id="search" method="post">
+					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
 							id="searchWord" name="searchWord">
 						<button class="searchBtn" type="submit">
@@ -750,8 +750,12 @@ display:none;
 				location.href = "//toNotification";
 			});
 			$("#bookbag").on("click", function() {
-				location.href = "/delivery/toBookbag";
-			});
+		    	  if(${loginID == null}) {
+		              location.href = "/member/toLogin";
+		    	  }else {
+		         	  location.href = "/delivery/selectBookbagListById?id=${loginID }";
+		    	  }
+		      })
 			$("#bookshelves").on("click", function() {
 				location.href = "/bookshelves/selectBookshelvesListById";
 			});

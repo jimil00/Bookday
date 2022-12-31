@@ -20,7 +20,7 @@ public class WishlistService {
 		return dao.selectWishlistListById(id);
 	}
 	
-	/* 위시리스트 체크 */
+	// 위시리스트 체크
 	public WishlistDTO selectWishlistByIdBisbn(String id, String b_isbn) {
 		Map<String, String> param = new HashMap<>();
 		param.put("id", id);
@@ -28,7 +28,7 @@ public class WishlistService {
 		return dao.selectWishlistByIdBisbn(param);
 	}
 	
-	/* 위시리스트 추가 */
+	// 위시리스트 추가 
 	public void insertWishlist(WishlistDTO dto) {
 		dao.insertWishlist(dto);
 	}
