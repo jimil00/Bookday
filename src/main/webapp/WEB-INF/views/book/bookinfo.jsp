@@ -490,6 +490,9 @@ font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 margin: 0px;
 padding-left: 10px;
 padding-right: 10px;
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
 }
 
 .post_title {
