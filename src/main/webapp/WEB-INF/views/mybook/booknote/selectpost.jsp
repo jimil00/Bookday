@@ -471,6 +471,17 @@ margin-left: auto;
 	border-radius: 5px;
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
+
+/*footerHr*/
+.footerHr{
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
 /* footer */
 .footer {
     margin:5px;
@@ -730,9 +741,8 @@ display:none;
 				</div>
 			</div>
 		</div>
+		<hr class="footerHr">		
 		<div class="footer">
-
-			<hr>
 			<div class="f_header">
 				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
 
@@ -770,7 +780,8 @@ display:none;
 			</div>
 			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
 			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
-		</div>	</div>
+		</div>	
+	</div>
 	<script>
                 $("#logoImg").on("click", function () {
                     location.href = "/";
