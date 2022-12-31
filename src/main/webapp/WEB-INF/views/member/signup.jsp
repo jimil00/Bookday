@@ -203,23 +203,23 @@ $(document).ready(function(){
      let nameRegex=/[가-힣]{2,5}/;
      let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
      let phoneRegex=/^010\d{3,4}\d{4}$/;
-     let emailRegex=/^[a-z 0-9 A-Z]{6,8}@[a-z]{5,6}.com$/;
-     let pwRegex=/^[A-Z a-z 0-9 ! @ % -]{8,16}$/;
+     let emailRegex=/^[a-z 0-9 A-Z]{6,12}@[a-z]{5,7}.com$/;
+     let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
 	
-     if(name=="" || nickname=="" || phone=="" 
-         || verifi_code=="" || email=="" || pw=="" || check_pw==""
-         || !nameRegex.test(name) || !nicknameRegex.test(nickname) 
-         || !phoneRegex.test(phone) || !emailRegex.test(email) 
-         || !pwRegex.test(pw)){
-           //비어 있으면 로그인 버튼 아예 못 누름
-           console.log(name+":"+nickname+":"+phone+":"+verifi_code+":"+email+":1"+pw+":2"+check_pw);
-   			
+     if(name=="" || nickname=="" || phone=="" || 
+    	verifi_code=="" || email=="" || pw=="" || check_pw==""
+    	|| !nameRegex.test(name) || !nicknameRegex.test(nickname) 
+        || !phoneRegex.test(phone) || !emailRegex.test(email) 
+        || !pwRegex.test(pw)){
+           //위의 값이 안 맞으면 로그인 버튼 아예 못 누름
            $("#signup_btn").attr("disabled", true);
-           
+           console.log("버튼 비활성화");
            }else{
+        	   console.log("버튼 활성화");
         	   $("#signup_btn").attr("disabled", false);
            }
-         
+     
+     console.log(name+":"+nickname+":"+phone+":"+verifi_code+":"+email+":1"+pw+":2"+check_pw);
     });
 	
 	$("#phone").on("blur",function(){
@@ -302,7 +302,7 @@ $(document).ready(function(){
                                         		  $("#verifi_code").attr("readonly",true);
                                         		  $("#verfi_btn").attr("disabled", true); 
                                         		  $("#check_btn").attr("disabled", true);
-                                        		   $("#signup_btn").attr("disabled", false);
+                                        		  $("#signup_btn").attr("disabled", false);
                                         		   
                                         	  }else{
                                         		  alert("인증번호가 틀립니다.");
@@ -422,14 +422,17 @@ $(document).ready(function(){
             	  $("#pw").css("border-color","#5397fc");
             	  $("#pw_result").html("");
             	  $("#check_icon4").css("display","block");
+            	  console.log("여기까지 오는지 확인");
 
             	  //일치 확인
             	  if($("#pw").val()==$("#check_pw").val()){
                       $("#check_pw").css("border-color","#5397fc");
                       $("#check_icon5").css("display","block");
+                      
                       }else{  
                     	 $("#check_pw").css("border-color","red");
-                      	//$("#signup_btn").attr("disabled", true);
+                      	$("#signup_btn").attr("disabled", true);
+                      	
                       }
             	  }
 
