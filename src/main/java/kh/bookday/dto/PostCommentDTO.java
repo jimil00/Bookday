@@ -1,6 +1,8 @@
 package kh.bookday.dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class PostCommentDTO {
 	
@@ -58,8 +60,9 @@ public class PostCommentDTO {
 	public void setPc_content(String pc_content) {
 		this.pc_content = pc_content;
 	}
-	public Timestamp getPc_write_date() {
-		return pc_write_date;
+	public String getPc_write_date() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy, H:mm:ss aaa", new Locale("en", "US"));
+		return sdf.format(pc_write_date);
 	}
 	public void setPc_write_date(Timestamp pc_write_date) {
 		this.pc_write_date = pc_write_date;

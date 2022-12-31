@@ -625,6 +625,7 @@ display:none;
 }
 </style>
 <script>
+
                 $(document)
                     .ready(
                         function () {
@@ -701,8 +702,8 @@ display:none;
                                 var b_publication_date = $(".bookPublicationDate").html();
                                 var start = $("#demo").attr("start");
                                 var finish = $("#demo").attr("finish");
-								var dyst_read = $("#demo").attr("start");
-								var dyfn_read = $("#demo").attr("finish");
+								var dyst_read = $("#demo").val().substring(0,10);
+								var dyfn_read = $("#demo").val().substring(13,23);
 								var p_writer_nn = $("#contentsHeaderTxt").attr("p_writer_nn");
                                 var p_title = $("#insertBooknoteTitleTxt").val();
 								console.log(dyst_read);
@@ -843,7 +844,7 @@ display:none;
 					<div class="insertBooknoteDate">
 						<div class="insertBooknoteDateTitle">읽은 기간 선택</div>
 						<div class="insertBooknoteDateInput">
-							<input type="text" id="demo" name="demo" start="<%=new java.util.Date()%>" finish="<%=new java.util.Date()%>">
+							<input type="text" id="demo" name="demo">
 							<button class="insertBooknoteDateBtn">
 								<span class="material-symbols-outlined"> calendar_month </span>
 							</button>
@@ -1002,9 +1003,6 @@ display:none;
 
                         function (start, end, label) {
                             console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-                        	$("#demo").attr("start", start.format('YYYY.MM.DD'));
-                        	$("#demo").attr("finish", end.format('YYYY.MM.DD'));
-
                         });
                 });
 
@@ -1058,6 +1056,7 @@ display:none;
 
                     $(".bookInfo").append(divSearchResultBookInfo);
 
+                	console.log($("#demo").val().substring(13,23));
 
                 }
                 //footer: 사업자 정보 토글 기능
