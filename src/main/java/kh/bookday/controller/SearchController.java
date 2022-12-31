@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kh.bookday.dto.BookDTO;
@@ -31,7 +32,7 @@ public class SearchController {
 
 		// 책 출력
 		List<BookDTO> blist = service.selectBookListBySw(searchWord);
-		System.out.println(blist.size());
+		model.addAttribute("blist", blist);
 
 		// 포스트 출력
 		List<PostDTO> plist = pservice.selectPostListBySw(searchWord);
@@ -40,6 +41,11 @@ public class SearchController {
 		return "search";
 	}
 
+//	@ExceptionHandler(Exception.class)
+//	public String exceptionHandler(Exception e) {
+//		e.printStackTrace();
+//		return "error";
+//	}
 
 
 }
