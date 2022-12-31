@@ -97,6 +97,7 @@ position:absolute;
 	margin: auto;
 	width: 70%;
 	margin-top: 20%;
+	margin-bottom: 20%;
 }
 
 #signup_btn {
@@ -122,10 +123,9 @@ position:absolute;
 	<div class="container">
 		<div class="header">
 			<a href="/"><img src="/resources/bookday_logo_ver1(kor).png" /></a>
-			<p>회원가입</p>
 		</div>
 
-		<form action="/member/signUp">
+		<form action="/member/signUp" method="post">
 			<div class="signup_form">
 
 				<div class="phone_box">
@@ -142,12 +142,12 @@ position:absolute;
 					<div id="ph_result"></div>
 				</div>
 				<div class="box">
-					<input type="text" placeholder="이름 (5자 이내)" name="name" id="name"
+					<input type="text" placeholder="이름 5자 이내)" name="name" id="name"
 						maxlength="5">
 						<span class="material-symbols-outlined" id="check_icon1">check</span>
 				</div>
 				<div class="box">
-					<input type="text" placeholder="이메일" name="email" id="email">
+					<input type="text" placeholder="이메일" name="email" id="email" maxlength="19">
 					<span class="material-symbols-outlined" id="check_icon2">check</span>
 				</div>
 				<div class="box">
@@ -158,7 +158,7 @@ position:absolute;
 				</div>
 				<div class="box">
 					<div>
-						<input type="password" placeholder="비밀번호(한글 및 # $ ^ & * 제외) 16자 이내" name="pw" id="pw"
+						<input type="password" placeholder="비밀번호(영문자 및 ! @ $ % - 포함) 16자 이내" name="pw" id="pw"
 							minlength="8" maxlength="16">
 							<span class="material-symbols-outlined" id="check_icon4">check</span>
 							<div id="pw_result"></div>
@@ -168,7 +168,7 @@ position:absolute;
 				<div class="box">
 					<div>
 						<input type="password" placeholder="비밀번호 확인" name="check_pw"
-							id="check_pw">
+							id="check_pw" maxlength="16">
 						<span class="material-symbols-outlined" id="check_icon5">check</span>
 						<!-- <span class="material-symbols-outlined">visibility</span> -->
 					</div>
@@ -202,8 +202,8 @@ $(document).ready(function(){
 
      let nameRegex=/[가-힣]{2,5}/;
      let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
-     let phoneRegex=/^010\d{3,4}\d{4}$/;
-     let emailRegex=/^[a-z 0-9 A-Z]{6,12}@[a-z]{5,7}.com$/;
+     let phoneRegex=/^01\d{1}\d{3,4}\d{4}$/;
+     let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[A-Z a-z]{5,7}.[a-zA-Z]{2,3}$/;
      let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
 	
      if(name=="" || nickname=="" || phone=="" || 
@@ -260,7 +260,7 @@ $(document).ready(function(){
               
                 $("#verfi_btn").on("click", function(){	
                 	
-                	if(confirm("인증하시겠습니까?")){
+                	/* if(confirm("인증하시겠습니까?")){ */
                 		//인증 번호 발송되는 에이작스
                 		 $.ajax({
                             url: "/member/createAuthNum",
@@ -298,7 +298,12 @@ $(document).ready(function(){
                                         	  if(resp == false){
                                         		  alert("인증번호가 일치합니다.")
                                         		  $("#verifi_code").css("border-color", "#5397fc");
-                                        		  $("#phone").attr("readonly",true);
+                                        		  
+                                        		   $("#phone").on("input",function(){
+                                                   	location.reload();
+                                                   });
+                                        		  
+                                        		  //$("#phone").attr("readonly",true);
                                         		  $("#verifi_code").attr("readonly",true);
                                         		  $("#verfi_btn").attr("disabled", true); 
                                         		  $("#check_btn").attr("disabled", true);
@@ -313,10 +318,10 @@ $(document).ready(function(){
                         		   });
                         	   }
                            });
-                	}else{
+                	/* }else{
                 		$("#phone").val("");
                 		location.reload();
-                		}
+                		} */
                 })
             
               }
@@ -327,7 +332,7 @@ $(document).ready(function(){
 	});
 	
 		
-      	$("#name").on("keyup",function(){
+      	$("#name").on("blur",function(){
 
 		 let name= $("#name").val();
          let nameRegex=/[가-힣]{2,5}/;
@@ -346,10 +351,10 @@ $(document).ready(function(){
 
 		});
       	
-    	$("#email").on("keyup",function(){
+    	$("#email").on("blur",function(){
 
 			let email=$("#email").val();
-			let emailRegex=/^[a-z 0-9 A-Z]{6,12}@[a-z]{5,7}.com$/;
+			let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[a-z]{5,7}.com$/;
 
 			   //이메일 유효성 검사
 			   if(!emailRegex.test(email) && email != ""){
@@ -363,7 +368,7 @@ $(document).ready(function(){
               
 		});
 
-		$("#nickname").on("keyup",function(){
+		$("#nickname").on("blur",function(){
 			let nickname=$("#nickname").val();
 			let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
 
@@ -404,7 +409,7 @@ $(document).ready(function(){
 
 		});
        
-		$("#pw,#check_pw").on("input",function(){
+		$("#pw,#check_pw").on("keyup",function(){
 
 		let pw=$("#pw").val();
 		let check_pw=$("#check_pw").val();
@@ -415,7 +420,7 @@ $(document).ready(function(){
 		   if(!pwRegex.test(pw) && pw != ""){
                 $("#pw").css("border-color","red");
                 $("#pw_result").css("color","red");
-                $("#pw_result").html("유효하지 않은 비밀번호: 영문자,숫자,!,@,$,%,- 만 사용 가능");
+                $("#pw_result").html("유효하지 않은 비밀번호입니다.");
               }else if(pw == ""){
             	  $("#pw").css("border-color","#d5d5d5");
               }else{ 
