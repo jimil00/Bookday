@@ -3,6 +3,7 @@
 
 <mapper namespace="Post">
 
+<!-- 수진 -->
 	<insert id="insertPost">
 		insert into post values(post_seq.nextval, #{p_writer_id}, #{b_isbn}, #{b_img_url}, #{b_title}, #{b_writer}, #{b_genre}, #{b_publisher}, #{b_publication_date}, #{dyst_read}, #{dyfn_read}, #{p_writer_nn}, sysdate, #{p_title}, #{p_content}, 0, 0, 0)
 		<selectKey order="AFTER" keyProperty="p_seq" resultType="int">
@@ -13,14 +14,6 @@
 	<select id="selectPostListById" resultType="kh.bookday.dto.PostDTO">
 		select * from post where p_writer_id = #{id} order by p_seq desc
 	</select>
-	
-	<update id="updatePLCUp">
-		update post set p_like_count = p_like_count + 1 where p_seq = #{p_seq}
-	</update>
-	
-	<update id="updatePLCDown">
-		update post set p_like_count = p_like_count -1 where p_seq = #{p_seq}
-	</update>
 	
 	<select id="select20PostListById" resultType="kh.bookday.dto.PostDTO">
 		<![CDATA[
@@ -37,11 +30,29 @@
 	<select id="selectPostByPseq" resultType="kh.bookday.dto.PostDTO">
 		select * from post where p_seq = #{p_seq}
 	</select>
-		
-	<select id="selectPostByIsbn" resultType="kh.bookday.dto.PostDTO">
-		select * from post where b_isbn=#{value} order by p_seq
-	</select>
 	
+	<update id="updatePCCUp">
+		update post set p_comment_count = p_comment_count +1 where p_seq = #{p_seq}
+	</update>
+	
+	<update id="updatePCCDown">
+		update post set p_comment_count = p_comment_count -1 where p_seq = #{p_seq}
+	</update>
+	
+	<update id="updatePLCUp">
+		update post set p_like_count = p_like_count + 1 where p_seq = #{p_seq}
+	</update>
+	
+	<update id="updatePLCDown">
+		update post set p_like_count = p_like_count -1 where p_seq = #{p_seq}
+	</update>
+	
+	<select id="selectSearchPostList" resultType="kh.bookday.dto.PostDTO">
+		select * from post where (p_writer_id = #{id}) and (b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or p_title like '%'||#{searchWord}||'%' or p_content like '%'||#{searchWord}||'%')
+	</select>
+
+<!-- 수진 -->
+
 <!-- 지민 -->
 
 	<!-- 검색 시 포스트 출력 -->
@@ -56,4 +67,7 @@
 		select * from post where  <![CDATA[rownum <= 6]]> order by P_LIKE_COUNT desc
 	</select>
 	
+	<select id="selectPostByIsbn" resultType="kh.bookday.dto.PostDTO">
+		select * from post where b_isbn=#{value} order by p_seq
+	</select>
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -117,8 +118,11 @@ public class BooknoteController {
 	public String selectPostByPseq(int p_seq, Model model) {
 		// id session
 		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
+//		String id = "zxcvzxcv";
 		
+		session.setAttribute("loginID", "zxcvzxcv");
+				String id = String.valueOf(session.getAttribute("loginID"));
+
 		// 회원 정보
 		MemberDTO mdto = mservice.selectMemberById(id);
 		model.addAttribute("mdto", mdto);
@@ -146,6 +150,9 @@ public class BooknoteController {
 	@ResponseBody
 	@RequestMapping("selectPCListByPseq")
 	public String selectPCListByPseq(PostCommentDTO dto) {
+		session.setAttribute("loginID", "zxcvzxcv");
+		String id = String.valueOf(session.getAttribute("loginID"));
+		// 버튼 뜨는지 꼭 다시 확인
 		return new Gson().toJson(service.selectPCListByPseq(dto));
 	}
 
@@ -155,13 +162,55 @@ public class BooknoteController {
 	public void insertPostComment(PostCommentDTO dto) {
 		// id session
 		//		String id = String.valueOf(session.getAttribute("loginID"));
-		String id = "zxcvzxcv";
-
+//		String id = "zxcvzxcv";
+		session.setAttribute("loginID", "zxcvzxcv");
+		String id = String.valueOf(session.getAttribute("loginID"));
+		
 		MemberDTO mdto = mservice.selectMemberById(id);
 		dto.setPc_writer_id(mdto.getId());
 		dto.setPc_writer_nn(mdto.getNickname());
 		dto.setSysprofname(mdto.getSysprofname());
 		service.insertPostComment(dto);
+	}
+	
+	// 포스트 댓글 삭제
+	@ResponseBody
+	@RequestMapping("deletePostComment")
+	public void deletePostComment(int pc_seq) {
+		// id session
+		//		String id = String.valueOf(session.getAttribute("loginID"));
+//		String id = "zxcvzxcv";
+		session.setAttribute("loginID", "zxcvzxcv");
+		String id = String.valueOf(session.getAttribute("loginID"));
+		// session이랑 지우려는 댓글 아이디가 같을 떄 는 프론트에서
+
+		service.deletePostComment(pc_seq);
+	}
+	
+	@GetMapping("selectSearchPostList")
+	public String selectSearchPostList(String searchWord, Model model) {
+		
+		// id session
+		//		String id = String.valueOf(session.getAttribute("loginID"));
+		String id = "zxcvzxcv";
+		session.setAttribute("loginID", id);
+
+		
+		// 회원정보 
+		MemberDTO dto = mservice.selectMemberById(id);
+		model.addAttribute("dto", dto);
+
+		// 포스트 리스트
+		List<PostDTO> list = service.selectSearchPostList(id, searchWord);
+		model.addAttribute("list", list);
+		
+		// 포스트 좋아요 리스트
+		List<PostLikeDTO> llist = service.selectPostLikeListById(id);
+		model.addAttribute("llist", llist);
+		System.out.println(llist.size());
+		
+		return "mybook/booknote/selectpostlist";
+	
 	}
 	
 	

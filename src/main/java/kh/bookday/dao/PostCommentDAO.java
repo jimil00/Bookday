@@ -27,7 +27,7 @@ public class PostCommentDAO {
 	}
 
 	public void deletePostComment(int pc_seq) {
-		// TODO Auto-generated method stub
-		
+		db.delete("PostComment.deletePostComment", pc_seq);
 	}
+
 }
