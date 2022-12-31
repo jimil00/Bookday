@@ -129,12 +129,10 @@ public class PostService {
 	}
 		
 // 지민	
-	
 	// 검색 시 포스트 출력
 	public List<PostDTO> selectPostListBySw(String searchWord){
 		return dao.selectPostListBySw(searchWord);
 	}
-
 // 지민
 
 }

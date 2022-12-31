@@ -45,22 +45,22 @@ public class BookbagController {
 	String[] checkBoxArr = null;
 
 
-	/* 책가방페이지 출력 */
+	// 책가방페이지 출력 
 	@RequestMapping("selectBookbagListById")
 	public String selectBookbagListById(Model model) {
 
 		String id = (String)session.getAttribute("loginID");
 
-		/* 책가방 리스트 출력 */
+		// 책가방 리스트 출력 
 		List<BookbagDTO> list = service.selectBookbagListById(id);
 		model.addAttribute("list", list);
 		System.out.println("책가방 리스트 사이즈 확인 : " + list.size());
 
-		/* 회원 정보 조회 (구독 여부 확인 & 배송지 정보 출력) */
+		// 회원 정보 조회 (구독 여부 확인 & 배송지 정보 출력) 
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
 
-		/* 월 구독 회원 정보 조회 (남은 배송 횟수, 남은 대여 권수 출력) */
+		// 월 구독 회원 정보 조회 (남은 배송 횟수, 남은 대여 권수 출력) 
 		MonthSubMemberDTO sdto = mservice.selectMonthSubMemberById(id);
 		model.addAttribute("sdto", sdto);
 
@@ -68,14 +68,14 @@ public class BookbagController {
 
 	}
 
-	/* 책 삭제 */
+	// 책 삭제 
 	@ResponseBody
 	@RequestMapping("deleteBookbagBySeq")
 	public void deleteBookbagBySeq(int bookbag_seq) {
 		service.deleteBookbagBySeq(bookbag_seq);
 	}
 
-	/* 선택한 책 전체 삭제 */
+	// 선택한 책 전체 삭제 
 	@ResponseBody
 	@RequestMapping("deleteAllBookbagBySeq")
 	public void deleteAllBookbagBySeq(HttpServletRequest request) {
@@ -90,7 +90,7 @@ public class BookbagController {
 
 	}
 
-	/* 위시리스트 체크 */
+	// 위시리스트 체크 
 	@ResponseBody
 	@RequestMapping("selectWishlistByIdBisbn")
 	public String selectWishlistByIdBisbn(String id, String b_isbn) {
@@ -106,7 +106,7 @@ public class BookbagController {
 
 	}
 
-	/* 위시리스트 추가 */
+	// 위시리스트 추가 
 	@ResponseBody
 	@RequestMapping("insertWishlist")
 	public String insertWishlist(WishlistDTO dto) {
@@ -118,13 +118,13 @@ public class BookbagController {
 		return "redirect:/delivery/selectBookbagListById";
 	}
 
-	/* 배송지 페이지로 이동 */
+	// 배송지 페이지로 이동 
 	@RequestMapping("toAddressInput")
 	public String toAddressInput() {
 		return "delivery/addressinput";
 	}
 
-	/* 회원 배송지 정보 입력 */
+	// 회원 배송지 정보 입력 
 	@ResponseBody
 	@RequestMapping("updateMemberAddressById")
 	public void updateMemberAddressById(MemberDTO dto) {
@@ -132,13 +132,13 @@ public class BookbagController {
 		System.out.println("배송지 정보 입력 완료");
 	}
 
-	/* 결제 페이지로 이동 */
+	// 결제 페이지로 이동 
 	@RequestMapping("toPayment")
 	public String toPayment(Model model) {
 
 		String id = (String)session.getAttribute("loginID");
 
-		/* 회원 정보 조회 (구독 여부 확인) */
+		// 회원 정보 조회 (구독 여부 확인) 
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
 
@@ -146,19 +146,19 @@ public class BookbagController {
 
 	}
 
-	/* 결제완료 페이지로 이동 */
+	// 결제완료 페이지로 이동 
 	@RequestMapping("toPaymentCompleted")
 	public String toPaymentCompleted(String id, Model model) {
 
-		/* 회원 등급 변경 */
+		// 회원 등급 변경 
 		mservice.updateMemberGradeById(id);
 
-		/* 월 구독 회원 등록 */
+		// 월 구독 회원 등록 
 		mservice.insertMonthSubMemberById(id);
 
 		System.out.println(id + "-> 월 구독 회원 등록 완료");
 
-		/* 월 구독 회원 정보 조회 (구독기간 출력) */
+		// 월 구독 회원 정보 조회 (구독기간 출력) 
 		MonthSubMemberDTO dto = mservice.selectMonthSubMemberById(id);
 		model.addAttribute("dto", dto);
 
@@ -166,7 +166,7 @@ public class BookbagController {
 
 	}
 
-	/* 대여한 책 대여테이블에 입력 후 책가방테이블에서 삭제 */
+	// 대여한 책 대여테이블에 입력 후 책가방테이블에서 삭제 
 	@ResponseBody
 	@RequestMapping("insertRentalAfterdeleteBookbagBySeq")
 	public void insertRentalAfterdeleteBookbagBySeq(HttpServletRequest request, RentalDTO rdto, Model model) {
@@ -190,7 +190,7 @@ public class BookbagController {
 
 	}
 
-	/* 월 구독 회원 남은 배송 횟수, 남은 대여 권수 계산 */
+	// 월 구독 회원 남은 배송 횟수, 남은 대여 권수 계산 
 	@ResponseBody
 	@RequestMapping("updateMonthSubMemberById")
 	public void updateMonthSubMemberById(MonthSubMemberDTO dto) {
@@ -198,17 +198,17 @@ public class BookbagController {
 		System.out.println("남은 대여 권수 : " + dto.getRental_count());
 	}
 
-	/* 대여완료 페이지로 이동 */
+	// 대여완료 페이지로 이동 
 	@RequestMapping("toRentalCompleted")
 	public String toRentalCompleted(Model model) {
 
 		String id = (String)session.getAttribute("loginID");
 
-		/* 회원 정보 조회 (배송지 정보 출력) */
+		// 회원 정보 조회 (배송지 정보 출력) 
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
 
-		/* 방금 대여한 책 리스트 출력 */
+		// 방금 대여한 책 리스트 출력 
 		// 가장 최근 rownum 조회할건데 방금 대여한 갯수 (체크된 체크박스 갯수) 만큼의 rownum 만 조회할 것임
 		int rownum = checkBoxArr.length;
 		List<RentalDTO> list = rservice.selectRentalListByIdRownum(id, rownum);

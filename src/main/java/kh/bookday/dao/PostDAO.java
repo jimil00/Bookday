@@ -67,16 +67,14 @@ public class PostDAO {
 		return db.selectList("Post.selectPostByIsbn", b_isbn);
 	}
 
-// 지민 
-	
+	// 지민 
 	// 검색 시 포스트 출력
 	public List<PostDTO> selectPostListBySw(String searchWord){
 		return db.selectList("Post.selectPostListBySw", searchWord);
 	}
+	// 지민 
 
-// 지민 
-	
-//shu
+	//shu
 	//인기 포스트 출력
 	public List<PostDTO> selectPopularPost() {
 		return db.selectList("Post.selectPopularPost");

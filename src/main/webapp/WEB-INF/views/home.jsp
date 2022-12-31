@@ -465,7 +465,7 @@ display:none;
 					<h2 id="sub_headline">매월 읽고 싶은 책들이 집으로</h2>
 					<p class="sub_list">종이책 대여 구독 서비스</p>
 					<p class="sub_list">대여 권수(달)/대여일</p>
-					<button id="move_btn">종이책 구독 시작하기</button>
+					<button id="sub-btn">종이책 구독 시작하기</button>
 				</div>
 				
 			</div>
@@ -637,6 +637,14 @@ display:none;
          location.href = "/member/toMypage";
          }
       })
+      // 구독하기 버튼 기능
+		$("#sub-btn").on("click", function() {
+			 if(${loginID == null}) {
+	              location.href = "/member/toLogin";
+	    	  }else {
+	         	  location.href = "/delivery/toPayment?id=${loginID }";
+	    	  }
+		})
       
       //스크롤 이벤트 라이브러리(AOS)선언
        $( document ).ready( function() {
