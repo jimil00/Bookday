@@ -34,7 +34,7 @@ public class BookbagController {
 
 	@Autowired
 	private WishlistService wservice;
-	
+
 	@Autowired
 	private RentalService rservice;
 
@@ -110,7 +110,7 @@ public class BookbagController {
 	@ResponseBody
 	@RequestMapping("insertWishlist")
 	public String insertWishlist(WishlistDTO dto) {
-		
+
 		wservice.insertWishlist(dto);
 		System.out.println("위시리스트 추가 완료");
 
@@ -120,7 +120,14 @@ public class BookbagController {
 
 	// 배송지 페이지로 이동 
 	@RequestMapping("toAddressInput")
-	public String toAddressInput() {
+	public String toAddressInput(Model model) {
+		
+		String id = (String)session.getAttribute("loginID");
+		
+		// 회원 정보 조회 (구독 여부 확인 & 배송지 정보 출력) 
+		MemberDTO dto = mservice.selectMemberById(id);
+		model.addAttribute("dto", dto);
+		
 		return "delivery/addressinput";
 	}
 
