@@ -144,17 +144,28 @@ button:disabled {
  color: black;
  }
 
-.findpw_link {
-	margin-top: 5%;
-	margin-bottom: 5%;
+.links {
+margin-top: 5%;
+display:inline-flex;
+justify-content: space-evenly;
 }
 
-.findpw_link>a {
+.links>p{
+	margin:20px;
+} 
+
+
+a{
     font-size: smaller;
-	color:black;
+	color:grey;
 	text-decoration: none;
 	margin-bottom: 5%;
 }
+
+#line {
+	color:grey;
+}
+
 hr{
    display: block; 
     height: 1px;
@@ -203,9 +214,12 @@ hr{
 					<button id="login_btn" style="color:#5397fc;">로그인</button>
 				</div>
 			<!--  </form>--> 
-			<div class="findpw_link">
-				<a href="/member/toUpdatePw">비밀번호 재설정</a>
+			
+			<div class="links">
+				<a href="/member/toSignup"><p>회원가입</p></a>
+				<a href="/member/toUpdatePw"><p>비밀번호 재설정</p></a>
 			</div>
+
 			<hr id="hr">
 			<div class="kakao_login">
 				<a class="p-2"
@@ -258,7 +272,7 @@ hr{
 
 
 		//해당 값들을 넣지 않고 post했을 때
-		$("#phone, #pw").on("blur", function() {
+		$("#phone, #pw").on("keyup", function() {
 			let phone = $("#phone").val();
 			let pw = $("#pw").val();
 			let phoneRegex = /^01\d{1}\d{3,4}\d{4}$/;
