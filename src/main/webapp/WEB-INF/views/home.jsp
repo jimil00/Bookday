@@ -205,9 +205,18 @@ span, #logoImg:hover {
 	justify-content: space-between;
 	
 }
+.d_img{
+	width:225px;
+}
 
 .reading{
 	height:fit-content;
+}
+
+#sub-btn{
+	width:25%;
+	height:50px;
+	
 }
 
 /* book */
@@ -476,7 +485,7 @@ display:none;
 					</div>
 					
 					<div class="detail">
-					<img src="테스트.jpg">
+					<img src="/resources/search.png" class="d_img">
 					<img src="테스트.jpg">
 					<img src="테스트.jpg">
 					</div>
@@ -511,10 +520,6 @@ display:none;
 				 <div class="book_box">
                        <div class="book">
                            <img src="${b.b_img_url}" class="b_img_url">
-                           <div>
-                             <p class="b_title">${b.b_title}</p>
-                             <p class="b_writer">${b.b_writer}</p>
-                           </div> 
                        </div>
                  </div>
                  </c:forEach>
@@ -533,8 +538,6 @@ display:none;
 				 <div class="book_box">
                        <div class="book">
                            <img src="${s.b_img_url}" class="b_img_url">
-                             <p class="b_title">${s.b_title}</p>
-                             <p class="b_writer">${s.b_writer}</p>
                        </div>
                  </div>
                  </c:forEach>
@@ -553,8 +556,6 @@ display:none;
 				 <div class="book_box">
                        <div class="book">
                            <img src="${n.b_img_url}" class="b_img_url">
-                             <p class="b_title">${n.b_title}</p>
-                             <p class="b_writer">${n.b_writer}</p>
                        </div>
                  </div>
                  </c:forEach>
@@ -607,10 +608,10 @@ display:none;
 				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
 
 				<div class="sns_icon">
-					<a href="#"><img src="/resources/instagram.png" id="insta"></a>
-					<a href="#"><img src="/resources/facebook.png" id="facebook"></a> 
-					<a href="#"><img src="/resources/twitter_black.png" id="twitter"></a>
-					<a href="#"><img src="/resources/youtube.png" id="youtube"></a>
+					<a href="#"><img src="/resources/instagram.png" class="sns"></a>
+					<a href="#"><img src="/resources/facebook.png" class="sns"></a> 
+					<a href="#"><img src="/resources/twitter_black.png" class="sns"></a>
+					<a href="#"><img src="/resources/youtube.png" class="sns"></a>
 				</div>
 
 			</div>
