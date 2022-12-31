@@ -788,10 +788,8 @@ margin-left: auto;
                                 "pc_content": pc_content,
                                 "p_seq": p_seq
                             }, success:function(data){
-                            	if(data==1){
                                 postCommentList(lastPc_seq);
                                 $(".insertPcContentBox").val("");
-                            	}
                             }
                         })
                     }

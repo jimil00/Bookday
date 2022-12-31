@@ -33,7 +33,7 @@ public class BooknoteController {
 	@Autowired
 	private HttpSession session;
 
-
+	// 포스트 리스트 출력
 	@RequestMapping("selectPostListById")
 	public String selectPostListById(Model model) {
 		
@@ -59,7 +59,7 @@ public class BooknoteController {
 		return "mybook/booknote/selectpostlist";
 	}	
 
-	
+	// 포스트 좋아요 입력, +1
 	@ResponseBody
 	@RequestMapping("insertPostLike")
 	public String insertPostLike(PostLikeDTO dto) {
@@ -72,6 +72,7 @@ public class BooknoteController {
 		return result;
 	}
 	
+	// 포스트 좋아요 삭제, -1
 	@ResponseBody
 	@RequestMapping("deletePostLike")
 	public String deletePostLike(PostLikeDTO dto) {
@@ -84,6 +85,7 @@ public class BooknoteController {
 		return result;
 	}
 
+	// 포스트 입력 페이지로
 	@RequestMapping("toInsertPost")
 	public String toInsertPost(Model model) {
 		// id session
@@ -96,6 +98,7 @@ public class BooknoteController {
 		return "mybook/booknote/insertpost";
 	}
 
+	// 포스트 입력
 	@ResponseBody
 	@RequestMapping("insertPost")
 	public String insertPost(PostDTO dto, Model model) {
@@ -109,25 +112,29 @@ public class BooknoteController {
 		return "/booknote/selectPostListById";
 	}
 
-
+	// 포스트 디테일 출력
 	@RequestMapping("selectPostByPseq")
 	public String selectPostByPseq(int p_seq, Model model) {
 		// id session
 		//		String id = String.valueOf(session.getAttribute("loginID"));
 		String id = "zxcvzxcv";
-
+		
+		// 회원 정보
 		MemberDTO mdto = mservice.selectMemberById(id);
 		model.addAttribute("mdto", mdto);
-
+		
+		// 포스트 디테일
 		PostDTO dto = service.selectPostByPseq(p_seq);
 		model.addAttribute("dto", dto);
 		
+		// 포스트 디테일에서 좋아요
 		PostLikeDTO ldto = new PostLikeDTO();
 		ldto.setP_seq(p_seq);
 		ldto.setId(id);
 		boolean result = service.selectPostLike(ldto);
 		model.addAttribute("result", result);
 
+		// 포스트 댓글 출력 foreach
 		List<PostCommentDTO> list = service.selectPostCListByPseq(p_seq);
 		model.addAttribute("list", list);
 		System.out.println(list.size());
@@ -135,16 +142,17 @@ public class BooknoteController {
 		return "mybook/booknote/selectpost";
 	}
 
+	// 포스트 댓글 출력 ajax
 	@ResponseBody
 	@RequestMapping("selectPCListByPseq")
 	public String selectPCListByPseq(PostCommentDTO dto) {
-
 		return new Gson().toJson(service.selectPCListByPseq(dto));
 	}
 
+	// 포스트 댓글 입력
 	@ResponseBody
 	@RequestMapping("insertPostComment")
-	public int insertPostComment(PostCommentDTO dto) {
+	public void insertPostComment(PostCommentDTO dto) {
 		// id session
 		//		String id = String.valueOf(session.getAttribute("loginID"));
 		String id = "zxcvzxcv";
@@ -153,9 +161,7 @@ public class BooknoteController {
 		dto.setPc_writer_id(mdto.getId());
 		dto.setPc_writer_nn(mdto.getNickname());
 		dto.setSysprofname(mdto.getSysprofname());
-		int result = service.insertPostComment(dto);
-		System.out.println(result);
-		return result;
+		service.insertPostComment(dto);
 	}
 	
 	
