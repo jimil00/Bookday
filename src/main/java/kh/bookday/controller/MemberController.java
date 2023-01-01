@@ -214,6 +214,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	// 마이페이지 이동
+	@RequestMapping("toMypage")
+	public String toMypage() {
+		return "member/mypage";
+	}
+	
 
 	//에러 수집
 	@ExceptionHandler(Exception.class) 

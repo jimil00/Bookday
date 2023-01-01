@@ -254,6 +254,7 @@ span, #logoImg:hover {
 	overflow: hidden;
 	width: 100%;
 	height: 170px;
+	margin-top: 15px;
 }
 
 .bookbag-main-checkbox {
@@ -737,12 +738,14 @@ span, #logoImg:hover {
 		$("#bookshelves").on("click", function() {
 			location.href = "/bookshelves/selectBookshelvesListById";
 		})
-		$("#mypage").on("click", function() {
-			if (loginID == null) {
-				location.href = "/member/login";
-			}
-			location.href = "/member/toMypage";
-		})
+		 $("#mypage").on("click", function() {
+         if (${loginID == null}) {
+            location.href = "/member/toLogin";
+            return false;
+         }else {
+         location.href = "/member/toMypage";
+         }
+      })
 	</script>
 </body>
 </html>
