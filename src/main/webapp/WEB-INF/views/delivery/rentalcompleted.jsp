@@ -399,12 +399,14 @@ span, #logoImg:hover {
 		$("#bookshelves").on("click", function() {
 			location.href = "/bookshelves/selectAllBookshelves";
 		})
-		$("#mypage").on("click", function() {
-			if (loginID == null) {
-				location.href = "/member/login";
-			}
-			location.href = "/member/toMypage";
-		})
+		 $("#mypage").on("click", function() {
+         if (${loginID == null}) {
+            location.href = "/member/toLogin";
+            return false;
+         }else {
+         location.href = "/member/toMypage";
+         }
+      })
 	</script>
 </body>
 </html>

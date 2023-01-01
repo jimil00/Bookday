@@ -88,7 +88,7 @@ div {
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="address2" name="address2"
-					placeholder="상세주소" value="${dto.address2 }" maxlength="50">
+					placeholder="상세주소" value="${dto.address2 }" maxlength="25">
 			</div>
 			<div style="padding-bottom: 13px;">
 				<input class="input" type="text" id="reciver" name="reciver"
