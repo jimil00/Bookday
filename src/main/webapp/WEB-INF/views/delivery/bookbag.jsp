@@ -391,7 +391,7 @@ ${loginID }
 					<div class="body-left">
 						<div class="bookbag-top"></div>
 						<div class="bookbag-main"
-							style="text-align: center; height:552px; line-height: 552px;">책가방에 담긴 작품이
+							style="text-align: center; line-height: 130px;">책가방에 담긴 작품이
 							없습니다.</div>
 					</div>
 				</c:when>
