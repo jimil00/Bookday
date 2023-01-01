@@ -124,10 +124,10 @@ button:hover {
 }
 /* icon */
 .iconBox {
-            position: absolute;
-            bottom: 0px;
-            right: 0px;
-        }
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
 
 span.size-40 {
 	font-size: 40px;
@@ -150,7 +150,6 @@ span, #logoImg:hover {
 }
 
 /* header */
-
 
 /* login */
 .signBox {
@@ -178,8 +177,8 @@ span, #logoImg:hover {
 	cursor: default;
 }
 
-.login_form{
-	margin-top:200px;
+.login_form {
+	margin-top: 200px;
 }
 
 /* navi */
@@ -194,15 +193,32 @@ span, #logoImg:hover {
 	overflow: hidden;
 }
 
+.body-span {
+	cursor: text;
+}
+
 .bookbag-count {
 	padding-top: 60px;
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 	font-weight: bold;
+	font-size: 18px;
 }
 
 .bookbag-top-checkbox-div {
+	margin-top: 10px;
 	width: 50%;
 	float: left;
+}
+
+#check-all {
+	width:17px;
+	height:17px;
+}
+
+#label {
+	position: relative;
+	bottom: 4.5px;
+	margin-left: 5px;
 }
 
 .bookbag-top-btn-div {
@@ -212,7 +228,10 @@ span, #logoImg:hover {
 }
 
 .bookbag-top-btn {
-	margin-left: 5px;
+	width: 100px;
+	height: 30px;
+	margin-right: 16px;
+	margin-bottom: 10px;
 	border-radius: 4px;
 	border: 1px solid rgb(194, 193, 193);
 	background-color: #ffffff;
@@ -225,9 +244,9 @@ span, #logoImg:hover {
 }
 
 .bookbag-top {
-	height: 50px;
-	padding-top: 25px;
-	padding-left: 15px;
+	height: 30px;
+/* 	padding-top: 25px; */
+/* 	padding-left: 15px; */
 	padding-right: 18px;
 }
 
@@ -239,10 +258,15 @@ span, #logoImg:hover {
 
 .bookbag-main-checkbox {
 	float: left;
-	width: 6%;
+	width: 5%;
 	height: 100%;
 	line-height: 150px;
-	padding-left: 15px;
+/* 	padding-left: 15px; */
+}
+
+.check {
+	width:17px;
+	height:17px;
 }
 
 .book-img-div {
@@ -268,13 +292,15 @@ span, #logoImg:hover {
 
 .bookbag-detail-btn {
 	height: 40%;
-	padding-top: 20px;
+	padding-top: 8px;
 }
 
 .detail-btn {
-	border: 1px solid rgb(194, 193, 193);
+	height: 30px;
+	margin-right: 5px; border : 1px solid rgb( 194, 193, 193);
 	border-radius: 4px;
 	background-color: #ffffff;
+	border: 1px solid rgb(194, 193, 193);
 }
 
 .body-right {
@@ -337,9 +363,10 @@ span, #logoImg:hover {
 /* body */
 </style>
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();"
+	onunload="">
 	<div class="container">
-${loginID }	
+		${loginID }
 		<div class="header">
 			<div class="logo">
 				<img src="/resources/bookday_logotitle.png" id="logoImg">
@@ -361,12 +388,14 @@ ${loginID }
 						<c:when test="${empty loginID}">
 							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
 							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p class="user" id="test">상세 페이지 테스트</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
+									class="user" id="test">상세 페이지 테스트</p></a>
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
 							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p class="user" id="test">상세 페이지 테스트</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
+									class="user" id="test">상세 페이지 테스트</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -385,33 +414,34 @@ ${loginID }
 			<c:choose>
 				<c:when test="${fn:length(list) == 0}">
 					<div class="body-top">
-						<div class="bookbag-count" style="padding-left: 5px;">책가방
+						<div class="bookbag-count">책가방
 							(${fn:length(list)})</div>
 					</div>
 					<div class="body-left">
 						<div class="bookbag-top"></div>
 						<div class="bookbag-main"
-							style="text-align: center; height:552px; line-height: 552px;">책가방에 담긴 작품이
+							style="text-align: center; line-height: 130px;">책가방에 담긴 작품이
 							없습니다.</div>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="body-top">
-						<div class="bookbag-count" style="padding-left: 15px;">책가방
+						<div class="bookbag-count">책가방
 							(${fn:length(list)})</div>
 					</div>
 					<div class="body-left">
 						<div class="bookbag-top">
 							<div class="bookbag-top-checkbox-div">
-								<input type="checkbox" id="check-all" checked> <label>전체
-									선택</label>
+								<input type="checkbox" id="check-all" checked> <label
+									id="label">전체 선택</label>
 							</div>
 							<div class="bookbag-top-btn-div">
 								<button class="bookbag-top-btn" id="select-delete">선택
 									삭제</button>
 							</div>
 						</div>
-						<hr style="width: 95%; margin-top: 5px;">
+						<hr
+							style="width: 95%; border-top: 1px solid rgb(216, 216, 216); text-align: left;  margin-left: 0px;">
 						<c:forEach var="bookbag" items="${list}">
 							<div class="bookbag-main">
 								<div class="bookbag-main-checkbox">
@@ -419,24 +449,25 @@ ${loginID }
 										value="${bookbag.bookbag_seq }">
 								</div>
 								<div class="book-img-div">
-									<a href="/book/selectBookinfo?b_isbn=${bookbag.b_isbn }"><img src="${bookbag.b_img_url }" id="book-img"></a>
+									<a href="/book/selectBookinfo?b_isbn=${bookbag.b_isbn }"><img
+										src="${bookbag.b_img_url }" id="book-img"></a>
 								</div>
 								<div class="bookbag-detail-div">
 									<div class="bookbag-detail-text">
-										${bookbag.b_title } <br>
-										<br> ${bookbag.b_writer }<br> <input type="hidden"
-											value="${bookbag.b_isbn }"> <input type="hidden"
-											value="${bookbag.b_genre }">
+										<div>${bookbag.b_title }</div><div style="font-size: 14px; padding-top: 10px;">${bookbag.b_writer }</div>
+										<input type="hidden" value="${bookbag.b_isbn }"> <input
+											type="hidden" value="${bookbag.b_genre }">
 									</div>
 									<div class="bookbag-detail-btn">
 										<button class="detail-btn" type="button"
-											id="w${bookbag.bookbag_seq }">위시리스트에 담기</button>
+											id="w${bookbag.bookbag_seq }" style="width: 140px;">위시리스트에 담기</button>
 										<button class="detail-btn" type="button"
-											id="d${bookbag.bookbag_seq }">삭제</button>
+											id="d${bookbag.bookbag_seq }" style="width: 60px;">삭제</button>
 									</div>
 								</div>
 							</div>
-							<hr style="width: 95%; margin-top: -14px;">
+							<hr
+								style="width: 95%; margin-top: -14px; border-top: 1px solid rgb(216, 216, 216); text-align: left;  margin-left: 0px;">
 
 							<script>
 								// 삭제 버튼 기능
@@ -563,44 +594,45 @@ ${loginID }
 								<div class="rental-detail-title">대여 내역</div>
 								<br>
 								<div style="padding-bottom: 9px;">
-									<span>대여할 책</span> : <span id="check-count-result"
+									<span class="body-span">대여할 책</span> : <span class="body-span" id="check-count-result"
 										style="font-weight: bold;"></span> 권
 								</div>
 								<div style="padding-bottom: 9px;">
-									<span>남은 배송 횟수</span> : <span style="font-weight: bold;">${sdto.delivery_count }</span>
+									<span class="body-span">남은 배송 횟수</span> : <span class="body-span" style="font-weight: bold;">${sdto.delivery_count }</span>
 									번
 								</div>
 								<div style="padding-bottom: 9px;">
-									<span>남은 대여 권수</span> : <span style="font-weight: bold;">${sdto.rental_count }</span>
+									<span class="body-span">남은 대여 권수</span> : <span class="body-span" style="font-weight: bold;">${sdto.rental_count }</span>
 									권
 								</div>
 								<div style="padding-bottom: 9px;">
-									<span>도착예정일</span> : <span style="font-weight: bold;"><fmt:formatDate
+									<span class="body-span">도착예정일</span> : <span class="body-span" style="font-weight: bold;"><fmt:formatDate
 											value="${arrivalDate}" pattern="yyyy-MM-dd(E)" /></span>
 								</div>
 								<div>
-									<span>반납일</span> : <span style="font-weight: bold;"><fmt:formatDate
+									<span class="body-span">반납일</span> : <span class="body-span" style="font-weight: bold;"><fmt:formatDate
 											value="${returnDate}" pattern="yyyy-MM-dd(E)" /></span>
 								</div>
 							</div>
-							<hr style="margin-top: 0px; margin-bottom: 0px; width: 92%;">
+							<hr
+								style="margin-top: 0px; margin-bottom: 0px; width: 92%; border-top: 1px solid rgb(216, 216, 216);">
 							<div class="address">
 								<div class="address-title">배송지 정보</div>
 								<br>
-								<div style="padding-bottom: 3px;">우편번호</div>
+								<div style="padding-bottom: 5px; font-weight: bold;">우편번호</div>
 								<div
-									style="padding-bottom: 10px; font-size: 15px; font-weight: bold;">${dto.postcode }</div>
-								<div style="padding-bottom: 3px;">주소</div>
+									style="padding-bottom: 10px; font-size: 14px;">${dto.postcode }</div>
+								<div style="padding-bottom: 5px; font-weight: bold;">주소</div>
 								<div
-									style="padding-bottom: 10px; font-size: 15px; font-weight: bold;">${dto.address1 }</div>
-								<div style="padding-bottom: 3px;">상세주소</div>
+									style="padding-bottom: 10px; font-size: 14px;">${dto.address1 }</div>
+								<div style="padding-bottom: 5px; font-weight: bold;">상세주소</div>
 								<div
-									style="padding-bottom: 10px; font-size: 15px; font-weight: bold;">${dto.address2 }</div>
-								<div style="padding-bottom: 3px;">받으실 분</div>
+									style="padding-bottom: 10px; font-size: 14px;">${dto.address2 }</div>
+								<div style="padding-bottom: 5px; font-weight: bold;">받으실 분</div>
 								<div
-									style="padding-bottom: 10px; font-size: 15px; font-weight: bold;">${dto.reciver }</div>
-								<div style="padding-bottom: 3px;">휴대폰 번호</div>
-								<div style="font-size: 15px; font-weight: bold;">${dto.reciver_phone }</div>
+									style="padding-bottom: 10px; font-size: 14px;">${dto.reciver }</div>
+								<div style="padding-bottom: 5px; font-weight: bold;">휴대폰 번호</div>
+								<div style="font-size: 15px;">${dto.reciver_phone }</div>
 								<br>
 								<div class="address-btn-div">
 									<c:choose>
@@ -636,7 +668,7 @@ ${loginID }
 						}else if(${sdto.rental_count < 1}) {
 							alert("구독 기간 내 대여 가능한 권수를 초과하였습니다.");
 						}else if(${sdto.rental_count } < $("#check-count-result").text()) {
-							alert("현재 대여 가능한 권수를 초과하였습니다.");
+							alert("구독 기간 내 대여 가능한 권수를 초과하였습니다.");
 						}else if(${fn:length(list) == 0}) {
 							alert("대여할 책이 없습니다.");
 						}else if (${dto.postcode eq null}) {
@@ -683,6 +715,11 @@ ${loginID }
 		<div class="footer"></div>
 	</div>
 	<script>
+		// 대여완료페이지에서 뒤로가기 막기 기능
+		window.history.forward(); function noBack(){ 
+		  window.history.forward();
+		}
+		
 		$("#logoImg").on("click", function() {
 			location.href = "/";
 		})
