@@ -1,9 +1,10 @@
 package kh.bookday.dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class RentalDTO {
-	
+
 	private int rt_seq;
 	private String id;
 	private String b_isbn;
@@ -13,8 +14,8 @@ public class RentalDTO {
 	private String b_genre;
 	private Timestamp rt_rental_date;
 	private Timestamp rt_return_date;
-	
-	
+
+
 	public RentalDTO() {
 		super();
 	}
@@ -30,8 +31,8 @@ public class RentalDTO {
 		this.rt_rental_date = rt_rental_date;
 		this.rt_return_date = rt_return_date;
 	}
-	
-	
+
+
 	public int getRt_seq() {
 		return rt_seq;
 	}
@@ -85,6 +86,16 @@ public class RentalDTO {
 	}
 	public void setRt_return_date(Timestamp rt_return_date) {
 		this.rt_return_date = rt_return_date;
+	}
+
+	// 날짜 변환 메소드
+	public String getFormedRt_rental_date() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(this.rt_rental_date);
+	}
+	public String getFormedRt_return_date() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(this.rt_return_date);
 	}
 
 }

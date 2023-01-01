@@ -28,5 +28,10 @@ public class RentalDAO {
 	public List<RentalDTO> selectRentalListByIdRownum (Map<String, Object> param) {
 		return db.selectList("Rental.selectRentalListByIdRownum", param);
 	}
+	
+	// 가장 최근 대여 내역 출력
+	public RentalDTO selectRentalById(String id) {
+		return db.selectOne("Rental.selectRentalById",id);
+	}
 
 }

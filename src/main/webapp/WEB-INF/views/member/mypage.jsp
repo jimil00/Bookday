@@ -188,7 +188,7 @@ span, #logoImg:hover {
 
 /* body */
 .body {
-	width: 500px;
+	width: 700px;
 	margin: auto;
 }
 
@@ -223,22 +223,25 @@ span, #logoImg:hover {
 
 .body-left {
 	float: left;
-	width: 30%;
+	width: 20%;
+	height: 33px;
 	padding-bottom: 15px;
 	font-weight: bold;
+	padding-bottom: 15px;
 }
 
 .body-right {
-	width: 70%;
+	width: 80%;
+	height: 33px;
 	float: right;
 	padding-bottom: 15px;
 }
 
-.modify-btn-div {
+.body-btn-div {
 	text-align: center;
 }
 
-#modify-btn {
+.body-btn {
 	width: 180px;
 	height: 40px;
 	margin-top: 50px;
@@ -297,44 +300,76 @@ span, #logoImg:hover {
 		<hr id="headerHr">
 		<div class="navi"></div>
 		<div class="body">
-			 <div class="body-top">나의 정보</div>
-            <div class="mem info">
-                <div class="body-title-mem">회원정보</div>
-                <hr class="body-hr">
-                <div class="body-left">닉네임</div>
-                <div class="body-right">짐이다</div>
-                <div class="body-left">이름</div>
-                <div class="body-right">강지민</div>
-                <div class="body-left">휴대폰 번호</div>
-                <div class="body-right">01056027047</div>
-                <div class="body-left">이메일</div>
-                <div class="body-right">vjimin2530@naver.com</div>
-            </div>
-            <div class="sub info">
-                <div class="body-title">구독권정보</div>
-                <hr class="body-hr">
-                <div class="body-left">구독기간</div>
-                <div class="body-right">2023-01-01 ~ 2023-01-31</div>
-                <div class="body-left">남은 배송 횟수</div>
-                <div class="body-right">3 번</div>
-                <div class="body-left">남은 대여 권수</div>
-                <div class="body-right">10 권</div>
-            </div>
-            <div class="rental info">
-                <div class="body-title">대여정보</div>
-                <hr class="body-hr">
-                <div class="body-left">주소</div>
-                <div class="body-right">서울 강북구 4.19로 23-1 (301호)</div>
-                <div class="body-left">받는 분</div>
-                <div class="body-right">강지민</div>
-                <div class="body-left">휴대폰번호</div>
-                <div class="body-right">01056027047</div>
-                <div class="body-left">도착 예정일</div>
-                <div class="body-right">2023-01-03</div>
-                <div class="body-left">반납일</div>
-                <div class="body-right">2023-01-13</div>
-            </div>
-            <div class="modify-btn-div"><button id="modify-btn">회원정보 수정</button></div>
+			<div class="body-top">내 정보</div>
+			<c:choose>
+				<c:when test="${dto.grade eq '미구독'}">
+					<div class="mem info">
+						<div class="body-title-mem">회원정보</div>
+						<hr class="body-hr">
+						<div class="body-left">이름</div>
+						<div class="body-right">${dto.name }</div>
+						<div class="body-left">닉네임</div>
+						<div class="body-right">${dto.nickname }</div>
+						<div class="body-left">휴대폰 번호</div>
+						<div class="body-right">${dto.phone }</div>
+						<div class="body-left">이메일</div>
+						<div class="body-right">${dto.email }</div>
+					</div>
+					<div class="sub info">
+						<div class="body-title">구독권정보</div>
+						<hr class="body-hr">
+						<div style="text-align: center; height: 150px; line-height: 150px">아직
+							이용 중인 구독권이 없습니다!</div>
+						<div class="body-btn-div">
+							<button class="body-btn" id="modify-btn"
+								style="margin-right: 20px;">회원정보 수정</button>
+							<button class="body-btn" id="sub-btn">종이책 구독 시작하기</button>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="mem info">
+						<div class="body-title-mem">회원정보</div>
+						<hr class="body-hr">
+						<div class="body-left">이름</div>
+						<div class="body-right">${dto.name }</div>
+						<div class="body-left">닉네임</div>
+						<div class="body-right">${dto.nickname }</div>
+						<div class="body-left">휴대폰 번호</div>
+						<div class="body-right">${dto.phone }</div>
+						<div class="body-left">이메일</div>
+						<div class="body-right">${dto.email }</div>
+					</div>
+					<div class="sub info">
+						<div class="body-title">구독권정보</div>
+						<hr class="body-hr">
+						<div class="body-left">구독기간</div>
+						<div class="body-right">${sdto.formedStartDate }~
+							${sdto.formedEndDate }</div>
+						<div class="body-left">남은 배송 횟수</div>
+						<div class="body-right">${sdto.delivery_count }번</div>
+						<div class="body-left">남은 대여 권수</div>
+						<div class="body-right">${sdto.rental_count }권</div>
+					</div>
+					<div class="rental info">
+						<div class="body-title">대여정보</div>
+						<hr class="body-hr">
+						<div class="body-left">주소</div>
+						<div class="body-right">${dto.address1 }(${dto.address2 })</div>
+						<div class="body-left">받는 분</div>
+						<div class="body-right">${dto.reciver }</div>
+						<div class="body-left">휴대폰번호</div>
+						<div class="body-right">${dto.reciver_phone }</div>
+						<div class="body-left">도착 예정일</div>
+						<div class="body-right">${rdto.formedRt_rental_date }</div>
+						<div class="body-left">반납일</div>
+						<div class="body-right">${rdto.formedRt_return_date }</div>
+					</div>
+					<div class="body-btn-div">
+						<button class="body-btn" id="modify-btn">회원정보 수정</button>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<script>
