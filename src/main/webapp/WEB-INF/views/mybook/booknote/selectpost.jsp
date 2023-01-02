@@ -722,7 +722,7 @@ display:none;
 									<c:forEach var="i" items="${list}">
 										<div class="pcContents" seq="${i.pc_seq }">
 											<div class="pcWriterImg">
-												<img src="/images/${i.sysprofname }">
+												<img src="${i.sysprofname }">
 											</div>
 											<div class="pcContentsTxt">
 												<div class="pcContentsInfo">

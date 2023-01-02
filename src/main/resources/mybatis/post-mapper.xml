@@ -32,11 +32,11 @@
 	</select>
 	
 	<update id="updatePCCUp">
-		update post set p_comment_count = p_comment_count +1 where p_seq = #{p_seq}
+		update post set p_comment_count = p_comment_count +1 where pc_seq = #{pc_seq}
 	</update>
 	
 	<update id="updatePCCDown">
-		update post set p_comment_count = p_comment_count -1 where p_seq = #{p_seq}
+		update post set p_comment_count = p_comment_count -1 where pc_seq = #{pc_seq}
 	</update>
 	
 	<update id="updatePLCUp">

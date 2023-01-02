@@ -586,7 +586,7 @@ span.size-30 {
 
 								<div class="carousel-indicators">
 
-									<c:forEach var="i" begin="0" end="${fn:length(wlist)%10 }"
+									<c:forEach var="i" begin="0" end="${fn:length(wlist)/10 }"
 										step="1">
 
 										<button type="button"
@@ -700,7 +700,7 @@ span.size-30 {
 			location.href = "/bookshelves/selectBookshelvesListById";
 		})
 		$("#snStatistics").on("click", function() {
-			location.href = "/bookstatistics/select-";
+			location.href = "/bookstatistics/toStatistics";
 		})
 		$("#snCalendar").on("click", function() {
 			location.href = "/bookcalendar/select-";
