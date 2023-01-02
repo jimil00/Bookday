@@ -367,7 +367,6 @@ span, #logoImg:hover {
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();"
 	onunload="">
 	<div class="container">
-		${loginID }
 		<div class="header">
 			<div class="logo">
 				<img src="/resources/bookday_logotitle.png" id="logoImg">

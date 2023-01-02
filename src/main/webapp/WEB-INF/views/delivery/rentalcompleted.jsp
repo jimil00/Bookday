@@ -330,7 +330,7 @@ span, #logoImg:hover {
 					</div>
 					<div class="book-detail-div">
 						<div class="book-detail">
-							<div>${rental.b_title }</div><div style="font-size: 14px; padding-top: 10px;">${rental.b_writer }</div>
+							<div style="font-weight: bold;">${rental.b_title }</div><div style="font-size: 14px; padding-top: 10px;">${rental.b_writer }</div>
 						</div>
 					</div>
 				</div>
@@ -375,10 +375,12 @@ span, #logoImg:hover {
 			location.href = "/";
 		})
 		$("#mypage-btn").on("click", function() {
-			if (loginID == null) {
-				location.href = "/member/login";
-			}
-			location.href = "/member/toMypage";
+			if (${loginID == null}) {
+	            location.href = "/member/toLogin";
+	            return false;
+	         }else {
+	         location.href = "/member/toMypage";
+	         }
 		})
 
 		$("#logoImg").on("click", function() {
@@ -400,13 +402,13 @@ span, #logoImg:hover {
 			location.href = "/bookshelves/selectAllBookshelves";
 		})
 		 $("#mypage").on("click", function() {
-         if (${loginID == null}) {
-            location.href = "/member/toLogin";
-            return false;
-         }else {
-         location.href = "/member/toMypage";
-         }
-      })
+	         if (${loginID == null}) {
+	            location.href = "/member/toLogin";
+	            return false;
+	         }else {
+	         location.href = "/member/toMypage";
+	         }
+      	})
 	</script>
 </body>
 </html>
