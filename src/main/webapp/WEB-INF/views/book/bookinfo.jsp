@@ -180,6 +180,7 @@ overflow:hidden;
 
 .box, .b_etc, .post-link, .link_btn, #b_genre {
 display: inline-flex;
+
 }
 
 .box {
@@ -237,12 +238,14 @@ margin: 0px;
 margin-left: 20px;
 top: 85%;
 position: absolute;
+justify-content: space-evenly;
 }
 
 .post-link {
 position: absolute;
 right: 0px;
 bottom: 300px;
+width:100%;
 }
 
 .post-link>a>button {
@@ -253,7 +256,7 @@ border-radius: 5px;
 }
 
 .link_btn>a>input {
-width: 343px;
+width: 330px;
 height: 50px;
 border: 1px solid #5397fc;
 background-color: white;
@@ -261,21 +264,37 @@ color: #5397fc;
 border-radius: 5px;
 }
 
-.link_btn>span {
-position: relative;
+.link_btn>a>span {
 color: #5397fc;
 }
 
+.link_btn>a>input {
+	cursor: pointer;
+}
+
+#to_wish{
+	
+}
+
+#to_bag{
+	margin-left:26px;
+}
+
+
 #heart {
-right: 82%;
+position: relative;
+right: 660px;
 top: 13px;
 font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48
 }
 
 #bookbag2 {
-right: 40%;
-top: 5px;
-font-variation-settings: 'FILL' 0, 'wght' 150, 'GRAD' 0, 'opsz' 48
+position: relative;
+right: 335px;
+top:8px;
+font-size:35px;
+font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 20
+
 }
 
 #to_write {
@@ -347,6 +366,7 @@ border: 1px solid #5397fc;
 .r_content_box {
 margin: 20px;
 margin-top: 0px;
+
 }
 
 .r_title_box {
@@ -371,6 +391,7 @@ display: flex;
 height: 30px;
 margin: 10px;
 resize: none;
+width:auto;
 }
 
 .r_like {
@@ -410,6 +431,13 @@ border: 1px solid #5397fc;
 
 .content {
 border: none;
+resize: none;
+height:fit-content;
+overflow: hidden;
+}
+
+.content:focus {
+ outline: none;
 }
 
 .paging {
@@ -431,7 +459,8 @@ margin: 20px;
         .post_list,
         .with-books>p {
             margin: 20px; 
-        } */
+} */
+        
 .flex-postBox {
 display: flex;
 justify-content: space-between;
@@ -694,9 +723,14 @@ display:none;
                                 id="to_wish"></a> <a
                                 href="/book/selectForBookbag?b_isbn=${dto.b_isbn}"
                                 class="a_move"><input type="button" value="책가방에 담기"
-                                id="to_bag"></a> <span class="material-symbols-outlined"
-                                id="heart"> favorite</span> <span
-                                class="material-symbols-outlined size-40" id="bookbag2">shopping_bag</span>
+                                id="to_bag"></a> 
+                               <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
+                                class="a_move">
+                                <span class="material-symbols-outlined" id="heart">favorite</span>
+                                </a>
+                                <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
+                                class="a_move"><span class="material-symbols-outlined size-40" id="bookbag2">shopping_bag</span>
+                                </a>
                         </div>
                         <!-- post-link -->
                 <%-- 	<div class="post-link">
@@ -770,7 +804,7 @@ display:none;
                                         </div>
                                         <div class="r_contents">
                                             <div class="r_content">
-                                                <input type="text" readonly value="${r.rv_content}" class="content">
+                                                <textarea readonly class="content">${r.rv_content}</textarea>
                                             </div>
 
 

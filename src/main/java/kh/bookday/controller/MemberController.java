@@ -1,6 +1,10 @@
 package kh.bookday.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 import java.util.List;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -13,10 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import org.springframework.web.multipart.MultipartFile;
+import kh.bookday.dto.ProfileDTO;
 import kh.bookday.common.Pw_SHA256;
 import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.MonthSubMemberDTO;
 import kh.bookday.dto.RentalDTO;
+
 import kh.bookday.service.MemberService;
 import kh.bookday.service.RentalService;
 
@@ -214,7 +222,7 @@ public class MemberController {
 
 		return "redirect:/";
 	}
-
+	
 	// 지민
 	// 마이페이지 이동
 	@RequestMapping("toMypage")
@@ -238,6 +246,66 @@ public class MemberController {
 		return "member/mypage";
 	}
 	// 지민
+
+	//마이페이지 회원정보수정 페이지로 이동
+	@RequestMapping(value="ToUpdateMemInfo")
+	public String ToUpdateMemInfo(Model model) {
+		
+		String id = (String)session.getAttribute("loginID");
+		
+		// 회원 정보 조회 (구독 여부 확인 & 배송지 정보 출력) 
+		MemberDTO dto = service.selectMemberById(id);
+		model.addAttribute("dto", dto);
+		
+		return "member/updateMemInfo";
+	}
+
+	//마이페이지 회원정보수정
+	@RequestMapping(value="updateMemInfo")
+	public String updateMemInfo(MemberDTO dto, MultipartFile[] prof_img) {
+		
+		String id = String.valueOf(session.getAttribute("loginID"));
+		
+		service.updateMemInfo(dto);
+		
+		//파일 관련 업데이트 업로드 참고
+		String realPath= session.getServletContext().getRealPath("profile_img");
+		
+		File filePath= new File(realPath);
+		
+		if(!filePath.exists()) {filePath.mkdir();}
+
+		if(!prof_img[0].getOriginalFilename().equals("")) {
+			
+			for(MultipartFile file : prof_img) {
+				if(file.getOriginalFilename().equals("")) {continue;}
+				
+				String oriprofname= file.getOriginalFilename();
+				
+				String sysprofname= UUID.randomUUID()+"_"+oriprofname;
+				
+				
+				System.out.println(oriprofname);
+				System.out.println(sysprofname);
+				
+				try {
+					file.transferTo(new File(filePath+"/"+sysprofname));
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				service.insertProfImg(new ProfileDTO(0,oriprofname,sysprofname,id));
+
+			}
+			
+		}return "member/mypage";
+	}
+	
+
+	//마이페이지 리뷰 관리
+	
+	
 
 	//에러 수집
 	@ExceptionHandler(Exception.class) 

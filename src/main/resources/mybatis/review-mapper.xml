@@ -4,7 +4,7 @@
 <mapper namespace="Review">
 
 	<select id="selectReviewByIsbn" resultType="kh.bookday.dto.ReviewDTO">
-		select review.*, (select count(*) from review_like rl where rl.rv_seq=review.rv_seq) r_count_like from review order by rv_seq desc
+		select review.*, (select count(*) from review_like rl where rl.rv_seq=review.rv_seq) r_count_like from review where b_isbn=#{b_isbn} order by rv_seq desc
 	</select>
 	
 	<insert id="insertReview">

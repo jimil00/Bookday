@@ -366,7 +366,7 @@ span, #logoImg:hover {
 						<div class="body-right">${rdto.formedRt_return_date }</div>
 					</div>
 					<div class="body-btn-div">
-						<button class="body-btn" id="modify-btn">회원정보 수정</button>
+						<a href="/member/ToUpdateMemInfo"><button class="body-btn" id="modify-btn">회원정보 수정</button></a>
 					</div>
 				</c:otherwise>
 			</c:choose>
