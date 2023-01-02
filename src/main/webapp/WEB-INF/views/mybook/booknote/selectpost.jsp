@@ -94,6 +94,7 @@ button:hover {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right: 40px;
 }
 
 .searchBtn {
@@ -267,7 +268,23 @@ span.size-30 {
 	color: gray;
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
 }
-
+.postBtns{
+margin-left: auto;
+}
+.postBtns *{
+	margin-left: 10px;
+	margin-right:3px;
+	border: none;
+	height : 28px;
+	border-radius: 10%;
+		box-shadow: 2px 2px 2px 2px #80808050;
+	background-color : #5397fc50;
+	
+	
+}
+.postBtns *:hover{
+background-color : #5397fc50;
+}
 .selectPost {
 	border: 1px solid #80808050;
 	padding: 10px 10px 10px 10px;
@@ -577,7 +594,7 @@ display:none;
 				<div class="searchBox">
 					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord">
+							id="searchWord" name="searchWord" maxlength="100">
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -643,13 +660,18 @@ display:none;
 					<div class="title">
 						<div class="titleTxt">포스트</div>
 						&nbsp <span class="material-symbols-outlined size-30">edit</span>
+						
+						<div class="postBtns">
+<%-- 						<c:choose> --%>
+<%--                                 <c:when test="${loginID == dto.b_writer_id}"> --%>
+                                <button type="button">수정하기</button><button type="button">삭제하기</button><button type="button">목록으로</button></div>
 					</div>
 					<div class="selectPost">
 						<input type="hidden" id="p_seq" name="p_seq" value="${dto.p_seq }">
 						<div class="selectPHeader">
 							<div class="postTitle">${dto.p_title }</div>
 							<div class="postInfo">
-								<div class="dyPostWrite">작성&nbsp${dto.p_write_date }</div>
+								<div class="dyPostWrite">작성&nbsp<fmt:formatDate value="${dto.p_write_date }" pattern="yyyy.MM.DD hh:mm"/></div>
 								<span>&nbsp|&nbsp</span>
 								<div class="postViewCount">조회수&nbsp${dto.p_view_count }</div>
 							</div>
@@ -675,8 +697,7 @@ display:none;
 								</div>
 								<div class="dates">
 									<div class="datesTitle">읽은 기간</div>
-									<div class="dyStFnRead">${dto.dyst_read }&nbsp~&nbsp${dto.dyfn_read
-										}</div>
+									<div class="dyStFnRead"><fmt:formatDate value="${dto.dyst_read }" pattern="yyyy.MM.dd"/>&nbsp~&nbsp<fmt:formatDate value="${dto.dyfn_read }" pattern="yyyy.MM.dd"/></div>
 								</div>
 							</div>
 							<hr class="selectPHr">
@@ -701,7 +722,7 @@ display:none;
 									<c:forEach var="i" items="${list}">
 										<div class="pcContents" seq="${i.pc_seq }">
 											<div class="pcWriterImg">
-												<img src="/images/${i.sysprofname }">
+												<img src="${i.sysprofname }">
 											</div>
 											<div class="pcContentsTxt">
 												<div class="pcContentsInfo">
@@ -710,8 +731,7 @@ display:none;
 															cloud </span><span class="pcWriterNn">${i.pc_writer_nn }</span><span
 															class="material-symbols-outlined size-20"> cloud </span>
 													</div>
-													<div class="pcWriteDate">&nbsp&nbsp${i.pc_write_date
-														}</div>
+													<div class="pcWriteDate">&nbsp&nbsp${i.pc_write_date }</div>
 												<c:if test="${loginID == i.pc_writer_id }">
 													<div class="pcBtn">
 														<button class="updCBtn">수정</button>
@@ -737,7 +757,6 @@ display:none;
 							</div>
 						</div>
 					</div>
-					<div class="postBtns"></div>
 				</div>
 			</div>
 		</div>
@@ -896,20 +915,22 @@ display:none;
 
                             let pcContent = $("<div>").addClass("pcContent").html(res[i].pc_content);
 
-                            pcContentsTxt.append(pcContentsInfo);
-                            if (window.sessionStorage.getItem("loginID") == res[i].pc_writer_id) {
+                            
+                            if ('<%=(String)session.getAttribute("loginID")%>' == res[i].pc_writer_id) {
+                            	console.log("a");
                                 let pcBtn = $("<div>").addClass("pcBtn");
                                 let updatePcBtn = $("<button>").addClass("updCBtn").attr("type", "button").text("수정");
                                 let deletePcBtn = $("<button>").addClass("delCBtn").attr("type", "button").text("삭제");
 
                                 pcBtn.append(updatePcBtn).append(deletePcBtn);
-                                pcContentsTxt.append(pcBtn);
+                                pcContentsInfo.append(pcBtn);
                             }
+                            pcContentsTxt.append(pcContentsInfo);
                             pcContentsTxt.append(pcContent);
                             pcContents.append(pcContentsTxt);
 
 
-                            $(".postComments").append(pcContents);
+                            $(".postComments").append(pcContents);                            
                         }
                     }
 

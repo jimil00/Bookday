@@ -91,6 +91,7 @@ button:hover {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right: 40px;
 }
 
 .searchBtn {
@@ -268,7 +269,7 @@ span.size-30 {
 	width: 100%;
 }
 
-.insertBookmarkBookInfo {
+.bookmarkBookSearch {
 	height: 50px;
 	width: 100%;
 	display: flex;
@@ -302,6 +303,7 @@ span.size-30 {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right: 40px;
 }
 
 .bookmarkBookSearchBtn {
@@ -317,6 +319,37 @@ span.size-30 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.searchResultBookInfo td {
+	padding: 15px 15px 15px 15px;
+}
+
+.bookCover img {
+	width: 80px;
+	height: 120px;
+}
+
+.bookInfo {
+	padding-top: 13px;
+}
+
+.bookGenre {
+	font-size: 13px;
+}
+
+.bookTitle>a {
+	font-size: 16px;
+	text-decoration: none;
+	color: black;
+}
+
+.bookWriter {
+	font-size: 16px;
+}
+
+.bookPublisher, .between, .bookPublicationDate {
+	font-size: 13px;
 }
 
 .insertBookmark {
@@ -399,6 +432,7 @@ span.size-30 {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right: 40px;
 }
 
 .bookmarkSearchBtn {
@@ -588,7 +622,7 @@ span.size-30 {
 				<div class="searchBox">
 					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord">
+							id="searchWord" name="searchWord" maxlength="100">
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -649,14 +683,16 @@ span.size-30 {
 					</div>
 					<div class="insertBookmark">
 						<div class="insertBookmarkBookInfo">
-							<div class="bookmarkBookSearchTitle">책 검색</div>
-							<div class="bookmarkBookSearchBox">
-								<input class="bookmarkBookSearchTxt" type="text"
-									placeholder="검색어를 입력해 주세요" id="bookmarkBookSearchWord"
-									name="bookmarkBookSearchWord">
-								<button class="bookmarkBookSearchBtn">
-									<span class="material-symbols-outlined"> search </span>
-								</button>
+							<div class="bookmarkBookSearch">
+								<div class="bookmarkBookSearchTitle">책 검색</div>
+								<div class="bookmarkBookSearchBox">
+									<input class="bookmarkBookSearchTxt" type="text"
+										placeholder="검색어를 입력해 주세요" id="bookmarkBookSearchWord"
+										name="bookmarkBookSearchWord">
+									<button class="bookmarkBookSearchBtn">
+										<span class="material-symbols-outlined"> search </span>
+									</button>
+								</div>
 							</div>
 						</div>
 						<div class="insertBookmarkContent">
@@ -672,7 +708,7 @@ span.size-30 {
 						<div class="bookmarkSearchBox">
 							<input class="bookmarkSearchTxt" type="text"
 								placeholder="검색어를 입력해 주세요" id="bookmarkSearchWord"
-								name="bookmarkSearchWord">
+								name="bookmarkSearchWord" maxlength="100">
 							<button class="bookmarkSearchBtn">
 								<span class="material-symbols-outlined"> search </span>
 							</button>
@@ -829,7 +865,54 @@ span.size-30 {
 				}
 
             });
-            
+            function initSearchBook(b_isbn, b_genre, b_img_url, b_title,
+                    b_writer, b_publisher, b_publication_date) {
+
+                    let tdBookCover = $("<td>").addClass("bookCover");
+                    let tdBookCoverA = $("<a>").attr("href","#");
+                    let tdBookCoverImg = $("<img>").attr("src", b_img_url).attr("id", "b_img_url");
+
+                    tdBookCoverA.append(tdBookCoverImg);
+                    tdBookCover.append(tdBookCoverA);
+
+                    let spanBookGenre = $("<span>").addClass("bookGenre").html(b_genre);
+                       
+                    let p2 = $("<p>");
+                    let spanBookTitle = $("<span>").addClass("bookTitle");
+                    let aBookTitle = $("<a>").attr("href","#").attr("id", "b_title").html(b_title);
+                    
+                    let p3 = $("<p>");
+                    let spanBookWriter = $("<span>").addClass("bookWriter").html(b_writer);
+
+                    let spanBookPublisher = $("<span>").addClass("bookPublisher").html(b_publisher);
+                    let spanBetween = $("<span>").addClass("between").html("&nbsp|&nbsp");
+                    let spanBookPublicationDate = $("<span>").addClass("bookPublicationDate").html(b_publication_date);
+                    
+                    spanBookTitle.append(aBookTitle);
+                    p2.append(spanBookTitle);
+
+                    p3.append(spanBookWriter);
+
+                    let tdBookInfo = $("<td>").addClass("bookInfo");
+                    tdBookInfo.append(spanBookGenre);
+                    tdBookInfo.append(p2);
+                    tdBookInfo.append(p3);
+                    tdBookInfo.append(spanBookPublisher).append(spanBetween).append(spanBookPublicationDate);
+
+                    let tr = $("<tr>");
+                    tr.append(tdBookCover);
+                    tr.append(tdBookInfo);
+
+                    let table = $("<table>");
+                    table.append(tr);
+
+                    let divSearchResultBookInfo = $("<div>").addClass("searchResultBookInfo").attr("isbn", b_isbn);
+                    divSearchResultBookInfo.append(table);
+
+                    $(".insertBookmarkBookInfo").append(divSearchResultBookInfo);
+
+
+                }
             //footer: 사업자 정보 토글 기능
             $("#business_info_text").hide();
 

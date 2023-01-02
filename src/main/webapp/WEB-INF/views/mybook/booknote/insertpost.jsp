@@ -129,7 +129,7 @@ button:focus{
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
-		right: 40px;
+	right: 40px;
 	
 }
 
@@ -386,7 +386,7 @@ span.size-30 {
 
 
 .searchResultBookInfo td {
-	padding: 15px 15px 15px 0;
+	padding: 15px 15px 15px 15px;
 }
 
 .bookCover img {
@@ -412,7 +412,7 @@ span.size-30 {
 	font-size: 16px;
 }
 
-.bookPublish {
+.bookPublisher, .between, .bookPublicationDate {
 	font-size: 13px;
 }
 
@@ -625,6 +625,7 @@ display:none;
 }
 </style>
 <script>
+
                 $(document)
                     .ready(
                         function () {
@@ -701,8 +702,8 @@ display:none;
                                 var b_publication_date = $(".bookPublicationDate").html();
                                 var start = $("#demo").attr("start");
                                 var finish = $("#demo").attr("finish");
-								var dyst_read = $("#demo").attr("start");
-								var dyfn_read = $("#demo").attr("finish");
+								var dyst_read = $("#demo").val().substring(0,10);
+								var dyfn_read = $("#demo").val().substring(13,23);
 								var p_writer_nn = $("#contentsHeaderTxt").attr("p_writer_nn");
                                 var p_title = $("#insertBooknoteTitleTxt").val();
 								console.log(dyst_read);
@@ -757,7 +758,7 @@ display:none;
 				<div class="searchBox">
 					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord">
+							id="searchWord" name="searchWord" maxlength="100">
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -831,7 +832,7 @@ display:none;
 								<div class="booknoteBookSearchBox">
 									<input class="booknoteBookSearchTxt" type="text"
 										placeholder="검색어를 입력해 주세요" id="booknoteBookSearchWord"
-										name="booknoteBookSearchWord">
+										name="booknoteBookSearchWord" maxlength="100">
 									<button class="booknoteBookSearchBtn">
 										<span class="material-symbols-outlined"> search </span>
 									</button>
@@ -843,7 +844,7 @@ display:none;
 					<div class="insertBooknoteDate">
 						<div class="insertBooknoteDateTitle">읽은 기간 선택</div>
 						<div class="insertBooknoteDateInput">
-							<input type="text" id="demo" name="demo" start="<%=new java.util.Date()%>" finish="<%=new java.util.Date()%>">
+							<input type="text" id="demo" name="demo">
 							<button class="insertBooknoteDateBtn">
 								<span class="material-symbols-outlined"> calendar_month </span>
 							</button>
@@ -854,7 +855,7 @@ display:none;
 						<div class="insertBooknoteTitleTitle">제목</div>
 						<div class="insertBooknoteTitleBox">
 							<input type="text" id="insertBooknoteTitleTxt"
-								placeholder="제목을 입력해주세요.">
+								placeholder="제목을 입력해주세요." maxlength="200">
 
 						</div>
 					</div>
@@ -1004,9 +1005,6 @@ display:none;
 
                         function (start, end, label) {
                             console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-                        	$("#demo").attr("start", start.format('YYYY.MM.DD'));
-                        	$("#demo").attr("finish", end.format('YYYY.MM.DD'));
-
                         });
                 });
 
@@ -1060,6 +1058,7 @@ display:none;
 
                     $(".bookInfo").append(divSearchResultBookInfo);
 
+                	console.log($("#demo").val().substring(13,23));
 
                 }
                 //footer: 사업자 정보 토글 기능

@@ -117,7 +117,7 @@ table {
 }
 
 td {
-	padding: 15px 15px 15px 0;
+	padding: 15px 15px 15px 15px;
 	border-bottom: 1px solid rgb(216, 216, 216)
 }
 
@@ -182,7 +182,7 @@ td {
 			<div class="search">
 				<div class="searchBox">
 					<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-						id="searchWord" name="searchWord" value=${searchWord }>
+						id="searchWord" name="searchWord" value="${searchWord }" maxlength="100">
 					<button class="searchBtn" type="submit">
 						<span class="material-symbols-outlined"> search </span>
 					</button>

@@ -169,7 +169,7 @@ System.out.println(id);
 	public void deletePostComment(int pc_seq) {
 
 		String id = String.valueOf(session.getAttribute("loginID"));
-		// session이랑 지우려는 댓글 아이디가 같을 떄 는 프론트에서
+		// session이랑 지우려는 댓글 아이디가 같을 때 는 프론트에서
 
 		service.deletePostComment(pc_seq);
 	}

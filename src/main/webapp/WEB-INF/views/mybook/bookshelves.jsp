@@ -109,6 +109,7 @@ button:hover {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right: 40px;
 }
 
 .searchBtn {
@@ -481,7 +482,7 @@ span.size-30 {
 				<div class="searchBox">
 					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord">
+							id="searchWord" name="searchWord" maxlength="200">
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -585,7 +586,7 @@ span.size-30 {
 
 								<div class="carousel-indicators">
 
-									<c:forEach var="i" begin="0" end="${fn:length(wlist)%10 }"
+									<c:forEach var="i" begin="0" end="${fn:length(wlist)/10 }"
 										step="1">
 
 										<button type="button"
@@ -702,7 +703,7 @@ span.size-30 {
 			location.href = "/bookshelves/selectBookshelvesListById";
 		})
 		$("#snStatistics").on("click", function() {
-			location.href = "/bookstatistics/select-";
+			location.href = "/bookstatistics/toStatistics";
 		})
 		$("#snCalendar").on("click", function() {
 			location.href = "/bookcalendar/select-";

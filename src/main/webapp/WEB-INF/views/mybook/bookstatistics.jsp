@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BookStatistics</title>
+<title>Bookmark</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -24,19 +24,13 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-body {
-	margin: 8px;
-	line-height: inherit;
-}
 /* div {
 	border: 1px solid black;
 } */
 .container {
 	margin: auto;
 	overflow: hidden;
-	width: 978px !important;
-	padding-left: 0px;
-	padding-right: 0px;
+	width: 978px;
 }
 
 button:hover {
@@ -97,6 +91,7 @@ button:hover {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right: 40px;
 }
 
 .searchBtn {
@@ -137,7 +132,6 @@ span.size-40 {
 span.size-40 {
 	cursor: pointer;
 }
-
 
 /* login */
 .signBox {
@@ -217,13 +211,21 @@ span.size-35 {
 
 .selected {
 	background-color: #5397fc50;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-span.size-35{
-cursor: pointer;
+span.size-35 {
+	cursor: pointer;
 }
 
 /* contents */
+.contents {
+	width: 90%;
+	float: left;
+	overflow: hidden;
+}
+
+/* contentsHeader */
 .contentsHeader {
 	width: 100%;
 	margin-bottom: 30px;
@@ -240,14 +242,10 @@ cursor: pointer;
 
 #profile {
 	border-radius: 50%;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-.contents {
-	width: 90%;
-	float: left;
-	overflow: hidden;
-}
-
+/* contentsBody */
 .title {
 	height: 50px;
 	margin-bottom: 20px;
@@ -265,7 +263,234 @@ span.size-30 {
 	color: gray;
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
 }
+
+/*contents*/
+.rap {
+	max-width: 700px;
+}
+
+.dateHead {
+	margin: .4rem 0;
+}
+
+.dateHead div {
+	background: #5397fc50;
+	color: #fff;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-gap: 5px;
+}
+
+.grid div {
+	padding: 7px;
+	font-size: 14px;
+}
+
+.dateBoard div {
+	color: #222;
+	font-weight: bold;
+	min-height: 158px;
+	border-radius: 5px;
+	border: 1px solid #eee;
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 95.71px;
+}
+
+.bookCal {
+	width: 79.8px;
+	/* height: auto; */
+	height: 119.7px;
+}
+
+.noColor {
+	background: #eee;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem 2rem;
+}
+
+/* 좌우 버튼 */
+.btn {
+	display: block;
+	width: 20px;
+	height: 20px;
+	border: 3px solid #000;
+	border-width: 3px 3px 0 0;
+	cursor: pointer;
+}
+
+.prevDay {
+	transform: rotate(-135deg);
+}
+
+.nextDay {
+	transform: rotate(45deg);
+}
+
+/*footerHr*/
+.footerHr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/* footer */
+.footer {
+	margin: 5px;
+}
+
+.f_header {
+	display: inline-flex;
+	margin-top: 10px;
+}
+
+.f_header>a>img {
+	width: 200px;
+}
+
+.sns_icon {
+	position: relative;
+	top: 1px;
+	left: 595px;
+}
+
+.sns_icon>a>img {
+	height: 20px;
+}
+
+.business_info {
+	margin-top: 30px;
+}
+
+#business_info_title {
+	font-size: x-small;
+	color: #808080d6;
+}
+
+.business_info>span {
+	margin-top: 5px;
+}
+
+.f_intro {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	font-size: small;
+}
+
+.f_intro>span {
+	color: #4d4b4bc1;
+}
+
+.f_line {
+	color: #808080d6;
+}
+
+.business_info {
+	margin-top: 20px;
+}
+
+#business_info_text {
+	margin-top: 10px;
+	font-size: x-small;
+	color: #808080d6;
+}
+
+.inline_info {
+	display: inline-flex;
+}
+
+#arrow_down2, #arrow_up2 {
+	position: relative;
+	bottom: 6px;
+	color: #808080d6;
+}
+
+#arrow_up2 {
+	display: none;
+}
+
+.sns_icon>a>img {
+	width: 40px;
+	height: 40px;
+}
+
+.copyright {
+	margin-top: 5px;
+	font-size: x-small;
+}
 </style>
+<script>
+$(function(){
+
+	$.getJSON("/bookstatistics/selectBookCalbyId")
+            .done(res => {
+                console.log(res)
+                if (res != null) {
+                	console.log(res);
+                    setCalAppend(res)
+                }
+            })
+
+	
+	
+
+	
+		function setCalAppend(res) {
+		// 일단 포스트 리스트를 불러오고 안보이게
+				let year = $(".date").attr("year");
+		console.log(year);
+		let month = $(".date").attr("month");
+		//let day = $(".date").attr("day");//여기 겟타임 넣어두고
+		let days = document.querySelectorAll(".date");
+		console.log(year+month+days[3]);
+		//console.log(days);
+		// const event = new Date('2023-01-01 00:00:00');
+		days.forEach(day=>{
+		  let cal = new Date(year+'-'+month.padStart(2, '0')+'-'+$(day).html().padStart(2, '0')+' '+'00:00:00')
+		getTimeDate = cal.getTime()/86400000
+		$(day).attr("day", getTimeDate);
+		console.log(days);
+		})
+		var arr = $.map($(".date"), function(item) {
+    return $(item).attr("day");
+});
+		console.log(arr);
+		for (let i = 0; i < res.length; i++) {
+
+		let start = new Date(res[i].dyst_read).getTime()/86400000;
+		let finish = new Date(res[i].dyfn_read).getTime()/86400000;
+		
+		console.log(start)
+		for(let j = start; j <= finish; j++){
+			for (let k = 0; k < arr.length; k++){
+				if(arr[k]==j){
+					console.log(arr[k]);
+					console.log("j:"+j)
+					$(arr).append('<img src='+res[i].b_img_url+'>');
+				}
+			}
+// 			console.log(day)
+// 		  if($(day).attr("day") == j){
+// 			  console.log("a")
+// 		    $(day).append('<img src='+res[i].b_img_url+'>');
+// 		  }
+		}
+		}
+		}
+})
+</script>
 </head>
 
 <body>
@@ -276,9 +501,9 @@ span.size-30 {
 			</div>
 			<div class="search">
 				<div class="searchBox">
-					<form action="//search" id="search" method="post">
+					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord">
+							id="searchWord" name="searchWord" maxlength="100">
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -326,63 +551,209 @@ span.size-30 {
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/images/${dto.sysprofname }" width="100" height="100"
+						<img src="/resources/${dto.sysprofname }" width="100" height="100"
 							id="profile">
 					</div>
-					<div id="contentsHeaderTxt">
-					${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date } 하루
-					</div>
+					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
+						} 하루</div>
 				</div>
 				<div class="contentsBody">
 					<div class="title">
-						<div class="titleTxt">책갈피</div>
-						&nbsp <span class="material-symbols-outlined size-30">book</span>
+						<div class="titleTxt">통계</div>
+						&nbsp <span class="material-symbols-outlined size-30">equalizer</span>
 					</div>
-					<div class=""></div>
+					<div class="calendar"></div>
+					<div class='rap'>
+						<div class="header">
+							<div class="btn prevDay"></div>
+							<h2 class='dateTitle'></h2>
+							<div class="btn nextDay"></div>
+						</div>
+
+						<div class="grid dateHead">
+							<div>일</div>
+							<div>월</div>
+							<div>화</div>
+							<div>수</div>
+							<div>목</div>
+							<div>금</div>
+							<div>토</div>
+						</div>
+
+						<div class="grid dateBoard"></div>
+					</div>
+
 				</div>
 			</div>
-			<div class="footer"></div>
 		</div>
-		<script>
-            $("#logoImg").on("click", function () {
-                location.href = "/";
-            })
+		<hr class="footerHr">
 
-            $("#searchWord").on("keydown", function (e) {
-                if (e.keyCode == 13) {
-                    $("#search").submit();
-                }
-            })
-            $("#notifications").on("click", function () {
-                location.href = "//toNotification";
-            })
-            $("#bookbag").on("click", function () {
-                location.href = "/delivery/toBookbag";
-            })
-            $("#bookshelves").on("click", function () {
-                location.href = "/bookshelves/selectBookshelves";
-            })
-            $("#mypage").on("click", function () {
-                if (loginID == null) {
-                    location.href = "/member/login";
-                }
-                location.href = "/member/toMypage";
-            })
-            $("#snBookshelves").on("click", function () {
-                location.href = "/bookshelves/selectBookshelves";
-            })
-            $("#snStatistics").on("click", function () {
-                location.href = "/bookstatistics/select-";
-            })
-            $("#snCalendar").on("click", function () {
-                location.href = "/bookcalendar/select-";
-            })
-            $("#snBookmark").on("click", function () {
-                location.href = "/bookmark/selectBookmark";
-            })
-            $("#snBooknote").on("click", function () {
-                location.href = "/booknote/select-";
-            })
-        </script>
+		<div class="footer">
+			<div class="f_header">
+				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
+
+				<div class="sns_icon">
+					<a href="#"><img src="/resources/instagram.png" id="insta"></a>
+					<a href="#"><img src="/resources/facebook.png" id="facebook"></a>
+					<a href="#"><img src="/resources/twitter_black.png"
+						id="twitter"></a> <a href="#"><img
+						src="/resources/youtube.png" id="youtube"></a>
+				</div>
+
+			</div>
+			<div class="business_info">
+				<div class="inline_info">
+					<div id="business_info_title">사업자 정보</div>
+					<span class="arrow_icon material-symbols-outlined" id="arrow_down2">keyboard_arrow_down</span>
+					<span class="arrow_icon material-symbols-outlined" id="arrow_up2">keyboard_arrow_up</span>
+				</div>
+
+				<div id="business_info_text">
+					<span>대표자 성태조 </span> <span> | </span> <span> 사업자 등록번호
+						01-20-22015</span>
+					<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
+					<span>대표전화 1544-9970 </span> <span> | </span> <span> 이메일
+						help@bookday.com</span>
+				</div>
+			</div>
+
+			<div class="f_intro">
+				<span>회사소개</span> <span class="f_line">|</span> <span>이용약관</span> <span
+					class="f_line">|</span> <span>개인정보처리방침</span> <span class="f_line">|</span>
+				<span>청소년보호정책</span> <span class="f_line">|</span> <span>제휴
+					문의</span>
+			</div>
+			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
+			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
+		</div>
+	</div>
+	<script>
+			$("#logoImg").on("click", function() {
+				location.href = "/";
+			});
+
+			$("#searchWord").on("keydown", function(e) {
+				if (e.keyCode == 13) {
+					$("#search").submit();
+				}
+			});
+			$("#notifications").on("click", function() {
+				location.href = "//toNotification";
+			});
+			$("#bookbag").on("click", function() {
+		    	  if(${loginID == null}) {
+		              location.href = "/member/toLogin";
+		    	  }else {
+		         	  location.href = "/delivery/selectBookbagListById?id=${loginID }";
+		    	  }
+		      })
+			$("#bookshelves").on("click", function() {
+				location.href = "/bookshelves/selectBookshelvesListById";
+			});
+			$("#mypage").on("click", function() {
+				if (loginID == null) {
+					location.href = "/member/login";
+				}
+				location.href = "/member/toMypage";
+			});
+			$("#snBookshelves").on("click", function() {
+				location.href = "/bookshelves/selectBookshelvesListById";
+			});
+			$("#snStatistics").on("click", function() {
+				location.href = "/bookstatistics/select-";
+			});
+			$("#snCalendar").on("click", function() {
+				location.href = "/bookcalendar/select-";
+			});
+			$("#snBookmark").on("click", function() {
+				location.href = "/bookmark/selectBookmarkListById";
+			});
+			$("#snBooknote").on("click", function() {
+				location.href = "/booknote/selectPostListById";
+			});
+
+			const makeCalendar = (date) => {
+				  // 현재 년도와 월 받아오기
+				  const currentYear = new Date(date).getFullYear(); //2023
+				  const currentMonth = new Date(date).getMonth() + 1; //1월 [0]+1
+				console.log(currentYear);
+				  // 첫날의 요일 구하기 - 초기 시작위치를 위해서
+				  const firstDay = new Date(date.setDate(1)).getDay();//0->일
+				  console.log(new Date(date.setDate(7)).getDay());
+				  // 마지막 날짜 구하기
+				  const lastDay = new Date(currentYear, currentMonth, 0).getDate(); // 2023, [0]->1월, 31일
+				console.log(new Date(currentYear, currentMonth, 0).getDate());
+				  // 남은 박스만큼 다음달 날짜 표시
+				  const limitDay = firstDay + lastDay; //0+31
+				      console.log(limitDay)
+				  const nextDay = Math.ceil(limitDay / 7) * 7; //31/7=4...3->올림->5*7= 35 5주 즉 35칸이 나온다
+
+				  let htmlDummy = '';
+
+				  // 한달전 날짜 표시하기
+				  for (let i = 0; i < firstDay; i++) {// 0이니까 없지
+				    htmlDummy += `<div class="noColor"></div>`;
+				  }
+
+				  // 이번달 날짜 표시하기
+				  for (let i = 1; i <= lastDay; i++) {    // 31일이니까 31일까지
+				    htmlDummy += '<div class="date" year="'+ currentYear +'" month="'+ currentMonth+'" day='+i+'>'+i+'</div>';
+				  }
+
+				  // 다음달 날짜 표시하기
+				  for (let i = limitDay; i < nextDay; i++) { // 31,32,33,34[]
+				    console.log(i)
+				    htmlDummy += `<div class="noColor"></div>`;
+				  }
+
+				  document.querySelector(`.dateBoard`).innerHTML = htmlDummy;
+				  document.querySelector(`.dateTitle`).innerText = currentYear+'년'+' '+currentMonth+'월';
+				}
+
+
+				const date = new Date();
+
+				makeCalendar(date);
+
+				// 이전달 이동
+				document.querySelector(`.prevDay`).onclick = () => {
+				makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
+				}
+
+				// 다음달 이동
+				document.querySelector(`.nextDay`).onclick = () => {
+				    let year = $(".dateTitle").html().substring(0,4);
+				let month = $(".dateTitle").html().slice(-3,-1).replace(" ", "");
+				console.log(year+month)
+				console.log(new Date().getFullYear());
+				console.log(new Date().getMonth()+1);
+				if(Number(year) == new Date().getFullYear() && Number(month) == new Date().getMonth()+1){
+				    return false;
+				    // 넘어가는 버튼 안보이게는 시간나면 하자
+				}
+				makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
+				}
+				
+
+			
+            //footer: 사업자 정보 토글 기능
+            $("#business_info_text").hide();
+
+                         $("#business_info_title, #arrow_down2").click(function() {
+
+                             $("#business_info_text").slideToggle(200);
+
+                                 $("#arrow_up2").css("display", "block");
+                                 $("#arrow_down2").css("display", "none"); 
+      
+                         });
+
+                         $("#arrow_up2").click(function() {
+                             $("#business_info_text").slideToggle(200);
+
+                             $("#arrow_down2").css("display", "block");
+                             $("#arrow_up2").css("display", "none");
+                         });
+		</script>
 </body>
 </html>

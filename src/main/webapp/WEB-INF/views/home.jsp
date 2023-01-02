@@ -91,15 +91,16 @@ button:hover {
 }
 
 .searchTxt {
-	float: left;
-	padding: 0;
-	background: none;
-	border: none;
-	outline: none;
-	font-size: 15px;
-	line-height: 40px;
-	position: absolute;
-	left: 10px;
+   float: left;
+   padding: 0;
+   background: none;
+   border: none;
+   outline: none;
+   font-size: 15px;
+   line-height: 40px;
+   position: absolute;
+   left: 10px;
+   right: 40px;
 }
 
 .searchBtn {
@@ -190,10 +191,6 @@ span, #logoImg:hover {
 }
 
 /* body */
-.body { <<<<<<< HEAD /* height: 2000px; */
-	
-}
-
 .booknote_copy, .bookstats_copy, .booksub_copy {
 	text-align: center;
 	margin-top: 150px;
@@ -511,7 +508,6 @@ width:300px;
 						</c:otherwise>
 					</c:choose>
 				</div>
-
 				<div class="iconBox">
 					<span class="material-symbols-outlined size-40" id="notifications">notifications</span>
 					<span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>
