@@ -354,7 +354,7 @@ $(document).ready(function(){
     	$("#email").on("blur",function(){
 
 			let email=$("#email").val();
-			let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[a-z]{5,7}.com$/;
+			let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[A-Z a-z]{5,7}.[a-zA-Z]{2,3}$/;
 
 			   //이메일 유효성 검사
 			   if(!emailRegex.test(email) && email != ""){
@@ -414,7 +414,7 @@ $(document).ready(function(){
 		let pw=$("#pw").val();
 		let check_pw=$("#check_pw").val();
         
-        let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
+		   let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
 
 		   //비밀번호 유효성 검사 및 중복 검사
 		   if(!pwRegex.test(pw) && pw != ""){

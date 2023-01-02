@@ -1,7 +1,9 @@
 package kh.bookday.controller;
 
-import java.sql.Timestamp;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,17 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import org.springframework.web.multipart.MultipartFile;
 
 import kh.bookday.common.Pw_SHA256;
 import kh.bookday.dto.MemberDTO;
+import kh.bookday.dto.ProfileDTO;
 import kh.bookday.service.MemberService;
 
 @Controller
@@ -80,6 +79,7 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
+
 	
 	//회원가입 관련
 	@RequestMapping(value="signUp")
@@ -213,6 +213,70 @@ public class MemberController {
 
 		return "redirect:/";
 	}
+	
+	//마이페이지로 이동
+	@RequestMapping(value="toMypage")
+	public String toMypage(Model model) {
+		
+		String id = String.valueOf(session.getAttribute("loginID"));
+		MemberDTO dto=service.selectMemberById(id);
+		model.addAttribute("dto", dto);
+		
+		return "/member/mypage";
+	}
+	
+	//마이페이지 회원정보수정
+	@RequestMapping(value="updateUserInfo")
+	public String updateMemInfo(MemberDTO dto, MultipartFile[] prof_img) {
+		
+		String id = String.valueOf(session.getAttribute("loginID"));
+		
+		service.updateMemInfo(dto);
+		
+		//파일 관련 업데이트 업로드 참고
+		String realPath= session.getServletContext().getRealPath("profile_img");
+		
+		File filePath= new File(realPath);
+		
+		if(!filePath.exists()) {filePath.mkdir();}
+
+		if(!prof_img[0].getOriginalFilename().equals("")) {
+			
+			for(MultipartFile file : prof_img) {
+				if(file.getOriginalFilename().equals("")) {continue;}
+				
+				String oriprofname= file.getOriginalFilename();
+				
+				String sysprofname= UUID.randomUUID()+"_"+oriprofname;
+				
+				
+				System.out.println(oriprofname);
+				System.out.println(sysprofname);
+				
+				try {
+					file.transferTo(new File(filePath+"/"+sysprofname));
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				service.insertProfImg(new ProfileDTO(0,oriprofname,sysprofname,id));
+
+			}
+			
+		}return "member/mypage";
+	}
+	
+	
+
+	
+	
+	
+	//마이페이지 리뷰 관리
+	
+	
+
+	
 	
 
 	//에러 수집

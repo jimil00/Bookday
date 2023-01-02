@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -12,22 +12,22 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <link rel="stylesheet"
- href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <style>
 @font-face {
-   font-family: 'NanumSquareNeo-Variable';
-   src:
-      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
-      format('woff2');
-   font-weight: normal;
-   font-style: normal;
+	font-family: 'NanumSquareNeo-Variable';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 * {
-   box-sizing: border-box;
-   font-family: 'NanumSquareNeo-Variable';
+	box-sizing: border-box;
+	font-family: 'NanumSquareNeo-Variable';
 }
 
 /* div {
@@ -36,190 +36,204 @@
 
 } */
 .container {
-   margin: auto;
-   overflow: hidden;
-   width: 978px;
+	margin: auto;
+	overflow: hidden;
+	width: 978px;
 }
 
 button:hover {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 /* header */
 .header {
-   height: 150px;
-   overflow: hidden;
+	height: 150px;
+	overflow: hidden;
 }
 
 /* logo */
 .logo {
-   float: left;
-   position: relative;
-   height: 100%;
-   width: 55%;
+	float: left;
+	position: relative;
+	height: 100%;
+	width: 55%;
 }
 
 #logoImg {
-   height: 50%;
-   position: absolute;
-   bottom: 0px;
-   left: 0px;
+	height: 50%;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
 }
 
 #logoImg:hover {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 /* search */
 .search {
-   float: left;
-   position: relative;
-   height: 100%;
-   width: 25%;
+	float: left;
+	position: relative;
+	height: 100%;
+	width: 25%;
 }
 
 .searchBox {
-   position: absolute;
-   bottom: 5px;
-   left: 0px;
-   overflow: hidden;
-   height: 40px;
-   width: 100%;
-   border: none;
-   border-radius: 5px;
-   box-shadow: 2px 2px 2px 2px #80808050;
+	position: absolute;
+	bottom: 5px;
+	left: 0px;
+	overflow: hidden;
+	height: 40px;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .searchTxt {
-   float: left;
-   padding: 0;
-   background: none;
-   border: none;
-   outline: none;
-   font-size: 15px;
-   line-height: 40px;
-   position: absolute;
-   left: 10px;
+	float: left;
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+	font-size: 15px;
+	line-height: 40px;
+	position: absolute;
+	left: 10px;
 }
 
 .searchBtn {
-   position: absolute;
-   right: 0px;
-   line-height: 100px;
-   border: none;
-   background-color: #ffffff;
-   color: #5397fc50;
-   width: 40px;
-   height: 40px;
-   border-radius: 50%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+	position: absolute;
+	right: 0px;
+	line-height: 100px;
+	border: none;
+	background-color: #ffffff;
+	color: #5397fc50;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /* member */
 .member {
-   float: left;
-   position: relative;
-   width: 20%;
-   height: 100%;
+	float: left;
+	position: relative;
+	width: 20%;
+	height: 100%;
 }
 /* icon */
 .iconBox {
-   position: absolute;
-   bottom: 0px;
-   right: 0px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
 }
 
 span.size-40 {
-   font-size: 40px;
-   color: black;
-   font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
+	font-size: 40px;
+	color: black;
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 40
 }
 
 span, #logoImg:hover {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 /* headerHr */
 #headerHr {
-   display: block;
-   height: 1px;
-   border: 0;
-   border-top: 1px solid rgb(216, 216, 216);
-   margin-top: 15px;
-   margin-bottom: 15px;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid rgb(216, 216, 216);
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 /* header */
 
 /* login */
 .signBox {
-   display: flex;
-   justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
 
 .signBox>a {
-   margin: 5px;
-   text-decoration: none;
-   text-underline-offset: 5px;
-   color: black;
+	margin: 5px;
+	text-decoration: none;
+	text-underline-offset: 5px;
+	color: black;
 }
 
 .signBox>a:hover {
-   color: #5397fc;
+	color: #5397fc;
 }
 
 #nick {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 #nick:hover {
-   color: black;
-   cursor: default;
+	color: black;
+	cursor: default;
 }
 
 .login_form {
-   margin-top: 200px;
+	margin-top: 200px;
 }
 
 /* navi */
 .navi {
-   width: 100%;
-   height: 50px;
+	width: 100%;
+	height: 50px;
 }
 
 /* body */
-.body {
-<<<<<<< HEAD
-	/* height: 2000px; */
+.body { <<<<<<< HEAD /* height: 2000px; */
 	
 }
 
-.booknote_copy, .bookstats_copy, .booksub_copy{
+.booknote_copy, .bookstats_copy, .booksub_copy {
 	text-align: center;
 	margin-top: 150px;
 }
 
-.best_seller,.steady_seller,.new_books,.popular_post {
+.best_seller, .steady_seller, .new_books, .popular_post {
 	margin-top: 100px;
 }
 
-.popular_post{
+.popular_post {
 	margin-bottom: 100px;
 }
 
 .main_copy {
 	/*  position:relative;*/
+	
 }
 
 .detail {
 	display: flex;
 	justify-content: space-between;
+	margin-top: 50px;
+}
+
+.sub_list {
+	margin-top: 50px;
 }
 
 .d_img {
 	width: 225px;
+	height:225px;
+}
+
+#ranking{
+	width:200px;
+}
+
+#deli{
+width:300px;
+	height:fit-content;
 }
 
 .reading {
@@ -227,50 +241,51 @@ span, #logoImg:hover {
 }
 
 #sub-btn {
-	color:white;
-	width: 25%;
+	margin-top: 50px;
+	color: white;
+	width: 40%;
 	height: 50px;
 	border-radius: 6px;
-    background-color: #5397fc;
-    box-shadow:3px 3px #80808050;
-    border:none;
+	background-color: #5397fc;
+	box-shadow: 3px 3px #80808050;
+	border: none;
 }
 
 .rental {
-display: inline-block;
-    overflow: hidden;
-    padding: 15px 4px 12px;
-    border-radius: 16px;
-    background-color: #f1f6fa;
-margin-top: 24px;
-list-style: none;
-height:fit-content;
+	display: inline-block;
+	overflow: hidden;
+	padding: 15px 4px 12px;
+	border-radius: 16px;
+	background-color: #f1f6fa;
+	margin-top: 24px;
+	margin: 5px;
+	list-style: none;
+	height: fit-content;
 }
 
 .rental li:last-child {
-    border-right: 0;
+	border-right: 0;
 }
 
-.rental li{
-    float: left;
-    min-width: 50px;
-    border-right: 1px solid #d4dde5;
-    padding: 3px 11px 9px;
-    font-size: 12px;
-    letter-spacing: -.26px;
-    color: #666;
+.rental li {
+	float: left;
+	min-width: 50px;
+	border-right: 1px solid #d4dde5;
+	padding: 3px 11px 9px;
+	font-size: 12px;
+	letter-spacing: -.26px;
+	color: #666;
 }
 
-.rental li span{
-    display: block;
-    font-size: 14px;
-    line-height: 14px;
-    letter-spacing: -.3px;
-    font-weight: 500;
-    margin-top: 12px;
-    color: #202020;
-    }
-
+.rental li span {
+	display: block;
+	font-size: 14px;
+	line-height: 14px;
+	letter-spacing: -.3px;
+	font-weight: 500;
+	margin-top: 12px;
+	color: #202020;
+}
 
 /* book */
 .flex-box {
@@ -290,7 +305,7 @@ height:fit-content;
 }
 
 .b_img_url {
-	width: 140px;
+	width: 150px;
 }
 
 .b_title, .b_writer {
@@ -309,7 +324,6 @@ height:fit-content;
 /* post*/
 .popular_post>div {
 	display: inline-flex;
-
 }
 
 .flex-postBox {
@@ -369,10 +383,11 @@ height:fit-content;
 	margin: 0px;
 	padding: 10px;
 	overflow: hidden;
+	width: fit-content;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	line-height: 30px;
-	-webkit-line-clamp: 5; /* 표시하고자 하는 라인 수 */
+	-webkit-line-clamp: 4; /* 표시하고자 하는 라인 수 */
 	-webkit-box-orient: vertical;
 }
 
@@ -489,16 +504,10 @@ height:fit-content;
 						<c:when test="${empty loginID}">
 							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
 							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267">
-								<p class="user" id="test">상세 페이지 테스트</p>
-							</a>
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
 							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267">
-								<p class="user" id="test">상세 페이지 테스트</p>
-							</a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -533,17 +542,18 @@ height:fit-content;
 					<h2 id="note_headline">나의 하루 독서를 기록해보세요</h2>
 
 					<div class="detail" data-aos="fade-up" data-aos-duration="3000">
-						<p class="note_list" >읽은 책이나 읽고 싶은 책 검색</p>
-						<p class="note_list" >마음에 드는 도서 책갈피</p>
+						<p class="note_list">읽은 책이나 읽고 싶은 책 검색</p>
+						<p class="note_list">마음에 드는 도서 책갈피</p>
 						<p class="note_list">나만의 독서 포스트 작성하고 공유</p>
 					</div>
 
 					<div class="detail">
-						<img src="/resources/search.png" class="d_img" data-aos="fade-up" data-aos-duration="3000"> 
-						<img src="/resources/bookmark.png" class="d_img" data-aos="fade-up" data-aos-duration="3000"> 
-						<img src="테스트.jpg" class="d_img" data-aos="fade-up" data-aos-duration="3000">
+						<img src="/resources/search.png" class="d_img" data-aos="fade-up"
+							data-aos-duration="3000"> <img
+							src="/resources/bookmark.png" class="d_img" data-aos="fade-up"
+							data-aos-duration="3000"> <img src="/resources/write.png"
+							class="d_img" data-aos="fade-up" data-aos-duration="3000">
 					</div>
-
 				</div>
 
 				<div class="bookstats_copy" data-aos="fade-up"
@@ -554,54 +564,52 @@ height:fit-content;
 						<p class="stats_list">가장 많이 읽은 책 장르</p>
 						<p class="stats_list">책하루 사용자 내 순위 통계</p>
 					</div>
-					
+
 					<div class="detail" data-aos="fade-up" data-aos-duration="3000">
-						<img src="/resources/" class="d_img" data-aos="fade-up" data-aos-duration="3000"> 
-						<img src="/resources/" class="d_img" data-aos="fade-up" data-aos-duration="3000"> 
-						<img src="/resources/" class="d_img" data-aos="fade-up" data-aos-duration="3000">
+						<img src="/resources/stats.png" class="d_img" data-aos="fade-up"
+							data-aos-duration="3000"> <img src="/resources/genre.png"
+							class="d_img" data-aos="fade-up" data-aos-duration="3000">
+						<img src="/resources/ranking.png" class="d_img" id="ranking" data-aos="fade-up"
+							data-aos-duration="3000">
 					</div>
-					
+
 				</div>
 
 				<div class="booksub_copy" data-aos="fade-up"
 					data-aos-duration="2000">
 					<h2 id="sub_headline">매월 읽고 싶은 책들이 집으로</h2>
-					<div class="detail" data-aos="fade-up" data-aos-duration="3000">
-						<p class="sub_list">종이책 대여 구독 서비스</p>
-						<p class="sub_list">구독 서비스 어쩌고</p>
-						
-						
-						
+					<div class="detail2" data-aos="fade-up" data-aos-duration="3000">
+						<p class="sub_list">읽고 싶었던 종이책을 집 앞까지 대여해드립니다!</p>
+						<!-- <p class="sub_list">구독 서비스</p> -->
 					</div>
-					
-					<div class="detail">
-						<img src="/resources/deli.png" class="d_img"> 
-						<img src="/resources/" class="d_img"> 
-						<!-- <img src="테스트.jpg" class="d_img"> -->
+
+					<div class="detail2">
+						<img src="/resources/deli.png" class="d_img" id="deli">
 						<ul class="rental">
 							<li>대여 권 수(달)<span>5권</span></li>
 							<li>대여일<span>10일</span></li>
 						</ul>
 					</div>
-					
-					
+
+
 					<button id="sub-btn">종이책 구독 시작하기</button>
 				</div>
 
 				<div class="best_seller" data-aos="fade-up" data-aos-duration="2000">
 					<h2 id="best_headline">베스트셀러</h2>
-					
-						<div class="swiper-container">
+
+					<div class="swiper-container">
 						<div class="swiper-wrapper">
 
 							<c:choose>
 								<c:when test="${not empty b_list}">
-								<c:forEach items="${b_list}" var="b">
-									<div class="flex-box swiper-slide">
-										<div class="book">
-											<img src="${b.b_img_url}" class="b_img_url">
+									<c:forEach items="${b_list}" var="b">
+										<div class="flex-box swiper-slide">
+											<div class="book">
+												<a href="/book/selectBookinfo?b_isbn=${b.b_isbn}"><img
+													src="${b.b_img_url}" class="b_img_url"></a>
+											</div>
 										</div>
-									</div>
 									</c:forEach>
 								</c:when>
 							</c:choose>
@@ -610,30 +618,31 @@ height:fit-content;
 					</div>
 
 				</div>
-				
+
 				<div class="steady_seller" data-aos="fade-up"
 					data-aos-duration="2000">
 					<h2 id="steady_headline">스테디셀러</h2>
-					
-						<div class="swiper-container">
+
+					<div class="swiper-container">
 						<div class="swiper-wrapper">
 
 							<c:choose>
 								<c:when test="${not empty s_list}">
-								<c:forEach items="${s_list}" var="s">
-									<div class="flex-box swiper-slide">
-										<div class="book">
-											<img src="${s.b_img_url}" class="b_img_url">
+									<c:forEach items="${s_list}" var="s">
+										<div class="flex-box swiper-slide">
+											<div class="book">
+												<a href="/book/selectBookinfo?b_isbn=${s.b_isbn}"><img
+													src="${s.b_img_url}" class="b_img_url"></a>
+											</div>
 										</div>
-									</div>
 									</c:forEach>
 								</c:when>
 							</c:choose>
 
 						</div>
 					</div>
-					
-	
+
+
 
 				</div>
 				<div class="new_books" data-aos="fade-up" data-aos-duration="2000">
@@ -647,7 +656,8 @@ height:fit-content;
 									<c:forEach items="${n_list}" var="n">
 										<div class="flex-box swiper-slide">
 											<div class="book">
-												<img src="${n.b_img_url}" class="b_img_url">
+												<a href="/book/selectBookinfo?b_isbn=${n.b_isbn}"><img
+													src="${n.b_img_url}" class="b_img_url"></a>
 											</div>
 										</div>
 									</c:forEach>
@@ -670,7 +680,9 @@ height:fit-content;
 									<div class="post_box">
 										<div class="profile">
 											<img src="/resources/basic.png" class="profile_img">
-											<p>${p.p_writer_nn}님의 포스트</p>
+											<%-- <a href="/post/selectPostByPseq?p_seq=${p.p_seq}"> --%>
+											<p>${p.p_writer_nn}님의포스트</p>
+											<!-- </a> -->
 										</div>
 										<hr>
 
@@ -764,11 +776,11 @@ height:fit-content;
          location.href = "/bookshelves/selectBookshelvesListById";
       })
       $("#mypage").on("click", function() {
-         if (loginID == null) {
+         if (${loginID == null}) {
             location.href = "/member/tologin";
             return false;
          }else {
-         location.href = "/member/toMypage";
+         location.href = "/member/toMypage?";
          }
       })
       // 구독하기 버튼 기능
