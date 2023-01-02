@@ -824,12 +824,14 @@ display:none;
                 $("#bookshelves").on("click", function () {
                     location.href = "/bookshelves/selectBookshelvesListById";
                 });
-                $("#mypage").on("click", function () {
-                    if (loginID == null) {
-                        location.href = "/member/login";
-                    }
+                $("#mypage").on("click", function() {
+                    if (${loginID == null}) {
+                       location.href = "/member/toLogin";
+                       return false;
+                    }else {
                     location.href = "/member/toMypage";
-                });
+                    }
+                 })
                 $("#snBookshelves").on("click", function () {
                     location.href = "/bookshelves/selectBookshelvesListById";
                 });

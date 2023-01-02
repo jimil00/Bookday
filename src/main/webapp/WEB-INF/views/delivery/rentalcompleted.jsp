@@ -182,7 +182,7 @@ span, #logoImg:hover {
 	float: left;
 	position: relative;
 	left: 36%;
-	line-height: 28px;
+	line-height: 33px;
 	font-size: 30px;
 	font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 48
 }
@@ -191,7 +191,7 @@ span, #logoImg:hover {
 	float: left;
 	position: relative;
 	left: 36%;
-	font-size: 25px;
+	font-size: 30px;
 	padding-left: 5px;
 }
 
@@ -236,13 +236,14 @@ span, #logoImg:hover {
 	height: 100%;
 }
 
-.body-right {
+.body-right {	
+	overflow: hidden;
 	width: 45%;
 	float: right;
 }
 
 .right-main {
-	height: 170px;
+/* 	height: 170px; */
 	padding-left: 10px;
 	padding-top: 5px;
 }
@@ -254,19 +255,20 @@ span, #logoImg:hover {
 }
 
 .body-bottom {
-	padding-top: 100px;
+	padding-top: 50px;
 	text-align: center;
 	clear: both;
 }
 
 .bottom-btn {
 	margin-left: 13px;
-	width: 100px;
+	width: 120px;
 	height: 40px;
 	color: #ffffff;
 	border: none;
 	border-radius: 4px;
 	background-color: #5397fc;
+	cursor: pointer;
 }
 </style>
 </head>
@@ -328,7 +330,7 @@ span, #logoImg:hover {
 					</div>
 					<div class="book-detail-div">
 						<div class="book-detail">
-							${rental.b_title } <br><br> ${rental.b_writer }
+							<div>${rental.b_title }</div><div style="font-size: 14px; padding-top: 10px;">${rental.b_writer }</div>
 						</div>
 					</div>
 				</div>
@@ -354,16 +356,15 @@ span, #logoImg:hover {
 								value="${arrivalDate}" pattern="yyyy-MM-dd(E)" /></span> 입니다.
 					</div>
 					<div>
-						반납일 <span style="font-weight: bold;"><fmt:formatDate
+						반납일 <span style="font-weight: bold; color: #5397fc;"><fmt:formatDate
 								value="${returnDate}" pattern="yyyy-MM-dd(E)" /></span> 입니다.
 					</div>
 				</div>
-				<hr style="margin-top: -14px;">
+				<hr>
 				<div class="right-bottom">반납일에 책가방을 문 앞에 꼭 놓아주세요!</div>
 			</div>
 			<div class="body-bottom">
-				<button class="bottom-btn" type="button" id="home-btn">책하루
-					홈</button>
+				<button class="bottom-btn" type="button" id="home-btn">메인으로</button>
 				<button class="bottom-btn" type="button" id="mypage-btn">마이페이지</button>
 			</div>
 		</div>
@@ -398,12 +399,14 @@ span, #logoImg:hover {
 		$("#bookshelves").on("click", function() {
 			location.href = "/bookshelves/selectAllBookshelves";
 		})
-		$("#mypage").on("click", function() {
-			if (loginID == null) {
-				location.href = "/member/login";
-			}
-			location.href = "/member/toMypage";
-		})
+		 $("#mypage").on("click", function() {
+         if (${loginID == null}) {
+            location.href = "/member/toLogin";
+            return false;
+         }else {
+         location.href = "/member/toMypage";
+         }
+      })
 	</script>
 </body>
 </html>

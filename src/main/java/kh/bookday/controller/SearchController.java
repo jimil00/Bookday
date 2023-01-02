@@ -41,11 +41,11 @@ public class SearchController {
 		return "search";
 	}
 
-//	@ExceptionHandler(Exception.class)
-//	public String exceptionHandler(Exception e) {
-//		e.printStackTrace();
-//		return "error";
-//	}
+	@ExceptionHandler(Exception.class)
+	public String exceptionHandler(Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
 
 
 }

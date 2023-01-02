@@ -33,4 +33,9 @@ public class RentalService {
 		return dao.selectRentalListByIdRownum(param);
 	}
 	
+	// 가장 최근 대여 내역 출력
+	public RentalDTO selectRentalById(String id) {
+		return dao.selectRentalById(id);
+	}
+	
 }

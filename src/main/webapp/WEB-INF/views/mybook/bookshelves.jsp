@@ -498,7 +498,7 @@ span.size-30 {
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
-							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -685,17 +685,20 @@ span.size-30 {
 			location.href = "/bookshelves/selectBookshelvesListById";
 		})
 		$("#mypage").on("click", function() {
-			if (loginID == null) {
-				location.href = "/member/login";
-			}$("#bookbag").on("click", function() {
-		    	  if(${loginID == null}) {
-		              location.href = "/member/toLogin";
-		    	  }else {
-		         	  location.href = "/delivery/selectBookbagListById?id=${loginID }";
-		    	  }
-		      })
-			location.href = "/member/toMypage";
-		})
+         if (${loginID == null}) {
+            location.href = "/member/toLogin";
+            return false;
+         }else {
+         location.href = "/member/toMypage";
+         }
+      })
+       $("#bookbag").on("click", function() {
+         if(${loginID == null}) {
+              location.href = "/member/toLogin";
+         }else {
+              location.href = "/delivery/selectBookbagListById?id=${loginID }";
+         }
+      })
 		$("#snBookshelves").on("click", function() {
 			location.href = "/bookshelves/selectBookshelvesListById";
 		})
