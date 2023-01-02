@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.MonthSubMemberDTO;
-import kh.bookday.dto.ProfileDTO;
 
 @Repository
 public class MemberDAO {
@@ -64,9 +63,9 @@ public class MemberDAO {
 		}
 		
 	//프로필 이미지 삽입
-	public void insertProfImg(ProfileDTO dto) {
-			db.insert("Member.insertProfImg", dto);
-		}
+//	public void insertProfImg(ProfileDTO dto) {
+//			db.insert("Member.insertProfImg", dto);
+//		}
 	
 	//지민
 	// 회원 배송지 정보 입력 

@@ -537,7 +537,7 @@ span.size-30 {
 	height: 1px;
 	border: 0;
 	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
+	margin-top: 50px;
 	margin-bottom: 15px;
 }
 
@@ -639,49 +639,40 @@ display:none;
                                         // addDefaultFonts: false,
                                         fontNamesIgnoreCheck: ['나눔스퀘어네오'],
                                         callbacks: {
-                                            onImageUpload: function (image) {
-                                                console.log("works")
-                                                data = new FormData();
-                                                data.append("image",
-                                                    image[0]);
+                                        	onImageUpload : function(files) {
+                                                // 파일 업로드(다중업로드를 위해 반복문 사용)
+                                                for (var i = files.length - 1; i >= 0; i--) {
+                                                	// 이미지 아닌 것 막기
+                                                	let ext = files[i].name.split(".").pop().toLowerCase();
+                                                	let accept = ["png","jpg","jpeg","git"];
+                                                	let result = $.inArray(ext,accept);
+                                                	if(result==-1){//배열이 아닐 때
+                                            			alert("png,jpg,jpeg,gif 만 사용가능합니다.");
+                                            			$("#profile_img").val("");
+                                            		}
+                                                uploadSummernoteImageFile(files[i],this);
+                                                		}
+                                                	}
 
-                                                $
-                                                    .ajax({
-                                                        data: data,
-                                                        type: "post",
-                                                        url: "/imageupload.board",
-                                                        cache: false,
-                                                        contentType: false,
-                                                        processData: false,
-                                                        success: function (
-                                                            url) {
-                                                            console
-                                                                .log(url)
-                                                            var image = $(
-                                                                '<img>')
-                                                                .attr(
-                                                                    'src',
-                                                                    url);
-                                                            $(
-                                                                "#summernote")
-                                                                .summernote(
-                                                                    "insertNode",
-                                                                    image[0]);
-                                                        },
-                                                        error: function (
-                                                            a, b, c) {
-                                                            console
-                                                                .log(a);
-                                                            console
-                                                                .log(b);
-                                                            console
-                                                                .log(c);
-                                                        }
-                                                    });
-                                            }
                                         }
                                     });
-
+                            function uploadSummernoteImageFile(file, el) {
+                    			data = new FormData();
+                    			data.append("file", file);
+                    			console.log(file)
+                    			$.ajax({
+                    				data : data,
+                    				type : "POST",
+                    				url : "/booknote/uploadSummernoteImageFile",
+                    				contentType : false,
+                    				enctype : 'multipart/form-data',
+                    				processData : false,
+                    				success : function(data) {
+                    					console.log(data.url)
+                    					$(el).summernote('editor.insertImage', data.url);
+                    				}
+                    			});
+                    		}
                             $('#insertBooknoteBtn').on('click', function () {
 
                                 saveContent();
@@ -803,8 +794,6 @@ display:none;
 						id="snBookshelves">shelves</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
-					<li><span class="material-symbols-outlined size-35"
-						id="snCalendar">calendar_month</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookmark">book</span></li>
 					<li class="selected"><span
@@ -946,10 +935,7 @@ display:none;
                     location.href = "/bookshelves/selectBookshelvesListById";
                 })
                 $("#snStatistics").on("click", function () {
-                    location.href = "/bookstatistics/select-";
-                })
-                $("#snCalendar").on("click", function () {
-                    location.href = "/bookcalendar/select-";
+                    location.href = "/bookstatistics/toStatistics";
                 })
                 $("#snBookmark").on("click", function () {
                     location.href = "/bookmark/selectBookmarkListById";
@@ -983,7 +969,7 @@ display:none;
                     $("#demo").daterangepicker(
                         {
                             "locale": {
-                                "format": "YYYY.MM.DD",
+                                "format": "YYYY-MM-DD",
                                 "separator": " ~ ",
                                 "applyLabel": "확인",
                                 "cancelLabel": "취소",
@@ -1010,6 +996,8 @@ display:none;
 
                 function initSearchBook(b_isbn, b_genre, b_img_url, b_title,
                     b_writer, b_publisher, b_publication_date) {
+                	
+                	$(".searchResultBookInfo *").remove();
 
                     let tdBookCover = $("<td>").addClass("bookCover");
                     let tdBookCoverA = $("<a>").attr("href","#");
@@ -1052,13 +1040,11 @@ display:none;
 
                     let table = $("<table>");
                     table.append(tr);
-
+                    
                     let divSearchResultBookInfo = $("<div>").addClass("searchResultBookInfo").attr("isbn", b_isbn);
                     divSearchResultBookInfo.append(table);
 
                     $(".bookInfo").append(divSearchResultBookInfo);
-
-                	console.log($("#demo").val().substring(13,23));
 
                 }
                 //footer: 사업자 정보 토글 기능

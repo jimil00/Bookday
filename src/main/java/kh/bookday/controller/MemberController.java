@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import org.springframework.web.multipart.MultipartFile;
-import kh.bookday.dto.ProfileDTO;
 import kh.bookday.common.Pw_SHA256;
 import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.MonthSubMemberDTO;
@@ -295,7 +294,7 @@ public class MemberController {
 					e.printStackTrace();
 				}
 				
-				service.insertProfImg(new ProfileDTO(0,oriprofname,sysprofname,id));
+//				service.insertProfImg(new ProfileDTO(0,oriprofname,sysprofname,id));
 
 			}
 			
