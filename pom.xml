@@ -255,6 +255,17 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+			    <groupId>org.apache.tomcat.maven</groupId>
+			    <artifactId>tomcat7-maven-plugin</artifactId>
+			    <version>2.2</version>
+			    <configuration>
+			        <path>/Temp</path>
+			        <url>http://13.125.80.112/manager/text</url>
+			        <username>admin</username>
+			        <password>admin</password>
+			    </configuration>
+			</plugin>
         </plugins>
     </build>
 </project>

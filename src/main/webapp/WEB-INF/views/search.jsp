@@ -190,7 +190,13 @@ span, #logoImg:hover {
 }
 
 .book-header, .post-header {
-	font-size: 20px;
+	height: 35px;
+	width: 100%; 
+	font-size: 17px;
+	line-height: 35px;
+	padding-left: 10px;
+	color: #ffffff;
+	background-color: #5397fc;
 }
 
 .book {
@@ -208,17 +214,20 @@ span, #logoImg:hover {
 	float: left;
 	margin-left: 19px;
 	margin-bottom: 20px;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 .book-img {
 	width: 120px;
 	height: 180px;
+	border-radius: 4%;
+	
 }
 
 .b_title {
 	overflow: hidden;
 	height: 23px;
+	font-weight: bold;
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -246,7 +255,7 @@ span, #logoImg:hover {
 	/* 	text-align: center; */
 	margin-left: 55px;
 	margin-bottom: 20px;
-	margin-top: 15px;
+	margin-top:25px;
 	border: 1px solid #5397fc;
 	border-radius: 15px;
 }
@@ -287,6 +296,7 @@ span, #logoImg:hover {
 .like-icon {
 	float: left;
 	position: relative;
+	bottom: 1px;
 	font-size: 18px;
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
@@ -294,7 +304,7 @@ span, #logoImg:hover {
 .like-text {
 	float: left;
 	position: relative;
-	line-height: 20px;
+	line-height: 18px;
 	padding-left: 3px;
 	font-size: 13px;
 }
@@ -319,7 +329,7 @@ span, #logoImg:hover {
 	padding-right: 10px;
 	display: -webkit-box;
 	width: 100%;
-	height: 150px;
+	height: 152px;
 	-webkit-line-clamp: 9;
 	-webkit-box-orient: vertical;
 	word-wrap: break-word;
@@ -375,10 +385,9 @@ span, #logoImg:hover {
 		<div class="body">
 			<div class="book">
 				<div class="book-header">도서 검색 결과 (${fn:length(blist)})</div>
-				<hr class="body-hr">
 				<c:choose>
 					<c:when test="${fn:length(blist) == 0}">
-						<div style="padding-top: 20px; text-align: center;">'${searchWord }'
+						<div style="padding-top: 35px; text-align: center;">'${searchWord }'
 							에 대한 검색 결과가 없습니다.</div>
 					</c:when>
 					<c:otherwise>
@@ -394,10 +403,9 @@ span, #logoImg:hover {
 			</div>
 			<div class="post">
 				<div class="post-header">포스트 검색 결과 (${fn:length(plist)})</div>
-				<hr class="body-hr">
 				<c:choose>
 					<c:when test="${fn:length(plist) == 0}">
-						<div style="padding-top: 20px; text-align: center;">작성된 포스트가
+						<div style="padding-top: 35px; text-align: center;">작성된 포스트가
 							없습니다.</div>
 					</c:when>
 					<c:otherwise>
