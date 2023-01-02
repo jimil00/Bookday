@@ -17,4 +17,8 @@
 		select * from (select * from rental order by rt_rental_date desc) where id = #{id} and rownum <![CDATA[ <= #{rownum}]]> 
 	</select>
 	
+	<!-- 가장 최근 대여 내역 출력 -->
+	<select id="selectRentalById" resultType="kh.bookday.dto.RentalDTO">
+		select * from (select * from rental order by rt_rental_date desc) where id = #{id} and rownum <![CDATA[ <= 1]]> 
+	</select>
 </mapper>

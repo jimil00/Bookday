@@ -22,14 +22,17 @@
 * {
 	box-sizing: border-box;
 	font-family: 'NanumSquareNeo-Variable';
+	text-align: center;
 }
 
 div {
-	border: 1px solid black;
+	/* border: 1px solid black; */
+	
 }
 
 .container {
 	margin: auto;
+	margin-top: 170px;
 	overflow: hidden;
 	width: 978px;
 }
@@ -37,21 +40,54 @@ div {
 .header {
 	text-align: center;
 }
+
+.title {
+	font-size: 35px;
+	color: #5397fc;
+	padding-top: 20px;
+}
+
+.main {
+	font-size: 20px;
+	padding-bottom: 10px;
+}
+
+.btn {
+	margin-top: 20px;
+	margin-left: 15px;
+	width: 130px;
+	height: 40px;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	background-color: #5397fc;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
 	<div class="container">
 		<div class="header">
-			<img src="bookday_logotitle.png">
+			<img src="/resources/bookday_logotitle.png">
 		</div>
 		<div class="body">
-			죄송합니다. 현재 찾을 수 없는 페이지를 요청하셨습니다.<br> 페이지가 존재하지 않거나, 사용할 수 없는
-			페이지입니다.<br> 주소가 올바른지 다시 한번 확인해주세요.<br>
-			<br> 문제가 반복되어 발생하면 고객센터에 문의해 주시기 바랍니다. <br> 감사합니다. <br>
-			<button>메인으로</button>
-			<button>이전페이지</button>
+			<div class="title">죄송합니다. 요청하신 페이지를 찾을 수 없습니다.</div>
+			<br>
+			<div class="main">페이지가 존재하지 않거나, 사용할 수 없는 페이지입니다.</div>
+			<div class="main">주소가 올바른지 다시 한번 확인해 주세요.</div>
+			<div class="main">문제가 반복되어 발생하면 고객센터에 문의해 주시기 바랍니다.</div>
+			<div class="main">감사합니다.</div>
+			<button class="btn" id="home-btn">메인으로</button>
+			<button class="btn" id="back-btn">이전페이지</button>
 		</div>
-		<div class="footer"></div>
 	</div>
+	<script>
+		$("#home-btn").on("click", function() {
+			location.href = "/";
+		})
+		$("#back-btn").on("click", function() {
+			history.back();
+		})
+	</script>
 </body>
 </html>

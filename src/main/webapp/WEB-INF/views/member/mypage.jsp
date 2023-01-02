@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Search</title>
+<title>Home</title>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
@@ -25,11 +26,11 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-div {
-	/* 	border: 1px solid black; */
-	
-}
+/* div {
 
+   border: 1px solid black;
+
+} */
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -119,6 +120,7 @@ button:hover {
 	width: 20%;
 	height: 100%;
 }
+
 /* icon */
 .iconBox {
 	position: absolute;
@@ -186,144 +188,67 @@ span, #logoImg:hover {
 
 /* body */
 .body {
-	overflow: hidden;
-}
-
-.book-header, .post-header {
-	font-size: 20px;
-}
-
-.book {
-	overflow: hidden;
+	width: 700px;
+	margin: auto;
 }
 
 .body-hr {
+	margin-bottom: 15px;
 	border-top: 1px solid rgb(216, 216, 216);
 }
 
-.book-main {
-	overflow: hidden;
-	width: 140px;
+.body-top {
+	height: 50px;
 	text-align: center;
+	font-size: 33px;
+}
+
+.body-title-mem {
+	height: 50px;
+	padding-top: 25px;
+	font-size: 20px;
+	color: #5397fc;
+}
+
+.body-title {
+	height: 70px;
+	padding-top: 45px;
+	font-size: 20px;
+	color: #5397fc;
+}
+
+.info {
+	overflow: hidden;
+}
+
+.body-left {
 	float: left;
-	margin-left: 19px;
-	margin-bottom: 20px;
-	margin-top: 10px;
-}
-
-.book-img {
-	width: 120px;
-	height: 180px;
-}
-
-.b_title {
-	overflow: hidden;
-	height: 23px;
-	word-wrap: break-word;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.b_writer {
-	overflow: hidden;
-	height: 23px;
-	word-wrap: break-word;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-size: 14px;
-}
-
-.post {
-	padding-top: 40px;
-	overflow: hidden;
-}
-
-.post-main {
-	overflow: hidden;
-	width: 250px;
-	height: 300px;
-	float: left;
-	/* 	text-align: center; */
-	margin-left: 55px;
-	margin-bottom: 20px;
-	margin-top: 15px;
-	border: 1px solid #5397fc;
-	border-radius: 15px;
-}
-
-.post-main-top {
-	overflow: hidden;
-	/* height: 60px; */
-}
-
-.profile-img-div {
-	float: left;
-	padding-right: 10px;
-	padding-left: 10px;
-}
-
-.profile-img {
-	width: 55px;
-	height: auto;
-	border-radius: 50%;
-}
-
-.p-writer {
-	padding-top: 10px;
-	height: 30px;
-	overflow: hidden;
-	width: 150px;
-	display: inline-block;
+	width: 20%;
+	height: 33px;
+	padding-bottom: 15px;
 	font-weight: bold;
-	word-wrap: break-word;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	padding-bottom: 15px;
 }
 
-.p-like {
-	overflow: hidden;
+.body-right {
+	width: 80%;
+	height: 33px;
+	float: right;
+	padding-bottom: 15px;
 }
 
-.like-icon {
-	float: left;
-	position: relative;
-	font-size: 18px;
-	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
+.body-btn-div {
+	text-align: center;
 }
 
-.like-text {
-	float: left;
-	position: relative;
-	line-height: 20px;
-	padding-left: 3px;
-	font-size: 13px;
-}
-
-.p-title {
-	overflow: hidden;
-	width: 100%;
-	height: 30px;
-	font-weight: bold;
-	padding-top: 3px;
-	padding-left: 10px;
-	padding-right: 10px;
-	word-wrap: break-word;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.p-content {
-	overflow: hidden;
-	font-size: 15px;
-	padding-left: 10px;
-	padding-right: 10px;
-	display: -webkit-box;
-	width: 100%;
-	height: 150px;
-	-webkit-line-clamp: 9;
-	-webkit-box-orient: vertical;
-	word-wrap: break-word;
-	text-overflow: ellipsis;
+.body-btn {
+	width: 180px;
+	height: 40px;
+	margin-top: 50px;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	background-color: #5397fc;
 }
 </style>
 </head>
@@ -337,7 +262,7 @@ span, #logoImg:hover {
 				<div class="searchBox">
 					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord" value=${searchWord }>
+							id="searchWord" name="searchWord">
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -350,14 +275,16 @@ span, #logoImg:hover {
 						<c:when test="${empty loginID}">
 							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
 							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
-									class="user" id="test">상세 페이지 테스트</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267">
+								<p class="user" id="test">상세 페이지 테스트</p>
+							</a>
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
 							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
-									class="user" id="test">상세 페이지 테스트</p></a>
+							<a href="/book/selectBookinfo?b_isbn=9788936434267">
+								<p class="user" id="test">상세 페이지 테스트</p>
+							</a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -373,58 +300,77 @@ span, #logoImg:hover {
 		<hr id="headerHr">
 		<div class="navi"></div>
 		<div class="body">
-			<div class="book">
-				<div class="book-header">도서 검색 결과 (${fn:length(blist)})</div>
-				<hr class="body-hr">
-				<c:choose>
-					<c:when test="${fn:length(blist) == 0}">
-						<div style="padding-top: 20px; text-align: center;">'${searchWord }'
-							에 대한 검색 결과가 없습니다.</div>
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="book" items="${blist }">
-							<div class="book-main">
-								<a href="/book/selectBookinfo?b_isbn=${book.b_isbn }"><img class="book-img" src="${book.b_img_url }"></a>
-								<div class="b_title" title="${book.b_title }">${book.b_title }</div>
-								<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
-							</div>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</div>
-			<div class="post">
-				<div class="post-header">포스트 검색 결과 (${fn:length(plist)})</div>
-				<hr class="body-hr">
-				<c:choose>
-					<c:when test="${fn:length(plist) == 0}">
-						<div style="padding-top: 20px; text-align: center;">작성된 포스트가
-							없습니다.</div>
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="post" items="${plist }">
-							<div class="post-main">
-								<br>
-								<div class="post-main-top">
-									<div class="profile-img-div">
-										<img src="/resources/basic.png" class="profile-img">
-									</div>
-									<div class="p-writer">${post.p_writer_nn }</div>
-									<div class="p-like">
-										<div class="like-icon material-symbols-outlined"
-											data-count="0">thumb_up</div>
-										<div class="like-text">${post.p_like_count }</div>
-									</div>
-								</div>
-								<hr class="body-hr">
-								<div class="p-title" title="${post.p_title }">${post.p_title }</div>
-								<div class="p-content"><a href="/" style="text-decoration-line: none; color: black;">${post.p_content }</a></div>
-							</div>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</div>
+			<div class="body-top">내 정보</div>
+			<c:choose>
+				<c:when test="${dto.grade eq '미구독'}">
+					<div class="mem info">
+						<div class="body-title-mem">회원정보</div>
+						<hr class="body-hr">
+						<div class="body-left">이름</div>
+						<div class="body-right">${dto.name }</div>
+						<div class="body-left">닉네임</div>
+						<div class="body-right">${dto.nickname }</div>
+						<div class="body-left">휴대폰 번호</div>
+						<div class="body-right">${dto.phone }</div>
+						<div class="body-left">이메일</div>
+						<div class="body-right">${dto.email }</div>
+					</div>
+					<div class="sub info">
+						<div class="body-title">구독권정보</div>
+						<hr class="body-hr">
+						<div style="text-align: center; height: 150px; line-height: 150px">아직
+							이용 중인 구독권이 없습니다!</div>
+						<div class="body-btn-div">
+							<button class="body-btn" id="modify-btn"
+								style="margin-right: 20px;">회원정보 수정</button>
+							<button class="body-btn" id="sub-btn">종이책 구독 시작하기</button>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="mem info">
+						<div class="body-title-mem">회원정보</div>
+						<hr class="body-hr">
+						<div class="body-left">이름</div>
+						<div class="body-right">${dto.name }</div>
+						<div class="body-left">닉네임</div>
+						<div class="body-right">${dto.nickname }</div>
+						<div class="body-left">휴대폰 번호</div>
+						<div class="body-right">${dto.phone }</div>
+						<div class="body-left">이메일</div>
+						<div class="body-right">${dto.email }</div>
+					</div>
+					<div class="sub info">
+						<div class="body-title">구독권정보</div>
+						<hr class="body-hr">
+						<div class="body-left">구독기간</div>
+						<div class="body-right">${sdto.formedStartDate }~
+							${sdto.formedEndDate }</div>
+						<div class="body-left">남은 배송 횟수</div>
+						<div class="body-right">${sdto.delivery_count }번</div>
+						<div class="body-left">남은 대여 권수</div>
+						<div class="body-right">${sdto.rental_count }권</div>
+					</div>
+					<div class="rental info">
+						<div class="body-title">대여정보</div>
+						<hr class="body-hr">
+						<div class="body-left">주소</div>
+						<div class="body-right">${dto.address1 }(${dto.address2 })</div>
+						<div class="body-left">받는 분</div>
+						<div class="body-right">${dto.reciver }</div>
+						<div class="body-left">휴대폰번호</div>
+						<div class="body-right">${dto.reciver_phone }</div>
+						<div class="body-left">도착 예정일</div>
+						<div class="body-right">${rdto.formedRt_rental_date }</div>
+						<div class="body-left">반납일</div>
+						<div class="body-right">${rdto.formedRt_return_date }</div>
+					</div>
+					<div class="body-btn-div">
+						<a href="/member/ToUpdateMemInfo"><button class="body-btn" id="modify-btn">회원정보 수정</button></a>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
-		<div class="footer"></div>
 	</div>
 	<script>
       $("#logoImg").on("click", function() {
@@ -439,11 +385,11 @@ span, #logoImg:hover {
          location.href = "//toNotification";
       })
       $("#bookbag").on("click", function() {
-    	  if(${loginID == null}) {
+         if(${loginID == null}) {
               location.href = "/member/toLogin";
-    	  }else {
-         	  location.href = "/delivery/selectBookbagListById?id=${loginID }";
-    	  }
+         }else {
+              location.href = "/delivery/selectBookbagListById?id=${loginID }";
+         }
       })
       $("#bookshelves").on("click", function() {
          location.href = "/bookshelves/selectBookshelvesListById";
@@ -455,6 +401,14 @@ span, #logoImg:hover {
          }else {
          location.href = "/member/toMypage";
          }
+      })
+      // 구독하기 버튼 기능
+      $("#sub-btn").on("click", function() {
+          if(${loginID == null}) {
+                 location.href = "/member/toLogin";
+            }else {
+                 location.href = "/delivery/toPayment?id=${loginID }";
+            }
       })
    </script>
 </body>

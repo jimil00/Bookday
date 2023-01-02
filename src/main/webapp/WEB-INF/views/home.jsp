@@ -583,7 +583,7 @@ width:300px;
 						<!-- <p class="sub_list">구독 서비스</p> -->
 					</div>
 
-					<div class="detail2">
+					<div class="detail2" data-aos="fade-up" data-aos-duration="3000">
 						<img src="/resources/deli.png" class="d_img" id="deli">
 						<ul class="rental">
 							<li>대여 권 수(달)<span>5권</span></li>
@@ -777,8 +777,9 @@ width:300px;
       })
       $("#mypage").on("click", function() {
          if (${loginID == null}) {
-            location.href = "/member/tologin";
+            location.href = "/member/toLogin";
             return false;
+            
          }else {
          location.href = "/member/toMypage?";
          }
