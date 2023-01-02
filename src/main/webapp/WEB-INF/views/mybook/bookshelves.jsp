@@ -530,7 +530,7 @@ span.size-30 {
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/resources/${dto.sysprofname }" width="100" height="100"
+						<img src="/resources/profile/${dto.sysprofname}" width="100" height="100"
 							id="profile">
 					</div>
 					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
@@ -718,6 +718,18 @@ span.size-30 {
 			var b_isbn = $(this)
 			location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
 		})
+		
+			//프로필 사진 없을 때(수아)
+	$( document ).ready( function() {
+	    
+	  	if(${p.sysprofname == null}){
+	  		
+			$(".profile_img").attr("src","/resources/basic.png");
+							return;
+						}
+	   });
+		
+		
 		<!-- Ajax Infinite Scroll -->
 // 	    let count = 1
 // 	    $(window).scroll(function () {

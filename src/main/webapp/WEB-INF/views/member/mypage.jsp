@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -203,6 +206,17 @@ span, #logoImg:hover {
 	font-size: 33px;
 }
 
+.prof_img {
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+#prof_img {
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+}
+
 .body-title-mem {
 	height: 50px;
 	padding-top: 25px;
@@ -295,7 +309,10 @@ span, #logoImg:hover {
 		<hr id="headerHr">
 		<div class="navi"></div>
 		<div class="body">
-			<div class="body-top">내 정보</div>
+			<div class="prof_img">
+				<img src="/resources/profile/${dto.sysprofname}" id="prof_img">
+			</div>
+			<div class="body-top">${dto.nickname }</div>
 			<c:choose>
 				<c:when test="${dto.grade eq '미구독'}">
 					<div class="mem info">
@@ -306,15 +323,28 @@ span, #logoImg:hover {
 						<div class="body-left">닉네임</div>
 						<div class="body-right">${dto.nickname }</div>
 						<div class="body-left">휴대폰 번호</div>
+						<c:choose>
+						<c:when test="${dto.phone eq null }">
+						<div class="body-right">-</div>
+						</c:when>
+						<c:otherwise>
 						<div class="body-right">${dto.phone }</div>
+						</c:otherwise>
+						</c:choose>
 						<div class="body-left">이메일</div>
 						<div class="body-right">${dto.email }</div>
+						<div class="body-left">주소</div>
+						<div class="body-right">${dto.address1 }</div>
+						<div class="body-left">상세주소</div>
+						<div class="body-right">${dto.address2 }</div>
 					</div>
+					<hr style="border-top: 1px rgb(216, 216, 216);">
 					<div class="sub info">
 						<div class="body-title">구독권정보</div>
 						<hr class="body-hr">
 						<div style="text-align: center; height: 150px; line-height: 150px">아직
 							이용 중인 구독권이 없습니다!</div>
+						<hr style="border-top: 1px rgb(216, 216, 216);">
 						<div class="body-btn-div">
 							<a href="/member/toUpdateMemInfo"><button class="body-btn" id="modify-btn"
 								style="margin-right: 20px;">회원정보 수정</button></a>
@@ -331,35 +361,76 @@ span, #logoImg:hover {
 						<div class="body-left">닉네임</div>
 						<div class="body-right">${dto.nickname }</div>
 						<div class="body-left">휴대폰 번호</div>
+						<c:choose>
+						<c:when test="${dto.phone eq null }">
+						<div class="body-right">-</div>
+						</c:when>
+						<c:otherwise>
 						<div class="body-right">${dto.phone }</div>
+						</c:otherwise>
+						</c:choose>
 						<div class="body-left">이메일</div>
 						<div class="body-right">${dto.email }</div>
+						<div class="body-left">주소</div>
+						<c:choose>
+						<c:when test="${dto.address1 eq null }">
+						<div class="body-right">-</div>
+						</c:when>
+						<c:otherwise>
+						<div class="body-right">${dto.address1 }</div>
+						</c:otherwise>
+						</c:choose>
+						<div class="body-left">상세주소</div>
+						<c:choose>
+						<c:when test="${dto.address2 eq null }">
+						<div class="body-right">-</div>
+						</c:when>
+						<c:otherwise>
+						<div class="body-right">${dto.address2 }</div>
+						</c:otherwise>
+						</c:choose>
 					</div>
+					<hr style="border-top: 1px rgb(216, 216, 216);">
 					<div class="sub info">
 						<div class="body-title">구독권정보</div>
 						<hr class="body-hr">
 						<div class="body-left">구독기간</div>
-						<div class="body-right">${sdto.formedStartDate }~
-							${sdto.formedEndDate }</div>
+						<div class="body-right">${sdto.formedStartDate } ~ ${sdto.formedEndDate }</div>
 						<div class="body-left">남은 배송 횟수</div>
-						<div class="body-right">${sdto.delivery_count }번</div>
+						<div class="body-right">${sdto.delivery_count } 번</div>
 						<div class="body-left">남은 대여 권수</div>
-						<div class="body-right">${sdto.rental_count }권</div>
+						<div class="body-right">${sdto.rental_count } 권</div>
 					</div>
-					<div class="rental info">
-						<div class="body-title">대여정보</div>
-						<hr class="body-hr">
-						<div class="body-left">주소</div>
-						<div class="body-right">${dto.address1 }(${dto.address2 })</div>
-						<div class="body-left">받는 분</div>
-						<div class="body-right">${dto.reciver }</div>
-						<div class="body-left">휴대폰번호</div>
-						<div class="body-right">${dto.reciver_phone }</div>
-						<div class="body-left">도착 예정일</div>
-						<div class="body-right">${rdto.formedRt_rental_date }</div>
-						<div class="body-left">반납일</div>
-						<div class="body-right">${rdto.formedRt_return_date }</div>
-					</div>
+					<hr style="border-top: 1px rgb(216, 216, 216);">
+					<c:choose>
+						<c:when test="${rdto.formedRt_return_date < today}">
+							<div class="rental info">
+								<div class="body-title">대여정보</div>
+								<hr class="body-hr">
+								<div
+									style="text-align: center; height: 150px; line-height: 150px">현재
+									대여 중인 책이 없습니다.</div>
+							</div>
+							<hr style="border-top: 1px rgb(216, 216, 216);">
+						</c:when>
+						<c:otherwise>
+							<div class="rental info">
+								<div class="body-title">대여정보</div>
+								<hr class="body-hr">
+								<div class="body-left">주소</div>
+								<div class="body-right">${dto.address1 }(${dto.address2 })</div>
+								<div class="body-left">받는 분</div>
+								<div class="body-right">${dto.reciver }</div>
+								<div class="body-left">휴대폰번호</div>
+								<div class="body-right">${dto.reciver_phone }</div>
+								<div class="body-left">도착 예정일</div>
+								<div class="body-right">${rdto.formedRt_rental_date }</div>
+								<div class="body-left">반납일</div>
+								<div class="body-right">${rdto.formedRt_return_date }</div>
+							</div>
+							<hr style="border-top: 1px rgb(216, 216, 216);">
+						</c:otherwise>
+					</c:choose>
 					<div class="body-btn-div">
 						<a href="/member/toUpdateMemInfo"><button class="body-btn" id="modify-btn">회원정보 수정</button></a>
 					</div>
@@ -368,6 +439,17 @@ span, #logoImg:hover {
 		</div>
 	</div>
 	<script>
+    //프로필 사진 없을 때
+	$( document ).ready( function() {
+		
+	    
+	  	if(${dto.sysprofname == 0}){
+	  		
+	  		$("#prof_img").attr("src","/resources/basic.png");
+							return;
+						}
+	   });
+	
       $("#logoImg").on("click", function() {
          location.href = "/";
       })
@@ -405,6 +487,7 @@ span, #logoImg:hover {
                  location.href = "/delivery/toPayment?id=${loginID }";
             }
       })
+      
    </script>
 </body>
 </html>

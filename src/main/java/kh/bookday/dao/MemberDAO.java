@@ -62,7 +62,7 @@ public class MemberDAO {
 		db.update("Member.updateMemInfo", dto);
 		}
 		
-	
+
 	//지민
 	// 회원 배송지 정보 입력 
 	public void updateMemberAddressById(MemberDTO dto) {

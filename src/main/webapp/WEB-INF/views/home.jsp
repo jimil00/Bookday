@@ -701,7 +701,7 @@ height:fit-content;
 
 									<div class="post_box">
 										<div class="profile">
-											<img src="/resources/basic.png" class="profile_img">
+											<img src="/resources/profile/${dto.sysprofname}" class="profile_img">
 											<%-- <a href="/post/selectPostByPseq?p_seq=${p.p_seq}"> --%>
 											<h3>${p.p_writer_nn}님의포스트</h3>
 											<!-- </a> -->
@@ -814,6 +814,16 @@ height:fit-content;
                  location.href = "/delivery/toPayment?id=${loginID }";
             }
       })
+      
+      //프로필 사진 없을 때 포스트 출력
+       $( document ).ready( function() {
+      
+      	if(${p.sysprofname == null}){
+      		
+			$(".profile_img").attr("src","/resources/basic.png");
+							return;
+						}
+       });
       
       //스크롤 이벤트 라이브러리(AOS)선언
        $( document ).ready( function() {

@@ -3,8 +3,6 @@ package kh.bookday.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
-import java.util.List;
-
 
 import javax.servlet.http.HttpSession;
 
@@ -16,14 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
 import org.springframework.web.multipart.MultipartFile;
 import kh.bookday.common.Pw_SHA256;
 import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.MonthSubMemberDTO;
 import kh.bookday.dto.RentalDTO;
-
 import kh.bookday.service.MemberService;
 import kh.bookday.service.RentalService;
 
@@ -266,13 +261,17 @@ public class MemberController {
 		String id = String.valueOf(session.getAttribute("loginID"));
 		
 		dto.setId(id);
-		
+		System.out.println(dto.getPw());
 		//비밀번호 암호화
 		String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
 		dto.setPw(updatedPw);
 		
+		
+		
 		//파일 관련 업데이트 업로드 참고
 		String realPath= session.getServletContext().getRealPath("/resources/profile");
+		
+		System.out.println(realPath);
 		
 		File filePath= new File(realPath);
 		
@@ -302,6 +301,7 @@ public class MemberController {
 				System.out.println(dto.getAddress1());
 				
 				service.updateMemInfo(dto);
+
 
 			}
 			

@@ -192,11 +192,11 @@ span, #logoImg:hover {
 }
 
 /* body */
-.mem_info_box>div, input {
+/* .mem_info_box>div, input {
 	margin: auto;
 	text-align: center;
 }
-
+ */
 .input-file-button {
 	padding: 6px 25px;
 	border-radius: 4px;
@@ -220,10 +220,11 @@ span, #logoImg:hover {
 
 #prof_img {
 	border-radius: 50%;
-	width: 150px;
+	width: 120px;
+    height: 120px;
 }
 
-.check_phone, #fin_btn, #cancel_btn, #phone_btn, #search_btn {
+.check_phone, #fin_btn, #cancel_btn, #phone_btn, #search_btn, #input_file_btn{
 	display: none;
 }
 
@@ -248,7 +249,7 @@ span, #logoImg:hover {
 	border: 1px solid #d5d5d5;
 	border-radius: 8px;
 	padding-left: 10px;
-	width: 30%;
+	width: fit-content;
 	height: 50px;
 	outline: none;
 	box-shadow: 3px 3px #80808050;
@@ -264,6 +265,7 @@ span, #logoImg:hover {
 	border-radius: 8px;
 	width: 5%;
 	height: 50px;
+	width:48px;
 }
 
 #img_upload {
@@ -273,17 +275,38 @@ span, #logoImg:hover {
 #input_btn {
 	margin-top: 25px;
 	margin-bottom: 25px;
-	width: 30%;
+	width: 10%;
 }
 
 .btns>button {
+position:relative;
+	bottom:130px;
+	left:10px;
 	margin-top: 25px;
 	margin-bottom: 25px;
+	text-align:center;
 }
 
 #postcode {
 	display: inline;
 }
+
+.mem_info_box {
+	display:flex;
+}
+
+.input_info{
+	display:flex;
+}
+.block_input{
+	margin-bottom:20px;
+}
+#input_file_btn{
+position:relative;
+	left:20px;
+}
+
+
 /* footer */
 .footer {
 	margin: 5px;
@@ -414,18 +437,21 @@ span, #logoImg:hover {
 		<div class="navi"></div>
 		<div class="body">
 
-			<form action="/member/updateMemInfo" method="post"
-				enctype="multipart/form-data">
+			<form action="/member/updateMemInfo" method="post" enctype="multipart/form-data">
 				<div class="mem_info_box">
+				
 					<div class="prof_info">
 						<div class="prof_img">
 							<img src="/resources/profile/${dto.sysprofname}" id="prof_img">
 						</div>
-						<label class="input-file-button" for="img_upload"> 업로드 </label> <input
-							type="file" name="prof_img" class="input_file" id="img_upload"
+						<label class="input-file-button" for="img_upload" id="input_file_btn">편집</label> 
+						<input type="file" name="prof_img" class="input_file" id="img_upload"
 							accept=".png,.jpg,.jpeg,.gif,.JPG" style="display:" "none"}/>
 					</div>
+					
 					<hr>
+					<div class="box">
+					
 					<div class="input_info">
 						<p>닉네임</p>
 						<input type="text" name="nickname" value="${dto.nickname}"
@@ -444,7 +470,7 @@ span, #logoImg:hover {
 						<p>휴대폰 번호</p>
 						<div>
 							<input type="text" name="phone" value="${dto.phone}" readonly
-								class="input">
+								class="input" id="phone">
 							<button type="button" class="body_btn" id="phone_btn">인증</button>
 							<div class="check_phone">
 								<input type="text" name="check_phone" placeholder="인증번호"
@@ -452,7 +478,18 @@ span, #logoImg:hover {
 								<button type="button" class="body_btn" id="check_btn">확인</button>
 							</div>
 						</div>
+					</div>
+					<hr>
+						<div class="input_info">
+							<p>이메일</p>
+							<input type="text" name="email" value="${dto.email}" readonly
+								class="input" id="email"> <span id="email_result"></span>
+						</div>
+					
+						</div>
+						
 						<hr>
+						
 						<div class="input_info">
 							<p>비밀번호</p>
 							<div class="box">
@@ -464,33 +501,26 @@ span, #logoImg:hover {
 									id="check_pw"> <span id="check_pw_result"></span>
 							</div>
 						</div>
+					
 						<hr>
 						<div class="input_info">
-							<p>이메일</p>
-							<input type="text" name="email" value="${dto.email}" readonly
-								class="input" id="email"> <span id="email_result"></span>
-						</div>
-						<hr>
-						<div class="input_info">
-							<p>주소</p>
+			
 							<div class="box">
-								<p>우편번호</p>
-
-								<input type="text" id="postcode" name="postcode"
-									value="${dto.postcode}" readonly placeholder="우편번호"
-									class="block_input">
-
-								<button type="button" id="search_btn" class="body_btn"
-									onclick="execDaumPostcode()">찾기</button>
-
-								<p>도로명 주소</p>
+								<div><span>주소</span> <button type="button" id="search_btn" class="body_btn"
+									onclick="execDaumPostcode()">찾기</button></div>
+								
 								<input type="text" id="address1" name="address1"
 									value="${dto.address1}" readonly placeholder="도로명 주소"
-									class="block_input">
+									class="input">
+								
 								<p>상세 주소</p>
 								<input type="text" name="address2" value="${dto.address2}"
 									readonly placeholder="상세 주소" class="block_input">
-							</div>
+								<p>우편번호</p>
+								<input type="text" id="postcode" name="postcode"
+									value="${dto.postcode}" readonly placeholder="우편번호"
+									class="block_input">
+									</div>
 						</div>
 						<hr>
 					</div>
@@ -576,6 +606,16 @@ span, #logoImg:hover {
          }
       })
       
+      	//프로필 사진 없을 때
+	$( document ).ready( function() {
+	    
+	  	if(${dto.sysprofname == 0}){
+	  		
+			$("#prof_img").attr("src","/resources/basic.png");
+							return;
+						}
+	   });
+      
 
 //byte데이터나 stream 데이터를 string 형식으로 표시
    function fileToBase64(file){
@@ -616,6 +656,8 @@ span, #logoImg:hover {
     	  $("#fin_btn, #cancel_btn, #phone_btn").css("display","inline-block");
     	  $("#img_upload").css("display","block");
     	  $("#search_btn").css("display","inline");
+    	  $("#img_upload").css("display","none");
+    	  $("#input_file_btn").css("display","inline");
     	  //$("#fin_btn").attr("disabled", true);
     	  
 
@@ -736,53 +778,25 @@ span, #logoImg:hover {
       }
 
 		});
-	
- 	/* //버튼 활성화 , 비활성화
-	$("#name, #nickname, #phone,#verifi_code,#email,#pw,#check_pw")
-    .on("blur",function(){
-    	
-	let name= $("#name").val();
-     let nickname=$("#nickname").val();
-     let phone=$("#phone").val();
-     let verifi_code=$("#verifi_code").val();
-     let email=$("#email").val();
-     let pw=$("#pw").val();
-     let check_pw=$("#check_pw").val();
-
-     let nameRegex=/[가-힣]{2,5}/;
-     let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
-     let phoneRegex=/^01\d{1}\d{3,4}\d{4}$/;
-     let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[A-Z a-z]{5,7}.[a-zA-Z]{2,3}$/;
-     let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
-	
-     if(name=="" || nickname=="" || phone=="" || 
-    	verifi_code=="" || email=="" || pw=="" || check_pw==""
-    	|| !nameRegex.test(name) || !nicknameRegex.test(nickname) 
-        || !phoneRegex.test(phone) || !emailRegex.test(email) 
-        || !pwRegex.test(pw)){
-           //위의 값이 안 맞으면 로그인 버튼 아예 못 누름
-           $("#fin_btn").attr("disabled", true);
-           console.log("버튼 비활성화");
-           }else{
-        	   console.log("버튼 활성화");
-        	   $("#fin_btn").attr("disabled", false);
-           }
-    }); */
-      
-      
+	  
+ 	 
+ 	
       //휴대폰 인증 버튼 누르면
       $("#phone_btn").on("click", function() {
+    	   
+ 			let phone=$("#phone").val();
+ 			let phoneRegex=/^01\d{1}\d{3,4}\d{4}$/;
     	  
-    	   $(".check_phone").css("display","block");
+    	  console.log($("#phone").val());
     	  
-    	  let phone=$("#phone").val();
-    	  
-    	  console.log(phone);
-    	  
-    	  if(phone == ""){  
-    		  alert("휴대폰 번호를 입력해주세요.");
+    	  if(phone == ${dto.phone}){  
+    		  alert("이미 인증된 휴대폰 번호입니다.");
+    		  return
+    		  }else if(phone=="" || !phoneRegex.test(phone)){
+    			  alert("유효한 휴대폰 번호를 입력해주세요.");
     		  }else{
     			  alert("인증번호를 발송하였습니다.");
+    			  $(".check_phone").css("display","block");
     			  
     				//인증 번호 발송되는 에이작스
          		 $.ajax({
@@ -808,21 +822,9 @@ span, #logoImg:hover {
                                  	  //입력 값 수정 불가 & 버튼 2번 클릭 못하게 해야 될듯
                                  	  if(resp == false){
                                  		  alert("인증번호가 일치합니다.")
-                                 		  $("#verifi_code").css("border-color", "#5397fc");
-                                 		  
-                                 		   $("#phone").on("input",function(){
-                                            	location.reload();
-                                            });
-                                 		  
-                                 		  //$("#phone").attr("readonly",true);
-                                 		  $("#verifi_code").attr("readonly",true);
-                                 		  $("#verfi_btn").attr("disabled", true); 
-                                 		  $("#check_btn").attr("disabled", true);
-                                 		  $("#signup_btn").attr("disabled", false);
-                                 		   
+
                                  	  }else{
                                  		  alert("인증번호가 틀립니다.");
-                                 		  $("#verifi_code").css("border-color", "red");
                                  		  $("#input_btn").attr("disabled", true);
                                  	  }
                                    });

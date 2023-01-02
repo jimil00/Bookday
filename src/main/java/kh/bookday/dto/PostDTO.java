@@ -6,6 +6,7 @@ public class PostDTO {
 	
 	private int p_seq;
 	private String p_writer_id;
+	private String sysprofname;
 	private String b_isbn;
 	private String b_img_url;
 	private String b_title;
@@ -27,12 +28,13 @@ public class PostDTO {
 	public PostDTO() {
 		super();
 	}
-	public PostDTO(int p_seq, String p_writer_id, String b_isbn, String b_img_url, String b_title, String b_writer,
+	public PostDTO(int p_seq, String p_writer_id, String sysprofname,String b_isbn, String b_img_url, String b_title, String b_writer,
 			String b_genre, String b_publisher, String b_publication_date, Timestamp dyst_read, Timestamp dyfn_read,
 			String p_writer_nn, Timestamp p_write_date, String p_title, String p_content, int p_view_count,
 			int p_comment_count, int p_like_count) {
 		this.p_seq = p_seq;
 		this.p_writer_id = p_writer_id;
+		this.sysprofname=sysprofname;
 		this.b_isbn = b_isbn;
 		this.b_img_url = b_img_url;
 		this.b_title = b_title;
@@ -63,6 +65,13 @@ public class PostDTO {
 	}
 	public void setP_writer_id(String p_writer_id) {
 		this.p_writer_id = p_writer_id;
+	}
+	
+	public String getSysprofname() {
+		return sysprofname;
+	}
+	public void setSysprofname(String sysprofname) {
+		this.sysprofname = sysprofname;
 	}
 	public String getB_isbn() {
 		return b_isbn;
