@@ -290,6 +290,7 @@ public class MemberController {
 					e.printStackTrace();
 				}
 				
+
 				//service.insertProfImg(new ProfileDTO(0,oriprofname,sysprofname,id));
 
 			}

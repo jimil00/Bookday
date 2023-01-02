@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 import kh.bookday.dto.BookmarkDTO;
 import kh.bookday.dto.MemberDTO;
@@ -29,6 +32,19 @@ public class BookmarkController {
 	@Autowired
 	private HttpSession session;
 	
+	
+	@ResponseBody
+	@RequestMapping("insertBookmark")
+	public void insertBookmark(BookmarkDTO dto) {
+		
+		String id = String.valueOf(session.getAttribute("loginID"));
+		dto.setBm_writer_id(id);
+		System.out.println("here");
+
+		service.insertBookmark(dto);
+	}
+	
+	
 	@RequestMapping("selectBookmarkListById")
 	public String selectBookmarListkById(Model model) {
 		
@@ -41,6 +57,16 @@ public class BookmarkController {
 		model.addAttribute("list", list);
 		
 		return "mybook/bookmark";
+	}
+	
+	@ResponseBody
+	@RequestMapping("selectBmListByBmseq")
+	public String selectBmListByBmseq(BookmarkDTO dto) {
+		
+		String id = String.valueOf(session.getAttribute("loginID"));
+		dto.setBm_writer_id(id);
+		
+		return new Gson().toJson(service.selectBmListByBmseq(dto));
 	}
 	
 	@GetMapping("selectBookmarkListBySw")
@@ -59,6 +85,8 @@ public class BookmarkController {
 		return "mybook/bookmark";
 		
 	}
+
+	
 	@GetMapping("deleteBookmarkBySeq")
 	public String deleteBookmarkBySeq(int bm_seq, String bm_writer_id) {
 		

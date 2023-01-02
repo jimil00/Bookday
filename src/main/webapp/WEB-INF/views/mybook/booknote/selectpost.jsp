@@ -495,7 +495,7 @@ margin-left: auto;
 	height: 1px;
 	border: 0;
 	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
+	margin-top: 50px;
 	margin-bottom: 15px;
 }
 
@@ -640,8 +640,6 @@ display:none;
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
-						id="snCalendar">calendar_month</span></li>
-					<li><span class="material-symbols-outlined size-35"
 						id="snBookmark">book</span></li>
 					<li class="selected"><span
 						class="material-symbols-outlined size-35" id="snBooknote">edit</span></li>
@@ -697,7 +695,11 @@ display:none;
 								</div>
 								<div class="dates">
 									<div class="datesTitle">읽은 기간</div>
-									<div class="dyStFnRead"><fmt:formatDate value="${dto.dyst_read }" pattern="yyyy.MM.dd"/>&nbsp~&nbsp<fmt:formatDate value="${dto.dyfn_read }" pattern="yyyy.MM.dd"/></div>
+									<div class="dyStFnRead">
+									<fmt:parseDate value="${dto.dyst_read }" var="dyst_read" pattern="yyyy-MM-dd HH:mm:ss"/>
+									<fmt:formatDate value="${dyst_read}" pattern="yyyy.MM.dd"/>&nbsp~&nbsp
+									<fmt:parseDate value="${dto.dyfn_read }" var="dyfn_read" pattern="yyyy-MM-dd HH:mm:ss"/>
+									<fmt:formatDate value="${dyfn_read}" pattern="yyyy.MM.dd"/></div>
 								</div>
 							</div>
 							<hr class="selectPHr">
@@ -836,10 +838,7 @@ display:none;
                     location.href = "/bookshelves/selectBookshelvesListById";
                 });
                 $("#snStatistics").on("click", function () {
-                    location.href = "/bookstatistics/select-";
-                });
-                $("#snCalendar").on("click", function () {
-                    location.href = "/bookcalendar/select-";
+                    location.href = "/bookstatistics/toStatistics";
                 });
                 $("#snBookmark").on("click", function () {
                     location.href = "/bookmark/selectBookmarkListById";

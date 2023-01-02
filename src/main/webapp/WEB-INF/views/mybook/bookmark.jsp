@@ -395,7 +395,12 @@ span.size-30 {
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-/* contentsBodySearchBookmake */
+.middleHr {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+/* contentsBodySearchBookmark */
 .bookmarkSearch {
 	height: 50px;
 	width: 100%;
@@ -450,7 +455,15 @@ span.size-30 {
 	justify-content: center;
 }
 
-/* contentsBodyBookmakeContents */
+/* contentsBodyBookmarkContents */
+.emptyContents {
+	font-size: 15px;
+	text-align: center;
+	line-height: 200px;
+	width: 100%;
+	height: 200px;
+}
+
 .bookmarkContents {
 	width: 100%;
 	height: auto;
@@ -502,6 +515,7 @@ span.size-30 {
 	display: flex;
 	justify-items: flex-end;
 	justify-content: space-around;
+	margin-left: auto;
 }
 
 .bookmarkContentsBtn>button {
@@ -521,7 +535,7 @@ span.size-30 {
 	height: 1px;
 	border: 0;
 	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
+	margin-top: 50px;
 	margin-bottom: 15px;
 }
 
@@ -659,8 +673,6 @@ span.size-30 {
 						id="snBookshelves">shelves</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
-					<li><span class="material-symbols-outlined size-35"
-						id="snCalendar">calendar_month</span></li>
 					<li class="selected"><span
 						class="material-symbols-outlined size-35" id="snBookmark">book</span></li>
 					<li><span class="material-symbols-outlined size-35"
@@ -699,10 +711,10 @@ span.size-30 {
 							<div class="insertbookmarkContentBox" contenteditable="true"></div>
 						</div>
 						<div class="insertBookmarkBtn">
-							<button id="insertBookmarkBtn" type="submit">입력</button>
+							<button id="insertBookmarkBtn" type="button">입력</button>
 						</div>
 					</div>
-					<hr>
+					<hr class="middleHr">
 					<div class="bookmarkSearch">
 						<div class="bookmarkSearchTitle">책갈피 검색</div>
 						<div class="bookmarkSearchBox">
@@ -715,28 +727,40 @@ span.size-30 {
 						</div>
 					</div>
 					<div class="selectBookmarkList">
-						<c:forEach var="bm" items="${list}">
-							<div class="bookmarkContents" seq="${bm.bm_seq }"
-								writer="${bm.bm_writer_id }">
-								<div class="bookmarkContentsImg">
-									<div class="bookmarkBookImg">
-										<img src="${bm.b_img_url }">
+						<c:choose>
+							<c:when test="${empty list}">
+								<hr>
+								<div class="emptyContents">북마크가 없습니다.</div>
+								<hr>
+							</c:when>
+							<c:otherwise>
+
+								<c:forEach var="bm" items="${list}">
+
+
+									<div class="bookmarkContents" seq="${bm.bm_seq }"
+										writer="${bm.bm_writer_id }">
+										<div class="bookmarkContentsImg">
+											<div class="bookmarkBookImg">
+												<img src="${bm.b_img_url }">
+											</div>
+										</div>
+										<div class="bookmarkContentsTxt">
+											<div class="bookmarkBookInfo"><${bm.b_title
+												}>&nbsp${bm.b_writer }</div>
+											<div class="bookmarkWritedate">${bm.bm_write_date }</div>
+											<hr>
+											<div class="bookmarkContent">${bm.bm_content}</div>
+										</div>
+										<div class="bookmarkContentsBtn">
+											<button class="updBookmarkBtn">수정</button>
+											<button class="delBookmarkBtn">삭제</button>
+										</div>
 									</div>
-								</div>
-								<div class="bookmarkContentsTxt">
-									<div class="bookmarkBookInfo"><${bm.b_title
-										}>&nbsp${bm.b_writer }</div>
-									<div class="bookmarkWritedate">${bm.bm_write_date }</div>
-									<hr>
-									<div class="bookmarkContent">${bm.bm_content}</div>
-								</div>
-							</div>
-							<hr>
-							<div class="bookmarkContentsBtn">
-								<button class="updateBookmarkContentsBtn">수정</button>
-								<button class="deleteBookmarkContentsBtn">삭제</button>
-							</div>
-						</c:forEach>
+
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<!--             	검색할거면 bms로 다시 리스트 출력 c when otherwise 쓰기 -->
 					<div class="bookmarkContentsListPage"></div>
@@ -820,10 +844,7 @@ span.size-30 {
 				location.href = "/bookshelves/selectBookshelvesListById";
 			});
 			$("#snStatistics").on("click", function() {
-				location.href = "/bookstatistics/select-";
-			});
-			$("#snCalendar").on("click", function() {
-				location.href = "/bookcalendar/select-";
+				location.href = "/bookstatistics/toStatistics";
 			});
 			$("#snBookmark").on("click", function() {
 				location.href = "/bookmark/selectBookmarkListById";
@@ -851,12 +872,12 @@ span.size-30 {
 			});		
 			$(".bookmarkSearchBtn").on("click", function() {
 				var searchWord = $("#bookmarkSearchWord").val();
-				location.href = "/book/selectBookmarkListBySw?searchWord=" + searchWord;
+				location.href = "/bookmark/selectBookmarkListBySw?searchWord=" + searchWord;
 			});
-            $(document).on("click", ".deleteBookmarkContentsBtn", function () {
-                var bm_seq = $(this).closest(".bookmarkContentsBtn").siblings(".bookmarkContents").attr("seq");	
-        		var bm_writer_id = $(this).closest(".bookmarkContentsBtn").siblings(".bookmarkContents").attr("writer");
-     
+            $(document).on("click", ".delBookmarkBtn", function () {
+                var bm_seq = $(this).closest(".bookmarkContents").attr("seq");	
+        		var bm_writer_id = $(this).closest(".bookmarkContents").attr("writer");
+     			console.log(bm_seq)
 
                 if(confirm("북마크를 삭제하시겠습니까?")){
 					location.href="/bookmark/deleteBookmarkBySeq?bm_seq="+bm_seq+"&bm_writer_id="+bm_writer_id;
@@ -867,6 +888,8 @@ span.size-30 {
             });
             function initSearchBook(b_isbn, b_genre, b_img_url, b_title,
                     b_writer, b_publisher, b_publication_date) {
+            	
+            		$(".searchResultBookInfo *").remove();
 
                     let tdBookCover = $("<td>").addClass("bookCover");
                     let tdBookCoverA = $("<a>").attr("href","#");
@@ -913,6 +936,102 @@ span.size-30 {
 
 
                 }
+            function bookmarkList(lastBm_seq) {
+            	console.log(lastBm_seq)
+
+                $.getJSON("/bookmark/selectBmListByBmseq", { "bm_seq": lastBm_seq })
+                    .done(res => {
+                        if (res != null) {
+                            setBookmarkPrepend(res);
+							console.log(res)
+                        }
+                    })
+
+            }
+
+            function setBookmarkPrepend(res) {
+
+                for (let i = 0; i < res.length; i++) {
+
+                    let bookmarkContents = $("<div>").addClass("bookmarkContents").attr("seq", res[i].bm_seq);
+
+                    let bookmarkContentsImg = $("<div>").addClass("bookmarkContentsImg");
+                    let bookmarkBookImg = $("<div>").addClass("bookmarkBookImg");
+                    let img = $("<img>").attr("src", res[i].b_img_url);
+
+                    bookmarkBookImg.append(img);
+                    bookmarkContentsImg.append(bookmarkBookImg);
+
+                    
+                    let bookmarkContentsTxt = $("<div>").addClass("bookmarkContentsTxt");
+                    
+                    let bookmarkBookInfo = $("<div>").addClass("bookmarkBookInfo").html("<"+res[i].bm_title+">&nbsp"+res[i].b_writer);
+					
+                    let bookmarkWritedate = $("<div>").addClass("bookmarkWritedate").html(res[i].bm_write_date);
+                    let hr = $("<hr>").addClass("bookmarkHr");
+                    
+					let bookmarkContent = $("<div>").addClass("bookmarkContent").html(res[i].bm_content);
+					
+					bookmarkContentsTxt.append(bookmarkBookInfo).append(bookmarkWritedate).append(bookmarkContent);
+					
+					
+                    let bookmarkContentsBtn = $("<div>").addClass("bookmarkContentsBtn");
+                    let updBookmarkBtn = $("<button>").addClass("updBookmarkBtn").html("수정");
+                    let delBookmarkBtn = $("<button>").addClass("delBookmarkBtn").html("삭제");
+                    
+                    bookmarkContentsBtn.append(updBookmarkBtn).append(delBookmarkBtn);
+
+                    bookmarkContents.append(bookmarkContentsImg).append(bookmarkContentsTxt).append(bookmarkContentsBtn);
+
+                    $(".selectBookmarkList").prepend(bookmarkContents);
+                }
+            }
+            
+			
+            function insertBookmark(){
+
+                let bm_content = $(".insertbookmarkContentBox").html();
+                let b_isbn = $(".searchResultBookInfo").attr("isbn");
+                let b_img_url = $("#b_img_url").attr("src");
+                let b_title = $("#b_title").html();
+                let b_writer = $(".bookWriter").html();
+                let b_genre = $(".bookGenre").html();
+                let arrBM = document.querySelectorAll(".bookmarkContents");
+                let lastBm_seq = $(arrBM[0]).attr("seq");
+                $.ajax({
+                    url: "/bookmark/insertBookmark",
+                    type: "post",
+                    data: {
+                        "bm_content": bm_content,
+                        "b_isbn": b_isbn,
+                        "b_img_url": b_img_url,
+                        "b_title": b_title,
+                        "b_writer": b_writer,
+                        "b_genre": b_genre
+                    }, success:function(data){
+                    	bookmarkList(lastBm_seq);
+                        $(".insertbookmarkContentBox").html("");
+                    }
+                })
+            }
+
+            
+			$(".insertbookmarkContentBox").on("keydown", function(e){
+				if(e.keyCode == 13) {
+					insertBookmark();
+					$(".insertbookmarkContentBox").html("");
+            		$(".searchResultBookInfo *").remove();
+
+				}
+			});		
+			$("#insertBookmarkBtn").on("click", function() {
+				insertBookmark();
+				$(".insertbookmarkContentBox").html("");
+        		$(".searchResultBookInfo *").remove();
+
+			});
+
+            
             //footer: 사업자 정보 토글 기능
             $("#business_info_text").hide();
 

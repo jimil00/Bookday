@@ -352,10 +352,11 @@ span.size-30 {
 
 /* contentsBodyPostContents */
 .emptyPostContents {
-	font-size: 15px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	text-align: center;
+font-size: 15px;
+text-align:center;
+line-height:200px;
+width:100%;
+height:200px;
 }
 
 .postContents {
@@ -480,7 +481,7 @@ span.size-45 {
 	height: 1px;
 	border: 0;
 	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
+	margin-top: 50px;
 	margin-bottom: 15px;
 }
 
@@ -618,8 +619,6 @@ span.size-45 {
 						id="snBookshelves">shelves</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
-					<li><span class="material-symbols-outlined size-35"
-						id="snCalendar">calendar_month</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookmark">book</span></li>
 					<li class="selected"><span
@@ -817,10 +816,7 @@ span.size-45 {
 				location.href = "/bookshelves/selectBookshelvesListById";
 			})
 			$("#snStatistics").on("click", function() {
-				location.href = "/bookstatistics/select-";
-			})
-			$("#snCalendar").on("click", function() {
-				location.href = "/bookcalendar/select-";
+				location.href = "/bookstatistics/toStatistics";
 			})
 			$("#snBookmark").on("click", function() {
 				location.href = "/bookmark/selectBookmarkListById";

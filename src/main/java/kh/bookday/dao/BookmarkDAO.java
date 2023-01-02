@@ -14,8 +14,16 @@ public class BookmarkDAO {
 	@Autowired
 	private SqlSession db;
 	
+	public void insertBookmark(BookmarkDTO dto) {
+		db.insert("Bookmark.insertBookmark", dto);
+	}
+	
 	public List<BookmarkDTO> selectBookmarkListById(String id){
 		return db.selectList("Bookmark.selectBookmarkListById", id);
+	}
+	
+	public List<BookmarkDTO> selectBmListByBmseq(BookmarkDTO dto) {
+		return db.selectList("Bookmark.selectBmListByBmseq", dto);
 	}
 	
 	public List<BookmarkDTO> selectBookmarkListBySw(String searchWord){
@@ -25,4 +33,7 @@ public class BookmarkDAO {
 	public void deleteBookmarkBySeq(int bm_seq) {
 		db.delete("Bookmark.deleteBookmarkBySeq", bm_seq);
 	}
+
+
+
 }
