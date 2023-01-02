@@ -191,12 +191,13 @@ span, #logoImg:hover {
 
 .book-header, .post-header {
 	height: 35px;
-	width: 100%; 
+	width: 100%;
 	font-size: 17px;
 	line-height: 35px;
 	padding-left: 10px;
 	color: #ffffff;
 	background-color: #5397fc;
+	border-radius: 5px;
 }
 
 .book {
@@ -221,16 +222,15 @@ span, #logoImg:hover {
 	width: 120px;
 	height: 180px;
 	border-radius: 4%;
-	
 }
 
 .b_title {
 	overflow: hidden;
 	height: 23px;
-	font-weight: bold;
-	word-wrap: break-word;
+	font-weight: bold; word-wrap : break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	word-wrap: break-word;
 }
 
 .b_writer {
@@ -255,7 +255,7 @@ span, #logoImg:hover {
 	/* 	text-align: center; */
 	margin-left: 55px;
 	margin-bottom: 20px;
-	margin-top:25px;
+	margin-top: 25px;
 	border: 1px solid #5397fc;
 	border-radius: 15px;
 }
@@ -296,9 +296,9 @@ span, #logoImg:hover {
 .like-icon {
 	float: left;
 	position: relative;
-	bottom: 1px;
+	bottom: 1px; font-size : 18px;
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 	font-size: 18px;
-	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 
 .like-text {
@@ -393,7 +393,8 @@ span, #logoImg:hover {
 					<c:otherwise>
 						<c:forEach var="book" items="${blist }">
 							<div class="book-main">
-								<a href="/book/selectBookinfo?b_isbn=${book.b_isbn }"><img class="book-img" src="${book.b_img_url }"></a>
+								<a href="/book/selectBookinfo?b_isbn=${book.b_isbn }"><img
+									class="book-img" src="${book.b_img_url }"></a>
 								<div class="b_title" title="${book.b_title }">${book.b_title }</div>
 								<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
 							</div>
@@ -425,7 +426,9 @@ span, #logoImg:hover {
 								</div>
 								<hr class="body-hr">
 								<div class="p-title" title="${post.p_title }">${post.p_title }</div>
-								<div class="p-content"><a href="/" style="text-decoration-line: none; color: black;">${post.p_content }</a></div>
+								<div class="p-content">
+									<a href="/" style="text-decoration-line: none; color: black;">${post.p_content }</a>
+								</div>
 							</div>
 						</c:forEach>
 					</c:otherwise>
