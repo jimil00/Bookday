@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -195,6 +197,19 @@ span, #logoImg:hover {
 	text-align: center;
 }
 
+.input-file-button {
+	padding: 6px 25px;
+	border-radius: 4px;
+	background-color: white;
+	border: 1px solid #5397fc;
+	color: #5397fc;
+	cursor: pointer;
+}
+
+.prof_img {
+	margin-bottom: 25px;
+}
+
 .input_info {
 	
 }
@@ -208,8 +223,25 @@ span, #logoImg:hover {
 	width: 150px;
 }
 
-.check_phone, #fin_btn, #cancel_btn, #phone_btn {
+.check_phone, #fin_btn, #cancel_btn, #phone_btn, #search_btn {
 	display: none;
+}
+
+#check_phone_btn {
+	position: absolute;
+	height: 40px;
+	top: 520px;
+	right: 300px;
+}
+
+#phone_btn, #search_btn, #check_btn {
+	border: 1px solid #5397fc;
+	outline: none;
+	box-shadow: 3px 3px #80808050;
+	background-color: white;
+	height: 40px;
+	border-radius: 8px;
+	color: #5397fc;
 }
 
 .input, .block_input {
@@ -222,7 +254,7 @@ span, #logoImg:hover {
 	box-shadow: 3px 3px #80808050;
 }
 
-button, input[type=button] {
+.body_btn, input[type=button] {
 	color: white;
 	transition-duration: 0.1s;
 	border: 1px solid #d5d5d5;
@@ -236,6 +268,21 @@ button, input[type=button] {
 
 #img_upload {
 	display: none;
+}
+
+#input_btn {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	width: 30%;
+}
+
+.btns>button {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+#postcode {
+	display: inline;
 }
 /* footer */
 .footer {
@@ -327,7 +374,8 @@ button, input[type=button] {
 	<div class="container">
 		<div class="header">
 			<div class="logo">
-				<img src="/resources/bookday_logotitle.png" id="logoImg">
+				<a href="/"><img src="/resources/bookday_logotitle.png"
+					id="logoImg"></a>
 			</div>
 			<div class="search">
 				<div class="searchBox">
@@ -365,82 +413,91 @@ button, input[type=button] {
 		<hr id="headerHr">
 		<div class="navi"></div>
 		<div class="body">
-			<form action="/member/updateMemInfo" method="post" enctype="multipart/form-data">
 
+			<form action="/member/updateMemInfo" method="post"
+				enctype="multipart/form-data">
 				<div class="mem_info_box">
 					<div class="prof_info">
 						<div class="prof_img">
-							<img src="/resources/basic.png" id="prof_img">
+							<img src="/resources/profile/${dto.sysprofname}" id="prof_img">
 						</div>
-						<input type="file" name="prof_img" class="input_file"
-							id="img_upload" accept=".png,.jpg,.jpeg,.gif,.JPG">
+						<label class="input-file-button" for="img_upload"> 업로드 </label> <input
+							type="file" name="prof_img" class="input_file" id="img_upload"
+							accept=".png,.jpg,.jpeg,.gif,.JPG" style="display:" "none"}/>
 					</div>
-
+					<hr>
 					<div class="input_info">
 						<p>닉네임</p>
 						<input type="text" name="nickname" value="${dto.nickname}"
 							readonly class="input" id="nickname"> <span
 							id="nk_result"></span>
 					</div>
-
+					<hr>
 					<div class="input_info">
 						<p>이름</p>
 						<input type="text" name="name" value="${dto.name}" readonly
-							class="input" id="name"> <span id="n_result"></span>
+							class="input" id="name" maxlength="5"> <span
+							id="n_result"></span>
 					</div>
-
+					<hr>
 					<div class="input_info">
 						<p>휴대폰 번호</p>
 						<div>
 							<input type="text" name="phone" value="${dto.phone}" readonly
 								class="input">
-							<button type="button" class="verifi_btn" id="phone_btn">인증</button>
+							<button type="button" class="body_btn" id="phone_btn">인증</button>
 							<div class="check_phone">
 								<input type="text" name="check_phone" placeholder="인증번호"
-									class="input">
-								<button class="verifi_btn">확인</button>
+									id="verifi_code" class="input">
+								<button type="button" class="body_btn" id="check_btn">확인</button>
 							</div>
 						</div>
-
+						<hr>
 						<div class="input_info">
 							<p>비밀번호</p>
-
-							<!-- 				<form action="/member/updatepw"> -->
 							<div class="box">
-								<input type="text" name="current_pw" placeholder="기존 비밀번호"
-									class="block_input"> <input type="text" name="pw"
+								<input type="password" name="current_pw" placeholder="기존 비밀번호"
+									class="block_input"> <input type="password" name="pw"
 									placeholder="새 비밀번호" class="block_input" id="pw"> <span
-									id="pw_result"></span> <input type="text" name="new_pw_check"
-									placeholder="새 비밀번호 확인" class="block_input" id="check_pw">
-								<span id="check_pw_result"></span>
-								<!-- 		<button class="verifi_btn">확인</button> -->
+									id="pw_result"></span> <input type="password"
+									name="new_pw_check" placeholder="새 비밀번호 확인" class="block_input"
+									id="check_pw"> <span id="check_pw_result"></span>
 							</div>
-							<!-- 	</form> -->
 						</div>
-
+						<hr>
 						<div class="input_info">
 							<p>이메일</p>
 							<input type="text" name="email" value="${dto.email}" readonly
 								class="input" id="email"> <span id="email_result"></span>
 						</div>
-
+						<hr>
 						<div class="input_info">
 							<p>주소</p>
 							<div class="box">
-								우편번호<input type="text" name="postcode" value="${dto.postcode}"
-									readonly placeholder="우편번호" class="block_input"> 도로명
-								주소<input type="text" name="address1" value="${dto.address1}"
-									readonly placeholder="도로명 주소" class="block_input"> 상세
-								주소<input type="text" name="address2" value="${dto.address2}"
+								<p>우편번호</p>
+
+								<input type="text" id="postcode" name="postcode"
+									value="${dto.postcode}" readonly placeholder="우편번호"
+									class="block_input">
+
+								<button type="button" id="search_btn" class="body_btn"
+									onclick="execDaumPostcode()">찾기</button>
+
+								<p>도로명 주소</p>
+								<input type="text" id="address1" name="address1"
+									value="${dto.address1}" readonly placeholder="도로명 주소"
+									class="block_input">
+								<p>상세 주소</p>
+								<input type="text" name="address2" value="${dto.address2}"
 									readonly placeholder="상세 주소" class="block_input">
 							</div>
 						</div>
-
+						<hr>
 					</div>
 					<div class="btns">
-						<button type="button" id="input_btn">수정</button>
-						<button id="fin_btn">완료</button>
-						<button type="button" id="cancel_btn">취소</button>
+						<button type="button" class="body_btn" id="input_btn">수정</button>
+						<button type="submit" class="body_btn" id="fin_btn">완료</button>
+						<button type="button" class="body_btn" id="cancel_btn">취소</button>
 					</div>
 				</div>
 			</form>
@@ -519,6 +576,7 @@ button, input[type=button] {
          }
       })
       
+
 //byte데이터나 stream 데이터를 string 형식으로 표시
    function fileToBase64(file){
         const reader = new FileReader();
@@ -528,8 +586,8 @@ button, input[type=button] {
             console.dir(reader.result)   // base64
          }
 }
-  
 					$("#img_upload").on("change", function(){
+						
 						console.log($("#img_upload").val());
 						
 						if($("#img_upload").val() == ""){
@@ -538,7 +596,7 @@ button, input[type=button] {
 						}
 						
 						let ext = $("#img_upload").val().split(".").pop().toLowerCase(); //파일 확장자를 뜻하게 된다.
-						let accept = ["png", "jpg","jpeg","gif"];
+						let accept = [".png", ".jpg",".jpeg",".gif"];
 						let result=$.inArray(ext,accept); //첫번째 인자값이 두번째 인자 배열 안에 존재한다면 0, 존재하지 않는다면 -1을 반환
 						//console.log(result); //accept로 해당 확장자만 선택할 수 있도록 만들 수 있다.
 						
@@ -557,7 +615,7 @@ button, input[type=button] {
     	  $("#input_btn").css("display","none");
     	  $("#fin_btn, #cancel_btn, #phone_btn").css("display","inline-block");
     	  $("#img_upload").css("display","block");
-    	  
+    	  $("#search_btn").css("display","inline");
     	  //$("#fin_btn").attr("disabled", true);
     	  
 
@@ -615,7 +673,7 @@ button, input[type=button] {
                 $("#pw_result").html("유효하지 않은 비밀번호입니다.");
               }else if(pw == ""){
             	  	$("#pw_result").html("");
-            		$("#fin_btn").attr("disabled", true);
+            		//$("#fin_btn").attr("disabled", true);
               }else{
             	  $("#pw_result").css("color","#5397fc");
             	  $("#pw_result").html("사용 가능한 비밀번호입니다.");
@@ -657,8 +715,10 @@ button, input[type=button] {
       
  	$("#name").on("keyup",function(){
 
-		 let name= $("#name").val();
+		let name= $("#name").val();
         let nameRegex=/[가-힣]{2,5}/;
+        
+        console.log(name);
 
 		    //이름 유효성 검사
 			if(!nameRegex.test(name) && name != ""){
@@ -671,7 +731,7 @@ button, input[type=button] {
          }else{
         	 $("#n_result").css("color","#5397fc");
         	 $("#n_result").html("사용 가능한 이름입니다.");
-        	  $("#fin_btn").attr("disabled", false);
+        	  //$("#fin_btn").attr("disabled", false);
   			 
       }
 
@@ -715,16 +775,61 @@ button, input[type=button] {
     	  
     	   $(".check_phone").css("display","block");
     	  
-    	   
     	  let phone=$("#phone").val();
+    	  
     	  console.log(phone);
     	  
     	  if(phone == ""){  
     		  alert("휴대폰 번호를 입력해주세요.");
     		  }else{
     			  alert("인증번호를 발송하였습니다.");
-    		  }
-    	  
+    			  
+    				//인증 번호 발송되는 에이작스
+         		 $.ajax({
+                     url: "/member/createAuthNum",
+                      data: {"phone": phone },
+         		 		async : false
+
+                    }).done(function (resp) {
+                 	   
+                 		    //확인 버튼 눌렀을 때
+                            $("#check_btn").on("click",function(){
+                 			   
+                 			   let verifi_code=$("#verifi_code").val();
+                 			   
+                 			   $.ajax({
+                                    url: "/member/doAuthNumMatch",
+                                    data: {"code": verifi_code}
+
+                                   }).done(function (resp) {
+                                 	  
+                                 	  console.log(resp);
+                                 	  
+                                 	  //입력 값 수정 불가 & 버튼 2번 클릭 못하게 해야 될듯
+                                 	  if(resp == false){
+                                 		  alert("인증번호가 일치합니다.")
+                                 		  $("#verifi_code").css("border-color", "#5397fc");
+                                 		  
+                                 		   $("#phone").on("input",function(){
+                                            	location.reload();
+                                            });
+                                 		  
+                                 		  //$("#phone").attr("readonly",true);
+                                 		  $("#verifi_code").attr("readonly",true);
+                                 		  $("#verfi_btn").attr("disabled", true); 
+                                 		  $("#check_btn").attr("disabled", true);
+                                 		  $("#signup_btn").attr("disabled", false);
+                                 		   
+                                 	  }else{
+                                 		  alert("인증번호가 틀립니다.");
+                                 		  $("#verifi_code").css("border-color", "red");
+                                 		  $("#input_btn").attr("disabled", true);
+                                 	  }
+                                   });
+                 		   });
+                 	   });
+                    }
+
     		  });
 
       });
@@ -742,6 +847,22 @@ button, input[type=button] {
   	location.reload();
   	 
    });
+    
+	//우편번호 유효성 검사(api)
+	function execDaumPostcode() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+
+						var roadAddr = data.roadAddress; // 도로명 주소 변수
+
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById("postcode").value = data.zonecode;
+						document.getElementById("address1").value = roadAddr;
+
+					}
+				}).open();
+	}
     
         //footer: 사업자 정보 토글 기능
        $("#business_info_text").hide();
@@ -761,7 +882,8 @@ button, input[type=button] {
                         $("#arrow_down2").css("display", "block");
                         $("#arrow_up2").css("display", "none");
                     });
-   </script>
-</body>
 
+                    
+</script>
+</body>
 </html>

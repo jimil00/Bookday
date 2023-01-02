@@ -229,8 +229,18 @@ span, #logoImg:hover {
 }
 
 #deli{
-width:300px;
-	height:fit-content;
+margin-top:25px;
+width:350px;
+height:fit-content;
+
+}
+
+#search{
+	width:195px;
+}
+
+#genre{
+	width:250px;
 }
 
 .reading {
@@ -238,9 +248,9 @@ width:300px;
 }
 
 #sub-btn {
-	margin-top: 50px;
+	margin-top: 25px;
 	color: white;
-	width: 40%;
+	width: 35%;
 	height: 50px;
 	border-radius: 6px;
 	background-color: #5397fc;
@@ -332,10 +342,14 @@ width:300px;
 .flex-postBox>.post_box {
 	margin: 20px;
 	width: 250px;
-	border: 1px solid #5397fc;
+/* 	border: 1px solid #5397fc; */
 	border-radius: 15px;
 	height: 300px;
 	text-align: center;
+    background: var(--ui-up);
+    overflow: hidden;
+    box-shadow: 2px 2px 20px rgb(0 0 0 / 6%), 2px 2px 10px rgb(0 0 0 / 4%);
+        letter-spacing: -.6px;
 }
 
 .profile, .p_title_box {
@@ -358,12 +372,18 @@ width:300px;
 .profile>p {
 	line-height: 55px;
 	margin: 0px;
+	
 }
 
 .p_title_box {
+	margin-top:10px;
 	justify-content: space-around;
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+.line {
+	color: #d5d5d5;
 }
 
 #p_like {
@@ -377,14 +397,17 @@ width:300px;
 }
 
 .post_content {
-	margin: 0px;
-	padding: 10px;
-	overflow: hidden;
-	width: fit-content;
+	margin-top: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: auto;
+	display: flex;
+	flex-wrap: wrap;
 	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-word;
 	display: -webkit-box;
-	line-height: 30px;
-	-webkit-line-clamp: 4; /* 표시하고자 하는 라인 수 */
+	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
 }
 
@@ -545,9 +568,9 @@ width:300px;
 
 					<div class="detail">
 						<img src="/resources/search.png" class="d_img" data-aos="fade-up"
-							data-aos-duration="3000"> <img
+							data-aos-duration="3000" id="search"> <img
 							src="/resources/bookmark.png" class="d_img" data-aos="fade-up"
-							data-aos-duration="3000"> <img src="/resources/write.png"
+							data-aos-duration="3000" id="bookmark"> <img src="/resources/write.png"
 							class="d_img" data-aos="fade-up" data-aos-duration="3000">
 					</div>
 				</div>
@@ -564,7 +587,7 @@ width:300px;
 					<div class="detail" data-aos="fade-up" data-aos-duration="3000">
 						<img src="/resources/stats.png" class="d_img" data-aos="fade-up"
 							data-aos-duration="3000"> <img src="/resources/genre.png"
-							class="d_img" data-aos="fade-up" data-aos-duration="3000">
+							class="d_img" data-aos="fade-up" data-aos-duration="3000" id="genre">
 						<img src="/resources/ranking.png" class="d_img" id="ranking" data-aos="fade-up"
 							data-aos-duration="3000">
 					</div>
@@ -581,13 +604,16 @@ width:300px;
 
 					<div class="detail2" data-aos="fade-up" data-aos-duration="3000">
 						<img src="/resources/deli.png" class="d_img" id="deli">
+					</div>
+					
+					<div class="detail2" data-aos="fade-up" data-aos-duration="3000">
 						<ul class="rental">
-							<li>대여 권 수(달)<span>5권</span></li>
+							<li>대여 권 수(달)<span>10권</span></li>
 							<li>대여일<span>10일</span></li>
+							<li>대여 횟수(달)<span>3회</span></li>
 						</ul>
 					</div>
-
-
+			
 					<button id="sub-btn">종이책 구독 시작하기</button>
 				</div>
 
@@ -677,11 +703,11 @@ width:300px;
 										<div class="profile">
 											<img src="/resources/basic.png" class="profile_img">
 											<%-- <a href="/post/selectPostByPseq?p_seq=${p.p_seq}"> --%>
-											<p>${p.p_writer_nn}님의포스트</p>
+											<h3>${p.p_writer_nn}님의포스트</h3>
 											<!-- </a> -->
 										</div>
-										<hr>
-
+										
+										<hr class="line">
 										<div class="p_title_box">
 											<p class="post_title">${p.p_title}</p>
 											<div id="p_like">
@@ -799,6 +825,11 @@ width:300px;
 		slidesPerView:6,
 		spaceBetween:5
 	});
+      
+      var swiper = new Swiper(".swiper-container_post", {
+  		slidesPerView:3,
+  		spaceBetween:10
+  	});
       
       
         //footer: 사업자 정보 토글 기능

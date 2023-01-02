@@ -384,11 +384,12 @@ height: 50px;
 }
 
 .r_contents {
-display: flex;
+display: inline-flex;
 }
 
 .r_content {
-height: 30px;
+height:fit-content;
+width:fit-content;
 margin: 10px;
 resize: none;
 width:auto;
@@ -396,7 +397,8 @@ width:auto;
 
 .r_like {
 position: relative;
-left: 73%;
+/* left: 73%;  */
+left:25px;
 }
 
 .r_like_icon {
@@ -432,8 +434,13 @@ border: 1px solid #5397fc;
 .content {
 border: none;
 resize: none;
+width:880px;
 height:fit-content;
 overflow: hidden;
+	word-break: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }
 
 .content:focus {
@@ -782,6 +789,7 @@ display:none;
                         <c:choose>
                             <c:when test="${not empty rlist}">
                                 <c:forEach items="${rlist}" var="r">
+                                   
                                     <div class="r_title_box">
                                         <div class="r_writer_info">
                                             <input type="hidden" value="${r.rv_seq}" class="rv_seq">

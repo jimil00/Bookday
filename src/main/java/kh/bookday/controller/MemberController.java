@@ -265,10 +265,14 @@ public class MemberController {
 		
 		String id = String.valueOf(session.getAttribute("loginID"));
 		
-		service.updateMemInfo(dto);
+		dto.setId(id);
+		
+		//비밀번호 암호화
+		String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
+		dto.setPw(updatedPw);
 		
 		//파일 관련 업데이트 업로드 참고
-		String realPath= session.getServletContext().getRealPath("profile_img");
+		String realPath= session.getServletContext().getRealPath("/resources/profile");
 		
 		File filePath= new File(realPath);
 		
@@ -280,12 +284,11 @@ public class MemberController {
 				if(file.getOriginalFilename().equals("")) {continue;}
 				
 				String oriprofname= file.getOriginalFilename();
-				
 				String sysprofname= UUID.randomUUID()+"_"+oriprofname;
 				
-				
-				System.out.println(oriprofname);
-				System.out.println(sysprofname);
+				//파일 입력
+				dto.setOriprofname(oriprofname);
+				dto.setSysprofname(sysprofname);
 				
 				try {
 					file.transferTo(new File(filePath+"/"+sysprofname));
@@ -293,12 +296,16 @@ public class MemberController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println(dto);
 				
-				//service.insertProfImg(oriprofname,sysprofname,id);
+				System.out.println(dto.getAddress1());
+				System.out.println(dto.getAddress1());
+				
+				service.updateMemInfo(dto);
 
 			}
 			
-		}return "member/mypage";
+		}return "redirect:toMypage";
 	}
 	
 

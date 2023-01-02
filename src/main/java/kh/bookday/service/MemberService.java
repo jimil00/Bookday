@@ -86,7 +86,6 @@ public class MemberService {
 		Map<String ,String> param = new HashMap<>();
 		param.put("pw", pw);
 		param.put("phone", phone);
-
 	}
 
 
@@ -248,13 +247,6 @@ public class MemberService {
 	public void updateMemInfo(MemberDTO dto) {
 		dao.updateMemInfo(dto);
 	}
-	
-	//프로필 이미지 삽입
-//	public void insertProfImg() {
-//		dao.insertProfImg();
-//	}
-		
-	
 
 	// 지민
 	// 회원 배송지 정보 입력

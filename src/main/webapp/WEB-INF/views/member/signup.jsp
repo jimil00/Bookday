@@ -142,12 +142,12 @@ position:absolute;
 					<div id="ph_result"></div>
 				</div>
 				<div class="box">
-					<input type="text" placeholder="이름 5자 이내)" name="name" id="name"
+					<input type="text" placeholder="이름(5자 이내)" name="name" id="name"
 						maxlength="5">
 						<span class="material-symbols-outlined" id="check_icon1">check</span>
 				</div>
 				<div class="box">
-					<input type="text" placeholder="이메일" name="email" id="email" maxlength="19">
+					<input type="text" placeholder="이메일" name="email" id="email" maxlength="25">
 					<span class="material-symbols-outlined" id="check_icon2">check</span>
 				</div>
 				<div class="box">
@@ -158,7 +158,7 @@ position:absolute;
 				</div>
 				<div class="box">
 					<div>
-						<input type="password" placeholder="비밀번호(영문자 및 ! @ $ % - 포함) 16자 이내" name="pw" id="pw"
+						<input type="password" placeholder="비밀번호(영문자 및 특수문자 ! @ $ % - 16자 이내)" name="pw" id="pw"
 							minlength="8" maxlength="16">
 							<span class="material-symbols-outlined" id="check_icon4">check</span>
 							<div id="pw_result"></div>
@@ -190,7 +190,7 @@ $(document).ready(function(){
 	$("#verifi_code").attr("readonly", true); 
 	
 	$("#name, #nickname, #phone,#verifi_code,#email,#pw,#check_pw")
-    .on("blur",function(){
+    .on("keyup",function(){
     	
 	let name= $("#name").val();
      let nickname=$("#nickname").val();
@@ -203,7 +203,7 @@ $(document).ready(function(){
      let nameRegex=/[가-힣]{2,5}/;
      let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
      let phoneRegex=/^01\d{1}\d{3,4}\d{4}$/;
-     let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[A-Z a-z]{5,7}.[a-zA-Z]{2,3}$/;
+     let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[A-Z a-z]{3,7}(.[a-zA-Z]{2,3})?.[a-zA-Z]{2,3}$/;
      let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
 	
      if(name=="" || nickname=="" || phone=="" || 
@@ -330,9 +330,8 @@ $(document).ready(function(){
           }
 
 	});
-	
-		
-      	$("#name").on("blur",function(){
+			
+      	$("#name").on("keyup",function(){
 
 		 let name= $("#name").val();
          let nameRegex=/[가-힣]{2,5}/;
@@ -351,10 +350,10 @@ $(document).ready(function(){
 
 		});
       	
-    	$("#email").on("blur",function(){
+    	$("#email").on("keyup",function(){
 
 			let email=$("#email").val();
-			let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[A-Z a-z]{5,7}.[a-zA-Z]{2,3}$/;
+			let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[A-Z a-z]{3,7}(.[a-zA-Z]{2,3})?.[a-zA-Z]{2,3}$/;
 
 			   //이메일 유효성 검사
 			   if(!emailRegex.test(email) && email != ""){
@@ -368,7 +367,7 @@ $(document).ready(function(){
               
 		});
 
-		$("#nickname").on("blur",function(){
+		$("#nickname").on("keyup",function(){
 			let nickname=$("#nickname").val();
 			let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
 
