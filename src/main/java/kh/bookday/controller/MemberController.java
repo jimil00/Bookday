@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import org.springframework.web.multipart.MultipartFile;
-import kh.bookday.dto.ProfileDTO;
 import kh.bookday.common.Pw_SHA256;
 import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.MonthSubMemberDTO;
@@ -248,8 +247,8 @@ public class MemberController {
 	// 지민
 
 	//마이페이지 회원정보수정 페이지로 이동
-	@RequestMapping(value="ToUpdateMemInfo")
-	public String ToUpdateMemInfo(Model model) {
+	@RequestMapping(value="toUpdateMemInfo")
+	public String toUpdateMemInfo(Model model) {
 		
 		String id = (String)session.getAttribute("loginID");
 		
@@ -295,7 +294,7 @@ public class MemberController {
 					e.printStackTrace();
 				}
 				
-				service.insertProfImg(new ProfileDTO(0,oriprofname,sysprofname,id));
+				//service.insertProfImg(oriprofname,sysprofname,id);
 
 			}
 			

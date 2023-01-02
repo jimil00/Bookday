@@ -23,7 +23,6 @@ import kh.bookday.common.NCP_sms;
 import kh.bookday.dao.MemberDAO;
 import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.MonthSubMemberDTO;
-import kh.bookday.dto.ProfileDTO;
 
 @Service
 public class MemberService {
@@ -251,9 +250,9 @@ public class MemberService {
 	}
 	
 	//프로필 이미지 삽입
-	public void insertProfImg(ProfileDTO dto) {
-		dao.insertProfImg(dto);
-	}
+//	public void insertProfImg() {
+//		dao.insertProfImg();
+//	}
 		
 	
 

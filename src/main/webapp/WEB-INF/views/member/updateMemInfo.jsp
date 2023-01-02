@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,58 +187,55 @@ span, #logoImg:hover {
 .navi {
 	width: 100%;
 	height: 50px;
-	}
-	
-/* body */
+}
 
-.mem_info_box>div{
-	margin:auto;
+/* body */
+.mem_info_box>div, input {
+	margin: auto;
+	text-align: center;
 }
 
 .input_info {
+	
 }
-	
-.block_input{
-	display:block;
-}	
 
-#prof_img{
-	 border-radius: 50%;
-	 width:150px;
-}	
-
-
-
-.check_phone, #fin_btn, #cancel_btn,#phone_btn {
-display:none;
+.block_input {
+	display: block;
 }
-	
-	
-input[type=text] {
+
+#prof_img {
+	border-radius: 50%;
+	width: 150px;
+}
+
+.check_phone, #fin_btn, #cancel_btn, #phone_btn {
+	display: none;
+}
+
+.input, .block_input {
 	border: 1px solid #d5d5d5;
 	border-radius: 8px;
 	padding-left: 10px;
 	width: 30%;
 	height: 50px;
 	outline: none;
-	box-shadow:3px 3px #80808050;
-}	
-	
-	
-button, input[type=button]{
-	color:white;
+	box-shadow: 3px 3px #80808050;
+}
+
+button, input[type=button] {
+	color: white;
 	transition-duration: 0.1s;
 	border: 1px solid #d5d5d5;
 	outline: none;
-	box-shadow:3px 3px #80808050;
+	box-shadow: 3px 3px #80808050;
 	background-color: #5397fc;
 	border-radius: 8px;
 	width: 5%;
 	height: 50px;
 }
 
-#img_upload{
-	display:none;
+#img_upload {
+	display: none;
 }
 /* footer */
 .footer {
@@ -368,113 +365,129 @@ button, input[type=button]{
 		<hr id="headerHr">
 		<div class="navi"></div>
 		<div class="body">
-		<form action="/member/updateUserInfo" method="post" enctype="multipart/form-data">
-			<div class="mem_info_box">
-				<div class="prof_info">
-				<div class="prof_img"><img src="/resources/basic.png" id="prof_img"></div>
-				<input type="file" name="prof_img" class="input" id="img_upload" accept=".png,.jpg,.jpeg,.gif,.JPG">
+			<form action="/member/updateMemInfo" method="post" enctype="multipart/form-data">
+
+				<div class="mem_info_box">
+					<div class="prof_info">
+						<div class="prof_img">
+							<img src="/resources/basic.png" id="prof_img">
+						</div>
+						<input type="file" name="prof_img" class="input_file"
+							id="img_upload" accept=".png,.jpg,.jpeg,.gif,.JPG">
+					</div>
+
+					<div class="input_info">
+						<p>닉네임</p>
+						<input type="text" name="nickname" value="${dto.nickname}"
+							readonly class="input" id="nickname"> <span
+							id="nk_result"></span>
+					</div>
+
+					<div class="input_info">
+						<p>이름</p>
+						<input type="text" name="name" value="${dto.name}" readonly
+							class="input" id="name"> <span id="n_result"></span>
+					</div>
+
+					<div class="input_info">
+						<p>휴대폰 번호</p>
+						<div>
+							<input type="text" name="phone" value="${dto.phone}" readonly
+								class="input">
+							<button type="button" class="verifi_btn" id="phone_btn">인증</button>
+							<div class="check_phone">
+								<input type="text" name="check_phone" placeholder="인증번호"
+									class="input">
+								<button class="verifi_btn">확인</button>
+							</div>
+						</div>
+
+						<div class="input_info">
+							<p>비밀번호</p>
+
+							<!-- 				<form action="/member/updatepw"> -->
+							<div class="box">
+								<input type="text" name="current_pw" placeholder="기존 비밀번호"
+									class="block_input"> <input type="text" name="pw"
+									placeholder="새 비밀번호" class="block_input" id="pw"> <span
+									id="pw_result"></span> <input type="text" name="new_pw_check"
+									placeholder="새 비밀번호 확인" class="block_input" id="check_pw">
+								<span id="check_pw_result"></span>
+								<!-- 		<button class="verifi_btn">확인</button> -->
+							</div>
+							<!-- 	</form> -->
+						</div>
+
+						<div class="input_info">
+							<p>이메일</p>
+							<input type="text" name="email" value="${dto.email}" readonly
+								class="input" id="email"> <span id="email_result"></span>
+						</div>
+
+						<div class="input_info">
+							<p>주소</p>
+							<div class="box">
+								우편번호<input type="text" name="postcode" value="${dto.postcode}"
+									readonly placeholder="우편번호" class="block_input"> 도로명
+								주소<input type="text" name="address1" value="${dto.address1}"
+									readonly placeholder="도로명 주소" class="block_input"> 상세
+								주소<input type="text" name="address2" value="${dto.address2}"
+									readonly placeholder="상세 주소" class="block_input">
+							</div>
+						</div>
+
+					</div>
+					<div class="btns">
+						<button type="button" id="input_btn">수정</button>
+						<button id="fin_btn">완료</button>
+						<button type="button" id="cancel_btn">취소</button>
+					</div>
 				</div>
-				<hr>
-				<div class="input_info">
-				<p>닉네임</p>
-				<input type="text" name="nickname" value="${dto.nickname}" readonly class="input" id="nickname">
-				<span id="nk_result"></span>
-				</div>
-				<hr>
-				<div class="input_info">
-				<p>이름</p>
-				<input type="text" name="name" value="${dto.name}" readonly class="input" id="name">
-				<span id="n_result"></span>
-				</div>
-				<hr>
-				<div class="input_info">
-				<p>휴대폰 번호</p>
-				<div class="block_input"><input type="text" name="phone" value="${dto.phone}" readonly class="input"><button type="button" class="verifi_btn" id="phone_btn">인증</button></div>
-				<div class="check_phone"><input type="text" name="check_phone" placeholder="인증번호" class="input"><button class="verifi_btn">확인</button></div>
-				</div>
-				<hr>
-				<div class="input_info">
-				<p>비밀번호</p>
-<!-- 				<form action="/member/updatepw"> -->
-				<div class="box">
-				<input type="text" name="current_pw" placeholder="기존 비밀번호" class="block_input">
-				<input type="text" name="pw" placeholder="새 비밀번호" class="block_input" id="pw"> 
-				<span id="pw_result"></span>
-				<input type="text" name="new_pw_check" placeholder="새 비밀번호 확인" class="block_input" id="check_pw">
-				<span id="check_pw_result"></span>
-		<!-- 		<button class="verifi_btn">확인</button> -->
-				</div>
-			<!-- 	</form> -->
-				</div>
-				<hr>
-				<div class="input_info">
-				<p>이메일</p>
-				<input type="text" name="email" value="${dto.email}" readonly class="input" id="email">
-				<span id="email_result"></span>
-				</div>
-				<hr>
-				<div class="input_info">
-				<p>주소</p>
-				<div class="box">
-				우편번호<input type="text" name="postcode" value="${dto.postcode}" readonly placeholder="우편번호" class="block_input" >
-				도로명 주소<input type="text" name="address1" value="${dto.address1}" readonly placeholder="도로명 주소" class="block_input">
-				상세 주소<input type="text" name="address2" value="${dto.address2}" readonly placeholder="상세 주소" class="block_input">
-				</div>
-				</div>
-				<hr>
-			</div>
-			<div class="btns">
-			<button type="button" id="input_btn">수정</button>
-			<button id="fin_btn">완료</button>
-			<button type="button" id="cancel_btn">취소</button>
-			</div>
 			</form>
 		</div>
-			<!-- body -->
+		<!-- body -->
 
-			<div class="footer">
-				<hr>
-				<div class="f_header">
-					<a href="/"><img src="/resources/bookday_logotitle.png"></a>
+		<div class="footer">
+			<hr>
+			<div class="f_header">
+				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
 
-					<div class="sns_icon">
-						<a href="#"><img src="/resources/instagram.png" class="sns"></a>
-						<a href="#"><img src="/resources/facebook.png" class="sns"></a>
-						<a href="#"><img src="/resources/twitter_black.png"
-							class="sns"></a> <a href="#"><img
-							src="/resources/youtube.png" class="sns"></a>
-					</div>
-
-				</div>
-				<div class="business_info">
-					<div class="inline_info">
-						<div id="business_info_title">사업자 정보</div>
-						<span class="arrow_icon material-symbols-outlined"
-							id="arrow_down2">keyboard_arrow_down</span> <span
-							class="arrow_icon material-symbols-outlined" id="arrow_up2">keyboard_arrow_up</span>
-					</div>
-
-					<div id="business_info_text">
-						<span>대표자 성태조 </span> <span> | </span> <span> 사업자 등록번호
-							01-20-22015</span>
-						<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
-						<span>대표전화 1544-9970 </span> <span> | </span> <span> 이메일
-							help@bookday.com</span>
-					</div>
+				<div class="sns_icon">
+					<a href="#"><img src="/resources/instagram.png" class="sns"></a>
+					<a href="#"><img src="/resources/facebook.png" class="sns"></a>
+					<a href="#"><img src="/resources/twitter_black.png" class="sns"></a>
+					<a href="#"><img src="/resources/youtube.png" class="sns"></a>
 				</div>
 
-				<div class="f_intro">
-					<span>회사소개</span> <span class="f_line">|</span> <span>이용약관</span> <span
-						class="f_line">|</span> <span>개인정보처리방침</span> <span class="f_line">|</span>
-					<span>청소년보호정책</span> <span class="f_line">|</span> <span>제휴
-						문의</span>
+			</div>
+			<div class="business_info">
+				<div class="inline_info">
+					<div id="business_info_title">사업자 정보</div>
+					<span class="arrow_icon material-symbols-outlined" id="arrow_down2">keyboard_arrow_down</span>
+					<span class="arrow_icon material-symbols-outlined" id="arrow_up2">keyboard_arrow_up</span>
 				</div>
-				<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
-				<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
+
+				<div id="business_info_text">
+					<span>대표자 성태조 </span> <span> | </span> <span> 사업자 등록번호
+						01-20-22015</span>
+					<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
+					<span>대표전화 1544-9970 </span> <span> | </span> <span> 이메일
+						help@bookday.com</span>
+				</div>
 			</div>
 
+			<div class="f_intro">
+				<span>회사소개</span> <span class="f_line">|</span> <span>이용약관</span> <span
+					class="f_line">|</span> <span>개인정보처리방침</span> <span class="f_line">|</span>
+				<span>청소년보호정책</span> <span class="f_line">|</span> <span>제휴
+					문의</span>
+			</div>
+			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
+			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
 		</div>
-			<script>
+
+	</div>
+	<script>
 
       $("#logo_img").on("click", function() {
          location.href = "/";

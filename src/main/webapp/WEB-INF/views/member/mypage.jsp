@@ -275,16 +275,11 @@ span, #logoImg:hover {
 						<c:when test="${empty loginID}">
 							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
 							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267">
-								<p class="user" id="test">상세 페이지 테스트</p>
 							</a>
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
 							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267">
-								<p class="user" id="test">상세 페이지 테스트</p>
-							</a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -321,8 +316,8 @@ span, #logoImg:hover {
 						<div style="text-align: center; height: 150px; line-height: 150px">아직
 							이용 중인 구독권이 없습니다!</div>
 						<div class="body-btn-div">
-							<button class="body-btn" id="modify-btn"
-								style="margin-right: 20px;">회원정보 수정</button>
+							<a href="/member/toUpdateMemInfo"><button class="body-btn" id="modify-btn"
+								style="margin-right: 20px;">회원정보 수정</button></a>
 							<button class="body-btn" id="sub-btn">종이책 구독 시작하기</button>
 						</div>
 					</div>
@@ -366,7 +361,7 @@ span, #logoImg:hover {
 						<div class="body-right">${rdto.formedRt_return_date }</div>
 					</div>
 					<div class="body-btn-div">
-						<a href="/member/ToUpdateMemInfo"><button class="body-btn" id="modify-btn">회원정보 수정</button></a>
+						<a href="/member/toUpdateMemInfo"><button class="body-btn" id="modify-btn">회원정보 수정</button></a>
 					</div>
 				</c:otherwise>
 			</c:choose>
