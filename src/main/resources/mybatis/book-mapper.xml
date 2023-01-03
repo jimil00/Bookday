@@ -33,7 +33,11 @@
 	
 	<!-- 함께 담은 책 출력 -->
 	<select id="selectWithBooks" resultType="kh.bookday.dto.BookDTO">
-		select DISTINCT b_isbn, * from wishlist where <![CDATA[rownum <= 10]]> and id =any(select id from wishlist where b_isbn=#{b_isbn}) and id not in(#{b_isbn})
+		select * from book 
+		where b_isbn= any(select DISTINCT b_isbn from wishlist 
+		where <![CDATA[rownum <= 10]]> 
+		and id = any (select id from wishlist where b_isbn=#{b_isbn})
+		and b_isbn not in (#{b_isbn}))
 	</select>
 		
 </mapper>

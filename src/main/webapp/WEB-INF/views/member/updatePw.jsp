@@ -192,7 +192,7 @@ button,.find_btn>input:active {
                                         		    );
                                         	 
      
-                                        	 $("#updatePw").on("blur",function(){
+                                        	 $("#updatePw").on("keyup",function(){
                                      			
                                         		let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
                                              	let pw=$("#phone").val();
@@ -200,6 +200,7 @@ button,.find_btn>input:active {
 
                                                if(pwRegex.test(pw) && $("#phone").val() == $("#updatePw").val()){
                                                $("#phone, #updatePw").css("border-color","#5397fc");
+                                               $("#update_btn").attr("disabled", false);
                                                }else{  
                                             	 $("#phone, #updatePw").css("border-color","red");
                                                	$("#update_btn").attr("disabled", true);

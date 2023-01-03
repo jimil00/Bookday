@@ -315,7 +315,14 @@ margin-bottom:10px;
 	width: 10%;/
 	margin-top:10px;
 }
-
+.must{
+	color:red;
+	cursor:default;
+}
+.hidden{
+	color:white;
+	cursor:default;
+}
 
 /* footer */
 .footer {
@@ -465,60 +472,53 @@ margin-bottom:10px;
 					<div class="body-title-mem">회원정보</div>
 					<hr class="body-hr">
 					
-					<div class="body-left">이름</div>
+					<div class="body-left"><span class="must">*</span>이름</div>
 					<div class="body-right">
 						<input type="text" name="name" value="${dto.name}" 
-							class="input" id="name" maxlength="5">
+							class="input" id="name" maxlength="5" required>
 							<span id="n_result"></span>
 					</div>
 					
-					<div class="body-left">닉네임</div>
+					<div class="body-left"><span class="must">*</span>닉네임</div>
 					<div class="body-right">
 						<input type="text" name="nickname" value="${dto.nickname}"
-							 class="input" id="nickname">
+							 class="input" id="nickname" maxlength="10" required>
 					<span id="nk_result"></span>
 					</div>
-					<div class="body-left">휴대폰 번호</div>
-					<c:choose>
-						<c:when test="${dto.phone eq null }">
-							<div class="body-right">-</div>
-						</c:when>
-						<c:otherwise>
+					<div class="body-left"><span class="must">*</span>휴대폰 번호</div>
 							<div class="body-right">
 								<input type="text" name="phone" value="${dto.phone}" 
-									class="input" id="phone">
+									class="input" id="phone" maxlength="11" required>
 								<button type="button" class="body_btn" id="phone_btn">인증</button>
 		
 							</div>
-								<div class="body-left" id="code">인증번호</div>
+								<div class="body-left" id="code"><span class="hidden">*</span>인증번호</div>
 							<div class="body-right">
 								<input type="text" name="check_phone" placeholder="인증번호"
 										id="verifi_code" class="input">
 									<button type="button" class="body_btn" id="check_btn">확인</button>
 								</div>
-						</c:otherwise>
-					</c:choose>
-					<div class="body-left">이메일</div>
+						
+					<div class="body-left"><span class="must">*</span>이메일</div>
 					<div class="body-right">
 						<input type="text" name="email" value="${dto.email}" 
 							class="input" id="email">
 							<span id="email_result"></span>
 					</div>
-
-					<div class="body-left">비밀번호</div>
+				
+					<div class="body-left"><span class="must">*</span>비밀번호</div>
 					<div class="body-right">
 
 						<input type="password" name="pw"
-							placeholder="새 비밀번호" class="pw_input" id="pw">
+							placeholder="새 비밀번호" class="pw_input" id="pw" maxlength="16">
 					
 						<input type="password" name="new_pw_check"
-							placeholder="새 비밀번호 확인" class="pw_input" id="check_pw">
+							placeholder="새 비밀번호 확인" class="pw_input" id="check_pw" maxlength="16">
 						<span id="pw_result"></span> 
 						<span id="check_pw_result"></span>
-
 					</div>
-
-					<div class="body-left">주소</div>
+		
+					<div class="body-left"><span class="hidden">*</span>주소</div>
 					<div class="body-right">
 						<input type="text" id="address1" name="address1"
 							value="${dto.address1}"  placeholder="도로명 주소"
@@ -526,12 +526,12 @@ margin-bottom:10px;
 						<button type="button" id="search_btn" class="body_btn"
 						onclick="execDaumPostcode()">찾기</button>
 					</div>
-					<div class="body-left">상세주소</div>
+					<div class="body-left"><span class="hidden">*</span>상세주소</div>
 					<div class="body-right">
 						<input type="text" name="address2" value="${dto.address2}"
 							 placeholder="상세 주소" class="input">
 					</div>
-					<div class="body-left">우편번호</div>
+					<div class="body-left"><span class="hidden">*</span>우편번호</div>
 					<div class="body-right">
 						<input type="text" name="postcode" value="${dto.postcode}"
 							 placeholder="우편번호" class="input" id="postcode">
@@ -628,7 +628,7 @@ margin-bottom:10px;
 	});
 
       //닉네임 중복 확인
-   	$("#nickname").on("keyup",function(){
+   	$("#nickname").on("input",function(){
 			let nickname=$("#nickname").val();
 			let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
 
@@ -636,9 +636,9 @@ margin-bottom:10px;
 			if(!nicknameRegex.test(nickname) && nickname != ""){
            $("#nk_result").html("최소 2자 이상");
            $("#nk_result").css("color","red");
+         // $("#fin_btn").attr("disabled", true);
           }else if(nickname == ""){
         	  $("#nk_result").html("");
-        	 // $("#fin_btn").attr("disabled", true);
           }else{
 
           //닉네임 중복 검사
@@ -653,11 +653,12 @@ margin-bottom:10px;
 				if(resp == "true"){//닉네임이 존재하므로 사용할 수 없는 경우
           		$("#nk_result").html("이미 사용 중인 닉네임입니다.");
           		$("#nk_result").css("color","red");
-          	//	$("#fin_btn").attr("disabled",true);
+          		//$("#fin_btn").attr("disabled",true);
     
 				}else{ //닉네임이 존재하지 않으므로 사용할 수 있는 경우
          $("#nk_result").html("사용 가능한 닉네임입니다.");
          $("#nk_result").css("color","#5397fc");
+         //$("#fin_btn").attr("disabled",false);
          
         }
 				
@@ -678,9 +679,9 @@ margin-bottom:10px;
 		   if(!pwRegex.test(pw) && pw != ""){
                 $("#pw_result").css("color","red");
                 $("#pw_result").html("유효하지 않은 비밀번호입니다.");
+               // $("#fin_btn").attr("disabled", true);
               }else if(pw == ""){
             	  	$("#pw_result").html("");
-            		//$("#fin_btn").attr("disabled", true);
               }else{
             	  $("#pw_result").css("color","#5397fc");
             	  $("#pw_result").html("사용 가능한 비밀번호입니다.");
@@ -691,14 +692,14 @@ margin-bottom:10px;
                       }else{  
                     	  $("#pw_result").css("color","red");
                     	 $("#pw_result").html("비밀번호가 일치하지 않습니다.");
-                     // 	$("#fin_btn").attr("disabled", true);
+                     	 //$("#fin_btn").attr("disabled", true);
                       	
                       }
             	  }
 		});
       
       //이메일
-	$("#email").on("keyup",function(){
+	$("#email").on("input",function(){
 
 		let email=$("#email").val();
 		let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[A-Z a-z]{5,7}.[a-zA-Z]{2,3}$/;
@@ -720,7 +721,7 @@ margin-bottom:10px;
 	});
       
       
- 	$("#name").on("keyup",function(){
+ 	$("#name").on("input",function(){
 
 		let name= $("#name").val();
         let nameRegex=/[가-힣]{2,5}/;
@@ -753,12 +754,13 @@ margin-bottom:10px;
     	  
     	  console.log($("#phone").val());
     	  
-    	  if(phone == ${dto.phone}){  
-    		  alert("이미 인증된 휴대폰 번호입니다.");
-    		  return
-    		  }else if(phone=="" || !phoneRegex.test(phone)){
+    	
+    	  if(phone=="" || !phoneRegex.test(phone)){
     			  alert("유효한 휴대폰 번호를 입력해주세요.");
-    		  }else{
+    		  }else if(phone == ${dto.phone}){  
+        		  alert("이미 인증된 휴대폰 번호입니다.");
+        		  return
+        		  }else{
     			  alert("인증번호를 발송하였습니다.");
     			  $("#verifi_code,#check_btn").css("display","inline");
     			  
@@ -803,18 +805,22 @@ margin-bottom:10px;
       $("#fin_btn").on("click",function(){
     	  
     	  let pw=$("#pw").val();
+    	  let name=$("#name").val();
+    	  let nickname=$("#nickname").val();
+    	  let phone=$("#phone").val();
+    	  let email=$("#email").val();
     	  
     	   console.log(name+nickname+phone+email+pw+check_pw);
     	   
-    	  if(pw==""){
+    	if(pw=="" || name == "" || nickname == "" || phone == "" || email ==""){
+    		  
               console.log(name+nickname+phone+email+pw+check_pw);
-    		  alert("비밀번호를 입력해주세요.");
+    		  alert("필수값을 입력해주세요.");
 
               }else{
             	  alert("수정되었습니다.");
             	  $("#updateMemInfo").submit();
-              }
-
+              } 
    });
     
     //수정 취소

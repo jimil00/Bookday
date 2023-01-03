@@ -176,6 +176,7 @@ public class MemberController {
 		String result=Pw_SHA256.getSHA256(updatePw);
 
 		System.out.println(result);
+		
 		//해당 회원 정보로 들어갈 update 구문(해당 회원의 아이디 및 번호 값으로 조건을 준 후 update
 		service.updatePw(result,phone);
 
@@ -262,15 +263,16 @@ public class MemberController {
 		String id = String.valueOf(session.getAttribute("loginID"));
 		
 		//비밀번호 빈 값을 보냈을 때 자동으로 생성되는 값
-		String blankPw= "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+		//String blankPw= "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 		
 		dto.setId(id);
 		
 		//비밀번호 암호화
 		System.out.println("디티오에 들어간 비밀번호: "+dto.getPw()+dto.getEmail()+dto.getName()+dto.getNickname()+dto.getPw());
-		if(dto.getPw() == blankPw) {
-			
-		}
+//		if(dto.getPw() == blankPw) {
+//			
+//		}
+		
 		String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
 			dto.setPw(updatedPw);
 			System.out.println(updatedPw);

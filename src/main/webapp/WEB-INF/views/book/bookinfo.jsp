@@ -192,6 +192,9 @@ overflow:hidden;
 .b_img>img {
 width: 250px;
 height: 375px;
+   background: linear-gradient(to right, rgba(0, 0, 0, .3) 3px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px, rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px, rgba(255, 255, 255, 0.25) 20px, transparent 22px);
+   box-shadow: 0 0 5px -1px rgba(0, 0, 0, 1), inset -1px 1px 2px rgba(255, 255, 255, 0.5);
+   border-radius: 5px;
 /* margin-left: 38px; */
 }
 
@@ -368,7 +371,7 @@ margin-top: 0px;
 
 .r_title_box {
 line-height: 30px;
-border-top:1px solid #80808050;
+border-bottom:1px solid #80808050;
 }
 
 .r_writer_info>p, .r_content {
@@ -480,12 +483,12 @@ border-radius: 15px;
 height: 300px;
 text-align: center;
 border-radius: 15px;
-	height: 300px;
-	text-align: center;
-    background: var(--ui-up);
-    overflow: hidden;
-    box-shadow: 2px 2px 20px rgb(0 0 0 / 6%), 2px 2px 10px rgb(0 0 0 / 4%);
-    letter-spacing: -.6px;
+height: 300px;
+text-align: center;
+background: var(--ui-up);
+overflow: hidden;
+box-shadow: 2px 2px 20px rgb(0 0 0 / 6%), 2px 2px 10px rgb(0 0 0 / 4%);
+letter-spacing: -.6px;
 }
 
 .profile, .p_title_box {
@@ -559,6 +562,7 @@ margin-left:20px;
 } 
 .w_img_url {
 width: 150px;
+height:233px;
 }
 
 .w_title, .w_writer {
@@ -566,9 +570,11 @@ margin: 0px;
 }
 
 .w_title {
-line-height: 0px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+word-wrap: break-word;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+
 }
 
 .w_writer {

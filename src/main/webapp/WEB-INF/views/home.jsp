@@ -228,6 +228,11 @@ span, #logoImg:hover {
 	width:200px;
 }
 
+#bookmark{
+	width:230px;
+	
+}
+
 #deli{
 margin-top:25px;
 width:350px;
@@ -313,6 +318,10 @@ height:fit-content;
 
 .b_img_url {
 	width: 150px;
+	height:220px;
+	background: linear-gradient(to right, rgba(0, 0, 0, .3) 3px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px, rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px, rgba(255, 255, 255, 0.25) 20px, transparent 22px);
+   box-shadow: 0 0 5px -1px rgba(0, 0, 0, 1), inset -1px 1px 2px rgba(255, 255, 255, 0.5);
+   border-radius: 5px;
 }
 
 .b_title, .b_writer {
@@ -340,7 +349,7 @@ height:fit-content;
 }
 
 .swiper-slide{
-width:200px;
+width:150px;
 }
 
 
@@ -612,7 +621,8 @@ width:200px;
 						<img src="/resources/deli.png" class="d_img" id="deli">
 					</div>
 					
-					<div class="detail2" data-aos="fade-up" data-aos-duration="3000">
+					<div class="detail2" data-aos="fade-up"
+					data-aos-duration="2000">
 						<ul class="rental">
 							<li>대여 권 수(달)<span>10권</span></li>
 							<li>대여일<span>10일</span></li>
@@ -699,9 +709,10 @@ width:200px;
 					data-aos-duration="2000">
 					<h2 id="popular_headline">인기 포스트</h2>
 					
-<div class="mySwiper">
-    <div class="swiper-wrapper">
-        <c:choose>
+			<div class="swiper-container swiper2">
+			    <div class="swiper-wrapper">
+			      
+		<c:choose>
             <c:when test="${not empty plist}">
                 <c:forEach items="${plist}" var="p">
                 
@@ -720,7 +731,7 @@ width:200px;
                                     <p class="post_title">${p.p_title}</p>
 
                                         <div id="p_like">
-                                        <span class="p_like_count">${p.p_like_count}</span>
+                                         <span class="p_like_count">${p.p_like_count}</span>
                                         </div>
                                 </div>
 
@@ -735,9 +746,9 @@ width:200px;
                 <p class="post_title">작성된 포스트가 없습니다.</p>
             </c:otherwise>
         </c:choose>
-    </div>
-</div>
-					
+			      
+					    </div>
+					</div>
 				</div>
 			</div>
 			<!-- body -->
@@ -848,10 +859,14 @@ width:200px;
 		spaceBetween:5
 	});
       
-      var swiper = new Swiper(".mySwiper", {
-    	  slidesPerView: 4,
-          spaceBetween: 0,
-  	}); 
+      var swiper = new Swiper(".swiper-container swiper2", {
+    	  slidesPerView: 3,  
+    	  slidesPerGroup: 3,
+          spaceBetween: 30,
+          centeredSlides: false
+  	});  
+      
+
       
       
         //footer: 사업자 정보 토글 기능
