@@ -748,7 +748,7 @@ span.size-30 {
 										<div class="bookmarkContentsTxt">
 											<div class="bookmarkBookInfo"><${bm.b_title
 												}>&nbsp${bm.b_writer }</div>
-											<div class="bookmarkWritedate">${bm.bm_write_date }</div>
+											<div class="bookmarkWritedate">1<fmt:formatDate value="${bm.bm_write_date }" pattern="yyyy.MM.DD hh:mm"/></div>
 											<hr>
 											<div class="bookmarkContent">${bm.bm_content}</div>
 										</div>
@@ -1010,14 +1010,7 @@ span.size-30 {
                 let arrBM = document.querySelectorAll(".bookmarkContents");
                 let lastBm_seq = $(arrBM[0]).attr("seq");
                 
-				if(b_isbn == null){
-					alert("책을 검색 해주세요.");
-					return;
-				}
-				if($(".insertbookmarkContentBox").html("")){
-					alert("책갈피 내용을 입력해주세요.");
-					return;
-				}
+
                 $.ajax({
                     url: "/bookmark/insertBookmark",
                     type: "post",
@@ -1037,19 +1030,32 @@ span.size-30 {
 
             
 			$(".insertbookmarkContentBox").on("keydown", function(e){
-				if(e.keyCode == 13) {
-					if(insertBookmark()){
-					console.log("a");
+				if(e.keyCode == 13 && e.shiftKey == false) {
+					if($(".searchResultBookInfo").attr("isbn") == null){
+						alert("책을 검색해주세요.");
+						return false;
+					}
+					if($(".insertbookmarkContentBox").html()==""){
+						alert("책갈피 내용을 입력해주세요.");
+						return false;
+					}
+					insertBookmark()
 					$(".insertbookmarkContentBox").html("");
-            		$(".searchResultBookInfo *").remove();}
-
+            		$(".searchResultBookInfo *").remove();
 				}
 			});		
 			$("#insertBookmarkBtn").on("click", function() {
+				if($(".searchResultBookInfo").attr("isbn") == null){
+					alert("책을 검색해주세요.");
+					return false;
+				}
+				if($(".insertbookmarkContentBox").html()==""){
+					alert("책갈피 내용을 입력해주세요.");
+					return false;
+				}
 				insertBookmark();
 				$(".insertbookmarkContentBox").html("");
         		$(".searchResultBookInfo *").remove();
-
 			});
 
             

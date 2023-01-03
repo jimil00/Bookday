@@ -125,6 +125,10 @@ public class PostService {
 
 		return dao.selectSearchPostList(param);
 	}
+	// 포스트 삭제
+	public void deletePostByPseq(int p_seq) {
+		dao.deletePostByPseq(p_seq);
+	}
 // 수진
 
 	// 해당 도서에 대한 포스트 출력
@@ -143,5 +147,7 @@ public class PostService {
 		return dao.selectPostListBySw(searchWord);
 	}
 // 지민
+
+
 
 }

@@ -107,12 +107,15 @@ public class BooknoteController {
 	@ResponseBody
 	@RequestMapping("insertPost")
 	public String insertPost(PostDTO dto, Model model) {
-		System.out.println(dto.getDyst_read());
+
 		String id = String.valueOf(session.getAttribute("loginID"));
 
-		String nickname = String.valueOf(session.getAttribute("nickname"));
+		// 회원 정보
+		MemberDTO mdto = mservice.selectMemberById(id);
+
 		dto.setP_writer_id(id);
-		dto.setP_writer_nn(nickname);
+		dto.setSysprofname(mdto.getSysprofname());
+		dto.setP_writer_nn(mdto.getNickname());
 
 		int p_seq = service.insertPost(dto);
 
@@ -147,6 +150,15 @@ public class BooknoteController {
 		return "mybook/booknote/selectpost";
 	}
 
+	// 포스트 삭제
+	@RequestMapping("deletePostByPseq")
+	public String deletePostByPseq(int p_seq) {
+		System.out.println(p_seq);
+			service.deletePostByPseq(p_seq);
+			return "redirect:/booknote/selectPostListById";
+
+	}
+	
 	// 포스트 댓글 출력 ajax
 	@ResponseBody
 	@RequestMapping("selectPCListByPseq")
@@ -219,7 +231,6 @@ public class BooknoteController {
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		System.out.println(originalFileName);
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-//		if(extension.equals("png")||extension.equals("jpg")||extension.equals("jpeg")||extension.equals("gif")) {
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 		System.out.println(filePath);
 		File targetFile = new File(filePath + "/" +savedFileName);	
@@ -234,7 +245,6 @@ public class BooknoteController {
 			jsonObject.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
-//		}
 		String a = jsonObject.toString();
 		return a;
 	}
