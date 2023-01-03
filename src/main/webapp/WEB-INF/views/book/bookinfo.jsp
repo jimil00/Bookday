@@ -255,7 +255,7 @@ color: #5397fc;
 border-radius: 5px;
 }
 
-.link_btn>a>input {
+.link_btn>input {
 width: 330px;
 height: 50px;
 border: 1px solid #5397fc;
@@ -264,11 +264,11 @@ color: #5397fc;
 border-radius: 5px;
 }
 
-.link_btn>a>span {
+.link_btn>span {
 color: #5397fc;
 }
 
-.link_btn>a>input {
+.link_btn>input {
 	cursor: pointer;
 }
 
@@ -725,19 +725,22 @@ display:none;
                             <p id="b_genre" name="b_genre">${dto.b_genre}</p>
                         </div>
                         <div class="link_btn">
-                            <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
-                                class="a_move"><input type="button" value="위시리스트에 담기"
-                                id="to_wish"></a> <a
-                                href="/book/selectForBookbag?b_isbn=${dto.b_isbn}"
-                                class="a_move"><input type="button" value="책가방에 담기"
-                                id="to_bag"></a> 
-                               <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
-                                class="a_move">
+<%--                         <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}" --%>
+<!--                                 class="a_move"></a> -->
+                            <input type="button" value="위시리스트에 담기"
+                                id="to_wish">
+<%--                                 <a href="/book/selectForBookbag?b_isbn=${dto.b_isbn}" --%>
+<!--                                 class="a_move"></a> -->
+                                <input class="a_move" type="button" value="책가방에 담기"
+                                id="to_bag">
+                              <%--  <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
+                                class="a_move"> --%>
                                 <span class="material-symbols-outlined" id="heart">favorite</span>
-                                </a>
-                                <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
-                                class="a_move"><span class="material-symbols-outlined size-40" id="bookbag2">shopping_bag</span>
-                                </a>
+<!--                                 </a> -->
+<%--                                 <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}" --%>
+<!--                                 class="a_move"> -->
+                                <span class="material-symbols-outlined size-40" id="bookbag2">shopping_bag</span>
+<!--                                 </a> -->
                         </div>
                         <!-- post-link -->
                 <%-- 	<div class="post-link">
@@ -1116,6 +1119,68 @@ $(document).ready(function(){
                        
                        
      }else{
+    	 
+    	 // 위시리스트에 담기 기능
+    	 $(function () {
+	            $("#to_wish").on("click", function () {
+	                $.ajax({
+	                    url: "/book/selectWishlistByIdBisbn",
+	                    data: {
+	                        "id": "${loginID }",
+	                        "b_isbn": "${dto.b_isbn}"
+	                    }, success: function (result) {
+	                        if (result == "false") {
+	                            alert("이미 위시리스트에 있는 책입니다.");
+	                        } else {
+	                            $.ajax({
+	                                url: "/book/insertWishlist",
+	                                data: {
+	                                    "id": "${loginID }",
+	                                    "b_isbn": "${dto.b_isbn}",
+	                                    "b_img_url": "${dto.b_img_url }",
+	                                    "b_title": "${dto.b_title }",
+	                                    "b_writer": "${dto.b_writer }",
+	                                    "b_genre": "${dto.b_genre }"
+	                                }, success: function (resp) {
+	                                    alert("위시리스트에 담았습니다.");
+	                                }
+	                            });
+	                        }
+	                    }
+	                });
+	           	});
+     		});
+    	 
+    	 // 책가방에 담기 기능
+    	 $(function () {
+	            $("#to_bag").on("click", function () {
+	                $.ajax({
+	                    url: "/book/selectBookbagByIdBisbn",
+	                    data: {
+	                        "id": "${loginID }",
+	                        "b_isbn": "${dto.b_isbn}"
+	                    }, success: function (result) {
+	                        if (result == "false") {
+	                            alert("이미 책가방에 있는 책입니다.");
+	                        } else {
+	                            $.ajax({
+	                                url: "/book/insertBookbag",
+	                                data: {
+	                                    "id": "${loginID }",
+	                                    "b_isbn": "${dto.b_isbn}",
+	                                    "b_img_url": "${dto.b_img_url }",
+	                                    "b_title": "${dto.b_title }",
+	                                    "b_writer": "${dto.b_writer }",
+	                                    "b_genre": "${dto.b_genre }"
+	                                }, success: function (resp) {
+	                                    alert("책가방에 담았습니다.");
+	                                }
+	                            });
+	                        }
+	                    }
+	                });
+	           	});
+  			});
                        
                      //댓글 작성 시
 				$("#input_btn").on("click",function(){

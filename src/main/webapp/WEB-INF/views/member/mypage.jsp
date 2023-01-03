@@ -191,7 +191,7 @@ span, #logoImg:hover {
 
 /* body */
 .body {
-	width: 700px;
+	width: 740px;
 	margin: auto;
 }
 
@@ -222,6 +222,7 @@ span, #logoImg:hover {
 	padding-top: 25px;
 	font-size: 20px;
 	color: #5397fc;
+	text-shadow: 1px 1px #80808050;
 }
 
 .body-title {
@@ -229,6 +230,7 @@ span, #logoImg:hover {
 	padding-top: 45px;
 	font-size: 20px;
 	color: #5397fc;
+	text-shadow: 1px 1px #80808050;
 }
 
 .info {
@@ -253,6 +255,7 @@ span, #logoImg:hover {
 
 .body-btn-div {
 	text-align: center;
+	height: 100px;
 }
 
 .body-btn {
@@ -263,7 +266,16 @@ span, #logoImg:hover {
 	border: none;
 	border-radius: 5px;
 	background-color: #5397fc;
+	box-shadow: 3px 3px #80808050;
+	transition-duration: 0.1s;
 }
+
+
+.body-btn:hover {
+    margin-left: 5px;
+    margin-top: 47px;
+    box-shadow: none;
+        }
 </style>
 </head>
 <body>
@@ -418,7 +430,7 @@ span, #logoImg:hover {
 								<div class="body-title">대여정보</div>
 								<hr class="body-hr">
 								<div class="body-left">주소</div>
-								<div class="body-right">${dto.address1 }(${dto.address2 })</div>
+								<div class="body-right">${dto.address1 } (${dto.address2 })</div>
 								<div class="body-left">받는 분</div>
 								<div class="body-right">${dto.reciver }</div>
 								<div class="body-left">휴대폰번호</div>

@@ -211,9 +211,9 @@ span, #logoImg:hover {
 .book-main {
 	overflow: hidden;
 	width: 140px;
-	text-align: center;
+	/* 	text-align: center; */
 	float: left;
-	margin-left: 19px;
+	margin-left: 22px;
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
@@ -222,20 +222,26 @@ span, #logoImg:hover {
 	width: 120px;
 	height: 180px;
 	border-radius: 4%;
+	box-shadow: 3px 3px #80808050;
 }
+
 
 .b_title {
 	overflow: hidden;
 	height: 23px;
-	font-weight: bold; word-wrap : break-word;
+	width: 120px;
+	font-weight: bold;
+	font-size: 15px; word-wrap : break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	word-wrap: break-word;
+	word-wrap: break-word
 }
 
 .b_writer {
 	overflow: hidden;
 	height: 23px;
+	width: 120px;
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -252,17 +258,16 @@ span, #logoImg:hover {
 	width: 250px;
 	height: 300px;
 	float: left;
-	/* 	text-align: center; */
 	margin-left: 55px;
 	margin-bottom: 20px;
 	margin-top: 25px;
-	border: 1px solid #5397fc;
+	border: 1px solid #5397fc40;
 	border-radius: 15px;
+	box-shadow: 3px 3px #80808050;
 }
 
 .post-main-top {
 	overflow: hidden;
-	/* height: 60px; */
 }
 
 .profile-img-div {
@@ -279,11 +284,12 @@ span, #logoImg:hover {
 
 .p-writer {
 	padding-top: 10px;
-	height: 30px;
+	height: 27px;
 	overflow: hidden;
 	width: 150px;
 	display: inline-block;
 	font-weight: bold;
+	font-size: 15px;
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -296,7 +302,8 @@ span, #logoImg:hover {
 .like-icon {
 	float: left;
 	position: relative;
-	bottom: 1px; font-size : 18px;
+	bottom: 1px;
+	font-size: 18px;
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 	font-size: 18px;
 }
@@ -304,7 +311,7 @@ span, #logoImg:hover {
 .like-text {
 	float: left;
 	position: relative;
-	line-height: 18px;
+	line-height: 19px;
 	padding-left: 3px;
 	font-size: 13px;
 }
@@ -313,13 +320,14 @@ span, #logoImg:hover {
 	overflow: hidden;
 	width: 100%;
 	height: 30px;
-	font-weight: bold;
+	font-size: 15px; font-weight : bold;
 	padding-top: 3px;
 	padding-left: 10px;
 	padding-right: 10px;
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	font-weight: bold;
 }
 
 .p-content {
@@ -332,7 +340,7 @@ span, #logoImg:hover {
 	height: 152px;
 	-webkit-line-clamp: 9;
 	-webkit-box-orient: vertical;
-	word-wrap: break-word;
+	/* 	word-wrap: break-word; */
 	text-overflow: ellipsis;
 }
 </style>
@@ -394,9 +402,10 @@ span, #logoImg:hover {
 						<c:forEach var="book" items="${blist }">
 							<div class="book-main">
 								<a href="/book/selectBookinfo?b_isbn=${book.b_isbn }"><img
-									class="book-img" src="${book.b_img_url }"></a>
-								<div class="b_title" title="${book.b_title }">${book.b_title }</div>
-								<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
+									class="book-img" title="${book.b_title }"
+									src="${book.b_img_url }"></a>
+								<div class="b_title">${book.b_title }</div>
+								<div class="b_writer">${book.b_writer }</div>
 							</div>
 						</c:forEach>
 					</c:otherwise>
@@ -424,7 +433,7 @@ span, #logoImg:hover {
 										<div class="like-text">${post.p_like_count }</div>
 									</div>
 								</div>
-								<hr class="body-hr">
+								<hr style="border-top: 1px">
 								<div class="p-title" title="${post.p_title }">${post.p_title }</div>
 								<div class="p-content">
 									<a href="/" style="text-decoration-line: none; color: black;">${post.p_content }</a>

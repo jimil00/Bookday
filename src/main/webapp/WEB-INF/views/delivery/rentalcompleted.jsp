@@ -173,6 +173,10 @@ span, #logoImg:hover {
 	overflow: hidden;
 }
 
+.body-span {
+	cursor: text;
+}
+
 .body-top {
 	overflow: hidden;
 	padding-bottom: 50px;
@@ -236,14 +240,14 @@ span, #logoImg:hover {
 	height: 100%;
 }
 
-.body-right {	
+.body-right {
 	overflow: hidden;
 	width: 45%;
 	float: right;
 }
 
 .right-main {
-/* 	height: 170px; */
+	/* 	height: 170px; */
 	padding-left: 10px;
 	padding-top: 5px;
 }
@@ -255,7 +259,8 @@ span, #logoImg:hover {
 }
 
 .body-bottom {
-	padding-top: 50px;
+	height: 90px;
+	padding-top: 40px;
 	text-align: center;
 	clear: both;
 }
@@ -269,7 +274,9 @@ span, #logoImg:hover {
 	border-radius: 4px;
 	background-color: #5397fc;
 	cursor: pointer;
+	box-shadow: 3px 3px #80808050;
 }
+
 </style>
 </head>
 <body>
@@ -321,42 +328,42 @@ span, #logoImg:hover {
 			<div class="body-left">
 				<hr style="margin-top: 5px;">
 				<c:forEach var="rental" items="${list}" varStatus="status">
-				<div class="left-main">
-					<div class="book-count">${status.count}</div>
-					<div class="book-img-div">
-						<img
-							src="${rental.b_img_url }"
-							id="book-img">
-					</div>
-					<div class="book-detail-div">
-						<div class="book-detail">
-							<div style="font-weight: bold;">${rental.b_title }</div><div style="font-size: 14px; padding-top: 10px;">${rental.b_writer }</div>
+					<div class="left-main">
+						<div class="book-count">${status.count}</div>
+						<div class="book-img-div">
+							<img src="${rental.b_img_url }" id="book-img">
+						</div>
+						<div class="book-detail-div">
+							<div class="book-detail">
+								<div style="font-weight: bold;">${rental.b_title }</div>
+								<div style="font-size: 14px; padding-top: 10px;">${rental.b_writer }</div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<hr style="margin-top: -14px;">
+					<hr style="margin-top: -14px;">
 				</c:forEach>
 			</div>
 			<div class="body-right">
 				<hr style="margin-top: 5px;">
 				<div class="right-main">
 					<div style="padding-bottom: 15px;">
-						<span style="font-weight: bold;">${dto.address1 }
+						<span class="body-span" style="font-weight: bold;">${dto.address1 }
 							(${dto.address2 })</span> 로 배달 예정입니다.
 					</div>
 					<div style="padding-bottom: 15px;">
-						총 <span style="font-weight: bold;">${fn:length(list)}</span> 권이 대여되었습니다.
+						총 <span class="body-span" style="font-weight: bold;">${fn:length(list)}</span> 권이
+						대여되었습니다.
 					</div>
 					<div style="padding-bottom: 15px;">
 						<c:set var="arrivalDate"
 							value="<%=new Date(new Date().getTime() + 60 * 60 * 24 * 1000 * 2)%>" />
 						<c:set var="returnDate"
 							value="<%=new Date(new Date().getTime() + 60 * 60 * 24 * 1000 * 12)%>" />
-						도착 예정일은 <span style="font-weight: bold;"><fmt:formatDate
+						도착 예정일은 <span class="body-span" style="font-weight: bold;"><fmt:formatDate
 								value="${arrivalDate}" pattern="yyyy-MM-dd(E)" /></span> 입니다.
 					</div>
 					<div>
-						반납일 <span style="font-weight: bold; color: #5397fc;"><fmt:formatDate
+						반납일 <span class="body-span" style="font-weight: bold; color: #5397fc;"><fmt:formatDate
 								value="${returnDate}" pattern="yyyy-MM-dd(E)" /></span> 입니다.
 					</div>
 				</div>
