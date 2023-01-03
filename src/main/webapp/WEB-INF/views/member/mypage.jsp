@@ -215,6 +215,8 @@ span, #logoImg:hover {
 	border-radius: 50%;
 	width: 120px;
 	height: 120px;
+	border: 1px solid #d5d5d5;
+	box-shadow: 3px 3px #80808050;
 }
 
 .body-title-mem {
