@@ -1,13 +1,14 @@
 package kh.bookday.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.bookday.dao.BookbagDAO;
 import kh.bookday.dto.BookbagDTO;
-import kh.bookday.dto.RentalDTO;
 
 @Service
 public class BookbagService {
@@ -33,9 +34,18 @@ public class BookbagService {
 	// 지민
 
 	//shu
+	// 책가방 체크
+	public BookbagDTO selectBookbagByIdBisbn(String id, String b_isbn) {
+		Map<String, String> param = new HashMap<>();
+		param.put("id", id);
+		param.put("b_isbn", b_isbn);
+		return dao.selectBookbagByIdBisbn(param);
+	}
+	
 	// 책가방에 책 추가
 	public void insertBookbag(BookbagDTO dto) {
 		dao.insertBookbag(dto);
 	}
+
 	//shu
 }

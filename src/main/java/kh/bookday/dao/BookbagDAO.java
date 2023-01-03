@@ -38,6 +38,11 @@ public class BookbagDAO {
 	// 지민
 
 	//shu
+	// 책가방 체크
+	public BookbagDTO selectBookbagByIdBisbn(Map<String, String> param) {
+		return db.selectOne("Bookbag.selectBookbagByIdBisbn", param);
+	}
+
 	// 책 추가 
 	public void insertBookbag(BookbagDTO dto) {
 		db.insert("Bookbag.insertBookbag", dto);

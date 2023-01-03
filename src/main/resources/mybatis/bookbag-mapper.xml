@@ -23,4 +23,9 @@
 		select * from bookbag where bookbag_seq = #{bookbag_seq}
 	</select>
 	
+	<!-- 책가방 체크 -->
+	<select id="selectBookbagByIdBisbn" resultType="kh.bookday.dto.BookbagDTO">
+		select * from bookbag where id = #{id} and b_isbn = #{b_isbn}
+	</select>
+	
 </mapper>
