@@ -438,93 +438,37 @@ position:relative;
 		<div class="body">
 
 			<form action="/member/updateMemInfo" method="post" enctype="multipart/form-data">
-				<div class="mem_info_box">
 				
-					<div class="prof_info">
-						<div class="prof_img">
-							<img src="/resources/profile/${dto.sysprofname}" id="prof_img">
-						</div>
-						<label class="input-file-button" for="img_upload" id="input_file_btn">편집</label> 
-						<input type="file" name="prof_img" class="input_file" id="img_upload"
-							accept=".png,.jpg,.jpeg,.gif,.JPG" style="display:" "none"}/>
-					</div>
-					
-					<hr>
-					<div class="box">
-					
-					<div class="input_info">
-						<p>닉네임</p>
-						<input type="text" name="nickname" value="${dto.nickname}"
-							readonly class="input" id="nickname"> <span
-							id="nk_result"></span>
-					</div>
-					<hr>
-					<div class="input_info">
-						<p>이름</p>
-						<input type="text" name="name" value="${dto.name}" readonly
-							class="input" id="name" maxlength="5"> <span
-							id="n_result"></span>
-					</div>
-					<hr>
-					<div class="input_info">
-						<p>휴대폰 번호</p>
-						<div>
-							<input type="text" name="phone" value="${dto.phone}" readonly
-								class="input" id="phone">
-							<button type="button" class="body_btn" id="phone_btn">인증</button>
-							<div class="check_phone">
-								<input type="text" name="check_phone" placeholder="인증번호"
-									id="verifi_code" class="input">
-								<button type="button" class="body_btn" id="check_btn">확인</button>
-							</div>
-						</div>
-					</div>
-					<hr>
-						<div class="input_info">
-							<p>이메일</p>
-							<input type="text" name="email" value="${dto.email}" readonly
-								class="input" id="email"> <span id="email_result"></span>
-						</div>
-					
-						</div>
-						
-						<hr>
-						
-						<div class="input_info">
-							<p>비밀번호</p>
-							<div class="box">
-								<input type="password" name="current_pw" placeholder="기존 비밀번호"
-									class="block_input"> <input type="password" name="pw"
-									placeholder="새 비밀번호" class="block_input" id="pw"> <span
-									id="pw_result"></span> <input type="password"
-									name="new_pw_check" placeholder="새 비밀번호 확인" class="block_input"
-									id="check_pw"> <span id="check_pw_result"></span>
-							</div>
-						</div>
-					
-						<hr>
-						<div class="input_info">
+			<div class="prof_img">
+				<img src="/resources/profile/${dto.sysprofname}" id="prof_img">
+			</div>
+			<div class="body-top">${dto.nickname }</div>
 			
-							<div class="box">
-								<div><span>주소</span> <button type="button" id="search_btn" class="body_btn"
-									onclick="execDaumPostcode()">찾기</button></div>
-								
-								<input type="text" id="address1" name="address1"
-									value="${dto.address1}" readonly placeholder="도로명 주소"
-									class="input">
-								
-								<p>상세 주소</p>
-								<input type="text" name="address2" value="${dto.address2}"
-									readonly placeholder="상세 주소" class="block_input">
-								<p>우편번호</p>
-								<input type="text" id="postcode" name="postcode"
-									value="${dto.postcode}" readonly placeholder="우편번호"
-									class="block_input">
-									</div>
-						</div>
-						<hr>
+					<div class="mem info">
+						<div class="body-title-mem">회원정보</div>
+						<hr class="body-hr">
+						<div class="body-left">이름</div>
+						<div class="body-right">${dto.name }</div>
+						<div class="body-left">닉네임</div>
+						<div class="body-right">${dto.nickname }</div>
+						<div class="body-left">휴대폰 번호</div>
+						<c:choose>
+						<c:when test="${dto.phone eq null }">
+						<div class="body-right">-</div>
+						</c:when>
+						<c:otherwise>
+						<div class="body-right">${dto.phone }</div>
+						</c:otherwise>
+						</c:choose>
+						<div class="body-left">이메일</div>
+						<div class="body-right">${dto.email }</div>
+						<div class="body-left">주소</div>
+						<div class="body-right">${dto.address1 }</div>
+						<div class="body-left">상세주소</div>
+						<div class="body-right">${dto.address2 }</div>
 					</div>
-					<div class="btns">
+				
+			<div class="btns">
 						<button type="button" class="body_btn" id="input_btn">수정</button>
 						<button type="submit" class="body_btn" id="fin_btn">완료</button>
 						<button type="button" class="body_btn" id="cancel_btn">취소</button>
