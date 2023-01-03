@@ -727,7 +727,7 @@ span.size-30 {
 			//포스트 프로필 사진 없을 때(수아)
 	$( document ).ready( function() {
 	    
-	  	if(${p.sysprofname == null}){
+	  	if(${p.sysprofname == '0'}){
 	  		
 			$(".profile_img").attr("src","/resources/basic.png");
 							return;

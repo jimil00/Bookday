@@ -553,7 +553,7 @@ position:relative;
       	//프로필 사진 없을 때
 	$( document ).ready( function() {
 	    
-	  	if(${dto.sysprofname == 0}){
+	  	if(${dto.sysprofname == '0'}){
 	  		
 			$("#prof_img").attr("src","/resources/basic.png");
 							return;

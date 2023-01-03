@@ -443,7 +443,7 @@ span, #logoImg:hover {
 	$( document ).ready( function() {
 		
 	    
-	  	if(${dto.sysprofname == 0}){
+	  	if(${dto.sysprofname == '0'}){
 	  		
 	  		$("#prof_img").attr("src","/resources/basic.png");
 							return;
