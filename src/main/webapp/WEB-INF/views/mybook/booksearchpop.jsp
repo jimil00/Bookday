@@ -88,6 +88,7 @@ button {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right: 40px;
 }
 
 .searchBtn {

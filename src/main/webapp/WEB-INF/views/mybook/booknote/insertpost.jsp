@@ -451,6 +451,7 @@ span.size-30 {
 	line-height: 40px;
 	position: absolute;
 	left: 10px;
+	right: 40px;
 }
 
 .insertBooknoteDateBtn {
@@ -644,11 +645,11 @@ display:none;
                                                 for (var i = files.length - 1; i >= 0; i--) {
                                                 	// 이미지 아닌 것 막기
                                                 	let ext = files[i].name.split(".").pop().toLowerCase();
-                                                	let accept = ["png","jpg","jpeg","git"];
+                                                	let accept = ["png","jpg","jpeg","gif"];
                                                 	let result = $.inArray(ext,accept);
                                                 	if(result==-1){//배열이 아닐 때
                                             			alert("png,jpg,jpeg,gif 만 사용가능합니다.");
-                                            			$("#profile_img").val("");
+                                                		continue;
                                             		}
                                                 uploadSummernoteImageFile(files[i],this);
                                                 		}
