@@ -38,12 +38,11 @@
 	</update>
 
 	<update id="updateMemInfo">
-		update member set pw=#{pw},phone=#{phone}, nickname=#{nickname},
-		email=#{email},postcode=#{postcode},address1=#{address1},
-		address2=#{address2}, oriprofname=#{oriprofname},sysprofname=#{sysprofname}
+		update member set pw=#{pw}, phone=#{phone}, name=#{name}, nickname=#{nickname},
+		email=#{email}, oriprofname=#{oriprofname},sysprofname=#{sysprofname},
+		postcode = #{postcode}, address1 =#{address1}, address2 = #{address2}	
 		where id=#{id}
 	</update>
-
 
 	<!-- 회원 배송지 정보 입력 -->
 	<update id="updateMemberAddressById">

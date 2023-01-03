@@ -384,11 +384,12 @@ height: 50px;
 }
 
 .r_contents {
-display: flex;
+display: inline-flex;
 }
 
 .r_content {
-height: 30px;
+height:fit-content;
+width:fit-content;
 margin: 10px;
 resize: none;
 width:auto;
@@ -396,7 +397,8 @@ width:auto;
 
 .r_like {
 position: relative;
-left: 73%;
+/* left: 73%;  */
+left:25px;
 }
 
 .r_like_icon {
@@ -432,8 +434,13 @@ border: 1px solid #5397fc;
 .content {
 border: none;
 resize: none;
+width:880px;
 height:fit-content;
 overflow: hidden;
+	word-break: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }
 
 .content:focus {
@@ -782,6 +789,7 @@ display:none;
                         <c:choose>
                             <c:when test="${not empty rlist}">
                                 <c:forEach items="${rlist}" var="r">
+                                   
                                     <div class="r_title_box">
                                         <div class="r_writer_info">
                                             <input type="hidden" value="${r.rv_seq}" class="rv_seq">
@@ -859,7 +867,7 @@ display:none;
                         </c:choose>
                     </div>
                     <!--  review_box -->
-                    <div class="paging">1 2 3 4 5</div>
+                   <!--  <div class="paging">1 2 3 4 5</div> -->
 
                 </div>
                 <!-- flex-box -->
@@ -882,7 +890,7 @@ display:none;
 
                                             <div class="post_box">
                                                 <div class="profile">
-                                                    <img src="/resources/basic.png" class="profile_img">
+                                                    <img src="/resources/profile/${p.sysprofname}" class="profile_img">
                                                     <p>${p.p_writer_nn} 님의 포스트</p>
                                                 </div>
                                                 <hr>
@@ -937,6 +945,31 @@ display:none;
                                     <p class="w_writer">이상혁</p>
                                 </div>
                             </div>
+                            
+                              <div class="swiper-slide">
+                                <div class="book">
+                                    <img src="/resources/테스트.jpg" class="w_img_url">
+                                    <p class="w_title">왜 아가리로만 할까?</p>
+                                    <p class="w_writer">이상혁</p>
+                                </div>
+                            </div>
+                            
+                              <div class="swiper-slide">
+                                <div class="book">
+                                    <img src="/resources/테스트.jpg" class="w_img_url">
+                                    <p class="w_title">왜 아가리로만 할까?</p>
+                                    <p class="w_writer">이상혁</p>
+                                </div>
+                            </div>
+                            
+                              <div class="swiper-slide">
+                                <div class="book">
+                                    <img src="/resources/테스트.jpg" class="w_img_url">
+                                    <p class="w_title">왜 아가리로만 할까?</p>
+                                    <p class="w_writer">이상혁</p>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                    
@@ -998,6 +1031,15 @@ slidesPerView:3,
 spaceBetween:30
 });
 
+//프로필 사진 없을 때
+$( document ).ready( function() {
+    
+  	if(${p.sysprofname == null}){
+  		
+		$(".profile_img").attr("src","/resources/basic.png");
+						return;
+					}
+   });
 
 
 $(document).ready(function(){

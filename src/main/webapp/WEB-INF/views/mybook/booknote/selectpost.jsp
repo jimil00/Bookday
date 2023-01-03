@@ -648,7 +648,7 @@ display:none;
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/resources/${mdto.sysprofname }" width="100"
+						<img src="/resources/profile/${mdto.sysprofname }" width="100"
 							height="100" id="profile">
 					</div>
 					<div id="contentsHeaderTxt">${mdto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${mdto.signup_date
@@ -846,6 +846,17 @@ display:none;
                 $("#snBooknote").on("click", function () {
                     location.href = "/booknote/selectPostListById";
                 });
+                
+                
+        		//포스트 프로필 사진 없을 때(수아)
+            	$( document ).ready( function() {
+            	    
+            	  	if(${p.sysprofname == '0'}){
+            	  		
+            			$("#profile").attr("src","/resources/basic.png");
+            							return;
+            						}
+            	   });
                 
                 
                 $(".insertPcContentBox").keyup(function () {
