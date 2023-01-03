@@ -202,6 +202,7 @@ span, #logoImg:hover {
 	padding-bottom: 15px;
 	font-weight: bold;
 	font-size: 18px;
+	text-shadow: 1px 1px #80808050;
 }
 
 .bookbag-top-checkbox-div {
@@ -211,8 +212,8 @@ span, #logoImg:hover {
 }
 
 #check-all {
-	width:17px;
-	height:17px;
+	width: 17px;
+	height: 17px;
 }
 
 #label {
@@ -245,8 +246,8 @@ span, #logoImg:hover {
 
 .bookbag-top {
 	height: 30px;
-/* 	padding-top: 25px; */
-/* 	padding-left: 15px; */
+	/* 	padding-top: 25px; */
+	/* 	padding-left: 15px; */
 	padding-right: 18px;
 }
 
@@ -262,12 +263,12 @@ span, #logoImg:hover {
 	width: 5%;
 	height: 100%;
 	line-height: 150px;
-/* 	padding-left: 15px; */
+	/* 	padding-left: 15px; */
 }
 
 .check {
-	width:17px;
-	height:17px;
+	width: 17px;
+	height: 17px;
 }
 
 .book-img-div {
@@ -298,7 +299,8 @@ span, #logoImg:hover {
 
 .detail-btn {
 	height: 30px;
-	margin-right: 5px; border : 1px solid rgb( 194, 193, 193);
+	margin-right: 5px;
+	border: 1px solid rgb(194, 193, 193);
 	border-radius: 4px;
 	background-color: #ffffff;
 	border: 1px solid rgb(194, 193, 193);
@@ -312,6 +314,7 @@ span, #logoImg:hover {
 
 .sub-rental-info {
 	border: 1px solid rgb(194, 193, 193);
+	border-radius: 5px;
 }
 
 .rental-detail {
@@ -349,6 +352,10 @@ span, #logoImg:hover {
 	background-color: #ffffff;
 	color: #5397fc;
 	border-radius: 4px;
+}
+
+.sub-rental-btn-div {
+	height: 60px;
 }
 
 .sub-rental-btn {
@@ -414,8 +421,7 @@ span, #logoImg:hover {
 			<c:choose>
 				<c:when test="${fn:length(list) == 0}">
 					<div class="body-top">
-						<div class="bookbag-count">책가방
-							(${fn:length(list)})</div>
+						<div class="bookbag-count">책가방 (${fn:length(list)})</div>
 					</div>
 					<div class="body-left">
 						<div class="bookbag-top"></div>
@@ -426,8 +432,7 @@ span, #logoImg:hover {
 				</c:when>
 				<c:otherwise>
 					<div class="body-top">
-						<div class="bookbag-count">책가방
-							(${fn:length(list)})</div>
+						<div class="bookbag-count">책가방 (${fn:length(list)})</div>
 					</div>
 					<div class="body-left">
 						<div class="bookbag-top">
@@ -441,7 +446,7 @@ span, #logoImg:hover {
 							</div>
 						</div>
 						<hr
-							style="width: 95%; border-top: 1px solid rgb(216, 216, 216); text-align: left;  margin-left: 0px;">
+							style="width: 95%; border-top: 1px solid rgb(216, 216, 216); text-align: left; margin-left: 0px;">
 						<c:forEach var="bookbag" items="${list}">
 							<div class="bookbag-main">
 								<div class="bookbag-main-checkbox">
@@ -454,20 +459,22 @@ span, #logoImg:hover {
 								</div>
 								<div class="bookbag-detail-div">
 									<div class="bookbag-detail-text">
-										<div>${bookbag.b_title }</div><div style="font-size: 14px; padding-top: 10px;">${bookbag.b_writer }</div>
+										<div>${bookbag.b_title }</div>
+										<div style="font-size: 14px; padding-top: 10px;">${bookbag.b_writer }</div>
 										<input type="hidden" value="${bookbag.b_isbn }"> <input
 											type="hidden" value="${bookbag.b_genre }">
 									</div>
 									<div class="bookbag-detail-btn">
 										<button class="detail-btn" type="button"
-											id="w${bookbag.bookbag_seq }" style="width: 140px;">위시리스트에 담기</button>
+											id="w${bookbag.bookbag_seq }" style="width: 140px;">위시리스트에
+											담기</button>
 										<button class="detail-btn" type="button"
 											id="d${bookbag.bookbag_seq }" style="width: 60px;">삭제</button>
 									</div>
 								</div>
 							</div>
 							<hr
-								style="width: 95%; margin-top: -14px; border-top: 1px solid rgb(216, 216, 216); text-align: left;  margin-left: 0px;">
+								style="width: 95%; margin-top: -14px; border-top: 1px solid rgb(216, 216, 216); text-align: left; margin-left: 0px;">
 
 							<script>
 								// 삭제 버튼 기능
@@ -594,23 +601,27 @@ span, #logoImg:hover {
 								<div class="rental-detail-title">대여 내역</div>
 								<br>
 								<div style="padding-bottom: 9px;">
-									<span class="body-span">대여할 책</span> : <span class="body-span" id="check-count-result"
-										style="font-weight: bold;"></span> 권
+									<span class="body-span">대여할 책</span> : <span class="body-span"
+										id="check-count-result" style="font-weight: bold;"></span> 권
 								</div>
 								<div style="padding-bottom: 9px;">
-									<span class="body-span">남은 배송 횟수</span> : <span class="body-span" style="font-weight: bold;">${sdto.delivery_count }</span>
+									<span class="body-span">남은 배송 횟수</span> : <span
+										class="body-span" style="font-weight: bold;">${sdto.delivery_count }</span>
 									번
 								</div>
 								<div style="padding-bottom: 9px;">
-									<span class="body-span">남은 대여 권수</span> : <span class="body-span" style="font-weight: bold;">${sdto.rental_count }</span>
+									<span class="body-span">남은 대여 권수</span> : <span
+										class="body-span" style="font-weight: bold;">${sdto.rental_count }</span>
 									권
 								</div>
 								<div style="padding-bottom: 9px;">
-									<span class="body-span">도착예정일</span> : <span class="body-span" style="font-weight: bold;"><fmt:formatDate
+									<span class="body-span">도착예정일</span> : <span class="body-span"
+										style="font-weight: bold;"><fmt:formatDate
 											value="${arrivalDate}" pattern="yyyy-MM-dd(E)" /></span>
 								</div>
 								<div>
-									<span class="body-span">반납일</span> : <span class="body-span" style="font-weight: bold;"><fmt:formatDate
+									<span class="body-span">반납일</span> : <span class="body-span"
+										style="font-weight: bold;"><fmt:formatDate
 											value="${returnDate}" pattern="yyyy-MM-dd(E)" /></span>
 								</div>
 							</div>
@@ -620,18 +631,15 @@ span, #logoImg:hover {
 								<div class="address-title">배송지 정보</div>
 								<br>
 								<div style="padding-bottom: 5px; font-weight: bold;">우편번호</div>
-								<div
-									style="padding-bottom: 10px; font-size: 14px;">${dto.postcode }</div>
+								<div style="padding-bottom: 10px; font-size: 14px;">${dto.postcode }</div>
 								<div style="padding-bottom: 5px; font-weight: bold;">주소</div>
-								<div
-									style="padding-bottom: 10px; font-size: 14px;">${dto.address1 }</div>
+								<div style="padding-bottom: 10px; font-size: 14px;">${dto.address1 }</div>
 								<div style="padding-bottom: 5px; font-weight: bold;">상세주소</div>
-								<div
-									style="padding-bottom: 10px; font-size: 14px;">${dto.address2 }</div>
+								<div style="padding-bottom: 10px; font-size: 14px;">${dto.address2 }</div>
 								<div style="padding-bottom: 5px; font-weight: bold;">받으실 분</div>
-								<div
-									style="padding-bottom: 10px; font-size: 14px;">${dto.reciver }</div>
-								<div style="padding-bottom: 5px; font-weight: bold;">휴대폰 번호</div>
+								<div style="padding-bottom: 10px; font-size: 14px;">${dto.reciver }</div>
+								<div style="padding-bottom: 5px; font-weight: bold;">휴대폰
+									번호</div>
 								<div style="font-size: 15px;">${dto.reciver_phone }</div>
 								<br>
 								<div class="address-btn-div">
