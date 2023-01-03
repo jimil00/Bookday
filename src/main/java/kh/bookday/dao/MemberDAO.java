@@ -59,14 +59,10 @@ public class MemberDAO {
 	
 	//회원정보수정
 	public void updateMemInfo(MemberDTO dto) {
-			db.update("Member.updateMemInfo", dto);
+		db.update("Member.updateMemInfo", dto);
 		}
 		
-	//프로필 이미지 삽입
-//	public void insertProfImg(ProfileDTO dto) {
-//			db.insert("Member.insertProfImg", dto);
-//		}
-	
+
 	//지민
 	// 회원 배송지 정보 입력 
 	public void updateMemberAddressById(MemberDTO dto) {
