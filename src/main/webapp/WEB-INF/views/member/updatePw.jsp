@@ -175,8 +175,9 @@ button,.find_btn>input:active {
                                         			 );
                                         	 
                                  		 	   		  
-                                 			$("#phone").attr("placeholder","비밀번호 재설정(한글 및 # $ ^ & * 제외)");
+                                 			$("#phone").attr("placeholder","비밀번호(영문자, 특수문자 ! @ $ % - 16자 이내)");
                                  			$("#phone").attr("type","password");
+                                 			$("#phone").attr("maxlength","16");
                                         	
                                         	$(".title").text("비밀번호 재설정");
                                         	
@@ -186,16 +187,14 @@ button,.find_btn>input:active {
                                         		           id: "updatePw",
                                         		           placeholder: "비밀번호 확인",
                                         		      		name:"updatePw",
+                                        		      		maxlength:"16"
                                         		        })
                                         		    );
                                         	 
-                                        	 
-                                        	 
-                                        	 
-                                        	 
+     
                                         	 $("#updatePw").on("blur",function(){
                                      			
-                                        		let pwRegex=/^[A-Z a-z 0-9 ! @ %]{8,10}$/;
+                                        		let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
                                              	let pw=$("#phone").val();
                                      			let check_pw=$("#updatePw").val();
 

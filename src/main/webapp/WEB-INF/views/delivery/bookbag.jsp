@@ -395,14 +395,10 @@ span, #logoImg:hover {
 						<c:when test="${empty loginID}">
 							<a href="/member/toLogin"><p class="user" id="login">로그인</p></a>
 							<a href="/member/toSignup"><p class="user" id="signup">회원가입</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
-									class="user" id="test">상세 페이지 테스트</p></a>
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
 							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
-							<a href="/book/selectBookinfo?b_isbn=9788936434267"><p
-									class="user" id="test">상세 페이지 테스트</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>

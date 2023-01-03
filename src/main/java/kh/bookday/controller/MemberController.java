@@ -269,10 +269,11 @@ public class MemberController {
 		//비밀번호 암호화
 		System.out.println("디티오에 들어간 비밀번호: "+dto.getPw()+dto.getEmail()+dto.getName()+dto.getNickname()+dto.getPw());
 		if(dto.getPw() == blankPw) {
-			String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
+			
+		}
+		String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
 			dto.setPw(updatedPw);
 			System.out.println(updatedPw);
-		}
 		
 		//파일 관련 업데이트 업로드 참고
 		String realPath= session.getServletContext().getRealPath("/resources/profile");

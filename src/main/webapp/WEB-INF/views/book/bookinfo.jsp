@@ -576,6 +576,10 @@ line-height: 40px;
 font-size: small;
 
 }
+.book_box>a{
+text-decoration: none;
+color:black;
+}
 
 /* footer */
 .footer {
@@ -937,64 +941,25 @@ display:none;
 
                     <div class="swiper-with">
                         <div class="swiper-wrapper">
-                           <!--  foreach 문 -->
+                        
+                            <c:choose>
+                            <c:when test="${not empty wlist}">
+                                <c:forEach items="${wlist}" var="w">
                             <div class="book_box swiper-slide">
+                                
+                                <a href="/book/selectBookinfo?b_isbn=${w.b_isbn}">
                                 <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
+                                    <img src="${w.b_img_url}" class="w_img_url">
+                                    <p class="w_title">${w.b_title}</p>
+                                    <p class="w_writer">${w.b_writer}</p>
                                 </div>
+                                </a>
                             </div>
+                            </c:forEach>
+                            </c:when>
+                            </c:choose>
+                            
                             <!-- foreach 문 -->
-                            
-                               <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
-                              <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
-                              <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
-                              <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
-                               <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
-                               <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
                   

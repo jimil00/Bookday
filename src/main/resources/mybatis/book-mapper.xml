@@ -30,6 +30,11 @@
 	 <select id="selectNewBooks" resultType="kh.bookday.dto.BookDTO">
 		select * from book where <![CDATA[rownum <= 6]]> order by b_publication_date desc
 	</select> 
+	
+	<!-- 함께 담은 책 출력 -->
+	<select id="selectWithBooks" resultType="kh.bookday.dto.BookDTO">
+		select DISTINCT b_isbn, * from wishlist where <![CDATA[rownum <= 10]]> and id =any(select id from wishlist where b_isbn=#{b_isbn}) and id not in(#{b_isbn})
+	</select>
 		
 </mapper>
 
