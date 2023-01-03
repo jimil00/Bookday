@@ -27,9 +27,11 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-/* div {
-	border: 1px solid black;
-} */
+div {
+	/* 	border: 1px solid black; */
+	
+}
+
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -182,6 +184,7 @@ span.size-40 {
 
 /* body */
 .body {
+	width: 550px;
 	overflow: hidden;
 	margin: auto;
 }
@@ -189,27 +192,17 @@ span.size-40 {
 .body-top {
 	height: 100px;
 	font-weight: bold;
-}
-
-.body-main {
-	overflow: hidden;
-}
-
-.main-left {
-	width: 45%;
-	float: left;
-}
-
-.main-right {
-	width: 45%;
-	float: right;
+	font-size: 17px;
 }
 
 .sub-div {
-	border: 1px solid rgb(194, 193, 193);
 	height: 200px;
 	text-align: center;
+	font-weight: bold;
+	font-size: 18px;
 	line-height: 200px;
+	border-radius: 5px;
+	background-color: #f1f6fa;
 }
 
 .pay-btn-div {
@@ -223,22 +216,23 @@ span.size-40 {
 	border: none;
 	border-radius: 4px;
 	background-color: #5397fc;
+	box-shadow: 3px 3px #80808050;
 	font-size: 15px;
 }
 
 .body-bottom {
-	padding-top: 70px;
+	padding-top: 60px;
 }
 
 .li-title {
 	padding-left: 20px;
-	padding-bottom: 14px;
 	font-weight: bold;
 }
 
 li {
 	padding-bottom: 7px;
 }
+
 /* body */
 </style>
 </head>
@@ -284,28 +278,21 @@ li {
 		<div class="navi"></div>
 		<div class="body">
 			<div class="body-top">
-				<div>종이책 구독하기</div>
-				<hr>
+				<div style="padding-bottom: 10px">종이책 구독하기</div>
 				<div>한 달에 열 권, 원하는 종이책을 집으로 배송해드립니다.</div>
 			</div>
 			<div class="body-main">
-				<div class="main-left">
+				<div class="main">
 					<div class="sub-div">30일 구독권 12,000원</div>
 					<div class="pay-btn-div">
-					<c:choose>
-					<c:when test="${dto.grade eq '미구독'}">
-						<button class="pay-btn" id="pay-btn">결제하기</button>
-					</c:when>
-					<c:otherwise>
-						<button class="pay-btn" id="disabled-pay-btn">이용 중</button>
-					</c:otherwise>
-					</c:choose>
-					</div>
-				</div>
-				<div class="main-right">
-					<div class="sub-div">월 정기 구독권 11,000원</div>
-					<div class="pay-btn-div">
-						<button class="pay-btn">결제하기</button>
+						<c:choose>
+							<c:when test="${dto.grade eq '미구독'}">
+								<button class="pay-btn" id="pay-btn">결제하기</button>
+							</c:when>
+							<c:otherwise>
+								<button class="pay-btn" id="disabled-pay-btn">이용 중</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
@@ -316,8 +303,6 @@ li {
 					<li>대여일은 도착한 날부터 산정되며, 반납일은 대여일부터 10일입니다.</li>
 					<li>반납일에 책가방을 문 앞에 두시면 수거합니다. 반납일을 꼭 지켜주세요!</li>
 					<li>종이책을 분실 또는 훼손하였을 경우 동일한 책으로 변상하셔야 합니다.</li>
-					<li>정기 구독 결제는 구독 기간 마지막 날 진행되며 결제 후 구독 기간은 자동 갱신됩니다.</li>
-					<li>정기 구독 갱신을 중단하고자 할 경우 구독 기간 종료 하루 전까지 구독을 해지하셔야 합니다.</li>
 				</ul>
 			</div>
 		</div>

@@ -267,6 +267,7 @@ span.size-30 {
 /*contents*/
 .rap {
 	max-width: 700px;
+	margin:auto;
 }
 
 .dateHead {
@@ -303,19 +304,22 @@ span.size-30 {
 }
 
 .bookCal {
-	width: 79.8px;
-	/* height: auto; */
-	height: 119.7px;
+	width: 80px;
+	height: 120px;
 }
 
 .noColor {
 	background: #eee;
 }
 
-.header {
+.calHeader {
 	display: flex;
 	justify-content: space-between;
+	align-items:center;
 	padding: 1rem 2rem;
+}
+.calHeader *{
+	font-size: 18px;
 }
 
 /* 좌우 버튼 */
@@ -342,7 +346,7 @@ span.size-30 {
 	height: 1px;
 	border: 0;
 	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
+	margin-top: 50px;
 	margin-bottom: 15px;
 }
 
@@ -431,66 +435,7 @@ span.size-30 {
 	font-size: x-small;
 }
 </style>
-<script>
-$(function(){
 
-	$.getJSON("/bookstatistics/selectBookCalbyId")
-            .done(res => {
-                console.log(res)
-                if (res != null) {
-                	console.log(res);
-                    setCalAppend(res)
-                }
-            })
-
-	
-	
-
-	
-		function setCalAppend(res) {
-		// 일단 포스트 리스트를 불러오고 안보이게
-				let year = $(".date").attr("year");
-		console.log(year);
-		let month = $(".date").attr("month");
-		//let day = $(".date").attr("day");//여기 겟타임 넣어두고
-		let days = document.querySelectorAll(".date");
-		console.log(year+month+days[3]);
-		//console.log(days);
-		// const event = new Date('2023-01-01 00:00:00');
-		days.forEach(day=>{
-		  let cal = new Date(year+'-'+month.padStart(2, '0')+'-'+$(day).html().padStart(2, '0')+' '+'00:00:00')
-		getTimeDate = cal.getTime()/86400000
-		$(day).attr("day", getTimeDate);
-		console.log(days);
-		})
-		var arr = $.map($(".date"), function(item) {
-    return $(item).attr("day");
-});
-		console.log(arr);
-		for (let i = 0; i < res.length; i++) {
-
-		let start = new Date(res[i].dyst_read).getTime()/86400000;
-		let finish = new Date(res[i].dyfn_read).getTime()/86400000;
-		
-		console.log(start)
-		for(let j = start; j <= finish; j++){
-			for (let k = 0; k < arr.length; k++){
-				if(arr[k]==j){
-					console.log(arr[k]);
-					console.log("j:"+j)
-					$(arr).append('<img src='+res[i].b_img_url+'>');
-				}
-			}
-// 			console.log(day)
-// 		  if($(day).attr("day") == j){
-// 			  console.log("a")
-// 		    $(day).append('<img src='+res[i].b_img_url+'>');
-// 		  }
-		}
-		}
-		}
-})
-</script>
 </head>
 
 <body>
@@ -541,8 +486,6 @@ $(function(){
 					<li class="selected"><span
 						class="material-symbols-outlined size-35" id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
-						id="snCalendar">calendar_month</span></li>
-					<li><span class="material-symbols-outlined size-35"
 						id="snBookmark">book</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBooknote">edit</span></li>
@@ -564,7 +507,7 @@ $(function(){
 					</div>
 					<div class="calendar"></div>
 					<div class='rap'>
-						<div class="header">
+						<div class="calHeader">
 							<div class="btn prevDay"></div>
 							<h2 class='dateTitle'></h2>
 							<div class="btn nextDay"></div>
@@ -660,10 +603,7 @@ $(function(){
 				location.href = "/bookshelves/selectBookshelvesListById";
 			});
 			$("#snStatistics").on("click", function() {
-				location.href = "/bookstatistics/select-";
-			});
-			$("#snCalendar").on("click", function() {
-				location.href = "/bookcalendar/select-";
+				location.href = "/bookstatistics/toStatistics";
 			});
 			$("#snBookmark").on("click", function() {
 				location.href = "/bookmark/selectBookmarkListById";
@@ -718,6 +658,7 @@ $(function(){
 				// 이전달 이동
 				document.querySelector(`.prevDay`).onclick = () => {
 				makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
+				getBookCal();
 				}
 
 				// 다음달 이동
@@ -732,9 +673,117 @@ $(function(){
 				    // 넘어가는 버튼 안보이게는 시간나면 하자
 				}
 				makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
+				getBookCal();
+
+				}
+				function getBookCal(){
+					$.getJSON("/bookstatistics/selectBookCalbyId")
+			        .done(res => {
+			            console.log(res)
+			            if (res != null) {
+			            	console.log(res);
+			                setCalAppend(res)
+			            }
+			        })
 				}
 				
+				
+				function setCalAppend(res) {
+				// 일단 포스트 리스트를 불러오고 안보이게
+						let year = $(".date").attr("year");
+				console.log(year);
+				let month = $(".date").attr("month");
+				//let day = $(".date").attr("day");//여기 겟타임 넣어두고
+//		 		let days = document.querySelectorAll(".date");
+//		 		console.log(days);
+				//console.log(days);
+				// const event = new Date('2023-01-01 00:00:00');
+//		 		days.forEach(day=>{
+//		 		  let cal = new Date(year+'-'+month.padStart(2, '0')+'-'+$(day).html().padStart(2, '0')+' '+'00:00:00')
+//		 		getTimeDate = cal.getTime()/86400000
+//		 		$(day).attr("day", getTimeDate);
+//		 		console.log(days);
+//		 		})
+				
+//		 		console.log($(".date").attr("day"));
+//		 		var arr = $.map($(".date"), function(item) {
+//		     return $(item).attr("day");
+		// });
+//		 		console.log(arr);
+				let days = document.querySelectorAll(".date");
+				res.forEach(list=>{
 
+					let start = new Date(list.dyst_read).getTime()/86400000;
+					let finish = new Date(list.dyfn_read).getTime()/86400000;
+					console.log(days)
+					days.forEach(day=>{
+						let cal = new Date(year+'-'+month.padStart(2, '0')+'-'+$(day).attr("day").padStart(2, '0')+' '+'00:00:00')
+						getTimeDate = cal.getTime()/86400000
+						console.log(getTimeDate)
+						
+						for(let j = start; j <= finish; j++){
+							console.log('j : '+j+'gt : ' + getTimeDate + '=' +(j==getTimeDate))
+						  if(getTimeDate == j){
+							  $(day).append('<img src='+list.b_img_url+' class="bookCal">');
+						  }					
+						}
+							
+						
+					})
+					
+				})
+				
+				
+				for (let i = 0; i < res.length; i++) {
+
+				let start = new Date(res[i].dyst_read).getTime()/86400000;
+				let finish = new Date(res[i].dyfn_read).getTime()/86400000;
+				
+				console.log(start)
+				for(let j = start; j <= finish; j++){
+					let days = document.querySelectorAll(".date");
+
+//		 			days.forEach(day=>{
+//		 				  let cal = new Date(year+'-'+month.padStart(2, '0')+'-'+$(day).html().padStart(2, '0')+' '+'00:00:00')
+//		 				getTimeDate = cal.getTime()/86400000
+//		 				$(day).attr("day", getTimeDate);
+//		 				  console.log(getTimeDate == j)
+//		 				  console.log(res[i].b_title)
+//		 				  if(getTimeDate == j){
+//		 					  $(day).append('<img src='+res[i].b_img_url+' class="bookCal">');
+//		 				  }
+						
+//		 				})
+//		 			for (let k = 0; k < arr.length; k++){
+//		 				if(arr[k]==j){
+//		 					console.log(arr[k]);
+//		 					console.log("j:"+j)
+//		 			let arrPC = document.querySelectorAll(".pcContents");
+//		                 let lastPc_seq = $(arrPC[arrPC.length-1]).attr("seq");
+//		                 if($(".date").attr("day")== arr[k]){
+//		 					$(this).append('<img src='+res[i].b_img_url+'>');
+
+//		                 }
+//		 				}
+//		 			}
+//		 			console.log(day)
+//		 		  if($(day).attr("day") == j){
+//		 			  console.log("a")
+//		 		    $(day).append('<img src='+res[i].b_img_url+'>');
+//		 		  }
+				}
+				}
+				}
+
+				$(function(){
+					 getBookCal();
+						
+
+						
+						
+
+
+					})
 			
             //footer: 사업자 정보 토글 기능
             $("#business_info_text").hide();

@@ -368,7 +368,7 @@ span.size-30 {
 * .postedBooks {
 	height: 140px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: flex-end;
 	padding-bottom: 4px;
 }
@@ -379,7 +379,7 @@ span.size-30 {
 	height: 1px;
 	border: 0;
 	border-top: 1px solid rgb(216, 216, 216);
-	margin-top: 15px;
+	margin-top: 50px;
 	margin-bottom: 15px;
 	opacity: inherit;
 }
@@ -520,8 +520,6 @@ span.size-30 {
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
-						id="snCalendar">calendar_month</span></li>
-					<li><span class="material-symbols-outlined size-35"
 						id="snBookmark">book</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBooknote">edit</span></li>
@@ -605,6 +603,13 @@ span.size-30 {
 							<div class="titleTxt">내 책장</div>
 							&nbsp <span class="material-symbols-outlined size-30">shelves</span>
 						</div>
+				<c:choose>
+                     <c:when test="${empty plist}">
+                          <div class="postedBooks"></div>
+					<hr class="bookshelvesHr">
+                    </c:when>
+                    <c:otherwise>
+ 
 						<c:forEach var="post" items="${plist }" varStatus="status">
 							<c:if test="${status.count%10==1 }">
 								<div class="postedBooks">
@@ -619,6 +624,8 @@ span.size-30 {
 					<hr class="bookshelvesHr">
 					</c:if>
 					</c:forEach>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>
@@ -705,9 +712,6 @@ span.size-30 {
 		$("#snStatistics").on("click", function() {
 			location.href = "/bookstatistics/toStatistics";
 		})
-		$("#snCalendar").on("click", function() {
-			location.href = "/bookcalendar/select-";
-		})
 		$("#snBookmark").on("click", function() {
 			location.href = "/bookmark/selectBookmarkListById";
 		})
@@ -719,7 +723,8 @@ span.size-30 {
 			location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
 		})
 		
-			//프로필 사진 없을 때(수아)
+
+			//포스트 프로필 사진 없을 때(수아)
 	$( document ).ready( function() {
 	    
 	  	if(${p.sysprofname == null}){
@@ -729,7 +734,7 @@ span.size-30 {
 						}
 	   });
 		
-		
+	
 		<!-- Ajax Infinite Scroll -->
 // 	    let count = 1
 // 	    $(window).scroll(function () {

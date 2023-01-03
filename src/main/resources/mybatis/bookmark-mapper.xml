@@ -3,12 +3,19 @@
 
 <mapper namespace="Bookmark">
 
+	<insert id="insertBookmark">
+		insert into bookmark values (bookmark_seq.nextval, #{bm_writer_id}, #{b_isbn}, #{b_img_url}, #{b_title}, #{b_writer},#{b_genre}, sysdate, #{bm_content})
+	</insert>
 	<select id="selectBookmarkListById" resultType="kh.bookday.dto.BookmarkDTO">
-		select * from bookmark where bm_writer_id = #{id} order by bm_write_date desc
+		select * from bookmark where bm_writer_id = #{id} order by bm_seq desc
+	</select>
+	
+	<select id="selectBmListByBmseq" resultType="kh.bookday.dto.BookmarkDTO">
+		select * from bookmark where bm_writer_id = #{bm_writer_id} and bm_seq > #{bm_seq} order by bm_seq desc
 	</select>
 	
 	<select id="selectBookmarkListBySw" resultType="kh.bookday.dto.BookmarkDTO">
-		select * from bookmark where b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or bm_content like '%'||#{searchWord}||'%' order by bm_writer_date desc
+		select * from bookmark where b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or bm_content like '%'||#{searchWord}||'%' order by bm_seq desc
 	</select>
 	
 	<delete id="deleteBookmarkBySeq">

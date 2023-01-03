@@ -14,8 +14,8 @@ public class PostDTO {
 	private String b_genre;
 	private String b_publisher;
 	private String b_publication_date;
-	private Timestamp dyst_read;
-	private Timestamp dyfn_read;
+	private String dyst_read;
+	private String dyfn_read;
 	private String p_writer_nn;
 	private Timestamp p_write_date;
 	private String p_title;
@@ -28,8 +28,9 @@ public class PostDTO {
 	public PostDTO() {
 		super();
 	}
+
 	public PostDTO(int p_seq, String p_writer_id, String sysprofname,String b_isbn, String b_img_url, String b_title, String b_writer,
-			String b_genre, String b_publisher, String b_publication_date, Timestamp dyst_read, Timestamp dyfn_read,
+			String b_genre, String b_publisher, String b_publication_date, String dyst_read, String dyfn_read,
 			String p_writer_nn, Timestamp p_write_date, String p_title, String p_content, int p_view_count,
 			int p_comment_count, int p_like_count) {
 		this.p_seq = p_seq;
@@ -115,16 +116,16 @@ public class PostDTO {
 	public void setB_publication_date(String b_publication_date) {
 		this.b_publication_date = b_publication_date;
 	}
-	public Timestamp getDyst_read() {
+	public String getDyst_read() {
 		return dyst_read;
 	}
-	public void setDyst_read(Timestamp dyst_read) {
+	public void setDyst_read(String dyst_read) {
 		this.dyst_read = dyst_read;
 	}
-	public Timestamp getDyfn_read() {
+	public String getDyfn_read() {
 		return dyfn_read;
 	}
-	public void setDyfn_read(Timestamp dyfn_read) {
+	public void setDyfn_read(String dyfn_read) {
 		this.dyfn_read = dyfn_read;
 	}
 	public String getP_writer_nn() {
@@ -169,5 +170,5 @@ public class PostDTO {
 	public void setP_like_count(int p_like_count) {
 		this.p_like_count = p_like_count;
 	}
-
+	
 }

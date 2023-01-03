@@ -261,17 +261,16 @@ public class MemberController {
 		String id = String.valueOf(session.getAttribute("loginID"));
 		
 		dto.setId(id);
-		System.out.println(dto.getPw());
+		
 		//비밀번호 암호화
 		String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
 		dto.setPw(updatedPw);
 		
-		
+		System.out.println(dto.getPw());
 		
 		//파일 관련 업데이트 업로드 참고
 		String realPath= session.getServletContext().getRealPath("/resources/profile");
 		
-		System.out.println(realPath);
 		
 		File filePath= new File(realPath);
 		
@@ -301,7 +300,6 @@ public class MemberController {
 				System.out.println(dto.getAddress1());
 				
 				service.updateMemInfo(dto);
-
 
 			}
 			
