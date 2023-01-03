@@ -218,6 +218,7 @@ span.size-40 {
 	background-color: #5397fc;
 	box-shadow: 3px 3px #80808050;
 	font-size: 15px;
+	
 }
 
 .body-bottom {

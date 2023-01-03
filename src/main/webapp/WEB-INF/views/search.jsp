@@ -211,7 +211,7 @@ span, #logoImg:hover {
 .book-main {
 	overflow: hidden;
 	width: 140px;
-	text-align: center;
+/* 	text-align: center; */
 	float: left;
 	margin-left: 19px;
 	margin-bottom: 20px;
@@ -227,7 +227,9 @@ span, #logoImg:hover {
 .b_title {
 	overflow: hidden;
 	height: 23px;
-	font-weight: bold; word-wrap : break-word;
+	width: 120px;
+	font-weight: bold; 
+	word-wrap : break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	word-wrap: break-word;
@@ -236,6 +238,7 @@ span, #logoImg:hover {
 .b_writer {
 	overflow: hidden;
 	height: 23px;
+	width: 120px;
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -332,7 +335,7 @@ span, #logoImg:hover {
 	height: 152px;
 	-webkit-line-clamp: 9;
 	-webkit-box-orient: vertical;
-	word-wrap: break-word;
+/* 	word-wrap: break-word; */
 	text-overflow: ellipsis;
 }
 </style>
@@ -394,7 +397,7 @@ span, #logoImg:hover {
 						<c:forEach var="book" items="${blist }">
 							<div class="book-main">
 								<a href="/book/selectBookinfo?b_isbn=${book.b_isbn }"><img
-									class="book-img" src="${book.b_img_url }"></a>
+									class="book-img" title="${book.b_title }" src="${book.b_img_url }"></a>
 								<div class="b_title" title="${book.b_title }">${book.b_title }</div>
 								<div class="b_writer" title="${book.b_writer }">${book.b_writer }</div>
 							</div>
