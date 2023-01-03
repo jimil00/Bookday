@@ -972,7 +972,7 @@ span.size-30 {
                     
 					let bookmarkContent = $("<div>").addClass("bookmarkContent").html(res[i].bm_content);
 					
-					bookmarkContentsTxt.append(bookmarkBookInfo).append(bookmarkWritedate).append(bookmarkContent);
+					bookmarkContentsTxt.append(bookmarkBookInfo).append(bookmarkWritedate).append(hr).append(bookmarkContent);
 					
 					
                     let bookmarkContentsBtn = $("<div>").addClass("bookmarkContentsBtn");
@@ -998,6 +998,15 @@ span.size-30 {
                 let b_genre = $(".bookGenre").html();
                 let arrBM = document.querySelectorAll(".bookmarkContents");
                 let lastBm_seq = $(arrBM[0]).attr("seq");
+                
+				if(b_isbn == null){
+					alert("책을 검색 해주세요.");
+					return;
+				}
+				if($(".insertbookmarkContentBox").html("")){
+					alert("책갈피 내용을 입력해주세요.");
+					return;
+				}
                 $.ajax({
                     url: "/bookmark/insertBookmark",
                     type: "post",
@@ -1018,9 +1027,10 @@ span.size-30 {
             
 			$(".insertbookmarkContentBox").on("keydown", function(e){
 				if(e.keyCode == 13) {
-					insertBookmark();
+					if(insertBookmark()){
+					console.log("a");
 					$(".insertbookmarkContentBox").html("");
-            		$(".searchResultBookInfo *").remove();
+            		$(".searchResultBookInfo *").remove();}
 
 				}
 			});		
