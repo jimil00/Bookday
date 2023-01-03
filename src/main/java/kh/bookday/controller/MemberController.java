@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import kh.bookday.common.Pw_SHA256;
 import kh.bookday.dto.MemberDTO;
 import kh.bookday.dto.MonthSubMemberDTO;
@@ -243,8 +242,8 @@ public class MemberController {
 	// 지민
 
 	//마이페이지 회원정보수정 페이지로 이동
-	@RequestMapping(value="ToUpdateMemInfo")
-	public String ToUpdateMemInfo(Model model) {
+	@RequestMapping(value="toUpdateMemInfo")
+	public String toUpdateMemInfo(Model model) {
 		
 		String id = (String)session.getAttribute("loginID");
 		
@@ -261,10 +260,17 @@ public class MemberController {
 		
 		String id = String.valueOf(session.getAttribute("loginID"));
 		
-		service.updateMemInfo(dto);
+		dto.setId(id);
+		
+		//비밀번호 암호화
+		String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
+		dto.setPw(updatedPw);
+		
+		System.out.println(dto.getPw());
 		
 		//파일 관련 업데이트 업로드 참고
-		String realPath= session.getServletContext().getRealPath("profile_img");
+		String realPath= session.getServletContext().getRealPath("/resources/profile");
+		
 		
 		File filePath= new File(realPath);
 		
@@ -276,12 +282,11 @@ public class MemberController {
 				if(file.getOriginalFilename().equals("")) {continue;}
 				
 				String oriprofname= file.getOriginalFilename();
-				
 				String sysprofname= UUID.randomUUID()+"_"+oriprofname;
 				
-				
-				System.out.println(oriprofname);
-				System.out.println(sysprofname);
+				//파일 입력
+				dto.setOriprofname(oriprofname);
+				dto.setSysprofname(sysprofname);
 				
 				try {
 					file.transferTo(new File(filePath+"/"+sysprofname));
@@ -289,13 +294,16 @@ public class MemberController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println(dto);
 				
-
-				//service.insertProfImg(new ProfileDTO(0,oriprofname,sysprofname,id));
+				System.out.println(dto.getAddress1());
+				System.out.println(dto.getAddress1());
+				
+				service.updateMemInfo(dto);
 
 			}
 			
-		}return "member/mypage";
+		}return "redirect:toMypage";
 	}
 	
 
