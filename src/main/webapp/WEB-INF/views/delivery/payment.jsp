@@ -184,7 +184,7 @@ span.size-40 {
 
 /* body */
 .body {
-	width: 550px;
+	width: 580px;
 	overflow: hidden;
 	margin: auto;
 }
@@ -195,14 +195,23 @@ span.size-40 {
 	font-size: 17px;
 }
 
+.
+main {
+	height: 100%;
+	width: 100%;
+}
+
 .sub-div {
 	height: 200px;
+	width: 98%;
 	text-align: center;
 	font-weight: bold;
 	font-size: 18px;
 	line-height: 200px;
 	border-radius: 5px;
 	background-color: #f1f6fa;
+	box-shadow: 3px 3px #80808050;
+	text-shadow: 1px 1px #80808050;
 }
 
 .pay-btn-div {
@@ -212,12 +221,20 @@ span.size-40 {
 .pay-btn {
 	width: 100%;
 	height: 45px;
+	width: 98%;
 	color: #ffffff;
 	border: none;
 	border-radius: 4px;
 	background-color: #5397fc;
 	box-shadow: 3px 3px #80808050;
 	font-size: 15px;
+	transition-duration: 0.1s;
+}
+
+.pay-btn:hover {
+	margin-left: 5px;
+	margin-top: 5px;
+	box-shadow: none;
 }
 
 .body-bottom {
@@ -225,8 +242,12 @@ span.size-40 {
 }
 
 .li-title {
-	padding-left: 20px;
+	/* 	padding-left: 20px; */
 	font-weight: bold;
+}
+
+ul {
+	padding-inline-start: 1.2em;
 }
 
 li {
@@ -283,7 +304,7 @@ li {
 			</div>
 			<div class="body-main">
 				<div class="main">
-					<div class="sub-div">30일 구독권 12,000원</div>
+					<div class="sub-div">종이책 구독 12,000원</div>
 					<div class="pay-btn-div">
 						<c:choose>
 							<c:when test="${dto.grade eq '미구독'}">
@@ -299,8 +320,9 @@ li {
 			<div class="body-bottom">
 				<div class="li-title">유의사항</div>
 				<ul>
-					<li>한 달 10권 이하 대여 가능하며, 3번 이하의 배송 신청을 할 수 있습니다.</li>
-					<li>대여일은 도착한 날부터 산정되며, 반납일은 대여일부터 10일입니다.</li>
+					<li>구독기간은 결제한 날부터 30일입니다.</li>
+					<li>구독기간 동안 10권 이하 대여 가능하며, 3번 이하의 배송 신청을 할 수 있습니다.</li>
+					<li>대여일은 10일이며, 도착한 날부터 산정됩니다.</li>
 					<li>반납일에 책가방을 문 앞에 두시면 수거합니다. 반납일을 꼭 지켜주세요!</li>
 					<li>종이책을 분실 또는 훼손하였을 경우 동일한 책으로 변상하셔야 합니다.</li>
 				</ul>

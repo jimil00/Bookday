@@ -209,13 +209,9 @@ public class BooknoteController {
 	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
+		
 		JsonObject jsonObject = new JsonObject();
 		
-        /*
-		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-		 */
-		
-		// 내부경로로 저장
 		String realPath = session.getServletContext().getRealPath("resources/upload");
 		File filePath = new File(realPath);
 		if(!filePath.exists()) {filePath.mkdir();}
@@ -223,13 +219,14 @@ public class BooknoteController {
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		System.out.println(originalFileName);
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+//		if(extension.equals("png")||extension.equals("jpg")||extension.equals("jpeg")||extension.equals("gif")) {
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 		System.out.println(filePath);
 		File targetFile = new File(filePath + "/" +savedFileName);	
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "/resources/upload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
+			jsonObject.addProperty("url", "/resources/upload/"+savedFileName); 
 			jsonObject.addProperty("responseCode", "success");
 				
 		} catch (IOException e) {
@@ -237,46 +234,12 @@ public class BooknoteController {
 			jsonObject.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
+//		}
 		String a = jsonObject.toString();
 		return a;
 	}
 
 
-//
-//	// 게시글 입력 (C)
-//}else if(uri.equals("/insertBoardContents.board")) {
-//	if (request.getMethod().equals("GET")) {
-//		response.sendRedirect("/error.jsp");
-//		return;
-//	}
-//	String b_writer_id = (String)request.getSession().getAttribute("loginID");
-//	String b_writer_nn = (String)request.getSession().getAttribute("loginNickname");
-//	String b_category = request.getParameter("b_category");
-//	String b_title = request.getParameter("b_title");
-//	String b_content = request.getParameter("b_content");
-//
-//	int nextVal = BoardDAO.getInstance().getBoardNextVal();
-//
-//	BoardDAO.getInstance().insertBoardContents(new BoardDTO(nextVal ,b_category, b_writer_id, b_writer_nn, null, b_title, b_content, 0));
-//	String b_seq = String.valueOf(nextVal);
-//	response.getWriter().append(b_seq);
-//
-//
-//
-//	// 게시글 출력 (R)
-//}else if(uri.equals("/selectBoardContents.board")){
-//
-//	int b_seq = Integer.parseInt(request.getParameter("b_seq"));
-//
-//	BoardDAO.getInstance().addBoardViewCount(b_seq);
-//
-//	BoardDTO dto = BoardDAO.getInstance().selectBoardContents(b_seq);
-//	request.setAttribute("dto", dto);
-//
-//	List<BoardCommentDTO> list = BoardCommentDAO.getInstance().selectBoardComment(b_seq);
-//	request.setAttribute("list", list);
-//
-//	request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
 
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e) {
