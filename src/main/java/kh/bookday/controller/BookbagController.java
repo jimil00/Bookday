@@ -229,4 +229,9 @@ public class BookbagController {
 		e.printStackTrace();
 		return "error";
 	}
+	
+	@RequestMapping("error")
+	public String error() {
+		return "error";
+	}
 }

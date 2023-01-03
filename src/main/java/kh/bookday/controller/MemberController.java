@@ -317,6 +317,11 @@ public class MemberController {
 		e.printStackTrace();
 		return "error";
 	}
+	
+	@RequestMapping("error")
+	public String error() {
+		return "error";
+	}
 
 
 }

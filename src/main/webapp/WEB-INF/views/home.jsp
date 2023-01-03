@@ -773,6 +773,7 @@ height:fit-content;
 			</div>
 
 		</div>
+		</div>
 
 		<script>
 
@@ -795,7 +796,11 @@ height:fit-content;
          }
       })
       $("#bookshelves").on("click", function() {
-         location.href = "/bookshelves/selectBookshelvesListById";
+    	  if(${loginID == null}) {
+              location.href = "/member/toLogin";
+         }else {
+        	 location.href = "/bookshelves/selectBookshelvesListById";
+         }
       })
       $("#mypage").on("click", function() {
          if (${loginID == null}) {
