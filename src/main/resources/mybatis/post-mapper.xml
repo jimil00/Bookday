@@ -11,6 +11,10 @@
 		</selectKey>
 	</insert>
 	
+	<select id="selectPostCountById" resultType="int">
+		select count(*) from post where p_writer_id = #{id}
+	</select>
+	
 	<select id="selectPostListById" resultType="kh.bookday.dto.PostDTO">
 		select * from post where p_writer_id = #{id} order by p_seq desc
 	</select>
@@ -54,7 +58,44 @@
 	<delete id="deletePostByPseq">
 		delete from post where p_seq = #{p_seq}
 	</delete>
-
+	
+	<select id="selectFvrBookImgById" resultType="String">
+		select b_img_url 
+		from post 
+		where p_writer_id = #{id} 
+		group by b_img_url 
+		having count(*) = (select max(c) 
+		from (select b_img_url, count(b_img_url) as c 
+		from post where p_writer_id = #{id} 
+		group by b_img_url 
+		having count(b_img_url)>1))
+	</select>
+	
+	<select id="selectFvrWriterById" resultType="String">
+		select b_writer 
+		from post 
+		group by b_writer 
+		having count(*) = (select max(c) 
+		from (select b_writer, count(b_writer) as c 
+		from post 
+		where p_writer_id = #{id} 
+		group by b_writer
+		having count(b_writer)>1))
+		order by b_writer
+	</select>
+		
+	<select id="selectFvrGenreById" resultType="String">
+		select b_genre 
+		from post 
+		group by b_genre 
+		having count(*) = (select max(c) 
+		from (select b_genre, count(b_genre) as c 
+		from post 
+		where p_writer_id = #{id} 
+		group by b_genre
+		having count(b_genre)>1))
+		order by b_genre
+	</select>
 <!-- 수진 -->
 
 <!-- 지민 -->

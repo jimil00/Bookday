@@ -52,14 +52,24 @@ public class BookshelvesController {
 		model.addAttribute("dto", dto);
 
 		// 대여
+		int rcount = rservice.selectRentalCountById(id);
+		model.addAttribute("rcount", rcount);
+		
 		List<RentalDTO> rlist = rservice.selectRentalListById(id);
 		model.addAttribute("rlist", rlist);
 
 		// 위시리스트
+		int wcount = wservice.selectWishlistCountById(id);
+		model.addAttribute("wcount", wcount);
+		
 		List<WishlistDTO> wlist = wservice.selectWishlistListById(id);
 		model.addAttribute("wlist", wlist);
 
 		// 내 책장 첫 20개 출력
+		int pcount = pservice.selectPostCountById(id);
+		System.out.println(pcount);
+		model.addAttribute("pcount", pcount);
+		
 		List<PostDTO> plist = pservice.select20PostListById(id, 0);
 		model.addAttribute("plist", plist);
 

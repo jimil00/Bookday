@@ -16,9 +16,17 @@ public class RentalService {
 	@Autowired
 	private RentalDAO dao;
 	
+	// 수진
+	// 대여 중인 책 출력
 	public List<RentalDTO> selectRentalListById(String id){
 		return dao.selectRentalListById(id);
 	}
+	
+	// 대여 중인 책 수 출력
+	public int selectRentalCountById(String id) {
+		return dao.selectRentalCountById(id);
+	}
+	// 수진
 	
 	// 대여 테이블 입력 
 	public void insertRental(RentalDTO dto) {

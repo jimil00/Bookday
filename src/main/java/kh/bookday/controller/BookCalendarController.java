@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import kh.bookday.dto.MemberDTO;
-import kh.bookday.dto.PostDTO;
-import kh.bookday.service.BookStatisticsService;
+import kh.bookday.service.BookCalendarService;
 import kh.bookday.service.MemberService;
 
 @Controller
-@RequestMapping("bookstatistics")
-public class BookStatisticsController {
+@RequestMapping("bookcalendar")
+public class BookCalendarController {
 
 	@Autowired
 	private HttpSession session;
@@ -27,11 +26,11 @@ public class BookStatisticsController {
 	private MemberService mservice;
 
 	@Autowired
-	private BookStatisticsService service;
+	private BookCalendarService service;
 
 
-	@RequestMapping("toStatistics")
-	public String toStatistics(Model model) {
+	@RequestMapping("toCalendar")
+	public String toCalendar(Model model) {
 		
 		String id = String.valueOf(session.getAttribute("loginID"));
 
@@ -39,19 +38,7 @@ public class BookStatisticsController {
 		MemberDTO dto = mservice.selectMemberById(id);
 		model.addAttribute("dto", dto);
 		
-		// 가장 좋아하는 책
-		String fvrBookImg = service.selectFvrBookImgById(id);
-		model.addAttribute("fvrBookImg", fvrBookImg);
-		
-		// 가장 좋아하는 작가
-		String fvrWriter = service.selectFvrWriterById(id);
-		model.addAttribute("fvrWriter", fvrWriter);
-		
-		// 가장 좋아하는 장
-		String fvrGenre = service.selectFvrGenreById(id);
-		model.addAttribute("fvrGenre", fvrGenre);
-		
-		return "mybook/bookstatistics";
+		return "mybook/bookcalendar";
 	}
 
 	@ResponseBody
@@ -66,11 +53,6 @@ public class BookStatisticsController {
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
-		return "error";
-	}
-	
-	@RequestMapping("error")
-	public String error() {
 		return "error";
 	}
 }

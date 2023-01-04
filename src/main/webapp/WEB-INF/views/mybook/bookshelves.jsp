@@ -303,9 +303,16 @@ span.size-35 {
 span.size-30 {
 	font-size: 30px;
 	color: gray;
-	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 30
 }
-
+.count{
+margin-left:auto;
+}
+span.size-27 {
+	font-size: 27px;
+	color: #5397fc;
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 27
+}
 .bookshelvesHr {
 	height: 10px;
 	border: 0;
@@ -517,6 +524,7 @@ span.size-30 {
 				<ul>
 					<li class="selected"><span
 						class="material-symbols-outlined size-35" id="snBookshelves">shelves</span></li>
+					<li><span class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
@@ -539,6 +547,7 @@ span.size-30 {
 						<div class="title">
 							<div class="titleTxt">대여 중</div>
 							&nbsp <span class="material-symbols-outlined size-30">auto_stories</span>
+							&nbsp<span class="count"><span class="material-symbols-outlined size-27">cloud</span>책하루에서 ${rcount }권의 책을 대여중입니다.</span>
 						</div>
 						<div class="rentalBooks">
 							<c:forEach var="rental" items="${rlist}">
@@ -554,6 +563,7 @@ span.size-30 {
 						<div class="title" id="wishlist">
 							<div class="titleTxt">위시리스트</div>
 							&nbsp <span class="material-symbols-outlined size-30">favorite</span>
+							&nbsp<span class="count"><span class="material-symbols-outlined size-27">cloud</span>${wcount }권의 책이 위시리스트에 담겨있습니다.</span>
 						</div>
 						<div class="wishlistBooks"
 							style="min-width: 880.2px; max-width: 880.2px;">
@@ -602,6 +612,7 @@ span.size-30 {
 						<div class="title" id="posted">
 							<div class="titleTxt">내 책장</div>
 							&nbsp <span class="material-symbols-outlined size-30">shelves</span>
+							&nbsp<span class="count"><span class="material-symbols-outlined size-27">cloud</span>${pcount }권의 책의 포스트를 작성하셨습니다.</span>
 						</div>
 				<c:choose>
                      <c:when test="${empty plist}">
@@ -708,6 +719,9 @@ span.size-30 {
       })
 		$("#snBookshelves").on("click", function() {
 			location.href = "/bookshelves/selectBookshelvesListById";
+		})
+		$("#snCalendar").on("click",function(){
+			location.href = "/bookcalendar/toCalendar";
 		})
 		$("#snStatistics").on("click", function() {
 			location.href = "/bookstatistics/toStatistics";
