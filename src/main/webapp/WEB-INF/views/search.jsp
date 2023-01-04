@@ -198,13 +198,14 @@ span, #logoImg:hover {
 
 .book-header, .post-header {
 	height: 35px;
-	width: 100%;
+	width: 974px;
 	font-size: 17px;
 	line-height: 35px;
 	padding-left: 10px;
-	color: #ffffff;
-	background-color: #5397fc;
+	color: #808080;
+	background-color: #5397fc50;
 	border-radius: 5px;
+	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
 .book {
@@ -238,7 +239,9 @@ span, #logoImg:hover {
 	height: 23px;
 	width: 120px;
 	font-weight: bold;
-	font-size: 15px; word-wrap : break-word;
+	font-size: 15px; 
+	text-align: center;
+	word-wrap : break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	word-wrap: break-word;
@@ -249,6 +252,7 @@ span, #logoImg:hover {
 	overflow: hidden;
 	height: 23px;
 	width: 120px;
+	text-align: center;
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -287,6 +291,7 @@ span, #logoImg:hover {
 	width: 55px;
 	height: auto;
 	border-radius: 50%;
+	border: 1px solid black;
 }
 
 .p-writer {
@@ -426,7 +431,7 @@ span, #logoImg:hover {
 								<br>
 								<div class="post-main-top">
 									<div class="profile-img-div">
-										<img src="/resources/basic.png" class="profile-img">
+										<img src="/resources/profile/${dto.sysprofname}" class="profile-img">
 									</div>
 									<div class="p-writer">${post.p_writer_nn }</div>
 									<div class="p-like">
