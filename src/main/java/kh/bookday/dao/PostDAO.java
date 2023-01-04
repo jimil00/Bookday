@@ -16,22 +16,13 @@ public class PostDAO {
 	private SqlSession db;
 
 // 수진
-	
+	// 책장
 	// 포스트 개수 출력
 	public int selectPostCountById(String id) {
 		return db.selectOne("Post.selectPostCountById", id);
 	}
-	// 포스트 리스트 마이북 포스트 페이지에 아이디로 출력
-	public List<PostDTO> selectPostListById(String id){
-		return db.selectList("Post.selectPostListById", id);
-	}
-
-	// 포스트 입력
-	public int insertPost(PostDTO dto) {
-		return db.insert("Post.insertPost", dto);
-	}
-
-	// 포스트 리스트 책장에 20개 먼저 아이디로 출력
+	
+	// 포스트 리스트 책장에 20개씩 출력
 	public List<PostDTO> select20PostListById(HashMap<String, Object> data){
 		return db.selectList("Post.select20PostListById", data);
 	}
@@ -40,7 +31,19 @@ public class PostDAO {
 	public int select20PostCount() {
 		return db.selectOne("Post.select20PostCount");
 	}
+	
+	// 포스트
+	// 포스트 리스트 출력
+	public List<PostDTO> selectPostListRev(String id){
+		return db.selectList("Post.selectPostListRev", id);
+	}
 
+	// 포스트 입력
+	public int insertPost(PostDTO dto) {
+		return db.insert("Post.insertPost", dto);
+	}
+
+	// 포스트 디테일 출력
 	public PostDTO selectPostByPseq(int p_seq){
 		return db.selectOne("Post.selectPostByPseq", p_seq);
 	}
@@ -74,19 +77,27 @@ public class PostDAO {
 	public void deletePostByPseq(int p_seq) {
 		db.delete("Post.deletePostByPseq", p_seq);
 	}
+	
+	// 달력
+	// 포스트 리스트 마이북 포스트 페이지에 아이디로 출력
+	public List<PostDTO> selectPostListById(String id){
+		return db.selectList("Post.selectPostListById", id);
+	}
+	
+	//통계
 	// 통계 가장 좋아하는 책
-	public String selectFvrBookImgById(String id) {
-		return db.selectOne("Post.selectFvrBookImgById", id);
+	public List<HashMap<String, String>> selectFvrBookById(String id) {
+		return db.selectList("Post.selectFvrBookById", id);
 	}
 	
 	// 통계 가장 좋아하는 작가
-	public String selectFvrWriterById(String id) {
-		return db.selectOne("Post.selectFvrWriterById", id);
+	public List<String> selectFvrWriterById(String id) {
+		return db.selectList("Post.selectFvrWriterById", id);
 	}
 	
 	// 통계 좋아하는 장르
-	public String selectFvrGenreById(String id) {
-		return db.selectOne("Post.selectFvrGenreById", id);
+	public List<String> selectFvrGenreById(String id) {
+		return db.selectList("Post.selectFvrGenreById", id);
 	}
 
 // 수진

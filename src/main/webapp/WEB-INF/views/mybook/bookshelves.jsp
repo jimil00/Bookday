@@ -730,7 +730,7 @@ span.size-27 {
 			location.href = "/bookmark/selectBookmarkListById";
 		})
 		$("#snBooknote").on("click", function() {
-			location.href = "/booknote/selectPostListById";
+			location.href = "/booknote/selectPostListRev";
 		})
 		$(".book").on("click", function(){
 			var b_isbn = $(this)
@@ -840,9 +840,9 @@ span.size-27 {
 
     function setPostedAppend(res) {
         let postedBooks = $("<div>").addClass("postedBooks")
-
+		console.log(count);
         for (let i = 0; i < res.length; i++) {
-            let postedbook = $("<div>").addClass("postedBook")
+            let postedbook = $("<div>").addClass("postedBook").attr("id", )
             let img = $("<img class='book'>").attr("src", res[i].b_img_url).attr("isbn", res[i].b_isbn)
 
             postedBooks.append(postedbook.append(img))

@@ -731,9 +731,8 @@ display:none;
 
                                         success: function (data) {
                                             var p_seq = data;
-//                                             location.href = "/booknote/selectPostByPseq?p_seq="
-//                                                 + p_seq;
-                                            location.href = "/booknote/selectPostListById"
+                                            location.href = "/booknote/selectPostByPseq?p_seq="
+                                                + p_seq;
                                                 
                                         }
                                     });
@@ -949,7 +948,7 @@ display:none;
                     location.href = "/bookmark/selectBookmarkListById";
                 })
                 $("#snBooknote").on("click", function () {
-                    location.href = "/booknote/selectPostListById";
+                    location.href = "/booknote/selectPostListRev";
                 })
                 $("#booknoteBookSearchWord").on("keydown", function (e) {
                     if (e.keyCode == 13) {

@@ -380,6 +380,7 @@ height:200px;
 
 .postBookImg>img {
 	height: 180px;
+	width: 120px;
 }
 
 .postContentsTxt {
@@ -826,7 +827,7 @@ span.size-45 {
 				location.href = "/bookmark/selectBookmarkListById";
 			})
 			$("#snBooknote").on("click", function() {
-				location.href = "/booknote/selectPostListById";
+				location.href = "/booknote/selectPostListRev";
 			})
 			$("#insertPostBtn").on("click", function() {
 				location.href = "/booknote/toInsertPost";
