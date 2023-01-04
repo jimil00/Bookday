@@ -92,5 +92,9 @@ public class BookshelvesController {
 		return "error";
 	}
 
+	@RequestMapping("error")
+	public String error() {
+		return "error";
+	}
 }
 

@@ -35,19 +35,40 @@
 	
 	<tx:annotation-driven/>
 	
-<!-- 	<interceptors> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/**"/> -->
-<!-- 			<exclude-mapping path="/"/> -->
-<!-- 			<exclude-mapping path="/member/signup"/> -->
-<!-- 			<exclude-mapping path="/member/toSignup"/> -->
-<!-- 			<exclude-mapping path="/member/idCheck"/> -->
-<!-- 			<exclude-mapping path="/member/signup"/> -->
-<!-- 			<exclude-mapping path="/member/login"/> -->
-<!-- 			<exclude-mapping path="/error"/> -->
-<!-- 			<exclude-mapping path="/resources/**"/> -->
-<!-- 			<beans:bean class="kh.bookday.interceptor.LoginValidator"/> -->
-<!-- 		</interceptor> -->
-<!-- 	</interceptors> -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/"/>
+			<exclude-mapping path="/member/toSignup"/>
+			<exclude-mapping path="/member/toLogin"/>
+			<exclude-mapping path="/member/login"/>
+			<exclude-mapping path="/member/signUp"/>
+			<exclude-mapping path="/member/checkByNickname"/>
+			<exclude-mapping path="/member/checkByPhone"/>
+			<exclude-mapping path="/member/findUser"/>
+			<exclude-mapping path="/member/createAuthNum"/>
+			<exclude-mapping path="/member/doAuthNumMatch"/>
+			<exclude-mapping path="/member/toUpdatePw"/>
+			<exclude-mapping path="/member/updatePw"/>
+			<exclude-mapping path="/member/kakaoLogin"/>
+			
+			<exclude-mapping path="/search/toSearch"/>
+			
+			<exclude-mapping path="/book/selectBookinfo"/>
+			
+			<exclude-mapping path="/error"/>
+			<exclude-mapping path="/member/error"/>
+			<exclude-mapping path="/book/error"/>
+			<exclude-mapping path="/delivery/error"/>
+			<exclude-mapping path="/bookmark/error"/>
+			<exclude-mapping path="/booknote/error"/>
+			<exclude-mapping path="/bookshelves/error"/>
+			<exclude-mapping path="/bookstatistics/error"/>
+			<exclude-mapping path="/search/error"/>
+		
+			<exclude-mapping path="/resources/**"/>
+			<beans:bean class="kh.bookday.interceptor.LoginValidator"/>
+		</interceptor>
+	</interceptors>
 
 </beans:beans>

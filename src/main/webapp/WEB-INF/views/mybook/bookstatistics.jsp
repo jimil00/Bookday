@@ -434,7 +434,7 @@ text-align: center;
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
-							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -466,8 +466,9 @@ text-align: center;
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/resources/profile/${dto.sysprofname}" width="100"
-							height="100" id="profile">
+						<img src="/resources/profile/${dto.sysprofname}"  width="100" height="100"
+							id="profile">
+
 					</div>
 					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
 						} 하루</div>
@@ -644,6 +645,8 @@ text-align: center;
 				location.href = "/booknote/selectPostListById";
 			});
 
+
+			
 
 			
             //footer: 사업자 정보 토글 기능

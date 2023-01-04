@@ -215,6 +215,8 @@ span, #logoImg:hover {
 	border-radius: 50%;
 	width: 120px;
 	height: 120px;
+	border: 1px solid #d5d5d5;
+	box-shadow: 3px 3px #80808050;
 }
 
 .body-title-mem {
@@ -427,7 +429,7 @@ span, #logoImg:hover {
 						</c:when>
 						<c:otherwise>
 							<div class="rental info">
-								<div class="body-title">대여정보</div>
+								<div class="body-title">대여내역</div>
 								<hr class="body-hr">
 								<div class="body-left">주소</div>
 								<div class="body-right">${dto.address1 } (${dto.address2 })</div>

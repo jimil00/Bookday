@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kh.bookday.dto.BookDTO;
 import kh.bookday.dto.BookbagDTO;
 import kh.bookday.dto.PostDTO;
+import kh.bookday.dto.PostLikeDTO;
 import kh.bookday.dto.ReviewDTO;
 import kh.bookday.dto.ReviewLikeDTO;
 import kh.bookday.dto.WishlistDTO;
@@ -75,7 +76,6 @@ public class BookController {
 		BookDTO dto=service.selectBookByIsbn(b_isbn);
 		model.addAttribute("dto",dto);
 
-
 		//리뷰 리스트 출력
 		List<ReviewDTO> rlist=rservice.selectReviewByIsbn(b_isbn);
 		model.addAttribute("rlist",rlist);
@@ -87,7 +87,11 @@ public class BookController {
 		//포스트 리스트 출력
 		List<PostDTO> plist=pservice.selectPostByIsbn(b_isbn);
 		model.addAttribute("plist",plist);
-
+		
+		//함께 담은 책 리스트 출력
+		List<BookDTO> wlist=service.selectWithBooks(b_isbn);
+		model.addAttribute("wlist",wlist);
+		
 		return "book/bookinfo";
 	}
 
@@ -275,6 +279,11 @@ public class BookController {
 	@ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
+		return "error";
+	}
+	
+	@RequestMapping("error")
+	public String error() {
 		return "error";
 	}
 

@@ -45,8 +45,7 @@ public class BookDAO {
 		public List<BookDTO> selectBestSeller() {
 			return db.selectList("Book.selectBestSeller");
 		}
-		
-		
+	
 		//스테디셀러 도서 출력 (출판일 오래된 순 + 랭킹 높은 순)
 		public List<BookDTO> selectSteadySeller() {
 			return db.selectList("Book.selectSteadySeller");
@@ -62,10 +61,10 @@ public class BookDAO {
 		
 
 	//해당 도서와 함께 담은 책 출력
-	//메서드명 구상 중
-//	public List<BookDTO> selectBooks(String b_isbn) {
-//		return db.selectList("Book.selectPostByIsbn", b_isbn);
-//	}
+	public List<BookDTO> selectWithBooks(String b_isbn) {
+		return db.selectList("Book.selectWithBooks", b_isbn);
+	}
+
 	
 	
 }

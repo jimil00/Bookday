@@ -55,8 +55,8 @@ public class MemberController {
 		//비밀번호 암호화 후 db에 있는 암호화된 비번과 맞는지 확인
 		String encryPassword = Pw_SHA256.getSHA256(pw);
 
-		//System.out.println("비밀번호:"+pw);
-		//System.out.println("암호화된 비밀번호:"+encryPassword);
+		System.out.println("비밀번호:"+pw);
+		System.out.println("암호화된 비밀번호:"+encryPassword);
 
 		boolean result=service.isLoginOk(phone,encryPassword);
 
@@ -89,13 +89,13 @@ public class MemberController {
 	public String signUp(MemberDTO dto){
 
 
-		System.out.println("비밀번호:"+dto.getPw());
+		//System.out.println("비밀번호:"+dto.getPw());
 
 		//비밀번호 암호화
 		String encryPassword = Pw_SHA256.getSHA256(dto.getPw());
 		dto.setPw(encryPassword);
-		System.out.println("암호화된 비밀번호:"+encryPassword);
-
+		
+		//System.out.println("암호화된 비밀번호:"+encryPassword);
 
 		//insert하기
 		service.signUp(dto);
@@ -161,7 +161,7 @@ public class MemberController {
 	//비밀번호 재설정 페이지로 이동
 	@RequestMapping("toUpdatePw")
 	public String toUpdatePw() {
-
+		
 		return "member/updatePw";
 	}
 
@@ -171,12 +171,15 @@ public class MemberController {
 	public String updatepw(String updatePw, String phone ) {
 
 		//다른 에이작스 컨트롤러에서 중복 여부 체크 후 update 시도
-
+		//System.out.println(updatePw);
 		//다시 암호화
-		String updatedPw=Pw_SHA256.getSHA256(updatePw);
+		String pw=Pw_SHA256.getSHA256(updatePw);
 
+		System.out.println(pw);
+		System.out.println(phone);
+		
 		//해당 회원 정보로 들어갈 update 구문(해당 회원의 아이디 및 번호 값으로 조건을 준 후 update
-		service.updatePw(updatedPw,phone);
+		service.updatePw(pw,phone);
 
 		return "true";
 	}
@@ -260,13 +263,17 @@ public class MemberController {
 		
 		String id = String.valueOf(session.getAttribute("loginID"));
 		
+		//비밀번호 빈 값을 보냈을 때 자동으로 생성되는 값
+		//String blankPw= "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+		
 		dto.setId(id);
 		
 		//비밀번호 암호화
-		String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
-		dto.setPw(updatedPw);
+		System.out.println("디티오에 들어간 비밀번호: "+dto.getPw()+dto.getEmail()+dto.getName()+dto.getNickname()+dto.getPw());
 		
-		System.out.println(dto.getPw());
+		String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
+			dto.setPw(updatedPw);
+			System.out.println(updatedPw);
 		
 		//파일 관련 업데이트 업로드 참고
 		String realPath= session.getServletContext().getRealPath("/resources/profile");
@@ -291,30 +298,33 @@ public class MemberController {
 				try {
 					file.transferTo(new File(filePath+"/"+sysprofname));
 				} catch (IllegalStateException | IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.println(dto);
 				
 				System.out.println(dto.getAddress1());
-				System.out.println(dto.getAddress1());
+				System.out.println(dto.getAddress2());
 				
 				service.updateMemInfo(dto);
-
+				
+				session.invalidate();
+				
+				session.setAttribute("loginID",id);
+				session.setAttribute("nickname",dto.getNickname());
 			}
 			
 		}return "redirect:toMypage";
 	}
-	
-
-	//마이페이지 리뷰 관리
-	
-	
 
 	//에러 수집
 	@ExceptionHandler(Exception.class) 
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
+		return "error";
+	}
+	
+	@RequestMapping("error")
+	public String error() {
 		return "error";
 	}
 

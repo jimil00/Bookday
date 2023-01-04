@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<head profile="http://www.w3.org/2005/10/profile">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -192,11 +193,92 @@ span, #logoImg:hover {
 }
 
 /* body */
-/* .mem_info_box>div, input {
+.body {
+	width: 700px;
 	margin: auto;
+	overflow: hidden;
+}
+
+.body-hr {
+	margin-bottom: 15px;
+	border-top: 1px solid rgb(216, 216, 216);
+}
+
+.body-top {
+	height: 50px;
+	text-align: center;
+	font-size: 33px;
+}
+
+.prof_img {
+	padding-bottom: 20px;
+	text-align: center;
+	
+}
+
+#prof_img {
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	border: 1px solid #d5d5d5;
+	box-shadow: 3px 3px #80808050;
+}
+
+.body-title-mem {
+	height: 50px;
+	padding-top: 25px;
+	font-size: 20px;
+	color: #5397fc;
+}
+
+.body-title {
+	height: 70px;
+	padding-top: 45px;
+	font-size: 20px;
+	color: #5397fc;
+}
+
+.info {
+	overflow: hidden;
+}
+
+.body-left {
+	float: left;
+	width: 20%;
+	height: 33px;
+	padding-bottom: 15px;
+	font-weight: bold;
+	padding-bottom: 5px;
+	line-height:30px;
+}
+
+.body-right {
+	width: 80%;
+	height: 33px;
+	float: right;
+	padding-bottom: 10px;
+}
+
+.body-btn-div {
 	text-align: center;
 }
- */
+
+.body-btn {
+	width: 180px;
+	height: 40px;
+	margin-top: 50px;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	background-color: #5397fc;
+}
+
+
+
+.mem_info{
+	margin-bottom:50px;
+}
+
 .input-file-button {
 	padding: 6px 25px;
 	border-radius: 4px;
@@ -204,108 +286,43 @@ span, #logoImg:hover {
 	border: 1px solid #5397fc;
 	color: #5397fc;
 	cursor: pointer;
+	position:relative;
+	left:310px;
+}
+.input, .pw_input{
+	border-radius: 4px;
+	border: 1px solid #d5d5d5;
+	height:33px;
 }
 
-.prof_img {
-	margin-bottom: 25px;
-}
-
-.input_info {
-	
-}
-
-.block_input {
-	display: block;
-}
-
-#prof_img {
-	border-radius: 50%;
-	width: 120px;
-    height: 120px;
-}
-
-.check_phone, #fin_btn, #cancel_btn, #phone_btn, #search_btn, #input_file_btn{
-	display: none;
-}
-
-#check_phone_btn {
-	position: absolute;
-	height: 40px;
-	top: 520px;
-	right: 300px;
-}
-
-#phone_btn, #search_btn, #check_btn {
+.body_btn, input[type=button] {
 	border: 1px solid #5397fc;
 	outline: none;
 	box-shadow: 3px 3px #80808050;
 	background-color: white;
-	height: 40px;
+	height: 30px;
 	border-radius: 8px;
 	color: #5397fc;
 }
+.btns { 
 
-.input, .block_input {
-	border: 1px solid #d5d5d5;
-	border-radius: 8px;
-	padding-left: 10px;
-	width: fit-content;
-	height: 50px;
-	outline: none;
-	box-shadow: 3px 3px #80808050;
+margin-bottom:10px;
+	position:relative;
+	top:5px;
+	left:600px;
 }
-
-.body_btn, input[type=button] {
-	color: white;
-	transition-duration: 0.1s;
-	border: 1px solid #d5d5d5;
-	outline: none;
-	box-shadow: 3px 3px #80808050;
-	background-color: #5397fc;
-	border-radius: 8px;
-	width: 5%;
-	height: 50px;
-	width:48px;
+#input_btn{
+	width: 10%;/
+	margin-top:10px;
 }
-
-#img_upload {
-	display: none;
+.must{
+	color:red;
+	cursor:default;
 }
-
-#input_btn {
-	margin-top: 25px;
-	margin-bottom: 25px;
-	width: 10%;
+.hidden{
+	color:white;
+	cursor:default;
 }
-
-.btns>button {
-position:relative;
-	bottom:130px;
-	left:10px;
-	margin-top: 25px;
-	margin-bottom: 25px;
-	text-align:center;
-}
-
-#postcode {
-	display: inline;
-}
-
-.mem_info_box {
-	display:flex;
-}
-
-.input_info{
-	display:flex;
-}
-.block_input{
-	margin-bottom:20px;
-}
-#input_file_btn{
-position:relative;
-	left:20px;
-}
-
 
 /* footer */
 .footer {
@@ -395,6 +412,7 @@ position:relative;
 </head>
 <body>
 	<div class="container">
+
 		<div class="header">
 			<div class="logo">
 				<a href="/"><img src="/resources/bookday_logotitle.png"
@@ -433,90 +451,139 @@ position:relative;
 				</div>
 			</div>
 		</div>
+
 		<hr id="headerHr">
 		<div class="navi"></div>
+
 		<div class="body">
 
-			<form action="/member/updateMemInfo" method="post" enctype="multipart/form-data">
-				
-			<div class="prof_img">
-				<img src="/resources/profile/${dto.sysprofname}" id="prof_img">
-			</div>
-			<div class="body-top">${dto.nickname }</div>
-			
-					<div class="mem info">
-						<div class="body-title-mem">회원정보</div>
-						<hr class="body-hr">
-						<div class="body-left">이름</div>
-						<div class="body-right">${dto.name }</div>
-						<div class="body-left">닉네임</div>
-						<div class="body-right">${dto.nickname }</div>
-						<div class="body-left">휴대폰 번호</div>
-						<c:choose>
-						<c:when test="${dto.phone eq null }">
-						<div class="body-right">-</div>
-						</c:when>
-						<c:otherwise>
-						<div class="body-right">${dto.phone }</div>
-						</c:otherwise>
-						</c:choose>
-						<div class="body-left">이메일</div>
-						<div class="body-right">${dto.email }</div>
-						<div class="body-left">주소</div>
-						<div class="body-right">${dto.address1 }</div>
-						<div class="body-left">상세주소</div>
-						<div class="body-right">${dto.address2 }</div>
+			<form action="/member/updateMemInfo" method="post" enctype="multipart/form-data" id="updateMemInfo">
+
+				<div class="prof_img">
+					<img src="/resources/profile/${dto.sysprofname}" id="prof_img">
+				</div>
+
+				<label class="input-file-button" for="img_upload"
+					id="input_file_btn">편집</label> <input type="file" name="prof_img"
+					class="input_file" id="img_upload"
+					accept=".png,.jpg,.jpeg,.gif,.JPG" style="display: none" }/>
+
+				<div class="mem_info">
+					<div class="body-title-mem">회원정보</div>
+					<hr class="body-hr">
+					
+					<div class="body-left"><span class="must">*</span>이름</div>
+					<div class="body-right">
+						<input type="text" name="name" value="${dto.name}" 
+							class="input" id="name" maxlength="5" required>
+							<span id="n_result"></span>
+					</div>
+					
+					<div class="body-left"><span class="must">*</span>닉네임</div>
+					<div class="body-right">
+						<input type="text" name="nickname" value="${dto.nickname}"
+							 class="input" id="nickname" maxlength="10" required>
+					<span id="nk_result"></span>
+					</div>
+					<div class="body-left"><span class="must">*</span>휴대폰 번호</div>
+							<div class="body-right">
+								<input type="text" name="phone" value="${dto.phone}" 
+									class="input" id="phone" maxlength="11" required>
+								<button type="button" class="body_btn" id="phone_btn">인증</button>
+		
+							</div>
+								<div class="body-left" id="code"><span class="hidden">*</span>인증번호</div>
+							<div class="body-right">
+								<input type="text" name="check_phone" placeholder="인증번호"
+										id="verifi_code" class="input">
+									<button type="button" class="body_btn" id="check_btn">확인</button>
+								</div>
+						
+					<div class="body-left"><span class="must">*</span>이메일</div>
+					<div class="body-right">
+						<input type="text" name="email" value="${dto.email}" 
+							class="input" id="email">
+							<span id="email_result"></span>
 					</div>
 				
-			<div class="btns">
-						<button type="button" class="body_btn" id="input_btn">수정</button>
-						<button type="submit" class="body_btn" id="fin_btn">완료</button>
-						<button type="button" class="body_btn" id="cancel_btn">취소</button>
+					<div class="body-left"><span class="must">*</span>비밀번호</div>
+					<div class="body-right">
+
+						<input type="password" name="pw"
+							placeholder="새 비밀번호" class="pw_input" id="pw" maxlength="16">
+					
+						<input type="password" name="new_pw_check"
+							placeholder="새 비밀번호 확인" class="pw_input" id="check_pw" maxlength="16">
+						<span id="pw_result"></span> 
+						<span id="check_pw_result"></span>
 					</div>
+		
+					<div class="body-left"><span class="hidden">*</span>주소</div>
+					<div class="body-right">
+						<input type="text" id="address1" name="address1"
+							value="${dto.address1}"  placeholder="도로명 주소"
+							class="input">
+						<button type="button" id="search_btn" class="body_btn"
+						onclick="execDaumPostcode()">찾기</button>
+					</div>
+					<div class="body-left"><span class="hidden">*</span>상세주소</div>
+					<div class="body-right">
+						<input type="text" name="address2" value="${dto.address2}"
+							 placeholder="상세 주소" class="input">
+					</div>
+					<div class="body-left"><span class="hidden">*</span>우편번호</div>
+					<div class="body-right">
+						<input type="text" name="postcode" value="${dto.postcode}"
+							 placeholder="우편번호" class="input" id="postcode">
+					</div>
+					
+				</div>
+			<hr style="border-top: 1px rgb(216, 216, 216);">
+				<div class="btns">
+					<button type="button" class="body_btn" id="fin_btn">완료</button>
+					<button type="button" class="body_btn" id="cancel_btn">취소</button>
 				</div>
 			</form>
 		</div>
-		<!-- body -->
+	<!-- body -->
 
-		<div class="footer">
-			<hr>
-			<div class="f_header">
-				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
+	<div class="footer">
+		<hr>
+		<div class="f_header">
+			<a href="/"><img src="/resources/bookday_logotitle.png"></a>
 
-				<div class="sns_icon">
-					<a href="#"><img src="/resources/instagram.png" class="sns"></a>
-					<a href="#"><img src="/resources/facebook.png" class="sns"></a>
-					<a href="#"><img src="/resources/twitter_black.png" class="sns"></a>
-					<a href="#"><img src="/resources/youtube.png" class="sns"></a>
-				</div>
-
-			</div>
-			<div class="business_info">
-				<div class="inline_info">
-					<div id="business_info_title">사업자 정보</div>
-					<span class="arrow_icon material-symbols-outlined" id="arrow_down2">keyboard_arrow_down</span>
-					<span class="arrow_icon material-symbols-outlined" id="arrow_up2">keyboard_arrow_up</span>
-				</div>
-
-				<div id="business_info_text">
-					<span>대표자 성태조 </span> <span> | </span> <span> 사업자 등록번호
-						01-20-22015</span>
-					<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
-					<span>대표전화 1544-9970 </span> <span> | </span> <span> 이메일
-						help@bookday.com</span>
-				</div>
+			<div class="sns_icon">
+				<a href="#"><img src="/resources/instagram.png" class="sns"></a>
+				<a href="#"><img src="/resources/facebook.png" class="sns"></a>
+				<a href="#"><img src="/resources/twitter_black.png" class="sns"></a>
+				<a href="#"><img src="/resources/youtube.png" class="sns"></a>
 			</div>
 
-			<div class="f_intro">
-				<span>회사소개</span> <span class="f_line">|</span> <span>이용약관</span> <span
-					class="f_line">|</span> <span>개인정보처리방침</span> <span class="f_line">|</span>
-				<span>청소년보호정책</span> <span class="f_line">|</span> <span>제휴
-					문의</span>
+		</div>
+		<div class="business_info">
+			<div class="inline_info">
+				<div id="business_info_title">사업자 정보</div>
+				<span class="arrow_icon material-symbols-outlined" id="arrow_down2">keyboard_arrow_down</span>
+				<span class="arrow_icon material-symbols-outlined" id="arrow_up2">keyboard_arrow_up</span>
 			</div>
-			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
-			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
+
+			<div id="business_info_text">
+				<span>대표자 성태조 </span> <span> | </span> <span> 사업자 등록번호
+					01-20-22015</span>
+				<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
+				<span>대표전화 1544-9970 </span> <span> | </span> <span> 이메일
+					help@bookday.com</span>
+			</div>
 		</div>
 
+		<div class="f_intro">
+			<span>회사소개</span> <span class="f_line">|</span> <span>이용약관</span> <span
+				class="f_line">|</span> <span>개인정보처리방침</span> <span class="f_line">|</span>
+			<span>청소년보호정책</span> <span class="f_line">|</span> <span>제휴 문의</span>
+		</div>
+		<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
+		<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
+	</div>
 	</div>
 	<script>
 
@@ -550,64 +617,18 @@ position:relative;
          }
       })
       
-      	//프로필 사진 없을 때
-	$( document ).ready( function() {
-	    
+      	
+	$( document ).ready(function() {
+	    //프로필 사진 없을 때
 	  	if(${dto.sysprofname == '0'}){
 	  		
-			$("#prof_img").attr("src","/resources/basic.png");
+		$("#prof_img").attr("src","/resources/basic.png");
 							return;
 						}
-	   });
-      
+	});
 
-//byte데이터나 stream 데이터를 string 형식으로 표시
-   function fileToBase64(file){
-        const reader = new FileReader();
-         reader.readAsDataURL(file)
-         reader.onload = () => {
-          $("#prof_img").attr("src", reader.result)
-            console.dir(reader.result)   // base64
-         }
-}
-					$("#img_upload").on("change", function(){
-						
-						console.log($("#img_upload").val());
-						
-						if($("#img_upload").val() == ""){
-								$("#prof_img").attr("src","/resources/basic.png");
-							return;
-						}
-						
-						let ext = $("#img_upload").val().split(".").pop().toLowerCase(); //파일 확장자를 뜻하게 된다.
-						let accept = [".png", ".jpg",".jpeg",".gif"];
-						let result=$.inArray(ext,accept); //첫번째 인자값이 두번째 인자 배열 안에 존재한다면 0, 존재하지 않는다면 -1을 반환
-						//console.log(result); //accept로 해당 확장자만 선택할 수 있도록 만들 수 있다.
-						
-						if(result == 1){
-							alert("이미지 파일만 사용 가능합니다.");
-							$("#img_upload").val(""); //파일 선택 무효
-						}
-						
-						fileToBase64(document.getElementById("img_upload").files[0]);
-					});
-
-      
-        // 수정 버튼 클릭시
-      $("#input_btn").on("click", function() {
-    	  $(".input, .block_input").attr("readonly",false);
-    	  $("#input_btn").css("display","none");
-    	  $("#fin_btn, #cancel_btn, #phone_btn").css("display","inline-block");
-    	  $("#img_upload").css("display","block");
-    	  $("#search_btn").css("display","inline");
-    	  $("#img_upload").css("display","none");
-    	  $("#input_file_btn").css("display","inline");
-    	  //$("#fin_btn").attr("disabled", true);
-    	  
-
-   
       //닉네임 중복 확인
-   	$("#nickname").on("keyup",function(){
+   	$("#nickname").on("input",function(){
 			let nickname=$("#nickname").val();
 			let nicknameRegex=/[가-힣 a-z A-Z 0-9]{2,10}/;
 
@@ -615,9 +636,9 @@ position:relative;
 			if(!nicknameRegex.test(nickname) && nickname != ""){
            $("#nk_result").html("최소 2자 이상");
            $("#nk_result").css("color","red");
+         // $("#fin_btn").attr("disabled", true);
           }else if(nickname == ""){
         	  $("#nk_result").html("");
-        	 // $("#fin_btn").attr("disabled", true);
           }else{
 
           //닉네임 중복 검사
@@ -632,11 +653,12 @@ position:relative;
 				if(resp == "true"){//닉네임이 존재하므로 사용할 수 없는 경우
           		$("#nk_result").html("이미 사용 중인 닉네임입니다.");
           		$("#nk_result").css("color","red");
-          	//	$("#fin_btn").attr("disabled",true);
+          		//$("#fin_btn").attr("disabled",true);
     
 				}else{ //닉네임이 존재하지 않으므로 사용할 수 있는 경우
          $("#nk_result").html("사용 가능한 닉네임입니다.");
          $("#nk_result").css("color","#5397fc");
+         //$("#fin_btn").attr("disabled",false);
          
         }
 				
@@ -657,27 +679,27 @@ position:relative;
 		   if(!pwRegex.test(pw) && pw != ""){
                 $("#pw_result").css("color","red");
                 $("#pw_result").html("유효하지 않은 비밀번호입니다.");
+               // $("#fin_btn").attr("disabled", true);
               }else if(pw == ""){
             	  	$("#pw_result").html("");
-            		//$("#fin_btn").attr("disabled", true);
               }else{
             	  $("#pw_result").css("color","#5397fc");
             	  $("#pw_result").html("사용 가능한 비밀번호입니다.");
             	  //일치 확인
             	  if($("#pw").val()==$("#check_pw").val()){
-            		 	 $("#check_pw_result").css("color","#5397fc");
-                    	 $("#check_pw_result").html("비밀번호가 일치합니다.");
+            		  $("#pw_result").css("color","#5397fc");
+            		 	$("#pw_result").html("비밀번호가 일치합니다.");
                       }else{  
-                    	 $("#check_pw_result").css("color","red");
-                    	 $("#check_pw_result").html("비밀번호가 일치하지 않습니다.");
-                     // 	$("#fin_btn").attr("disabled", true);
+                    	  $("#pw_result").css("color","red");
+                    	 $("#pw_result").html("비밀번호가 일치하지 않습니다.");
+                     	 //$("#fin_btn").attr("disabled", true);
                       	
                       }
             	  }
 		});
       
       //이메일
-	$("#email").on("keyup",function(){
+	$("#email").on("input",function(){
 
 		let email=$("#email").val();
 		let emailRegex=/^[a-z 0-9 A-Z]{3,12}@[A-Z a-z]{5,7}.[a-zA-Z]{2,3}$/;
@@ -699,7 +721,7 @@ position:relative;
 	});
       
       
- 	$("#name").on("keyup",function(){
+ 	$("#name").on("input",function(){
 
 		let name= $("#name").val();
         let nameRegex=/[가-힣]{2,5}/;
@@ -717,9 +739,8 @@ position:relative;
          }else{
         	 $("#n_result").css("color","#5397fc");
         	 $("#n_result").html("사용 가능한 이름입니다.");
-        	  //$("#fin_btn").attr("disabled", false);
-  			 
-      }
+        	  //$("#fin_btn").attr("disabled", false); 
+      	}
 
 		});
 	  
@@ -733,14 +754,15 @@ position:relative;
     	  
     	  console.log($("#phone").val());
     	  
-    	  if(phone == ${dto.phone}){  
-    		  alert("이미 인증된 휴대폰 번호입니다.");
-    		  return
-    		  }else if(phone=="" || !phoneRegex.test(phone)){
+    	
+    	  if(phone=="" || !phoneRegex.test(phone)){
     			  alert("유효한 휴대폰 번호를 입력해주세요.");
-    		  }else{
+    		  }else if(phone == ${dto.phone}){  
+        		  alert("이미 인증된 휴대폰 번호입니다.");
+        		  return
+        		  }else{
     			  alert("인증번호를 발송하였습니다.");
-    			  $(".check_phone").css("display","block");
+    			  $("#verifi_code,#check_btn").css("display","inline");
     			  
     				//인증 번호 발송되는 에이작스
          		 $.ajax({
@@ -777,23 +799,58 @@ position:relative;
                     }
 
     		  });
-
-      });
-
+     
          
 	  //수정 완료
       $("#fin_btn").on("click",function(){
-  	alert("확인");
-  	
-  	 
+    	  
+    	  let pw=$("#pw").val();
+    	  let name=$("#name").val();
+    	  let nickname=$("#nickname").val();
+    	  let phone=$("#phone").val();
+    	  let email=$("#email").val();
+    	  
+    	   console.log(name+nickname+phone+email+pw+check_pw);
+    	   
+    	if(pw=="" || name == "" || nickname == "" || phone == "" || email ==""){
+    		  
+              console.log(name+nickname+phone+email+pw+check_pw);
+    		  alert("필수값을 입력해주세요.");
+
+              }else{
+            	  alert("수정되었습니다.");
+            	  $("#updateMemInfo").submit();
+              } 
    });
     
     //수정 취소
    $("#cancel_btn").on("click",function(){
-  	location.reload();
+  		history.back();
   	 
    });
     
+   //footer: 사업자 정보 토글 기능
+   $("#business_info_text").hide();
+
+                $("#business_info_title, #arrow_down2").click(function() {
+
+                    $("#business_info_text").slideToggle(200);
+
+                        $("#arrow_up2").css("display", "block");
+                        $("#arrow_down2").css("display", "none"); 
+
+                });
+
+                $("#arrow_up2").click(function() {
+                    $("#business_info_text").slideToggle(200);
+
+                    $("#arrow_down2").css("display", "block");
+                    $("#arrow_up2").css("display", "none");
+                });
+        
+                      
+                
+
 	//우편번호 유효성 검사(api)
 	function execDaumPostcode() {
 		new daum.Postcode(
@@ -809,27 +866,39 @@ position:relative;
 					}
 				}).open();
 	}
-    
-        //footer: 사업자 정보 토글 기능
-       $("#business_info_text").hide();
-
-                    $("#business_info_title, #arrow_down2").click(function() {
-
-                        $("#business_info_text").slideToggle(200);
-
-                            $("#arrow_up2").css("display", "block");
-                            $("#arrow_down2").css("display", "none"); 
- 
-                    });
-
-                    $("#arrow_up2").click(function() {
-                        $("#business_info_text").slideToggle(200);
-
-                        $("#arrow_down2").css("display", "block");
-                        $("#arrow_up2").css("display", "none");
-                    });
-
-                    
+	
+	
+	//byte데이터나 stream 데이터를 string 형식으로 표시
+	   function fileToBase64(file){
+	        const reader = new FileReader();
+	         reader.readAsDataURL(file)
+	         reader.onload = () => {
+	          $("#prof_img").attr("src", reader.result)
+	            console.dir(reader.result)   // base64
+	         }
+	}
+						$("#img_upload").on("change", function(){
+							
+							console.log($("#img_upload").val());
+							
+							if($("#img_upload").val() == ""){
+									$("#prof_img").attr("src","/resources/basic.png");
+								return;
+							}
+							
+							let ext = $("#img_upload").val().split(".").pop().toLowerCase(); //파일 확장자를 뜻하게 된다.
+							let accept = [".png", ".jpg",".jpeg",".gif"];
+							let result=$.inArray(ext,accept); //첫번째 인자값이 두번째 인자 배열 안에 존재한다면 0, 존재하지 않는다면 -1을 반환
+							//console.log(result); //accept로 해당 확장자만 선택할 수 있도록 만들 수 있다.
+							
+							if(result == 1){
+								alert("이미지 파일만 사용 가능합니다.");
+								$("#img_upload").val(""); //파일 선택 무효
+							}
+							
+							fileToBase64(document.getElementById("img_upload").files[0]);
+						});
+               
 </script>
 </body>
 </html>

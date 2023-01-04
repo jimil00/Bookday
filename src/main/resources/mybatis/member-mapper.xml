@@ -22,7 +22,7 @@
 
 	<insert id="signUp">
 		insert into member
-		values(#{id},#{phone},#{pw},#{name},#{nickname},#{email},'','','','','',default,0,0,default,default)
+		values(#{id},#{phone},#{pw},#{name},#{nickname},#{email},'','','','','',default,0,'basic.png',default,default)
 	</insert>
 
 	<select id="selectIdByPhone" resultType="String">
@@ -33,14 +33,14 @@
 		select count(*) from member where email = #{email}
 	</select>
 
-	<update id="updatePw">
+	<update id="updatePw" parameterType="hashmap">
 		update member set pw=#{pw} where phone=#{phone}
 	</update>
 
 	<update id="updateMemInfo">
 		update member set pw=#{pw}, phone=#{phone}, name=#{name}, nickname=#{nickname},
 		email=#{email}, oriprofname=#{oriprofname},sysprofname=#{sysprofname},
-		postcode = #{postcode}, address1 =#{address1}, address2 = #{address2}	
+		postcode = #{postcode}, address1 =#{address1}, address2 =#{address2}	
 		where id=#{id}
 	</update>
 
