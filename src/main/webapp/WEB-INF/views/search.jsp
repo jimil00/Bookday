@@ -8,9 +8,15 @@
 <head profile="http://www.w3.org/2005/10/profile">
 <meta charset="UTF-8">
 <title>Search</title>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <style>
 @font-face {
 	font-family: 'NanumSquareNeo-Variable';
@@ -26,11 +32,11 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-div {
-	/* 	border: 1px solid black; */
-	
-}
+/* div {
 
+   border: 1px solid black;
+
+} */
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -87,15 +93,16 @@ button:hover {
 }
 
 .searchTxt {
-	float: left;
-	padding: 0;
-	background: none;
-	border: none;
-	outline: none;
-	font-size: 15px;
-	line-height: 40px;
-	position: absolute;
-	left: 10px;
+   float: left;
+   padding: 0;
+   background: none;
+   border: none;
+   outline: none;
+   font-size: 15px;
+   line-height: 40px;
+   position: absolute;
+   left: 10px;
+   right: 40px;
 }
 
 .searchBtn {
@@ -356,7 +363,7 @@ span, #logoImg:hover {
 				<div class="searchBox">
 					<form action="/search/toSearch" id="search" method="post">
 						<input class="searchTxt" type="text" placeholder="검색어를 입력해 주세요"
-							id="searchWord" name="searchWord" value=${searchWord }>
+							id="searchWord" name="searchWord">
 						<button class="searchBtn" type="submit">
 							<span class="material-symbols-outlined"> search </span>
 						</button>
@@ -376,7 +383,6 @@ span, #logoImg:hover {
 						</c:otherwise>
 					</c:choose>
 				</div>
-
 				<div class="iconBox">
 					<span class="material-symbols-outlined size-40" id="notifications">notifications</span>
 					<span class="material-symbols-outlined size-40" id="bookbag">shopping_bag</span>

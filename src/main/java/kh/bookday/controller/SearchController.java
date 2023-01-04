@@ -47,5 +47,9 @@ public class SearchController {
 		return "error";
 	}
 
+	@RequestMapping("error")
+	public String error() {
+		return "error";
+	}
 
 }

@@ -16,6 +16,8 @@ public class LoginValidator implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
+		System.out.println("인터셉터 동작 확인");
+
 		String loginID = (String)session.getAttribute("loginID");
 		if(loginID != null) return true;
 		
