@@ -228,6 +228,7 @@ public class MemberService {
 			String id =  element.getAsJsonObject().get("id").getAsString();
 
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
+			System.err.println(email);
 
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 
