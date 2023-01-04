@@ -133,6 +133,8 @@ td {
 .bookCover img {
 	width: 80px;
 	height: 120px;
+		border-radius: 2%;
+	
 }
 
 .bookInfo {

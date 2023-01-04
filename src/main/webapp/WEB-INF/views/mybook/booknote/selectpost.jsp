@@ -336,6 +336,8 @@ span.size-30 {
 .bookInfo img {
 	height: 120px;
 	width: 80px;
+	border-radius: 2%;
+	cursor: pointer;
 }
 
 .bookGenre {
@@ -344,6 +346,7 @@ span.size-30 {
 
 .bookTitle {
 	font-size: 16px;
+	cursor: pointer;
 }
 
 .bookWriter {
@@ -622,7 +625,7 @@ span.size-20 {
 							<a id="nick">
 								<p class="user" id="user">${nickname}님</p>
 							</a>
-							<a href="/member/logOut">
+							<a href="/member/logout">
 								<p class="user" id="logout">로그아웃</p>
 							</a>
 						</c:otherwise>
@@ -700,12 +703,12 @@ span.size-20 {
 							<div class="bookInfo">
 								<div class="book">
 									<div class="img">
-										<img src="${dto.b_img_url }" alt="">
+										<img src="${dto.b_img_url }" alt="" isbn="${dto.b_isbn }" id="postBook">
 									</div>
 									<div class="txt">
 										<div class="bookGenre">${dto.b_genre }</div>
 										<p>
-										<div class="bookTitle">${dto.b_title }</div>
+										<div class="bookTitle" isbn="${dto.b_isbn }">${dto.b_title }</div>
 										</p>
 										<p></p>
 										<div class="bookWriter">${dto.b_writer }</div>
@@ -767,7 +770,7 @@ span.size-20 {
 																}</div>
 															<c:if test="${loginID == i.pc_writer_id }">
 																<div class="pcBtn">
-																	<button class="updCBtn">수정</button>
+<!-- 																	<button class="updCBtn">수정</button> -->
 																	<button class="delCBtn">삭제</button>
 																</div>
 															</c:if>
@@ -846,7 +849,7 @@ span.size-20 {
                     }
                 });
                 $("#notifications").on("click", function () {
-                    location.href = "//toNotification";
+                    alert(new Date());
                 });
                 $("#bookbag").on("click", function() {
               	  if(${loginID == null}) {
@@ -894,7 +897,9 @@ span.size-20 {
             			}
             		}
                 })
-                
+                $("#updPBtn").on("click", function(){
+                	alert("수정은 다음에 합시다 ^_ㅠ");
+                })
                 
         		//포스트 프로필 사진 없을 때(수아)
             	$( document ).ready( function() {
@@ -963,10 +968,11 @@ span.size-20 {
                             
                             if ('<%=(String) session.getAttribute("loginID")%>' == res[i].pc_writer_id) {
                                 let pcBtn = $("<div>").addClass("pcBtn");
-                                let updatePcBtn = $("<button>").addClass("updCBtn").attr("type", "button").text("수정");
+//                                 let updatePcBtn = $("<button>").addClass("updCBtn").attr("type", "button").text("수정");
                                 let deletePcBtn = $("<button>").addClass("delCBtn").attr("type", "button").text("삭제");
 
-                                pcBtn.append(updatePcBtn).append(deletePcBtn);
+//                                 pcBtn.append(updatePcBtn).append(deletePcBtn);
+                                pcBtn.append(deletePcBtn);
                                 pcContentsInfo.append(pcBtn);
                             }
                             pcContentsTxt.append(pcContentsInfo);
@@ -979,10 +985,11 @@ span.size-20 {
                         }
                     }
 
-                    function postCommentList() {
+                    function postCommentList(data) {
                         let p_seq = $("#p_seq").val();
                         let arrPC = document.querySelectorAll(".pcContents");
                         let lastPc_seq = $(arrPC[arrPC.length-1]).attr("seq");
+      
 						if(lastPc_seq == null){
 							lastPc_seq = 0;
 						}
@@ -992,8 +999,8 @@ span.size-20 {
                         $.getJSON("/booknote/selectPCListByPseq", { "p_seq": p_seq, "pc_seq": lastPc_seq})
                             .done(res => {
                                 if (res != null) {
-                                    console.log(res);
-
+                                	$(".pcCount").html("");
+                                	$(".pcCount").append(data);
                                     setPostCommentAppend(res);
 
                                 }
@@ -1012,7 +1019,7 @@ span.size-20 {
                                 "pc_content": pc_content,
                                 "p_seq": p_seq
                             }, success:function(data){
-                                postCommentList();
+                                postCommentList(data);
                                 $(".insertPcContentBox").val("");
                             }
                         })
@@ -1091,6 +1098,14 @@ $(function(){
 	})
 	})
 	
+	$("#postBook").on("click", function(){
+		let b_isbn = $(this).attr("isbn");
+		location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
+	})
+	$(".bookTitle").on("click", function(){
+		let b_isbn = $(this).attr("isbn");
+		location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
+	})
 	        //footer: 사업자 정보 토글 기능
        $("#business_info_text").hide();
 

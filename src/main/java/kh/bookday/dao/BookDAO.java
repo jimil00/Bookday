@@ -51,19 +51,15 @@ public class BookDAO {
 			return db.selectList("Book.selectSteadySeller");
 		}
 		
-		
 		//신간 도서 출력 (출판일 최신 순)
 		public List<BookDTO> selectNewBooks() {
 			return db.selectList("Book.selectNewBooks");
 		}
 
-
-		
-
 	//해당 도서와 함께 담은 책 출력
-	public List<BookDTO> selectWithBooks(String b_isbn) {
-		return db.selectList("Book.selectWithBooks", b_isbn);
-	}
+		public List<BookDTO> selectWithBooks(String b_isbn) {
+			return db.selectList("Book.selectWithBooks", b_isbn);
+		}
 
 	
 	

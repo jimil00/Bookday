@@ -320,6 +320,7 @@ display:none;
 .fvrCon .fvrBook{
 	width: 80px;
 	height: 120px;
+	border-radius: 2%;
 }
 
 .explanation{
@@ -477,9 +478,9 @@ display:none;
 				<ul>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookshelves">shelves</span></li>
-					<li class="selected"><span
+					<li><span
 						class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
-					<li><span class="material-symbols-outlined size-35"
+					<li class="selected"><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookmark">book</span></li>
@@ -490,11 +491,11 @@ display:none;
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/resources/profile/${dto.sysprofname}"  width="100" height="100"
+						<img src="/resources/profile/${dto.sysprofname}" width="100" height="100"
 							id="profile">
 
 					</div>
-					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
+					<div id="contentsHeaderTxt">${dto.nickname}님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
 						} 하루</div>
 				</div>
 				<div class="contentsBody">
@@ -581,12 +582,14 @@ display:none;
 						해당 항목에서 스크롤 시 더 많은 데이터를 볼 수 있습니다
 						<span class="material-symbols-outlined size-20">cloud </span>
 					</div>
-						<div class="related">
-						<div class="statTitle">
-						related<span
-									class="material-symbols-outlined size-27">cloud</span>
-						</div>
-						<div class="statCont">
+<!-- 						<div class="related"> -->
+<!-- 						<div class="statTitle"> -->
+<!-- 						popular<span -->
+<!-- 									class="material-symbols-outlined size-27">cloud</span> -->
+<!-- 						</div> -->
+<!-- 						<div class="statCont"> -->
+<!-- 						<div class="popPost"></div> -->
+<!-- 						<div class="popBook"></div> -->
 						</div>
 						</div>
 					</div>
@@ -646,7 +649,7 @@ display:none;
 				}
 			});
 			$("#notifications").on("click", function() {
-				location.href = "//toNotification";
+				alert(new Date());
 			});
 			$("#bookbag").on("click", function() {
 		    	  if(${loginID == null}) {

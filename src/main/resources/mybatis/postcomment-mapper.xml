@@ -3,7 +3,6 @@
 
 <mapper namespace="PostComment">
 
-<!-- 수진 -->
 	<select id="selectPostCListByPseq" resultType="kh.bookday.dto.PostCommentDTO">
 		select * from post_comment where p_seq = #{p_seq} order by pc_seq
 	</select>
@@ -19,6 +18,8 @@
 	<delete id="deletePostComment">
 		delete from post_comment where pc_seq = #{pc_seq}
 	</delete>
-<!-- 수진 -->
-
+	
+	<delete id="deletePostCommentByPseq">
+		delete from post_comment where p_seq = #{p_seq}
+	</delete>
 </mapper>

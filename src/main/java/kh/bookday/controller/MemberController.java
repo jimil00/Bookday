@@ -186,7 +186,7 @@ public class MemberController {
 
 	//카카오 로그인
 	//인가 코드 받기 + 토큰 발급 + 유저 정보 조회 
-	@RequestMapping(value="kakaoLogin")
+	@RequestMapping(value="kakaoLogin", produces="application/json;charset=UTF-8")
 	public String kakaoLogin(@RequestParam("code") String code, Model model) {
 
 		String access_Token=service.getAccessToken(code);
