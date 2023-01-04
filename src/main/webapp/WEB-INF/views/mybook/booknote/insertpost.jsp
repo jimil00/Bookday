@@ -915,7 +915,7 @@ display:none;
                     }
                 })
                 $("#notifications").on("click", function () {
-                    location.href = "//toNotification";
+    				alert(new Date());
                 })
                 $("#bookbag").on("click", function() {
 		    	  if(${loginID == null}) {

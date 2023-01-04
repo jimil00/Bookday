@@ -132,7 +132,9 @@ public class BooknoteController {
 		// 회원 정보
 		MemberDTO mdto = mservice.selectMemberById(id);
 		model.addAttribute("mdto", mdto);
-
+		
+		service.addViewCount(p_seq);
+		
 		// 포스트 디테일
 		PostDTO dto = service.selectPostByPseq(p_seq);
 		model.addAttribute("dto", dto);
@@ -154,9 +156,10 @@ public class BooknoteController {
 	// 포스트 삭제
 	@RequestMapping("deletePostByPseq")
 	public String deletePostByPseq(int p_seq) {
-		System.out.println(p_seq);
-			service.deletePostByPseq(p_seq);
-			return "redirect:/booknote/selectPostListRev";
+
+		service.deletePostByPseq(p_seq);
+			
+		return "redirect:/booknote/selectPostListRev";
 
 	}
 	
@@ -173,19 +176,23 @@ public class BooknoteController {
 	// 포스트 댓글 입력
 	@ResponseBody
 	@RequestMapping("insertPostComment")
-	public void insertPostComment(PostCommentDTO dto) {
+	public String insertPostComment(PostCommentDTO cdto) {
 
 		String id = String.valueOf(session.getAttribute("loginID"));
 		System.out.println(id);
 		
-		dto.setPc_content(dto.getPc_content().replace("<script>", "&lt;")); 
+		cdto.setPc_content(cdto.getPc_content().replace("<script>", "&lt;")); 
 		
 		MemberDTO mdto = mservice.selectMemberById(id);
 		System.out.println(mdto.getId());
-		dto.setPc_writer_id(mdto.getId());
-		dto.setPc_writer_nn(mdto.getNickname());
-		dto.setSysprofname(mdto.getSysprofname());
-		service.insertPostComment(dto);
+		cdto.setPc_writer_id(mdto.getId());
+		cdto.setPc_writer_nn(mdto.getNickname());
+		cdto.setSysprofname(mdto.getSysprofname());
+		service.insertPostComment(cdto);
+		
+		PostDTO dto = service.selectPostByPseq(cdto.getP_seq());
+		
+		return new Gson().toJson(dto.getP_comment_count());
 	}
 
 	// 포스트 댓글 삭제

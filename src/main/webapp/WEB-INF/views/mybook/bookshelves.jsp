@@ -694,7 +694,7 @@ span.size-27 {
 			}
 		})
 		$("#notifications").on("click", function() {
-			location.href = "//toNotification";
+			alert(new Date());
 		})
 		$("#bookbag").on("click", function() {
 			location.href = "/delivery/selectBookbagListById";

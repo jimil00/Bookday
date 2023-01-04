@@ -35,6 +35,10 @@
           select count(*) from post
 	</select>
 	
+	<update id="addViewCount">
+		update post set p_view_count = p_view_count+1 where p_seq = #{p_seq}
+	</update>
+	
 	<select id="selectPostByPseq" resultType="kh.bookday.dto.PostDTO">
 		select * from post where p_seq = #{p_seq}
 	</select>
@@ -56,7 +60,7 @@
 	</update>
 	
 	<select id="selectSearchPostList" resultType="kh.bookday.dto.PostDTO">
-		select * from post where (p_writer_id = #{id}) and (b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or p_title like '%'||#{searchWord}||'%' or p_content like '%'||#{searchWord}||'%')
+		select * from post where (p_writer_id = #{id}) and (b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or p_title like '%'||#{searchWord}||'%' or p_content like '%'||#{searchWord}||'%') order by p_seq desc
 	</select>
 	
 	<delete id="deletePostByPseq">

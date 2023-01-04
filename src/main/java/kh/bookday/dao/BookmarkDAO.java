@@ -1,5 +1,6 @@
 package kh.bookday.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,8 +27,8 @@ public class BookmarkDAO {
 		return db.selectList("Bookmark.selectBmListByBmseq", dto);
 	}
 	
-	public List<BookmarkDTO> selectBookmarkListBySw(String searchWord){
-		return db.selectList("Bookmark.selectBookmarkListBySw", searchWord);
+	public List<BookmarkDTO> selectBookmarkListBySw(HashMap<String, String> param){
+		return db.selectList("Bookmark.selectBookmarkListBySw", param);
 	}
 	
 	public void deleteBookmarkBySeq(int bm_seq) {

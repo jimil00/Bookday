@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -486,6 +488,8 @@ span.size-30 {
 .bookmarkBookImg>img {
 	height: 180px;
 	width: 120px;
+	border-radius: 2%;
+	cursor: pointer;
 }
 
 .bookmarkContentsTxt {
@@ -495,28 +499,31 @@ span.size-30 {
 }
 
 .bookmarkBookInfo {
-	font-size: 15px;
+	display:flex;
+	justify-content: space-between;
+	align-items: end;
 }
-
+.bookmarkBookTxt{
+	font-size: 15px;
+	cursor: pointer;
+}
 .bookmarkWritedate {
 	font-size: 12px;
-	display: flex;
-	justify-content: flex-end;
 }
 
 .bookmarkContent {
 	height: auto;
 	font-size: 14px;
+	    height: fit-content;
+    min-height: 100px;
 }
 
 .bookmarkContentsBtn {
 	float: right;
-	width: 13%;
-	height: 50px;
+	width: 8%;
+	height: 35px;
 	display: flex;
-	justify-items: flex-end;
-	justify-content: space-around;
-	margin-left: auto;
+	align-items: end;
 }
 
 .bookmarkContentsBtn>button {
@@ -744,19 +751,21 @@ span.size-30 {
 										writer="${bm.bm_writer_id }">
 										<div class="bookmarkContentsImg">
 											<div class="bookmarkBookImg">
-												<img src="${bm.b_img_url }">
+												<img src="${bm.b_img_url }" isbn="${bm.b_isbn }" class="bookImg">
 											</div>
 										</div>
 										<div class="bookmarkContentsTxt">
-											<div class="bookmarkBookInfo"><${bm.b_title
+											<div class="bookmarkBookInfo">
+											<div class="bookmarkBookTxt" isbn="${bm.b_isbn }"><${bm.b_title
 												}>&nbsp${bm.b_writer }</div>
-											<div class="bookmarkWritedate">${bm.bm_write_date }</div>
+											<span class="bookmarkWritedate"><fmt:formatDate value="${bm.bm_write_date }"
+														pattern="yyyy.MM.DD HH:mm" /></span></div>
 											<hr>
 											<div class="bookmarkContent">${bm.bm_content}</div>
-										</div>
-										<div class="bookmarkContentsBtn">
-											<button class="updBookmarkBtn">수정</button>
+																					<div class="bookmarkContentsBtn">
+<!-- 											<button class="updBookmarkBtn">수정</button> -->
 											<button class="delBookmarkBtn">삭제</button>
+										</div>
 										</div>
 									</div>
 
@@ -833,7 +842,7 @@ span.size-30 {
 				}
 			});
 			$("#notifications").on("click", function() {
-				location.href = "//toNotification";
+				alert(new Date());
 			});
 			$("#bookbag").on("click", function() {
 		    	  if(${loginID == null}) {
@@ -893,7 +902,6 @@ span.size-30 {
             $(document).on("click", ".delBookmarkBtn", function () {
                 var bm_seq = $(this).closest(".bookmarkContents").attr("seq");	
         		var bm_writer_id = $(this).closest(".bookmarkContents").attr("writer");
-     			console.log(bm_seq)
 
                 if(confirm("북마크를 삭제하시겠습니까?")){
 					location.href="/bookmark/deleteBookmarkBySeq?bm_seq="+bm_seq+"&bm_writer_id="+bm_writer_id;
@@ -902,6 +910,14 @@ span.size-30 {
 				}
 
             });
+        	$(document).on("click", ".bookImg", function(){
+        		let b_isbn = $(this).attr("isbn");
+        		location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
+        	})
+        	$(document).on("click", ".bookmarkBookTxt", function(){
+        		let b_isbn = $(this).attr("isbn");
+        		location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
+        	})
             function initSearchBook(b_isbn, b_genre, b_img_url, b_title,
                     b_writer, b_publisher, b_publication_date) {
             	
@@ -964,16 +980,30 @@ span.size-30 {
                     })
 
             }
+            function getDateFormat (unformedDate) {
+                const date = new Date(unformedDate)
+                let month = date.getMonth() + 1
+                let day = date.getDate()
+                let hour = date.getHours()
+                let minute = date.getMinutes()
+
+                month = month >= 10 ? month : '0' + month
+                day = day >= 10 ? day : '0' + day
+                hour = hour >= 10 ? hour : '0' + hour
+                minute = minute >= 10 ? minute : '0' + minute
+
+                return date.getFullYear() + '.' + month + '.' + day + ' ' + hour + ':' + minute
+              }
 
             function setBookmarkPrepend(res) {
 
                 for (let i = 0; i < res.length; i++) {
 
-                    let bookmarkContents = $("<div>").addClass("bookmarkContents").attr("seq", res[i].bm_seq);
+                    let bookmarkContents = $("<div>").addClass("bookmarkContents").attr("seq", res[i].bm_seq).attr("writer", res[i].bm_writer_id);
 
                     let bookmarkContentsImg = $("<div>").addClass("bookmarkContentsImg");
                     let bookmarkBookImg = $("<div>").addClass("bookmarkBookImg");
-                    let img = $("<img>").attr("src", res[i].b_img_url);
+                    let img = $("<img>").attr("src", res[i].b_img_url).addClass("bookImg").attr("isbn", res[i].b_isbn);
 
                     bookmarkBookImg.append(img);
                     bookmarkContentsImg.append(bookmarkBookImg);
@@ -981,23 +1011,25 @@ span.size-30 {
                     
                     let bookmarkContentsTxt = $("<div>").addClass("bookmarkContentsTxt");
                     
-                    let bookmarkBookInfo = $("<div>").addClass("bookmarkBookInfo").html("<"+res[i].b_title+">&nbsp"+res[i].b_writer);
-					
-                    let bookmarkWritedate = $("<div>").addClass("bookmarkWritedate").html(res[i].bm_write_date);
+                    let bookmarkBookInfo = $("<div>").addClass("bookmarkBookInfo");
+					let bookmarkBookTxt =  $("<div>").addClass("bookmarkBookTxt").html("<"+res[i].b_title+">&nbsp"+res[i].b_writer).attr("isbn", res[i].b_isbn);
+                    let bookmarkWritedate = $("<span>").addClass("bookmarkWritedate").html(getDateFormat(res[i].bm_write_date));
                     let hr = $("<hr>").addClass("bookmarkHr");
                     
 					let bookmarkContent = $("<div>").addClass("bookmarkContent").html(res[i].bm_content);
-					
-					bookmarkContentsTxt.append(bookmarkBookInfo).append(bookmarkWritedate).append(hr).append(bookmarkContent);
+					bookmarkBookInfo.append(bookmarkBookTxt).append(bookmarkWritedate);
+					bookmarkContentsTxt.append(bookmarkBookInfo).append(hr).append(bookmarkContent);
 					
 					
                     let bookmarkContentsBtn = $("<div>").addClass("bookmarkContentsBtn");
-                    let updBookmarkBtn = $("<button>").addClass("updBookmarkBtn").html("수정");
+//                     let updBookmarkBtn = $("<button>").addClass("updBookmarkBtn").html("수정");
                     let delBookmarkBtn = $("<button>").addClass("delBookmarkBtn").html("삭제");
                     
-                    bookmarkContentsBtn.append(updBookmarkBtn).append(delBookmarkBtn);
+//                     bookmarkContentsBtn.append(updBookmarkBtn).append(delBookmarkBtn);
+                    bookmarkContentsBtn.append(delBookmarkBtn);
+                    bookmarkContentsTxt.append(bookmarkContentsBtn);
 
-                    bookmarkContents.append(bookmarkContentsImg).append(bookmarkContentsTxt).append(bookmarkContentsBtn);
+                    bookmarkContents.append(bookmarkContentsImg).append(bookmarkContentsTxt);
 
                     $(".selectBookmarkList").prepend(bookmarkContents);
                 }

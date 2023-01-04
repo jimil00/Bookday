@@ -15,7 +15,7 @@
 	</select>
 	
 	<select id="selectBookmarkListBySw" resultType="kh.bookday.dto.BookmarkDTO">
-		select * from bookmark where b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or bm_content like '%'||#{searchWord}||'%' order by bm_seq desc
+		select * from bookmark where (bm_writer_id = #{id}) and (b_title like '%'||#{searchWord}||'%' or b_writer like '%'||#{searchWord}||'%' or bm_content like '%'||#{searchWord}||'%') order by bm_seq desc
 	</select>
 	
 	<delete id="deleteBookmarkBySeq">
