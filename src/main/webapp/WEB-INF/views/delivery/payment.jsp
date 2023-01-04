@@ -338,7 +338,7 @@ li {
 				pg : "kakaopay",
 				pay_method : 'kakaopay',
 				merchant_uid : 'merchant_' + new Date().getTime(),
-				name : '책하루 [30일 구독권]',
+				name : '책하루 [종이책 구독권]',
 				amount : 12000,
 				buyer_name : '구매자 이름',
 				buyer_email : '구매자 이메일',
