@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Bookmark</title>
+<title>selectPost</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -266,7 +266,7 @@ span.size-35 {
 span.size-30 {
 	font-size: 30px;
 	color: gray;
-	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 30
 }
 
 .postBtns {
@@ -643,6 +643,7 @@ span.size-20 {
 				<ul>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookshelves">shelves</span></li>
+					<li><span class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
@@ -741,36 +742,44 @@ span.size-20 {
 						<hr class="selectPHr">
 						<div class="selectPFooter">
 							<div class="postComment">
-								<div class="pcCountTitle">댓글</div>
-								<hr class="selectPHr">
-								<div class="postComments">
-									<c:forEach var="i" items="${list}">
-										<div class="pcContents" seq="${i.pc_seq }">
-											<div class="pcWriterImg">
-												<img src="${i.sysprofname }">
-											</div>
-											<div class="pcContentsTxt">
-												<div class="pcContentsInfo">
-													<div class="pcWriter">
-														<span class="material-symbols-outlined size-20">
-															cloud </span><span class="pcWriterNn">${i.pc_writer_nn }</span><span
-															class="material-symbols-outlined size-20"> cloud </span>
+								<div class="pcCountTitle">댓글 <span class="pcCount">${dto.p_comment_count }</span></div>
+<%-- 								<c:choose> --%>
+<%-- 									<c:when test="${empty list}"> --%>
+<!-- 										<div class="emptyPostComments">댓글이 없습니다.</div> -->
+<%-- 									</c:when> --%>
+<%-- 									<c:otherwise> --%>
+
+										<div class="postComments">
+											<c:forEach var="i" items="${list}">
+												<div class="pcContents" seq="${i.pc_seq }">
+													<div class="pcWriterImg">
+														<img src="${i.sysprofname }">
 													</div>
-													<div class="pcWriteDate">&nbsp&nbsp${i.pc_write_date
-														}</div>
-													<c:if test="${loginID == i.pc_writer_id }">
-														<div class="pcBtn">
-															<button class="updCBtn">수정</button>
-															<button class="delCBtn">삭제</button>
+													<div class="pcContentsTxt">
+														<div class="pcContentsInfo">
+															<div class="pcWriter">
+																<span class="material-symbols-outlined size-20">
+																	cloud </span><span class="pcWriterNn">${i.pc_writer_nn }</span><span
+																	class="material-symbols-outlined size-20"> cloud
+																</span>
+															</div>
+															<div class="pcWriteDate">&nbsp&nbsp${i.pc_write_date
+																}</div>
+															<c:if test="${loginID == i.pc_writer_id }">
+																<div class="pcBtn">
+																	<button class="updCBtn">수정</button>
+																	<button class="delCBtn">삭제</button>
+																</div>
+															</c:if>
 														</div>
-													</c:if>
+														<div class="pcContent">${i.pc_content }</div>
+													</div>
 												</div>
-												<div class="pcContent">${i.pc_content }</div>
-											</div>
+											</c:forEach>
 										</div>
-									</c:forEach>
-								</div>
-								<hr class="selectPHr">
+<%-- 									</c:otherwise> --%>
+<%-- 								</c:choose> --%>
+								<hr class="selectPCHr">
 								<div class="insertPc">
 									<div class="insertPcContent">
 										<textarea class="insertPcContentBox" maxlength="200"></textarea>
@@ -860,6 +869,9 @@ span.size-20 {
                 $("#snBookshelves").on("click", function () {
                     location.href = "/bookshelves/selectBookshelvesListById";
                 });
+    			$("#snCalendar").on("click",function(){
+    				location.href = "/bookcalendar/toCalendar";
+    			})
                 $("#snStatistics").on("click", function () {
                     location.href = "/bookstatistics/toStatistics";
                 });
@@ -918,20 +930,7 @@ span.size-20 {
 //                 	postCommentList();
 //                 })
                 
-                    function postCommentList(lastPc_seq) {
-                        let p_seq = $("#p_seq").val();
-                    	console.log(lastPc_seq);
 
-                        $.getJSON("/booknote/selectPCListByPseq", { "p_seq": p_seq, "pc_seq": lastPc_seq})
-                            .done(res => {
-                                if (res != null) {
-                                    setPostCommentAppend(res);
-                                    console.log(res);
-
-                                }
-                            })
-
-                    }
 
                     function setPostCommentAppend(res) {
 
@@ -963,7 +962,6 @@ span.size-20 {
 
                             
                             if ('<%=(String) session.getAttribute("loginID")%>' == res[i].pc_writer_id) {
-                            	console.log("a");
                                 let pcBtn = $("<div>").addClass("pcBtn");
                                 let updatePcBtn = $("<button>").addClass("updCBtn").attr("type", "button").text("수정");
                                 let deletePcBtn = $("<button>").addClass("delCBtn").attr("type", "button").text("삭제");
@@ -976,16 +974,37 @@ span.size-20 {
                             pcContents.append(pcContentsTxt);
 
 
-                            $(".postComments").append(pcContents);                            
+                            $(".postComments").append(pcContents);  
+                            console.log("aaaaaaaaaa");
                         }
                     }
 
+                    function postCommentList() {
+                        let p_seq = $("#p_seq").val();
+                        let arrPC = document.querySelectorAll(".pcContents");
+                        let lastPc_seq = $(arrPC[arrPC.length-1]).attr("seq");
+						if(lastPc_seq == null){
+							lastPc_seq = 0;
+						}
+                    	console.log(lastPc_seq);
+
+
+                        $.getJSON("/booknote/selectPCListByPseq", { "p_seq": p_seq, "pc_seq": lastPc_seq})
+                            .done(res => {
+                                if (res != null) {
+                                    console.log(res);
+
+                                    setPostCommentAppend(res);
+
+                                }
+                            })
+
+                    }
                     function insertPostComment(){
 
                         let pc_content = $(".insertPcContentBox").val();
                         let p_seq = $("#p_seq").val();
-                        let arrPC = document.querySelectorAll(".pcContents");
-                        let lastPc_seq = $(arrPC[arrPC.length-1]).attr("seq");
+
                         $.ajax({
                             url: "/booknote/insertPostComment",
                             type: "post",
@@ -993,7 +1012,7 @@ span.size-20 {
                                 "pc_content": pc_content,
                                 "p_seq": p_seq
                             }, success:function(data){
-                                postCommentList(lastPc_seq);
+                                postCommentList();
                                 $(".insertPcContentBox").val("");
                             }
                         })
@@ -1006,7 +1025,7 @@ span.size-20 {
                     $(".insertPcContentBox").on("keydown", function(e){
 						if(e.keyCode == 13 && e.shiftKey == false) {
 							let pc_content = $(".insertPcContentBox").val();
-							insertPostComment(pc_content);
+							insertPostComment();
 						}
                     });
                     
@@ -1057,12 +1076,13 @@ $(function(){
 	$(document).on("click", ".delCBtn", function(){
 		if(confirm("댓글을 삭제하시겠습니까?")){
 		let pc_seq = $(this).closest(".pcContents").attr("seq");
-		
+		let p_seq = $("#p_seq").val();
 		$.ajax({
 			url: "/booknote/deletePostComment",
 			type: "post",
 			data: {
-				"pc_seq": pc_seq
+				"pc_seq": pc_seq,
+				"p_seq": p_seq
 			}
 		}).done(function(data){
 			location.reload();

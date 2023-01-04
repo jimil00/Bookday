@@ -261,7 +261,7 @@ span.size-35 {
 span.size-30 {
 	font-size: 30px;
 	color: gray;
-	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 30
 }
 
 /* contentsBodyInsertBookmark */
@@ -671,6 +671,7 @@ span.size-30 {
 				<ul>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookshelves">shelves</span></li>
+					<li><span class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
 					<li class="selected"><span
@@ -748,7 +749,7 @@ span.size-30 {
 										<div class="bookmarkContentsTxt">
 											<div class="bookmarkBookInfo"><${bm.b_title
 												}>&nbsp${bm.b_writer }</div>
-											<div class="bookmarkWritedate">1<fmt:formatDate value="${bm.bm_write_date }" pattern="yyyy.MM.DD hh:mm"/></div>
+											<div class="bookmarkWritedate">${bm.bm_write_date }</div>
 											<hr>
 											<div class="bookmarkContent">${bm.bm_content}</div>
 										</div>
@@ -854,6 +855,9 @@ span.size-30 {
 			$("#snBookshelves").on("click", function() {
 				location.href = "/bookshelves/selectBookshelvesListById";
 			});
+			$("#snCalendar").on("click",function(){
+				location.href = "/bookcalendar/toCalendar";
+			})
 			$("#snStatistics").on("click", function() {
 				location.href = "/bookstatistics/toStatistics";
 			});
@@ -872,12 +876,12 @@ span.size-30 {
 			});		
 			$(".bookmarkBookSearchBtn").on("click", function() {
 				var searchWord = $("#bookmarkBookSearchWord").val();
+				$("#bookmarkBookSearchWord").val("");
 				window.open("/book/toBookSearchPop?searchWord=" + searchWord, "", "width=600,height=600");
 			});
 			$("#bookmarkSearchWord").on("keydown", function(e){
 				if(e.keyCode == 13) {
 					var searchWord = $("#bookmarkSearchWord").val();
-					$("#bookmarkSearchWord").val("");
 					location.href = "/bookmark/selectBookmarkListBySw?searchWord=" + searchWord;
 				}
 			});		
@@ -976,7 +980,7 @@ span.size-30 {
                     
                     let bookmarkContentsTxt = $("<div>").addClass("bookmarkContentsTxt");
                     
-                    let bookmarkBookInfo = $("<div>").addClass("bookmarkBookInfo").html("<"+res[i].bm_title+">&nbsp"+res[i].b_writer);
+                    let bookmarkBookInfo = $("<div>").addClass("bookmarkBookInfo").html("<"+res[i].b_title+">&nbsp"+res[i].b_writer);
 					
                     let bookmarkWritedate = $("<div>").addClass("bookmarkWritedate").html(res[i].bm_write_date);
                     let hr = $("<hr>").addClass("bookmarkHr");

@@ -116,7 +116,8 @@ public class BooknoteController {
 		dto.setP_writer_id(id);
 		dto.setSysprofname(mdto.getSysprofname());
 		dto.setP_writer_nn(mdto.getNickname());
-
+		dto.setP_title(dto.getP_title().replace("<", "&lt;"));
+		dto.setP_content(dto.getP_content().replace("<script>", "&lt;"));
 		int p_seq = service.insertPost(dto);
 
 		return "/booknote/selectPostListById";
@@ -176,7 +177,9 @@ public class BooknoteController {
 
 		String id = String.valueOf(session.getAttribute("loginID"));
 		System.out.println(id);
-
+		
+		dto.setPc_content(dto.getPc_content().replace("<script>", "&lt;")); 
+		
 		MemberDTO mdto = mservice.selectMemberById(id);
 		System.out.println(mdto.getId());
 		dto.setPc_writer_id(mdto.getId());
@@ -188,12 +191,12 @@ public class BooknoteController {
 	// 포스트 댓글 삭제
 	@ResponseBody
 	@RequestMapping("deletePostComment")
-	public void deletePostComment(int pc_seq) {
+	public void deletePostComment(int pc_seq, int p_seq) {
 
 		String id = String.valueOf(session.getAttribute("loginID"));
 		// session이랑 지우려는 댓글 아이디가 같을 때 는 프론트에서
 
-		service.deletePostComment(pc_seq);
+		service.deletePostComment(pc_seq, p_seq);
 	}
 
 	@GetMapping("selectSearchPostList")
@@ -221,32 +224,12 @@ public class BooknoteController {
 	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
-		
-		JsonObject jsonObject = new JsonObject();
-		
-		String realPath = session.getServletContext().getRealPath("resources/upload");
-		File filePath = new File(realPath);
-		if(!filePath.exists()) {filePath.mkdir();}
-		
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-		System.out.println(originalFileName);
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-		System.out.println(filePath);
-		File targetFile = new File(filePath + "/" +savedFileName);	
-		try {
-			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			jsonObject.addProperty("url", "/resources/upload/"+savedFileName); 
-			jsonObject.addProperty("responseCode", "success");
 				
-		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
-			jsonObject.addProperty("responseCode", "error");
-			e.printStackTrace();
-		}
-		String a = jsonObject.toString();
-		return a;
+		String realPath = session.getServletContext().getRealPath("resources/upload");
+		
+		String data = service.uploadSummernoteImageFile(multipartFile, realPath);
+		
+		return data;
 	}
 
 
