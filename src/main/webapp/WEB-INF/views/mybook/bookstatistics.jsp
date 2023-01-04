@@ -20,6 +20,8 @@
 }
 
 * {
+/* 	border: 1px solid black; */
+
 	box-sizing: border-box;
 	font-family: 'NanumSquareNeo-Variable';
 }
@@ -188,13 +190,13 @@ span.size-40 {
 	float: left;
 }
 
-ul {
+.sideNavi ul {
 	list-style-type: none;
 	margin-top: 20px;
 	padding-left: 0px;
 }
 
-li {
+.sideNavi li {
 	margin-top: 10px;
 	width: 40px;
 	height: 40px;
@@ -267,7 +269,8 @@ span.size-30 {
 /*contents*/
 .rap {
 	max-width: 700px;
-	margin:auto;
+	margin: auto;
+	margin-bottom: 50px;
 }
 
 .dateHead {
@@ -295,14 +298,17 @@ span.size-30 {
 .dateBoard div {
 	color: #222;
 	font-weight: bold;
-	min-height: 158px;
+	height: 158px;
 	border-radius: 5px;
 	border: 1px solid #eee;
 	display: flex;
 	flex-wrap: wrap;
-	max-width: 95.71px;
+	width: 95.71px;
+	overflow-y: scroll;
 }
-
+.dateBoard div::-webkit-scrollbar {
+display:none;
+}
 .bookCal {
 	width: 80px;
 	height: 120px;
@@ -315,10 +321,11 @@ span.size-30 {
 .calHeader {
 	display: flex;
 	justify-content: space-between;
-	align-items:center;
+	align-items: center;
 	padding: 1rem 2rem;
 }
-.calHeader *{
+
+.calHeader * {
 	font-size: 18px;
 }
 
@@ -339,7 +346,90 @@ span.size-30 {
 .nextDay {
 	transform: rotate(45deg);
 }
+/* 연 */
+.chart_box ul, li {
+	list-style: none;
+}
 
+.vertical_chart_box {
+	position: relative;
+	width: 700px;
+	height: 700px;
+	margin: auto;
+}
+
+.vertical_chart_box .chart_box {
+	position: relative;
+	box-sizing: border-box;
+	height: 600px;
+	margin-top: 0px;
+}
+
+.vertical_chart_box .axis_x {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	padding: 0;
+	box-sizing: border-box;
+	height: 100%;
+	border-bottom: 1px solid #d3d3d3;
+	margin-top:0px;
+}
+
+.vertical_chart_box .month {
+	flex: 1;
+	position: relative;
+}
+
+.vertical_chart_box .month .text_box {
+	position: absolute;
+	bottom: -35px;
+	left: 50%;
+	text-align: center;
+	-webkit-transform: translate(-50%, 0);
+	-ms-transform: translate(-50%, 0);
+	-o-transform: translate(-50%, 0);
+	transform: translate(-50%, 0);
+	width: 40px;
+	font-size:15px;
+}
+
+.vertical_chart_box .month_book {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-direction: column-reverse;
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+	width: 40px;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.vertical_chart_box .month_book::-webkit-scrollbar {
+display:none;
+}
+
+.month_book span {
+	display: contents;
+	position: relative;
+	box-sizing: content-box;
+	width: 100%;
+}
+
+.vertical_chart_box .month_book {
+	border: 0;
+}
+
+.bookYear{
+	width: 40px;
+	height: 60px;
+}
 /*footerHr*/
 .footerHr {
 	display: block;
@@ -464,7 +554,7 @@ span.size-30 {
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
-							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -496,6 +586,7 @@ span.size-30 {
 					<div id="contentsHeaderImg">
 						<img src="/resources/profile/${dto.sysprofname}"  width="100" height="100"
 							id="profile">
+
 					</div>
 					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
 						} 하루</div>
@@ -505,27 +596,105 @@ span.size-30 {
 						<div class="titleTxt">통계</div>
 						&nbsp <span class="material-symbols-outlined size-30">equalizer</span>
 					</div>
-					<div class="calendar"></div>
-					<div class='rap'>
-						<div class="calHeader">
-							<div class="btn prevDay"></div>
-							<h2 class='dateTitle'></h2>
-							<div class="btn nextDay"></div>
-						</div>
+					<div class="calendar">
+						<div class='rap'>
+							<div class="calHeader">
+								<div class="btn prevDay"></div>
+								<h2 class='dateTitle'></h2>
+								<div class="btn nextDay"></div>
+							</div>
 
-						<div class="grid dateHead">
-							<div>일</div>
-							<div>월</div>
-							<div>화</div>
-							<div>수</div>
-							<div>목</div>
-							<div>금</div>
-							<div>토</div>
-						</div>
+							<div class="grid dateHead">
+								<div>일</div>
+								<div>월</div>
+								<div>화</div>
+								<div>수</div>
+								<div>목</div>
+								<div>금</div>
+								<div>토</div>
+							</div>
 
-						<div class="grid dateBoard"></div>
+							<div class="grid dateBoard"></div>
+						</div>
 					</div>
-
+					<div class="vertical_chart_box">
+						<div class="chart_box">
+							<ul class="axis_x">
+								<li class="month">
+									<div class="text_box prevMonth">1월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="01"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">2월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="02"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">3월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="03"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">4월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="04"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">5월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="05"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">6월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="06"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">7월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="07"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">8월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="08"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">9월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="09"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">10월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="10"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box prevMonth">11월</div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="11"></span>
+									</div>
+								</li>
+								<li class="month">
+									<div class="text_box thisMonth"></div>
+									<div type="div" class="month_book">
+										<span class="bookImg" month="12"></span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -612,6 +781,16 @@ span.size-30 {
 				location.href = "/booknote/selectPostListById";
 			});
 
+			//포스트 프로필 사진 없을 때(수아)
+			$( document ).ready( function() {
+			    
+			  	if(${p.sysprofname == '0'}){
+			  		
+					$(".profile_img").attr("src","/resources/basic.png");
+									return;
+								}
+			   });
+			
 			const makeCalendar = (date) => {
 				  // 현재 년도와 월 받아오기
 				  const currentYear = new Date(date).getFullYear(); //2023
@@ -648,7 +827,23 @@ span.size-30 {
 
 				  document.querySelector(`.dateBoard`).innerHTML = htmlDummy;
 				  document.querySelector(`.dateTitle`).innerText = currentYear+'년'+' '+currentMonth+'월';
-				}
+				  document.querySelector(`.thisMonth`).innerText = currentMonth+'월';
+				  document.querySelector(`.thisMonth`).setAttribute("year", currentYear);
+				  document.querySelector(`.thisMonth`).setAttribute("month", currentMonth);
+				  
+				  let month = new Date(date).getMonth() + 1;
+				  let year = new Date(date).getFullYear();
+				  document.querySelectorAll(`.prevMonth`).forEach(item=>{
+					  
+					  if(++month>12){
+						  month = 1;
+						  year++
+					  }
+					  item.innerText= month+'월';
+					  item.setAttribute("year", year-1);
+					  item.setAttribute("month", month);
+				  })
+			}
 
 
 				const date = new Date();
@@ -679,47 +874,28 @@ span.size-30 {
 				function getBookCal(){
 					$.getJSON("/bookstatistics/selectBookCalbyId")
 			        .done(res => {
-			            console.log(res)
 			            if (res != null) {
-			            	console.log(res);
-			                setCalAppend(res)
+			            	
+			                setCalAppend(res);
+			                setYearAppend(res);
 			            }
 			        })
 				}
 				
 				
 				function setCalAppend(res) {
-				// 일단 포스트 리스트를 불러오고 안보이게
-						let year = $(".date").attr("year");
-				console.log(year);
+
+				let year = $(".date").attr("year");
 				let month = $(".date").attr("month");
-				//let day = $(".date").attr("day");//여기 겟타임 넣어두고
-//		 		let days = document.querySelectorAll(".date");
-//		 		console.log(days);
-				//console.log(days);
-				// const event = new Date('2023-01-01 00:00:00');
-//		 		days.forEach(day=>{
-//		 		  let cal = new Date(year+'-'+month.padStart(2, '0')+'-'+$(day).html().padStart(2, '0')+' '+'00:00:00')
-//		 		getTimeDate = cal.getTime()/86400000
-//		 		$(day).attr("day", getTimeDate);
-//		 		console.log(days);
-//		 		})
-				
-//		 		console.log($(".date").attr("day"));
-//		 		var arr = $.map($(".date"), function(item) {
-//		     return $(item).attr("day");
-		// });
-//		 		console.log(arr);
 				let days = document.querySelectorAll(".date");
 				res.forEach(list=>{
 
 					let start = new Date(list.dyst_read).getTime()/86400000;
 					let finish = new Date(list.dyfn_read).getTime()/86400000;
-					console.log(days)
+
 					days.forEach(day=>{
 						let cal = new Date(year+'-'+month.padStart(2, '0')+'-'+$(day).attr("day").padStart(2, '0')+' '+'00:00:00')
 						getTimeDate = cal.getTime()/86400000
-						console.log(getTimeDate)
 						
 						for(let j = start; j <= finish; j++){
 							console.log('j : '+j+'gt : ' + getTimeDate + '=' +(j==getTimeDate))
@@ -733,54 +909,29 @@ span.size-30 {
 					
 				})
 				
-				
-				for (let i = 0; i < res.length; i++) {
-
-				let start = new Date(res[i].dyst_read).getTime()/86400000;
-				let finish = new Date(res[i].dyfn_read).getTime()/86400000;
-				
-				console.log(start)
-				for(let j = start; j <= finish; j++){
-					let days = document.querySelectorAll(".date");
-
-//		 			days.forEach(day=>{
-//		 				  let cal = new Date(year+'-'+month.padStart(2, '0')+'-'+$(day).html().padStart(2, '0')+' '+'00:00:00')
-//		 				getTimeDate = cal.getTime()/86400000
-//		 				$(day).attr("day", getTimeDate);
-//		 				  console.log(getTimeDate == j)
-//		 				  console.log(res[i].b_title)
-//		 				  if(getTimeDate == j){
-//		 					  $(day).append('<img src='+res[i].b_img_url+' class="bookCal">');
-//		 				  }
-						
-//		 				})
-//		 			for (let k = 0; k < arr.length; k++){
-//		 				if(arr[k]==j){
-//		 					console.log(arr[k]);
-//		 					console.log("j:"+j)
-//		 			let arrPC = document.querySelectorAll(".pcContents");
-//		                 let lastPc_seq = $(arrPC[arrPC.length-1]).attr("seq");
-//		                 if($(".date").attr("day")== arr[k]){
-//		 					$(this).append('<img src='+res[i].b_img_url+'>');
-
-//		                 }
-//		 				}
-//		 			}
-//		 			console.log(day)
-//		 		  if($(day).attr("day") == j){
-//		 			  console.log("a")
-//		 		    $(day).append('<img src='+res[i].b_img_url+'>');
-//		 		  }
-				}
-				}
 				}
 
+			    function setYearAppend(res) {
+			    	$(".bookYear").remove();
+			        let arr = document.querySelectorAll(".text_box");
+			        arr.forEach(i=>{
+			        	let year = $(i).attr("year");
+			        	let month = $(i).attr("month").padStart(2, '0');
+		
+			        res.forEach(list => {
+			        	let yrfn_read = list.dyfn_read.substring(0, 4);
+			            let mnfn_read = list.dyfn_read.substring(5, 7);
+			        	console.log(mnfn_read)
+			            console.log(year == yrfn_read && month == mnfn_read)
+			            if (year == yrfn_read && month == mnfn_read) {
+			                $(i).siblings(".month_book").append('<img src="' + list.b_img_url + '" class="bookYear">');
+			            }
+
+			        })
+			        })
+			    }
 				$(function(){
-					 getBookCal();
-						
-
-						
-						
+					 getBookCal();						
 
 
 					})

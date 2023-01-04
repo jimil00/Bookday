@@ -54,7 +54,6 @@ public class MemberDAO {
 	//비번 재설정
 	public void updatePw(Map<String, String> param) {
 		db.update("Member.updatePw", param);
-
 	}
 	
 	//회원정보수정
