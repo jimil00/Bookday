@@ -622,7 +622,7 @@ span.size-20 {
 							<a id="nick">
 								<p class="user" id="user">${nickname}님</p>
 							</a>
-							<a href="/member/logOut">
+							<a href="/member/logout">
 								<p class="user" id="logout">로그아웃</p>
 							</a>
 						</c:otherwise>

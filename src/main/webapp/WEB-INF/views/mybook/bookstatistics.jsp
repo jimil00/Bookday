@@ -584,7 +584,7 @@ display:none;
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/resources/profile/${dto.sysprofname}"  width="100" height="100"
+						<img src="/resources/profile/${dto.sysprofname}" width="100" height="100"
 							id="profile">
 
 					</div>

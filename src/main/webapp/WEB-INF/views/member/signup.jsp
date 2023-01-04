@@ -93,7 +93,6 @@ position:absolute;
 }
 
 .signup_btn {
-
 	margin: auto;
 	width: 70%;
 	margin-top: 20%;
