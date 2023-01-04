@@ -151,8 +151,14 @@ span.size-40 {
 	text-decoration-color: #5397fc;
 }
 
+#login{
+width:100px;
+text-align:right;
+}
+
 #nick {
 	text-decoration: none;
+	width:100px;
 }
 
 #nick:hover {
@@ -833,10 +839,14 @@ span.size-30 {
 				}
 			});
 			$("#notifications").on("click", function() {
-				  let now = new Date();
-		    	  let hr=now.getHours();
-		    	 let min= now.getMinutes();
-				 alert("현재 시간은 "+hr+":"+min);
+				  let today = new Date();   
+
+		    	  let hours = ('0' + today.getHours()).slice(-2); 
+		    	  let minutes = ('0' + today.getMinutes()).slice(-2);
+		    	  let seconds = ('0' + today.getSeconds()).slice(-2); 
+
+		    	  let timeString = hours + ':' + minutes  + ':' + seconds;
+				 alert("현재 시간은 "+timeString);
 			});
 			$("#bookbag").on("click", function() {
 		    	  if(${loginID == null}) {

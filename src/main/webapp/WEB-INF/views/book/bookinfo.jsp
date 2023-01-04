@@ -141,9 +141,16 @@ hr {
 	text-decoration-color: #5397fc;
 }
 
+#login{
+width:100px;
+text-align:right;
+}
+
 #nick {
 	text-decoration: none;
+	width:100px;
 }
+
 
 #nick:hover {
 	color: black;
@@ -311,9 +318,10 @@ span, #logoImg:hover {
 
 #intro_title {
 	/* border: 1px solid  #5397fc; */
+	color: #808080;
+	background-color: #5397fc50;
 	border-radius: 5px;
-	background-color: #5397fc;
-	color: white;
+	box-shadow: 2px 2px 2px 2px #80808050;
 	height: 50px;
 	line-height: 50px;
 	padding-left: 10px;
@@ -572,22 +580,42 @@ span, #logoImg:hover {
 .w_img_url {
 	width: 150px;
 	height: 233px;
+		background: linear-gradient(to right, rgba(0, 0, 0, .3) 3px,
+		rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px,
+		rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px,
+		rgba(255, 255, 255, 0.25) 20px, transparent 22px);
+	box-shadow: 0 0 5px -1px rgba(0, 0, 0, 1), inset -1px 1px 2px
+		rgba(255, 255, 255, 0.5);
+	border-radius: 5px;
+	/* margin-left: 38px; */
 }
 
 .w_title, .w_writer {
 	margin: 0px;
+	margin-left:15px;
 }
 
 .w_title {
-	word-wrap: break-word;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 	overflow: hidden;
+    height: 23px;
+    width: 120px;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .w_writer {
-	line-height: 40px;
-	font-size: small;
+	overflow: hidden;
+    height: 23px;
+    width: 120px;
+    text-align: center;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
 }
 
 .book_box>a {
@@ -914,12 +942,12 @@ span, #logoImg:hover {
 						<p class="title">포스트</p>
 					</div>
 
-<!-- 					<div class="swiper-container"> -->
-<!-- 						<div class="swiper-wrapper"> -->
+ 					<div class="swiper-container">
+ 						<div class="swiper-wrapper"> 
 							<c:choose>
 								<c:when test="${not empty plist}">
 									<c:forEach items="${plist}" var="p">
-<!-- 										<div class="swiper-slide"> -->
+										<div class="swiper-slide"> 
 											<div class="post-main">
 												<br>
 												<div class="post-main-top">
@@ -939,15 +967,15 @@ span, #logoImg:hover {
 													<a href="/" style="text-decoration-line: none; color: black;">${p.p_content }</a>
 												</div>
 											</div>
-<!-- 										</div> -->
+ 										</div> 
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
 									<p class="post_title">작성된 포스트가 없습니다.</p>
 								</c:otherwise>
 							</c:choose>
-<!-- 						</div> -->
-<!-- 					</div> -->
+ 						</div> 
+					</div> 
 				</div>
 
 
@@ -975,7 +1003,7 @@ span, #logoImg:hover {
 										</c:forEach>
 									</c:when>
 									<c:otherwise>
-										<p class="w_title">함께 담은 책이 없습니다.</p>
+										<p class="w_title_blank">함께 담은 책이 없습니다.</p>
 									</c:otherwise>
 								</c:choose>
 
@@ -1043,10 +1071,14 @@ $("#logo_img").on("click", function() {
     }
  })
  $("#notifications").on("click", function() {
-	  let now = new Date();
-	  let hr=now.getHours();
-	 let min= now.getMinutes();
-	 alert("현재 시간은 "+hr+":"+min);
+	  let today = new Date();   
+
+	  let hours = ('0' + today.getHours()).slice(-2); 
+	  let minutes = ('0' + today.getMinutes()).slice(-2);
+	  let seconds = ('0' + today.getSeconds()).slice(-2); 
+
+	  let timeString = hours + ':' + minutes  + ':' + seconds;
+	 alert("현재 시간은 "+timeString);
  })
  $("#bookbag").on("click", function() {
     if(${loginID == null}) {
