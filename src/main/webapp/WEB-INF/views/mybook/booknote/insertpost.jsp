@@ -675,7 +675,18 @@ display:none;
                     			});
                     		}
                             $('#insertBooknoteBtn').on('click', function () {
-
+            					if($(".searchResultBookInfo").attr("isbn") == null){
+            						alert("책을 검색해주세요.");
+            						return false;
+            					}
+                                if ($("#insertBooknoteTitleTxt").val() == "") {
+                                    alert('제목을 입력해주세요.');
+                                    return false;
+                                }
+                                if ($('#summernote').summernote('isEmpty')) {
+                                    alert("내용을 입력해주세요.");
+                                    return false;
+                                }
                                 saveContent();
                             });
                             function saveContent() {
@@ -698,15 +709,7 @@ display:none;
 								var dyfn_read = $("#demo").val().substring(13,23);
 								var p_writer_nn = $("#contentsHeaderTxt").attr("p_writer_nn");
                                 var p_title = $("#insertBooknoteTitleTxt").val();
-								console.log(dyst_read);
-                                if (p_title == "") {
-                                    alert('제목을 입력해주세요.');
-                                    return false;
-                                }
-                                if ($('#summernote').summernote('isEmpty')) {
-                                    alert("내용을 입력해주세요.");
-                                    return false;
-                                }
+
                                 $
                                     .ajax({
                                         url: "/booknote/insertPost",

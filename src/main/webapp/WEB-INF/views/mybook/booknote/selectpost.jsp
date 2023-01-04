@@ -268,23 +268,25 @@ span.size-30 {
 	color: gray;
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
 }
-.postBtns{
-margin-left: auto;
+
+.postBtns {
+	margin-left: auto;
 }
-.postBtns *{
+
+.postBtns * {
 	margin-left: 10px;
-	margin-right:3px;
+	margin-right: 3px;
 	border: none;
-	height : 28px;
+	height: 28px;
 	border-radius: 10%;
-		box-shadow: 2px 2px 2px 2px #80808050;
-	background-color : #5397fc50;
-	
-	
+	box-shadow: 2px 2px 2px 2px #80808050;
+	background-color: #5397fc50;
 }
-.postBtns *:hover{
-background-color : #5397fc50;
+
+.postBtns *:hover {
+	background-color: #5397fc50;
 }
+
 .selectPost {
 	border: 1px solid #80808050;
 	padding: 10px 10px 10px 10px;
@@ -372,11 +374,11 @@ background-color : #5397fc50;
 	padding: 10px 10px 10px 10px;
 }
 
-.postLike{
+.postLike {
 	color: #80808050;
-		text-align: center;
-	
+	text-align: center;
 }
+
 .postLikeCount {
 	padding: 10px 10px 10px 10px;
 }
@@ -417,9 +419,10 @@ span.size-45 {
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-.pcContentsTxt{
-width: 94%;
+.pcContentsTxt {
+	width: 94%;
 }
+
 .pcContentsInfo {
 	display: flex;
 	margin-bottom: 10px;
@@ -443,9 +446,10 @@ span.size-20 {
 	align-items: flex-end;
 }
 
-.pcBtn{
-margin-left: auto;
+.pcBtn {
+	margin-left: auto;
 }
+
 .insertPc {
 	padding: 10px 10px 10px 10px;
 	display: flex;
@@ -490,7 +494,7 @@ margin-left: auto;
 }
 
 /*footerHr*/
-.footerHr{
+.footerHr {
 	display: block;
 	height: 1px;
 	border: 0;
@@ -501,85 +505,87 @@ margin-left: auto;
 
 /* footer */
 .footer {
-    margin:5px;
+	margin: 5px;
 }
 
-.f_header{
-    display: inline-flex;
-    margin-top:10px;
+.f_header {
+	display: inline-flex;
+	margin-top: 10px;
 }
 
-.f_header>a>img{
-    width:200px;
+.f_header>a>img {
+	width: 200px;
 }
 
-.sns_icon{
-  position: relative;
-  top:1px;
-  left:595px;
+.sns_icon {
+	position: relative;
+	top: 1px;
+	left: 595px;
 }
 
-.sns_icon>a>img{
-	  height:20px;
+.sns_icon>a>img {
+	height: 20px;
 }
 
-.business_info{
-    margin-top:30px;
+.business_info {
+	margin-top: 30px;
 }
 
-#business_info_title{
-    font-size: x-small;
-    color: #808080d6;
+#business_info_title {
+	font-size: x-small;
+	color: #808080d6;
 }
 
-.business_info>span{
-    margin-top:5px;
+.business_info>span {
+	margin-top: 5px;
 }
 
-.f_intro{
-    margin-top:15px;
-    margin-bottom:20px;
-    font-size: small;
+.f_intro {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	font-size: small;
 }
 
-.f_intro>span{
-   color:#4d4b4bc1;
+.f_intro>span {
+	color: #4d4b4bc1;
 }
 
-.f_line{
-    color: #808080d6;
+.f_line {
+	color: #808080d6;
 }
 
-.business_info{
-    margin-top:20px;
-}
-#business_info_text{
-    margin-top:10px;
-    font-size: x-small;
-    color: #808080d6;
-}
-.inline_info{
-    display: inline-flex;
+.business_info {
+	margin-top: 20px;
 }
 
-#arrow_down2,#arrow_up2{
-    position: relative;
-    bottom:6px;
-    color: #808080d6;
+#business_info_text {
+	margin-top: 10px;
+	font-size: x-small;
+	color: #808080d6;
 }
 
-#arrow_up2{
-display:none;
+.inline_info {
+	display: inline-flex;
 }
 
-.sns_icon>a>img{
-    width:40px;
-    height:40px;
+#arrow_down2, #arrow_up2 {
+	position: relative;
+	bottom: 6px;
+	color: #808080d6;
 }
 
-.copyright{
-    margin-top:5px;
-    font-size: x-small;
+#arrow_up2 {
+	display: none;
+}
+
+.sns_icon>a>img {
+	width: 40px;
+	height: 40px;
+}
+
+.copyright {
+	margin-top: 5px;
+	font-size: x-small;
 }
 </style>
 </head>
@@ -658,18 +664,32 @@ display:none;
 					<div class="title">
 						<div class="titleTxt">포스트</div>
 						&nbsp <span class="material-symbols-outlined size-30">edit</span>
-						
+
 						<div class="postBtns">
-<%-- 						<c:choose> --%>
-<%--                                 <c:when test="${loginID == dto.b_writer_id}"> --%>
-                                <button type="button">수정하기</button><button type="button">삭제하기</button><button type="button">목록으로</button></div>
+							<c:choose>
+								<c:when test="${loginID == dto.p_writer_id}">
+
+									<button type="button" id="updPBtn">수정하기</button>
+									<button type="button" id="delPBtn">삭제하기</button>
+									<button type="button" id="toList">목록으로</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" id="toList">목록으로</button>
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</div>
 					<div class="selectPost">
-						<input type="hidden" id="p_seq" name="p_seq" value="${dto.p_seq }">
+						<input type="hidden" id="p_seq" name="p_seq" value="${dto.p_seq }"
+							p_writer_id="${dto.p_writer_id }">
 						<div class="selectPHeader">
 							<div class="postTitle">${dto.p_title }</div>
 							<div class="postInfo">
-								<div class="dyPostWrite">작성&nbsp<fmt:formatDate value="${dto.p_write_date }" pattern="yyyy.MM.DD hh:mm"/></div>
+								<div class="dyPostWrite">
+									작성&nbsp
+									<fmt:formatDate value="${dto.p_write_date }"
+										pattern="yyyy.MM.DD HH:mm" />
+								</div>
 								<span>&nbsp|&nbsp</span>
 								<div class="postViewCount">조회수&nbsp${dto.p_view_count }</div>
 							</div>
@@ -696,15 +716,20 @@ display:none;
 								<div class="dates">
 									<div class="datesTitle">읽은 기간</div>
 									<div class="dyStFnRead">
-									<fmt:parseDate value="${dto.dyst_read }" var="dyst_read" pattern="yyyy-MM-dd HH:mm:ss"/>
-									<fmt:formatDate value="${dyst_read}" pattern="yyyy.MM.dd"/>&nbsp~&nbsp
-									<fmt:parseDate value="${dto.dyfn_read }" var="dyfn_read" pattern="yyyy-MM-dd HH:mm:ss"/>
-									<fmt:formatDate value="${dyfn_read}" pattern="yyyy.MM.dd"/></div>
+										<fmt:parseDate value="${dto.dyst_read }" var="dyst_read"
+											pattern="yyyy-MM-dd HH:mm:ss" />
+										<fmt:formatDate value="${dyst_read}" pattern="yyyy.MM.dd" />
+										&nbsp~&nbsp
+										<fmt:parseDate value="${dto.dyfn_read }" var="dyfn_read"
+											pattern="yyyy-MM-dd HH:mm:ss" />
+										<fmt:formatDate value="${dyfn_read}" pattern="yyyy.MM.dd" />
+									</div>
 								</div>
 							</div>
 							<hr class="selectPHr">
 							<div class="postContent">${dto.p_content }</div>
-							<div class="postLike"  pseq="${dto.p_seq }" isbn=${dto.b_isbn } like="${result}"
+							<div class="postLike" pseq="${dto.p_seq }" isbn=${dto.b_isbn }
+								like="${result}"
 								<c:if test="${result}">style="color: #5397fc;"</c:if>>
 								<div class="postLikeIcon">
 									<span class="material-symbols-outlined size-45">
@@ -716,9 +741,7 @@ display:none;
 						<hr class="selectPHr">
 						<div class="selectPFooter">
 							<div class="postComment">
-								<div class="pcCountTitle">
-									댓글
-								</div>
+								<div class="pcCountTitle">댓글</div>
 								<hr class="selectPHr">
 								<div class="postComments">
 									<c:forEach var="i" items="${list}">
@@ -733,13 +756,14 @@ display:none;
 															cloud </span><span class="pcWriterNn">${i.pc_writer_nn }</span><span
 															class="material-symbols-outlined size-20"> cloud </span>
 													</div>
-													<div class="pcWriteDate">&nbsp&nbsp${i.pc_write_date }</div>
-												<c:if test="${loginID == i.pc_writer_id }">
-													<div class="pcBtn">
-														<button class="updCBtn">수정</button>
-														<button class="delCBtn">삭제</button>
-													</div>
-												</c:if>
+													<div class="pcWriteDate">&nbsp&nbsp${i.pc_write_date
+														}</div>
+													<c:if test="${loginID == i.pc_writer_id }">
+														<div class="pcBtn">
+															<button class="updCBtn">수정</button>
+															<button class="delCBtn">삭제</button>
+														</div>
+													</c:if>
 												</div>
 												<div class="pcContent">${i.pc_content }</div>
 											</div>
@@ -762,16 +786,17 @@ display:none;
 				</div>
 			</div>
 		</div>
-		<hr class="footerHr">		
+		<hr class="footerHr">
 		<div class="footer">
 			<div class="f_header">
 				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
 
 				<div class="sns_icon">
 					<a href="#"><img src="/resources/instagram.png" id="insta"></a>
-					<a href="#"><img src="/resources/facebook.png" id="facebook"></a> 
-					<a href="#"><img src="/resources/twitter_black.png" id="twitter"></a>
-					<a href="#"><img src="/resources/youtube.png" id="youtube"></a>
+					<a href="#"><img src="/resources/facebook.png" id="facebook"></a>
+					<a href="#"><img src="/resources/twitter_black.png"
+						id="twitter"></a> <a href="#"><img
+						src="/resources/youtube.png" id="youtube"></a>
 				</div>
 
 			</div>
@@ -783,13 +808,11 @@ display:none;
 				</div>
 
 				<div id="business_info_text">
-					<span>대표자 성태조 </span>
-					<span> | </span>
-					<span> 사업자 등록번호 01-20-22015</span>
+					<span>대표자 성태조 </span> <span> | </span> <span> 사업자 등록번호
+						01-20-22015</span>
 					<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
-					<span>대표전화 1544-9970 </span>
-					<span> | </span>
-					<span> 이메일 help@bookday.com</span>
+					<span>대표전화 1544-9970 </span> <span> | </span> <span> 이메일
+						help@bookday.com</span>
 				</div>
 			</div>
 
@@ -801,7 +824,7 @@ display:none;
 			</div>
 			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
 			<!-- <p class="copyright">©BOOKDAY Corp.</p> -->
-		</div>	
+		</div>
 	</div>
 	<script>
                 $("#logoImg").on("click", function () {
@@ -846,6 +869,19 @@ display:none;
                 $("#snBooknote").on("click", function () {
                     location.href = "/booknote/selectPostListById";
                 });
+                $("#toList").on("click", function(){
+                	location.href = "/booknote/selectPostListById";
+                })
+                $("#delPBtn").on("click", function(){
+                	
+            		if(confirm("포스트를 삭제하시겠습니까?")){
+                    	let p_seq = $(this).closest(".contentsBody").find("#p_seq").val();
+                		let p_writer_id = $(this).closest(".contentsBody").find("#p_seq").attr("p_writer_id");  
+                		if('<%=(String) session.getAttribute("loginID")%>' == p_writer_id){
+            				location.href = "/booknote/deletePostByPseq?p_seq="+p_seq;
+            			}
+            		}
+                })
                 
                 
         		//포스트 프로필 사진 없을 때(수아)
@@ -926,7 +962,7 @@ display:none;
                             let pcContent = $("<div>").addClass("pcContent").html(res[i].pc_content);
 
                             
-                            if ('<%=(String)session.getAttribute("loginID")%>' == res[i].pc_writer_id) {
+                            if ('<%=(String) session.getAttribute("loginID")%>' == res[i].pc_writer_id) {
                             	console.log("a");
                                 let pcBtn = $("<div>").addClass("pcBtn");
                                 let updatePcBtn = $("<button>").addClass("updCBtn").attr("type", "button").text("수정");

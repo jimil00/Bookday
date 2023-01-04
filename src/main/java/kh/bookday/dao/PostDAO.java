@@ -64,6 +64,10 @@ public class PostDAO {
 	public List<PostDTO> selectSearchPostList(HashMap<String, String> param) {
 		return db.selectList("Post.selectSearchPostList", param);
 	}
+
+	public void deletePostByPseq(int p_seq) {
+		db.delete("Post.deletePostByPseq", p_seq);
+	}
 // 수진
 
 	//해당 도서 포스트 출력
@@ -84,6 +88,7 @@ public class PostDAO {
 		return db.selectList("Post.selectPopularPost");
 
 	}
+
 
 
 }
