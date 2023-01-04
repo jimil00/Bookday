@@ -257,7 +257,7 @@ span, #logoImg:hover {
 
 .body-btn-div {
 	text-align: center;
-	height: 100px;
+	height: 200px;
 }
 
 .body-btn {
@@ -269,15 +269,8 @@ span, #logoImg:hover {
 	border-radius: 5px;
 	background-color: #5397fc;
 	box-shadow: 3px 3px #80808050;
-	transition-duration: 0.1s;
 }
 
-
-.body-btn:hover {
-    margin-left: 5px;
-    margin-top: 47px;
-    box-shadow: none;
-        }
 </style>
 </head>
 <body>
