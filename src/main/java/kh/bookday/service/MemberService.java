@@ -70,7 +70,6 @@ public class MemberService {
 
 		//uuid 생성 X
 		dao.signUp(dto);
-
 	}
 
 	public String selectIdByPhone(String phone) {
@@ -86,6 +85,8 @@ public class MemberService {
 		Map<String ,String> param = new HashMap<>();
 		param.put("pw", pw);
 		param.put("phone", phone);
+		
+		dao.updatePw(param);
 	}
 
 

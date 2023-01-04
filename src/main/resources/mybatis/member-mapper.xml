@@ -33,14 +33,14 @@
 		select count(*) from member where email = #{email}
 	</select>
 
-	<update id="updatePw">
-		update member set pw=#{pw} where phone=#{phone}
+	<update id="updatePw" parameterType="String">
+		update member set pw=#{pw} where phone= #{phone}
 	</update>
 
 	<update id="updateMemInfo">
 		update member set pw=#{pw}, phone=#{phone}, name=#{name}, nickname=#{nickname},
 		email=#{email}, oriprofname=#{oriprofname},sysprofname=#{sysprofname},
-		postcode = #{postcode}, address1 =#{address1}, address2 = #{address2}	
+		postcode = #{postcode}, address1 =#{address1}, address2 =#{address2}	
 		where id=#{id}
 	</update>
 

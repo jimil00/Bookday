@@ -39,10 +39,10 @@
 		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/"/>
-			<exclude-mapping path="/member/toLogin"/>
 			<exclude-mapping path="/member/toSignup"/>
-			<exclude-mapping path="/member/signup"/>
+			<exclude-mapping path="/member/toLogin"/>
 			<exclude-mapping path="/member/login"/>
+			<exclude-mapping path="/member/signUp"/>
 			<exclude-mapping path="/member/checkByNickname"/>
 			<exclude-mapping path="/member/checkByPhone"/>
 			<exclude-mapping path="/member/findUser"/>

@@ -175,8 +175,9 @@ button,.find_btn>input:active {
                                         			 );
                                         	 
                                  		 	   		  
-                                 			$("#phone").attr("placeholder","비밀번호 재설정(한글 및 # $ ^ & * 제외)");
+                                 			$("#phone").attr("placeholder","비밀번호(영문자, 특수문자 ! @ $ % - 16자 이내)");
                                  			$("#phone").attr("type","password");
+                                 			$("#phone").attr("maxlength","16");
                                         	
                                         	$(".title").text("비밀번호 재설정");
                                         	
@@ -186,21 +187,20 @@ button,.find_btn>input:active {
                                         		           id: "updatePw",
                                         		           placeholder: "비밀번호 확인",
                                         		      		name:"updatePw",
+                                        		      		maxlength:"16"
                                         		        })
                                         		    );
                                         	 
-                                        	 
-                                        	 
-                                        	 
-                                        	 
-                                        	 $("#updatePw").on("blur",function(){
+     
+                                        	 $("#updatePw").on("keyup",function(){
                                      			
-                                        		let pwRegex=/^[A-Z a-z 0-9 ! @ %]{8,10}$/;
+                                        		let pwRegex=/^[A-Z a-z 0-9 ! @ $ % -]{8,16}$/;
                                              	let pw=$("#phone").val();
                                      			let check_pw=$("#updatePw").val();
 
                                                if(pwRegex.test(pw) && $("#phone").val() == $("#updatePw").val()){
                                                $("#phone, #updatePw").css("border-color","#5397fc");
+                                               $("#update_btn").attr("disabled", false);
                                                }else{  
                                             	 $("#phone, #updatePw").css("border-color","red");
                                                	$("#update_btn").attr("disabled", true);
