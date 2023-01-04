@@ -588,7 +588,7 @@ display:none;
 							id="profile">
 
 					</div>
-					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
+					<div id="contentsHeaderTxt">${dto.nickname}님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
 						} 하루</div>
 				</div>
 				<div class="contentsBody">

@@ -465,7 +465,6 @@ span, #logoImg:hover {
 	overflow: hidden;
 	width: 250px;
 	height: 300px;
-	float: left;
 	margin-left: 55px;
 	margin-bottom: 20px;
 	margin-top: 25px;
