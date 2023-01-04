@@ -64,23 +64,20 @@ public class BookService {
 				return dao.selectBestSeller();
 			}
 			
-			
 		//스테디셀러 도서 출력 
 		public List<BookDTO> selectSteadySeller() {
 				return dao.selectSteadySeller();
 			}
 			
-			
+
 		//신간 도서 출력 
 		public List<BookDTO> selectNewBooks() {
 				return dao.selectNewBooks();
 			}
-			
 
 		//함께 담은 책 출력
 		public List<BookDTO> selectWithBooks(String b_isbn) {
 			return dao.selectWithBooks(b_isbn);
 		}
 	
-
 }

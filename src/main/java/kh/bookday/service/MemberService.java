@@ -104,7 +104,7 @@ public class MemberService {
 		System.out.println("회원가입 문자 인증: "+msg);
 
 		//메세지를 보내는 로직에 핸드폰 번호와 인증번호를 전달
-		//sms.send_msg(phone, msg);
+		sms.send_msg(phone, msg);
 
 		return msg;
 	}
@@ -114,6 +114,7 @@ public class MemberService {
 	public String getAccessToken(String code) {
 		String access_Token="";
 		String refresh_Token="";
+		//String content_type="application/x-www-form-urlencoded";
 		String grant_type="grant_type=authorization_code";
 		String client_id="&client_id=5d39c4a90d2cd9ef1649a8e6108ba988";
 
@@ -137,9 +138,10 @@ public class MemberService {
 			//outputstreamWriter에 출력 스트림 연결 후 버퍼라이터에 인스턴스 생성  //이미 아웃풋 스트림이 있는데 버퍼를 쓰는 이유는?
 			BufferedWriter bw= new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuilder sb = new StringBuilder();
+			//sb.append(content_type);
 			sb.append(grant_type);
 			sb.append(client_id);
-			sb.append(redirect_uri_test);
+			sb.append(redirect_uri);
 			sb.append("&code="+code);
 			bw.write(sb.toString());
 			bw.flush();

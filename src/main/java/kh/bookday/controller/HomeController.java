@@ -44,6 +44,13 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("toCurrentTime")
+	public String toCurrentTime(Model model) {
+		
+		return "currentTime";
+	}
+	
+	
 	@RequestMapping("error")
 	public String error() {
 		

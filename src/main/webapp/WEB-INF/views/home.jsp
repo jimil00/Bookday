@@ -201,9 +201,9 @@ span, #logoImg:hover {
 	margin-top: 100px;
 }
 
-.popular_post {
+.post {
 	margin-bottom: 100px;
-}
+} 
 
 .main_copy {
 	/*  position:relative;*/
@@ -716,11 +716,14 @@ height:fit-content;
 						</div>
 					</div>
 				</div>
-				<div class="popular_post" data-aos="fade-up"
-					data-aos-duration="2000">
-					<h2 id="popular_headline">인기 포스트</h2>
-					
-			<div class="swiper-container">
+						<div class="post" data-aos="fade-up" data-aos-duration="2000">
+
+					<div class="post_list">
+
+						<h2><p class="popular_post">인기 포스트</p></h2>
+					</div>
+
+					<div class="swiper-container-sw">
 						<div class="swiper-wrapper">
 							<c:choose>
 								<c:when test="${not empty plist}">
@@ -739,7 +742,7 @@ height:fit-content;
 														<div class="like-text">${p.p_like_count }</div>
 													</div>
 												</div>
-												<hr style="border-top: 1px">
+												<hr id="p_line">
 												<div class="p-title" title="${p.p_title }">${p.p_title }</div>
 												<div class="p-content">
 													<a href="/" style="text-decoration-line: none; color: black;">${p.p_content }</a>
@@ -757,7 +760,7 @@ height:fit-content;
 				</div>
 			</div>
 			<!-- body -->
-
+			
 			<div class="footer">
 
 				<hr>
@@ -814,7 +817,9 @@ height:fit-content;
          }
       })
       $("#notifications").on("click", function() {
-         location.href = "//toNotification";
+         
+    	window.open("/toCurrentTime", "current", "width=300, height=300");
+
       })
       $("#bookbag").on("click", function() {
          if(${loginID == null}) {
@@ -868,11 +873,10 @@ height:fit-content;
 		spaceBetween:5
 	});
       
-      var swiper = new Swiper(".swiper-container swiper2", {
-    	  slidesPerView: 3,  
-          spaceBetween: 30,
-          centeredSlides: false
-  	});  
+      var swiper = new Swiper(".swiper-container-sw", {
+    	  slidesPerView:3,
+    	  spaceBetween:30
+    	  });  
       
 
         //footer: 사업자 정보 토글 기능

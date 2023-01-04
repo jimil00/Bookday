@@ -341,6 +341,7 @@ span, #logoImg:hover {
 }
 
 #input_btn {
+	cursor:pointer;
 	width: 9%;
 	height: 50px;
 	outline: none;
@@ -468,7 +469,6 @@ span, #logoImg:hover {
 	overflow: hidden;
 	width: 250px;
 	height: 300px;
-	float: left;
 	margin-left: 55px;
 	margin-bottom: 20px;
 	margin-top: 25px;
@@ -477,8 +477,12 @@ span, #logoImg:hover {
 	box-shadow: 3px 3px #80808050;
 }
 
+.p_line{
+	border-top:1px;
+}
 .post-main-top {
 	overflow: hidden;
+	height:50px;
 }
 
 .profile-img-div {
@@ -962,7 +966,7 @@ span, #logoImg:hover {
 
 												<a href="/book/selectBookinfo?b_isbn=${w.b_isbn}">
 													<div class="book">
-														<img src="${w.b_img_url}" class="w_img_url">
+														<img src="${w.b_img_url}" title="${w.b_title}" class="w_img_url">
 														<p class="w_title">${w.b_title}</p>
 														<p class="w_writer">${w.b_writer}</p>
 													</div>
@@ -978,7 +982,6 @@ span, #logoImg:hover {
 								<!-- foreach 문 -->
 							</div>
 						</div>
-
 					</div>
 					<!-- flex-box  -->
 				</div>
@@ -986,7 +989,6 @@ span, #logoImg:hover {
 
 			</div>
 			<!--detail-->
-
 		</div>
 		<!--body-->
 
