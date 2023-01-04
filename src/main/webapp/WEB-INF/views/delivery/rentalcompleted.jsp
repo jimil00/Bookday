@@ -268,7 +268,7 @@ span, #logoImg:hover {
 .bottom-btn {
 	margin-left: 13px;
 	width: 120px;
-	height: 50px;
+	height: 40px;
 	color: #ffffff;
 	border: none;
 	border-radius: 4px;
