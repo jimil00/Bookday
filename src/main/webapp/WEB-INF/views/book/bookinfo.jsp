@@ -192,6 +192,9 @@ overflow:hidden;
 .b_img>img {
 width: 250px;
 height: 375px;
+   background: linear-gradient(to right, rgba(0, 0, 0, .3) 3px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px, rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px, rgba(255, 255, 255, 0.25) 20px, transparent 22px);
+   box-shadow: 0 0 5px -1px rgba(0, 0, 0, 1), inset -1px 1px 2px rgba(255, 255, 255, 0.5);
+   border-radius: 5px;
 /* margin-left: 38px; */
 }
 
@@ -272,10 +275,6 @@ color: #5397fc;
 	cursor: pointer;
 }
 
-#to_wish{
-	
-}
-
 #to_bag{
 	margin-left:26px;
 }
@@ -325,6 +324,7 @@ height: fit-content;
 
 #intro_title {
 /* border: 1px solid  #5397fc; */
+border-radius: 5px;
 background-color: #5397fc;
 color: white;
 height: 50px;
@@ -371,6 +371,7 @@ margin-top: 0px;
 
 .r_title_box {
 line-height: 30px;
+border-bottom:1px solid #80808050;
 }
 
 .r_writer_info>p, .r_content {
@@ -477,10 +478,17 @@ justify-content: space-between;
 .flex-postBox>.post_box {
 margin: 20px;
 width: 250px;
-border: 1px solid #5397fc;
+/* border: 1px solid #5397fc; */
 border-radius: 15px;
 height: 300px;
 text-align: center;
+border-radius: 15px;
+height: 300px;
+text-align: center;
+background: var(--ui-up);
+overflow: hidden;
+box-shadow: 2px 2px 20px rgb(0 0 0 / 6%), 2px 2px 10px rgb(0 0 0 / 4%);
+letter-spacing: -.6px;
 }
 
 .profile, .p_title_box {
@@ -522,13 +530,19 @@ top:5px;
 font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 
-.post_content {
-margin: 0px;
-padding-left: 10px;
-padding-right: 10px;
-text-overflow: ellipsis;
-overflow: hidden;
-white-space: nowrap;
+.post_content {	
+	margin-top: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: auto;
+	display: flex;
+	flex-wrap: wrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
 }
 
 .post_title {
@@ -548,6 +562,7 @@ margin-left:20px;
 } 
 .w_img_url {
 width: 150px;
+height:233px;
 }
 
 .w_title, .w_writer {
@@ -555,12 +570,21 @@ margin: 0px;
 }
 
 .w_title {
-line-height: 0px;
+word-wrap: break-word;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+
 }
 
 .w_writer {
 line-height: 40px;
 font-size: small;
+
+}
+.book_box>a{
+text-decoration: none;
+color:black;
 }
 
 /* footer */
@@ -568,6 +592,10 @@ font-size: small;
     margin:5px;
     positon:relative;
     top:30%;
+}
+
+.title{
+	/* border-bottom:1px solid #d4dde5; */
 }
 
 .f_header{
@@ -649,7 +677,6 @@ display:none;
     font-size: x-small;
   /*  text-align: center; */
 }
-
 
 </style>
 
@@ -736,23 +763,13 @@ display:none;
                               <%--  <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}"
                                 class="a_move"> --%>
                                 <span class="material-symbols-outlined" id="heart">favorite</span>
+
 <!--                                 </a> -->
 <%--                                 <a href="/book/selectForWishlist?b_isbn=${dto.b_isbn}" --%>
 <!--                                 class="a_move"> -->
                                 <span class="material-symbols-outlined size-40" id="bookbag2">shopping_bag</span>
 <!--                                 </a> -->
                         </div>
-                        <!-- post-link -->
-                <%-- 	<div class="post-link">
-                            <a href="/book/selectToWritePost?b_isbn=${dto.b_isbn}"
-                                class="a_move">
-                                <button id="to_write">
-                                    <span class="material-symbols-outlined">edit_square</span> <br>
-                                    <br>포스트 작성
-                                </button>
-                            </a>
-                        </div>  --%>
-                        
                     </div>
                 </div>
                 <!--box -->
@@ -777,9 +794,9 @@ display:none;
 
             <div class="review">
                 <div class="flex-box">
-                    <hr>
+                   
                     <div class="review_box">
-                        <p>짧은 리뷰</p>
+                        <p class="title">짧은 리뷰</p>
                         <form action="/book/insertReview">
                             <div class="input-box">
                                 <input type="hidden" value="${dto.b_isbn}" name="b_isbn"
@@ -815,7 +832,7 @@ display:none;
                                         </div>
                                         <div class="r_contents">
                                             <div class="r_content">
-                                                <textarea readonly class="content">${r.rv_content}</textarea>
+                                                <div class="content">${r.rv_content}</div>
                                             </div>
 
 
@@ -860,12 +877,12 @@ display:none;
 
                                         </div>
                                     </div>
-                                    <hr>
+                                   
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
                                 <div class="r_content_blank">작성된 리뷰가 없습니다.</div>
-                                <hr>
+                                
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -880,8 +897,8 @@ display:none;
             <div class="post">
 
                 <div class="post_list">
-                    <hr>
-                    <p>포스트</p>
+                    
+                    <p class="title">포스트</p>
                 </div>
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
@@ -896,14 +913,14 @@ display:none;
                                                     <img src="/resources/profile/${p.sysprofname}" class="profile_img">
                                                     <p>${p.p_writer_nn} 님의 포스트</p>
                                                 </div>
-                                                <hr>
+                                               
 
                                                 <div class="p_title_box">
                                                     <p class="post_title">${p.p_title}</p>
-                                                    <div id="p_like">
-                                                    <span class="p_like_icon material-symbols-outlined" data-count="0">thumb_up</span>
-                                                    <span class="like_count">${p.p_like_count}</span>
-                                                    </div>
+
+                                                    	<div id="p_like">
+                                                    	<span class="p_like_count">${p.p_like_count}</span>
+                                                    	</div>
                                                 </div>
 
                                                 <p class="post_content">${p.p_content}</p>
@@ -924,59 +941,34 @@ display:none;
 
 
             <div class="with-books">
-                <hr>
-                <p>함께 읽은 책</p>
+                <p class="title">함께 읽은 책</p>
 
                  <div class="flex-box">
 
-                    <div class="swiper-container">
+                    <div class="swiper-with">
                         <div class="swiper-wrapper">
-                           <!--  foreach 문 -->
+                        
+                            <c:choose>
+                            <c:when test="${not empty wlist}">
+                                <c:forEach items="${wlist}" var="w">
                             <div class="book_box swiper-slide">
+                                
+                                <a href="/book/selectBookinfo?b_isbn=${w.b_isbn}">
                                 <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
+                                    <img src="${w.b_img_url}" class="w_img_url">
+                                    <p class="w_title">${w.b_title}</p>
+                                    <p class="w_writer">${w.b_writer}</p>
                                 </div>
+                                </a>
                             </div>
+                            </c:forEach>
+                            </c:when>
+                            </c:choose>
+                            
                             <!-- foreach 문 -->
-                            
-                               <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
-                              <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
-                              <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
-                              <div class="swiper-slide">
-                                <div class="book">
-                                    <img src="/resources/테스트.jpg" class="w_img_url">
-                                    <p class="w_title">왜 아가리로만 할까?</p>
-                                    <p class="w_writer">이상혁</p>
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
-                   
-
+                  
                 </div> <!-- flex-box  -->
             </div><!-- with-books -->
             
@@ -1029,11 +1021,47 @@ display:none;
 </div>
 
 <script>
+$("#logo_img").on("click", function() {
+    location.href = "/";
+ })
+ $("#searchword").on("keydown", function(e) {
+    if (e.keyCode == 13) {
+       $("#search").submit();
+    }
+ })
+ $("#notifications").on("click", function() {
+    location.href = "//toNotification";
+ })
+ $("#bookbag").on("click", function() {
+    if(${loginID == null}) {
+         location.href = "/member/toLogin";
+    }else {
+         location.href = "/delivery/selectBookbagListById?id=${loginID }";
+    }
+ })
+ $("#bookshelves").on("click", function() {
+    location.href = "/bookshelves/selectBookshelvesListById";
+ })
+ $("#mypage").on("click", function() {
+    if (${loginID == null}) {
+       location.href = "/member/toLogin";
+       return false;
+       
+    }else {
+    location.href = "/member/toMypage?";
+    }
+ });
+
 var swiper = new Swiper(".swiper-container", {
 slidesPerView:3,
 spaceBetween:30
 });
 
+var swiper = new Swiper(".swiper-with", {
+	slidesPerView:6,
+	spaceBetween:30
+	});
+	
 //프로필 사진 없을 때
 $( document ).ready( function() {
     
@@ -1305,7 +1333,7 @@ $(document).ready(function(){
                               console.log(b_isbn);
                               console.log(rv_seq);
                                     
-                            if(r_like_icon == 0 ){
+                            if(r_like_icon == '0' ){
                                   
                               $.ajax({
                                   type:"post",
@@ -1344,6 +1372,54 @@ $(document).ready(function(){
                                     }
                                         
                                     });
+                    
+                    //포스트 좋아요(insertPost에서 가져옴)
+                    $(".p_like_icon").on("click", function(){
+				let p_like = $(this).attr("data-count");
+				let p_seq = $(this).attr("data-seq");
+				let b_isbn = $(this).attr("data-isbn");
+				
+				let tmp = event.target
+				
+				console.log(p_like);
+				
+				if(p_like == '0'){
+					console.log("good");
+				$.ajax({
+                    url: "/booknote/insertPostLike",
+                    type: "post",
+                    data: {
+                        "p_seq": p_seq,
+                        "b_isbn": b_isbn
+                    }
+				}).done(function(data){
+					console.log(data);
+				
+// 						console.log()
+// 						$(tmp).attr("like","true");
+// 						$(tmp).attr("style", "color:blue;");
+                        location.reload();
+					
+				})
+				}else{
+					$.ajax({
+	                    url: "/booknote/deletePostLike",
+	                    type: "post",
+	                    data: {
+	                        "p_seq": p_seq,
+	                        "b_isbn": b_isbn
+	                    }
+					}).done(function(data){
+						console.log(data);
+
+						
+// 							$(tmp).attr("like","false");
+// 							$(tmp).attr("style", "color:grey;");
+                            location.reload();
+						
+					})
+				}
+			})
                                     
                               
      }

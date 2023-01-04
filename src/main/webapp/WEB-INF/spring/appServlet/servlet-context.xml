@@ -44,6 +44,7 @@
 <!-- 			<exclude-mapping path="/member/idCheck"/> -->
 <!-- 			<exclude-mapping path="/member/signup"/> -->
 <!-- 			<exclude-mapping path="/member/login"/> -->
+<!-- 			<exclude-mapping path="/book/bookinfo"/> -->
 <!-- 			<exclude-mapping path="/error"/> -->
 <!-- 			<exclude-mapping path="/resources/**"/> -->
 <!-- 			<beans:bean class="kh.bookday.interceptor.LoginValidator"/> -->

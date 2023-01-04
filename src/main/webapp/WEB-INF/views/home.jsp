@@ -228,6 +228,11 @@ span, #logoImg:hover {
 	width:200px;
 }
 
+#bookmark{
+	width:230px;
+	
+}
+
 #deli{
 margin-top:25px;
 width:350px;
@@ -313,6 +318,10 @@ height:fit-content;
 
 .b_img_url {
 	width: 150px;
+	height:220px;
+	background: linear-gradient(to right, rgba(0, 0, 0, .3) 3px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px, rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px, rgba(255, 255, 255, 0.25) 20px, transparent 22px);
+   box-shadow: 0 0 5px -1px rgba(0, 0, 0, 1), inset -1px 1px 2px rgba(255, 255, 255, 0.5);
+   border-radius: 5px;
 }
 
 .b_title, .b_writer {
@@ -336,7 +345,13 @@ height:fit-content;
 .flex-postBox {
 	display: flex;
 	justify-content: space-between;
+	width:300px;
 }
+
+.swiper-slide{
+width:150px;
+}
+
 
 /* 포스트 출력 상자 */
 .flex-postBox>.post_box {
@@ -606,7 +621,8 @@ height:fit-content;
 						<img src="/resources/deli.png" class="d_img" id="deli">
 					</div>
 					
-					<div class="detail2" data-aos="fade-up" data-aos-duration="3000">
+					<div class="detail2" data-aos="fade-up"
+					data-aos-duration="2000">
 						<ul class="rental">
 							<li>대여 권 수(달)<span>10권</span></li>
 							<li>대여일<span>10일</span></li>
@@ -692,40 +708,47 @@ height:fit-content;
 				<div class="popular_post" data-aos="fade-up"
 					data-aos-duration="2000">
 					<h2 id="popular_headline">인기 포스트</h2>
+					
+			<div class="swiper-container swiper2">
+			    <div class="swiper-wrapper">
+			      
+		<c:choose>
+            <c:when test="${not empty plist}">
+                <c:forEach items="${plist}" var="p">
+                
+                    <div class="swiper-slide">
+                    
+                        <div class="flex-postBox">
+                        
+                            <div class="post_box">
+                                <div class="profile">
+                                    <img src="/resources/profile/${p.sysprofname}" class="profile_img">
+                                    <p>${p.p_writer_nn} 님의 포스트</p>
+                                </div>
+                                <hr>
 
-					<c:choose>
-						<c:when test="${not empty plist}">
-							<c:forEach items="${plist}" var="p">
+                                <div class="p_title_box">
+                                    <p class="post_title">${p.p_title}</p>
 
-								<div class="flex-postBox">
+                                        <div id="p_like">
+                                         <span class="p_like_count">${p.p_like_count}</span>
+                                        </div>
+                                </div>
 
-									<div class="post_box">
-										<div class="profile">
-											<img src="/resources/profile/${dto.sysprofname}" class="profile_img">
-											<%-- <a href="/post/selectPostByPseq?p_seq=${p.p_seq}"> --%>
-											<h3>${p.p_writer_nn}님의포스트</h3>
-											<!-- </a> -->
-										</div>
-										
-										<hr class="line">
-										<div class="p_title_box">
-											<p class="post_title">${p.p_title}</p>
-											<div id="p_like">
-												<span class="p_like_icon material-symbols-outlined"
-													data-count="0">thumb_up</span> <span class="like_count">${p.p_like_count}</span>
-											</div>
-										</div>
-
-										<p class="post_content">${p.p_content}</p>
-
-									</div>
-								</div>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
-							<div>포스트를 작성해주세요</div>
-						</c:otherwise>
-					</c:choose>
+                                <p class="post_content">${p.p_content}</p>
+                            </div><!-- post_box -->
+                            
+                        </div> <!-- flex-box -->
+                   	</div>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <p class="post_title">작성된 포스트가 없습니다.</p>
+            </c:otherwise>
+        </c:choose>
+			      
+					    </div>
+					</div>
 				</div>
 			</div>
 			<!-- body -->
@@ -826,7 +849,7 @@ height:fit-content;
        });
       
       //스크롤 이벤트 라이브러리(AOS)선언
-       $( document ).ready( function() {
+       $( document).ready( function() {
         AOS.init();
       } );
       
@@ -836,10 +859,14 @@ height:fit-content;
 		spaceBetween:5
 	});
       
-      var swiper = new Swiper(".swiper-container_post", {
-  		slidesPerView:3,
-  		spaceBetween:10
-  	});
+      var swiper = new Swiper(".swiper-container swiper2", {
+    	  slidesPerView: 3,  
+    	  slidesPerGroup: 3,
+          spaceBetween: 30,
+          centeredSlides: false
+  	});  
+      
+
       
       
         //footer: 사업자 정보 토글 기능

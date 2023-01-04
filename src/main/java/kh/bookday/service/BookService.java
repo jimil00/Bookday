@@ -77,13 +77,10 @@ public class BookService {
 			}
 			
 
-
-	
-	//해당 도서와 함께 담은 책 출력
-	//메서드명 구상 중
-//	public List<BookDTO> selectBooks(String b_isbn) {
-//		return db.selectList("selectPostByIsbn", b_isbn);
-//	};
+		//함께 담은 책 출력
+		public List<BookDTO> selectWithBooks(String b_isbn) {
+			return dao.selectWithBooks(b_isbn);
+		}
 	
 
 }
