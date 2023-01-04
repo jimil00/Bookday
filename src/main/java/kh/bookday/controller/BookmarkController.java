@@ -39,7 +39,8 @@ public class BookmarkController {
 		
 		String id = String.valueOf(session.getAttribute("loginID"));
 		dto.setBm_writer_id(id);
-		System.out.println("here");
+		
+		dto.setBm_content(dto.getBm_content().replace("<", "&lt;"));
 
 		service.insertBookmark(dto);
 	}

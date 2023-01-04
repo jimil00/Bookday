@@ -1,11 +1,19 @@
 package kh.bookday.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.JsonObject;
 
 import kh.bookday.dao.PostCommentDAO;
 import kh.bookday.dao.PostDAO;
@@ -29,6 +37,11 @@ public class PostService {
 	
 
 // 수진
+	// 포스트 개수 출력
+	public int selectPostCountById(String id) {
+		return dao.selectPostCountById(id);
+	}
+	
 	// 책장 페이지) 포스트 올린 책 20개씩 출력(무한 스크롤)
 	public List<PostDTO> select20PostListById(String id, int count) {
 
@@ -112,9 +125,9 @@ public class PostService {
 
 	}
 	// 포스트 페이지) 댓글 삭제
-	public void deletePostComment(int pc_seq) {
+	public void deletePostComment(int pc_seq, int p_seq) {
 		cdao.deletePostComment(pc_seq);
-		dao.updatePCCDown(pc_seq);
+		dao.updatePCCDown(p_seq);
 	}
 	
 	// 포스트 검색
@@ -128,6 +141,33 @@ public class PostService {
 	// 포스트 삭제
 	public void deletePostByPseq(int p_seq) {
 		dao.deletePostByPseq(p_seq);
+	}
+	
+	// 섬머노트 이미지
+	public String uploadSummernoteImageFile(MultipartFile multipartFile, String realPath) {
+		JsonObject jsonObject = new JsonObject();
+		
+		File filePath = new File(realPath);
+		if(!filePath.exists()) {filePath.mkdir();}
+		
+		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+		System.out.println(originalFileName);
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		System.out.println(filePath);
+		File targetFile = new File(filePath + "/" +savedFileName);	
+		try {
+			InputStream fileStream = multipartFile.getInputStream();
+			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+			jsonObject.addProperty("url", "/resources/upload/"+savedFileName); 
+			jsonObject.addProperty("responseCode", "success");
+				
+		} catch (IOException e) {
+			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+			jsonObject.addProperty("responseCode", "error");
+			e.printStackTrace();
+		}
+		return jsonObject.toString();
 	}
 // 수진
 

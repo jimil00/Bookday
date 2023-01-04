@@ -18,10 +18,13 @@ public class BookDAO {
 	@Autowired
 	private SqlSession db;
 	
+	// 수진
 	// 책 검색
 	public List<BookDTO> selectBookListBySw(String searchWord){
 		return db.selectList("Book.selectBookListBySw", searchWord);
 	}
+
+	//수진
 	
 	//해당 도서 정보 출력
 	public BookDTO selectBookByIsbn(String b_isbn) {
@@ -54,6 +57,8 @@ public class BookDAO {
 		public List<BookDTO> selectNewBooks() {
 			return db.selectList("Book.selectNewBooks");
 		}
+
+
 		
 
 	//해당 도서와 함께 담은 책 출력

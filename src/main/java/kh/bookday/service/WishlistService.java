@@ -16,9 +16,17 @@ public class WishlistService {
 	@Autowired
 	private WishlistDAO dao;
 	
+	// 수진
+	// 위시리스트 수 출력
+	public int selectWishlistCountById(String id) {
+		return dao.selectWishlistCountById(id);
+	}
+	
+	// 위시리스트 출력
 	public List<WishlistDTO> selectWishlistListById(String id){
 		return dao.selectWishlistListById(id);
 	}
+	// 수진
 	
 	// 위시리스트 체크
 	public WishlistDTO selectWishlistByIdBisbn(String id, String b_isbn) {

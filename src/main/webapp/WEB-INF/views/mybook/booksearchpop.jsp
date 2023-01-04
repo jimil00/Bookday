@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>BookSearchPop</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -110,7 +110,11 @@ hr {
 	margin-top: 10px;
 	margin-bottom: 0px;
 }
-
+.empty{
+	text-align: center;
+	height: 400px;
+	line-height: 400px;
+}
 table {
 	width: 95%;
 	border-collapse: collapse;
@@ -193,6 +197,12 @@ td {
 		<hr class="footerHr">
 		<div class="body">
 			<table>
+			<c:choose>
+			<c:when test="${empty blist}">
+			<div class="empty">검색 결과가 없습니다.</div>
+			</c:when>
+			<c:otherwise>
+
 				<c:forEach var="book" items="${blist }">
 					<tr>
 						<td class="bookCover"><a href="#"><img
@@ -211,9 +221,12 @@ td {
 						</td>
 					</tr>
 				</c:forEach>
+							</c:otherwise>
+			</c:choose>
 			</table>
 		</div>
-		<div class="footer">paging</div>
+<!-- 		<div class="footer">paging</div> -->
+<hr>
 	</div>
 
 	<script>

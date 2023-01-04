@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>selectallpost</title>
+<title>selectPostList</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -266,7 +266,7 @@ span.size-35 {
 span.size-30 {
 	font-size: 30px;
 	color: gray;
-	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 30
 }
 
 /* contentsBodySearchPost */
@@ -617,6 +617,7 @@ span.size-45 {
 				<ul>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookshelves">shelves</span></li>
+					<li><span class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
@@ -814,6 +815,9 @@ span.size-45 {
 	        })
 			$("#snBookshelves").on("click", function() {
 				location.href = "/bookshelves/selectBookshelvesListById";
+			})
+			$("#snCalendar").on("click",function(){
+				location.href = "/bookcalendar/toCalendar";
 			})
 			$("#snStatistics").on("click", function() {
 				location.href = "/bookstatistics/toStatistics";

@@ -53,7 +53,9 @@ public class BookController {
 	// 책 검색 팝업
 	@GetMapping("toBookSearchPop")
 	public String toBookSearchPop(String searchWord, Model model) {
-		System.out.println(searchWord);
+
+		searchWord = searchWord.replace("<script>", "&lt;");
+		
 		model.addAttribute("searchWord", searchWord);
 		List<BookDTO> blist = service.selectBookListBySw(searchWord);
 		model.addAttribute("blist", blist);

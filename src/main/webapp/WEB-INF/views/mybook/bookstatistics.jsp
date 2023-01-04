@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Bookmark</title>
+<title>BookStatistics</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -20,8 +20,7 @@
 }
 
 * {
-/* 	border: 1px solid black; */
-
+	border: 1px solid black;
 	box-sizing: border-box;
 	font-family: 'NanumSquareNeo-Variable';
 }
@@ -263,172 +262,53 @@ span.size-35 {
 span.size-30 {
 	font-size: 30px;
 	color: gray;
-	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 35
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 30
 }
 
 /*contents*/
-.rap {
-	max-width: 700px;
-	margin: auto;
-	margin-bottom: 50px;
-}
-
-.dateHead {
-	margin: .4rem 0;
-}
-
-.dateHead div {
-	background: #5397fc50;
-	color: #fff;
-	text-align: center;
-	border-radius: 5px;
-}
-
-.grid {
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	grid-gap: 5px;
-}
-
-.grid div {
-	padding: 7px;
-	font-size: 14px;
-}
-
-.dateBoard div {
-	color: #222;
-	font-weight: bold;
-	height: 158px;
-	border-radius: 5px;
-	border: 1px solid #eee;
-	display: flex;
-	flex-wrap: wrap;
-	width: 95.71px;
-	overflow-y: scroll;
-}
-.dateBoard div::-webkit-scrollbar {
-display:none;
-}
-.bookCal {
-	width: 80px;
-	height: 120px;
-}
-
-.noColor {
-	background: #eee;
-}
-
-.calHeader {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem 2rem;
-}
-
-.calHeader * {
-	font-size: 18px;
-}
-
-/* 좌우 버튼 */
-.btn {
-	display: block;
-	width: 20px;
-	height: 20px;
-	border: 3px solid #000;
-	border-width: 3px 3px 0 0;
-	cursor: pointer;
-}
-
-.prevDay {
-	transform: rotate(-135deg);
-}
-
-.nextDay {
-	transform: rotate(45deg);
-}
-/* 연 */
-.chart_box ul, li {
-	list-style: none;
-}
-
-.vertical_chart_box {
-	position: relative;
-	width: 700px;
-	height: 700px;
-	margin: auto;
-}
-
-.vertical_chart_box .chart_box {
-	position: relative;
-	box-sizing: border-box;
-	height: 600px;
-	margin-top: 0px;
-}
-
-.vertical_chart_box .axis_x {
-	display: -webkit-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-	justify-content: center;
-	position: relative;
-	padding: 0;
-	box-sizing: border-box;
-	height: 100%;
-	border-bottom: 1px solid #d3d3d3;
-	margin-top:0px;
-}
-
-.vertical_chart_box .month {
-	flex: 1;
-	position: relative;
-}
-
-.vertical_chart_box .month .text_box {
-	position: absolute;
-	bottom: -35px;
-	left: 50%;
-	text-align: center;
-	-webkit-transform: translate(-50%, 0);
-	-ms-transform: translate(-50%, 0);
-	-o-transform: translate(-50%, 0);
-	transform: translate(-50%, 0);
-	width: 40px;
-	font-size:15px;
-}
-
-.vertical_chart_box .month_book {
-	display: -webkit-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-	flex-direction: column-reverse;
-	position: relative;
-	margin: 0 auto;
-	padding: 0;
-	width: 40px;
-	height: 100%;
-	overflow-y: scroll;
-}
-
-.vertical_chart_box .month_book::-webkit-scrollbar {
-display:none;
-}
-
-.month_book span {
-	display: contents;
-	position: relative;
-	box-sizing: content-box;
+.statistics {
 	width: 100%;
 }
 
-.vertical_chart_box .month_book {
-	border: 0;
+.favorite {
+	width: 100%;
+}
+.statTitle{
+text-align: center;
+    margin-bottom: 50px;
+    font-size: 20px;
 }
 
-.bookYear{
-	width: 40px;
-	height: 60px;
+.statTitle span.size-27 {
+	font-size: 27px;
+	color: #5397fc;
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 27
+}
+.statCont {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.fvrBox {
+	width: 30%;
+}
+
+.fvrTxt {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+}
+
+.fvrTxt span.size-25 {
+	font-size: 25px;
+	color: gray;
+	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 25
+}
+
+.fvrCon {
+	text-align: center;
 }
 /*footerHr*/
 .footerHr {
@@ -574,7 +454,9 @@ display:none;
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookshelves">shelves</span></li>
 					<li class="selected"><span
-						class="material-symbols-outlined size-35" id="snStatistics">equalizer</span></li>
+						class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
+					<li><span class="material-symbols-outlined size-35"
+						id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookmark">book</span></li>
 					<li><span class="material-symbols-outlined size-35"
@@ -595,105 +477,84 @@ display:none;
 						<div class="titleTxt">통계</div>
 						&nbsp <span class="material-symbols-outlined size-30">equalizer</span>
 					</div>
-					<div class="calendar">
-						<div class='rap'>
-							<div class="calHeader">
-								<div class="btn prevDay"></div>
-								<h2 class='dateTitle'></h2>
-								<div class="btn nextDay"></div>
+					<div class="statistics">
+						<div class="favorite">
+							<div class="statTitle">
+								<span class="material-symbols-outlined size-27">cloud</span>favorite<span
+									class="material-symbols-outlined size-27">cloud</span>
 							</div>
-
-							<div class="grid dateHead">
-								<div>일</div>
-								<div>월</div>
-								<div>화</div>
-								<div>수</div>
-								<div>목</div>
-								<div>금</div>
-								<div>토</div>
+							<div class="statCont">
+								<div class="fvrBox">
+									<div class="fvrTxt">
+										책<span class="material-symbols-outlined size-25">import_contacts</span>
+									</div>
+									<hr class="fvrHr">
+									<c:choose>
+										<c:when test="${fvrBookImg == null }">
+											<div class="fvrCon">
+												<p>가장 좋아하는 책이 아직 없습니다.</p>
+												<p>책을 읽고 포스트를 작성해보세요.</p>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="fvrCon">
+												<p>
+													<img src="${fvrBookImg }">
+												</p>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="fvrBox">
+									<div class="fvrTxt">
+										작가<span class="material-symbols-outlined size-25">history_edu</span>
+									</div>
+									<hr class="fvrHr">
+									<c:choose>
+										<c:when test="${fvrWriter == null }">
+											<div class="fvrCon">
+												<p>가장 좋아하는 작가가 아직 없습니다.</p>
+												<p>책을 읽고 포스트를 작성해보세요.</p>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="fvrCon">
+												<p>${fvrWriter }</p>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="fvrBox">
+									<div class="fvrTxt">
+										장르<span class="material-symbols-outlined size-25">web_stories</span>
+									</div>
+									<hr class="fvrHr">
+									<c:choose>
+										<c:when test="${fvrGenre == null }">
+											<div class="fvrCon">
+												<p>가장 좋아하는 장르가 아직 없습니다.</p>
+												<p>책을 읽고 포스트를 작성해보세요.</p>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="fvrCon">
+												<p>${fvrGenre }</p>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
 							</div>
-
-							<div class="grid dateBoard"></div>
+						</div>
+						<div class="related">
+						<div class="statTitle">
+						<span class="material-symbols-outlined size-27">cloud</span>related<span
+									class="material-symbols-outlined size-27">cloud</span>
+						</div>
+						<div class="statCont">
+						</div>
 						</div>
 					</div>
-					<div class="vertical_chart_box">
-						<div class="chart_box">
-							<ul class="axis_x">
-								<li class="month">
-									<div class="text_box prevMonth">1월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="01"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">2월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="02"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">3월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="03"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">4월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="04"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">5월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="05"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">6월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="06"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">7월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="07"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">8월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="08"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">9월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="09"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">10월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="10"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box prevMonth">11월</div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="11"></span>
-									</div>
-								</li>
-								<li class="month">
-									<div class="text_box thisMonth"></div>
-									<div type="div" class="month_book">
-										<span class="bookImg" month="12"></span>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
+
 				</div>
 			</div>
 		</div>
@@ -770,6 +631,9 @@ display:none;
 			$("#snBookshelves").on("click", function() {
 				location.href = "/bookshelves/selectBookshelvesListById";
 			});
+			$("#snCalendar").on("click",function(){
+				location.href = "/bookcalendar/toCalendar";
+			})
 			$("#snStatistics").on("click", function() {
 				location.href = "/bookstatistics/toStatistics";
 			});
@@ -780,150 +644,7 @@ display:none;
 				location.href = "/booknote/selectPostListById";
 			});
 
-			const makeCalendar = (date) => {
-				  // 현재 년도와 월 받아오기
-				  const currentYear = new Date(date).getFullYear(); //2023
-				  const currentMonth = new Date(date).getMonth() + 1; //1월 [0]+1
-				console.log(currentYear);
-				  // 첫날의 요일 구하기 - 초기 시작위치를 위해서
-				  const firstDay = new Date(date.setDate(1)).getDay();//0->일
-				  console.log(new Date(date.setDate(7)).getDay());
-				  // 마지막 날짜 구하기
-				  const lastDay = new Date(currentYear, currentMonth, 0).getDate(); // 2023, [0]->1월, 31일
-				console.log(new Date(currentYear, currentMonth, 0).getDate());
-				  // 남은 박스만큼 다음달 날짜 표시
-				  const limitDay = firstDay + lastDay; //0+31
-				      console.log(limitDay)
-				  const nextDay = Math.ceil(limitDay / 7) * 7; //31/7=4...3->올림->5*7= 35 5주 즉 35칸이 나온다
 
-				  let htmlDummy = '';
-
-				  // 한달전 날짜 표시하기
-				  for (let i = 0; i < firstDay; i++) {// 0이니까 없지
-				    htmlDummy += `<div class="noColor"></div>`;
-				  }
-
-				  // 이번달 날짜 표시하기
-				  for (let i = 1; i <= lastDay; i++) {    // 31일이니까 31일까지
-				    htmlDummy += '<div class="date" year="'+ currentYear +'" month="'+ currentMonth+'" day='+i+'>'+i+'</div>';
-				  }
-
-				  // 다음달 날짜 표시하기
-				  for (let i = limitDay; i < nextDay; i++) { // 31,32,33,34[]
-				    console.log(i)
-				    htmlDummy += `<div class="noColor"></div>`;
-				  }
-
-				  document.querySelector(`.dateBoard`).innerHTML = htmlDummy;
-				  document.querySelector(`.dateTitle`).innerText = currentYear+'년'+' '+currentMonth+'월';
-				  document.querySelector(`.thisMonth`).innerText = currentMonth+'월';
-				  document.querySelector(`.thisMonth`).setAttribute("year", currentYear);
-				  document.querySelector(`.thisMonth`).setAttribute("month", currentMonth);
-				  
-				  let month = new Date(date).getMonth() + 1;
-				  let year = new Date(date).getFullYear();
-				  document.querySelectorAll(`.prevMonth`).forEach(item=>{
-					  
-					  if(++month>12){
-						  month = 1;
-						  year++
-					  }
-					  item.innerText= month+'월';
-					  item.setAttribute("year", year-1);
-					  item.setAttribute("month", month);
-				  })
-			}
-
-
-				const date = new Date();
-
-				makeCalendar(date);
-
-				// 이전달 이동
-				document.querySelector(`.prevDay`).onclick = () => {
-				makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
-				getBookCal();
-				}
-
-				// 다음달 이동
-				document.querySelector(`.nextDay`).onclick = () => {
-				    let year = $(".dateTitle").html().substring(0,4);
-				let month = $(".dateTitle").html().slice(-3,-1).replace(" ", "");
-				console.log(year+month)
-				console.log(new Date().getFullYear());
-				console.log(new Date().getMonth()+1);
-				if(Number(year) == new Date().getFullYear() && Number(month) == new Date().getMonth()+1){
-				    return false;
-				    // 넘어가는 버튼 안보이게는 시간나면 하자
-				}
-				makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
-				getBookCal();
-
-				}
-				function getBookCal(){
-					$.getJSON("/bookstatistics/selectBookCalbyId")
-			        .done(res => {
-			            if (res != null) {
-			            	
-			                setCalAppend(res);
-			                setYearAppend(res);
-			            }
-			        })
-				}
-				
-				
-				function setCalAppend(res) {
-
-				let year = $(".date").attr("year");
-				let month = $(".date").attr("month");
-				let days = document.querySelectorAll(".date");
-				res.forEach(list=>{
-
-					let start = new Date(list.dyst_read).getTime()/86400000;
-					let finish = new Date(list.dyfn_read).getTime()/86400000;
-
-					days.forEach(day=>{
-						let cal = new Date(year+'-'+month.padStart(2, '0')+'-'+$(day).attr("day").padStart(2, '0')+' '+'00:00:00')
-						getTimeDate = cal.getTime()/86400000
-						
-						for(let j = start; j <= finish; j++){
-							console.log('j : '+j+'gt : ' + getTimeDate + '=' +(j==getTimeDate))
-						  if(getTimeDate == j){
-							  $(day).append('<img src='+list.b_img_url+' class="bookCal">');
-						  }					
-						}
-							
-						
-					})
-					
-				})
-				
-				}
-
-			    function setYearAppend(res) {
-			    	$(".bookYear").remove();
-			        let arr = document.querySelectorAll(".text_box");
-			        arr.forEach(i=>{
-			        	let year = $(i).attr("year");
-			        	let month = $(i).attr("month").padStart(2, '0');
-		
-			        res.forEach(list => {
-			        	let yrfn_read = list.dyfn_read.substring(0, 4);
-			            let mnfn_read = list.dyfn_read.substring(5, 7);
-			        	console.log(mnfn_read)
-			            console.log(year == yrfn_read && month == mnfn_read)
-			            if (year == yrfn_read && month == mnfn_read) {
-			                $(i).siblings(".month_book").append('<img src="' + list.b_img_url + '" class="bookYear">');
-			            }
-
-			        })
-			        })
-			    }
-				$(function(){
-					 getBookCal();						
-
-
-					})
 			
             //footer: 사업자 정보 토글 기능
             $("#business_info_text").hide();
