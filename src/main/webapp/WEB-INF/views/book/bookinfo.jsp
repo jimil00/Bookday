@@ -447,18 +447,18 @@ span, #logoImg:hover {
 /* 	margin: 20px; */
 /* } */
 
-/* .flex-box>p,
-        .flex-box,
-        .flex-postBox>p,
-        .post_list,
-        .with-books>p {
-            margin: 20px; 
-} */
-
-/* .flex-postBox { */
-/* 	display: flex; */
-/* 	justify-content: space-between; */
+/*  .flex-box>p, */
+/*         .flex-box, */
+/*         .flex-postBox>p, */
+/*         .post_list, */
+/*         .with-books>p { */
+/*             margin: 20px;  */
 /* }  */
+
+/* .flex-postBox {  */
+/*  	display: flex;  */
+/*  	justify-content: space-between;  */
+/*  }   */
 .post {
 	padding-top: 40px;
 	overflow: hidden;
@@ -494,12 +494,13 @@ span, #logoImg:hover {
 }
 
 .p-writer {
-	padding-top: 4px;
+	mar-top: 10px;
 	height: 27px;
 	overflow: hidden;
 	width: 150px;
 	display: inline-block;
 	font-weight: bold;
+	font-size: 15px;
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -530,7 +531,8 @@ span, #logoImg:hover {
 	overflow: hidden;
 	width: 100%;
 	height: 30px;
-	font-size: 15px; font-weight : bold;
+	font-size: 15px; 
+	font-weight : bold;
 	padding-left: 10px;
 	padding-right: 10px;
 	word-wrap: break-word;
@@ -540,15 +542,15 @@ span, #logoImg:hover {
 }
 
 .p-content {
-	overflow: hidden;
-	font-size: 15px;
-	padding-left: 10px;
-	padding-right: 10px;
-	display: -webkit-box;
-	height: 152px;
-	-webkit-line-clamp: 9;
-	-webkit-box-orient: vertical;
-	text-overflow: ellipsis;
+/* 	overflow: hidden; */
+/* 	font-size: 15px; */
+/* 	padding-left: 10px; */
+/* 	padding-right: 10px; */
+/* 	display: -webkit-box; */
+/* 	height: 152px; */
+/* 	-webkit-line-clamp: 9; */
+/* 	-webkit-box-orient: vertical; */
+/* 	text-overflow: ellipsis; */
 }
 
 .with-books {
@@ -908,12 +910,12 @@ span, #logoImg:hover {
 						<p class="title">포스트</p>
 					</div>
 
-					<div class="swiper-container">
-						<div class="swiper-wrapper">
+<!-- 					<div class="swiper-container"> -->
+<!-- 						<div class="swiper-wrapper"> -->
 							<c:choose>
 								<c:when test="${not empty plist}">
 									<c:forEach items="${plist}" var="p">
-										<div class="swiper-slide">
+<!-- 										<div class="swiper-slide"> -->
 											<div class="post-main">
 												<br>
 												<div class="post-main-top">
@@ -933,15 +935,15 @@ span, #logoImg:hover {
 													<a href="/" style="text-decoration-line: none; color: black;">${p.p_content }</a>
 												</div>
 											</div>
-										</div>
+<!-- 										</div> -->
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
 									<p class="post_title">작성된 포스트가 없습니다.</p>
 								</c:otherwise>
 							</c:choose>
-						</div>
-					</div>
+<!-- 						</div> -->
+<!-- 					</div> -->
 				</div>
 
 

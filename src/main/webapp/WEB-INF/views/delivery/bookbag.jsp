@@ -191,8 +191,8 @@ span, #logoImg:hover {
 
 /* navi */
 .navi {
-	width: 100%;
-	height: 50px;
+/* 	width: 100%; */
+/* 	height: 50px; */
 }
 
 /* body */
@@ -205,7 +205,7 @@ span, #logoImg:hover {
 }
 
 .bookbag-count {
-	padding-top: 60px;
+	padding-top: 50px;
 	padding-bottom: 15px;
 	font-weight: bold;
 	font-size: 18px;
