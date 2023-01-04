@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<head profile="http://www.w3.org/2005/10/profile">
 <meta charset="UTF-8">
 <title>Search</title>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -421,12 +422,12 @@ span, #logoImg:hover {
 							없습니다.</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="post" items="${plist }">
+						<c:forEach var="post" items="${plist}">
 							<div class="post-main">
 								<br>
 								<div class="post-main-top">
 									<div class="profile-img-div">
-										<img src="/resources/basic.png" class="profile-img">
+										<img src="/resources/profile/${post.sysprofname}" class="profile-img">
 									</div>
 									<div class="p-writer">${post.p_writer_nn }</div>
 									<div class="p-like">
