@@ -368,7 +368,10 @@ li {
 			}
 		})
 		$("#notifications").on("click", function() {
-			location.href = "//toNotification";
+			  let now = new Date();
+	    	  let hr=now.getHours();
+	    	 let min= now.getMinutes();
+			 alert("현재 시간은 "+hr+":"+min);
 		})
 		$("#bookbag").on("click", function() {
 			location.href = "/delivery/selectBookbagListById";

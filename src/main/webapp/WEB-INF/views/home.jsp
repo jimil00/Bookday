@@ -817,8 +817,10 @@ height:fit-content;
          }
       })
       $("#notifications").on("click", function() {
-         
-    	window.open("/toCurrentTime", "current", "width=300, height=300");
+    	  let now = new Date();
+    	  let hr=now.getHours();
+    	 let min= now.getMinutes();
+		 alert("현재 시간은 "+hr+":"+min);
 
       })
       $("#bookbag").on("click", function() {

@@ -646,7 +646,8 @@ display:none;
 				}
 			});
 			$("#notifications").on("click", function() {
-				location.href = "//toNotification";
+				var now = new Date();
+				alert(now);
 			});
 			$("#bookbag").on("click", function() {
 		    	  if(${loginID == null}) {

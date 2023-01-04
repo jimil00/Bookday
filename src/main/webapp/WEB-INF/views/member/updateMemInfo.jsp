@@ -273,8 +273,6 @@ span, #logoImg:hover {
 	background-color: #5397fc;
 }
 
-
-
 .mem_info{
 	margin-bottom:50px;
 }
@@ -322,6 +320,10 @@ margin-bottom:10px;
 .hidden{
 	color:white;
 	cursor:default;
+}
+#pw_result, #n_result, #nk_result, #email_result, #check_pw_result{
+font-size: x-small;
+
 }
 
 /* footer */
@@ -596,7 +598,10 @@ margin-bottom:10px;
          }
       })
       $("#notifications").on("click", function() {
-         location.href = "//toNotification";
+    	  let now = new Date();
+    	  let hr=now.getHours();
+    	 let min= now.getMinutes();
+		 alert("현재 시간은 "+hr+":"+min);
       })
       $("#bookbag").on("click", function() {
          if(${loginID == null}) {
