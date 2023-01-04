@@ -760,7 +760,7 @@ height:fit-content;
 				</div>
 			</div>
 			<!-- body -->
-
+			
 			<div class="footer">
 
 				<hr>
@@ -817,7 +817,9 @@ height:fit-content;
          }
       })
       $("#notifications").on("click", function() {
-         location.href = "//toNotification";
+         
+    	window.open("/toCurrentTime", "current", "width=300, height=300");
+
       })
       $("#bookbag").on("click", function() {
          if(${loginID == null}) {

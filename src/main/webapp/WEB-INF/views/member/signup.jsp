@@ -30,6 +30,8 @@ img {
 
 .container {
 	margin: auto;
+	margin-top:100px;
+	margin-bottom:100px;
 	text-align: center;
 	width: 500px;
 	height: fit-content;
