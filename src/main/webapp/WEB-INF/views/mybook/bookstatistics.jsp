@@ -490,11 +490,11 @@ display:none;
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/resources/profile/${dto.sysprofname}"  width="100" height="100"
+						<img src="/resources/profile/${dto.sysprofname}" width="100" height="100"
 							id="profile">
 
 					</div>
-					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
+					<div id="contentsHeaderTxt">${dto.nickname}님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
 						} 하루</div>
 				</div>
 				<div class="contentsBody">
