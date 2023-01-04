@@ -796,6 +796,7 @@ width:150px;
 			</div>
 
 		</div>
+		</div>
 
 		<script>
 
@@ -818,7 +819,11 @@ width:150px;
          }
       })
       $("#bookshelves").on("click", function() {
-         location.href = "/bookshelves/selectBookshelvesListById";
+    	  if(${loginID == null}) {
+              location.href = "/member/toLogin";
+         }else {
+        	 location.href = "/bookshelves/selectBookshelvesListById";
+         }
       })
       $("#mypage").on("click", function() {
          if (${loginID == null}) {

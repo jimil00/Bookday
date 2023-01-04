@@ -429,7 +429,7 @@ span, #logoImg:hover {
 						</c:when>
 						<c:otherwise>
 							<div class="rental info">
-								<div class="body-title">대여정보</div>
+								<div class="body-title">대여내역</div>
 								<hr class="body-hr">
 								<div class="body-left">주소</div>
 								<div class="body-right">${dto.address1 } (${dto.address2 })</div>
