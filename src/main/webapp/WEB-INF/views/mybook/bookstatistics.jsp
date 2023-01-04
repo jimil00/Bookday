@@ -20,7 +20,7 @@
 }
 
 * {
-	border: 1px solid black;
+/* 	border: 1px solid black; */
 	box-sizing: border-box;
 	font-family: 'NanumSquareNeo-Variable';
 }
@@ -274,8 +274,8 @@ span.size-30 {
 	width: 100%;
 }
 .statTitle{
-text-align: center;
-    margin-bottom: 50px;
+margin-top: 40px;
+    margin-bottom: 20px;
     font-size: 20px;
 }
 
@@ -308,7 +308,31 @@ text-align: center;
 }
 
 .fvrCon {
+	height: 180px;
 	text-align: center;
+		overflow-y: scroll;
+}
+.fvrCon::-webkit-scrollbar {
+display:none;
+}
+
+
+.fvrCon .fvrBook{
+	width: 80px;
+	height: 120px;
+}
+
+.explanation{
+	line-height: 80px;
+	height : 70px;
+	font-size: 15px;
+	text-align: center;
+	color: #80808050;
+}
+.explanation span.size-20 {
+	color: #5397fc50;
+	font-size: 20px;
+	font-variation-settings: 'FILL' 1, 'wght' 200, 'GRAD' 200, 'opsz' 20
 }
 /*footerHr*/
 .footerHr {
@@ -481,7 +505,7 @@ text-align: center;
 					<div class="statistics">
 						<div class="favorite">
 							<div class="statTitle">
-								<span class="material-symbols-outlined size-27">cloud</span>favorite<span
+								favorite<span
 									class="material-symbols-outlined size-27">cloud</span>
 							</div>
 							<div class="statCont">
@@ -491,7 +515,7 @@ text-align: center;
 									</div>
 									<hr class="fvrHr">
 									<c:choose>
-										<c:when test="${fvrBookImg == null }">
+										<c:when test="${empty data}">
 											<div class="fvrCon">
 												<p>가장 좋아하는 책이 아직 없습니다.</p>
 												<p>책을 읽고 포스트를 작성해보세요.</p>
@@ -499,9 +523,11 @@ text-align: center;
 										</c:when>
 										<c:otherwise>
 											<div class="fvrCon">
+											<c:forEach var="i" items="${data }">
 												<p>
-													<img src="${fvrBookImg }">
+													<img src="${i.B_IMG_URL }" seq="${i.B_ISBN}" class="fvrBook">
 												</p>
+											</c:forEach>
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -512,7 +538,7 @@ text-align: center;
 									</div>
 									<hr class="fvrHr">
 									<c:choose>
-										<c:when test="${fvrWriter == null }">
+										<c:when test="${empty fvrWriter}">
 											<div class="fvrCon">
 												<p>가장 좋아하는 작가가 아직 없습니다.</p>
 												<p>책을 읽고 포스트를 작성해보세요.</p>
@@ -520,7 +546,9 @@ text-align: center;
 										</c:when>
 										<c:otherwise>
 											<div class="fvrCon">
-												<p>${fvrWriter }</p>
+											<c:forEach var="w" items="${fvrWriter }">
+												<p>${w.B_WRITER }</p>
+											</c:forEach>
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -531,7 +559,7 @@ text-align: center;
 									</div>
 									<hr class="fvrHr">
 									<c:choose>
-										<c:when test="${fvrGenre == null }">
+										<c:when test="${empty fvrGenre}">
 											<div class="fvrCon">
 												<p>가장 좋아하는 장르가 아직 없습니다.</p>
 												<p>책을 읽고 포스트를 작성해보세요.</p>
@@ -539,16 +567,23 @@ text-align: center;
 										</c:when>
 										<c:otherwise>
 											<div class="fvrCon">
-												<p>${fvrGenre }</p>
+											<c:forEach var="g" items="${fvrGenre }">
+												<p>${g.B_GENRE }</p>
+											</c:forEach>
 											</div>
 										</c:otherwise>
 									</c:choose>
 								</div>
 							</div>
 						</div>
+																<div class="explanation">
+						<span class="material-symbols-outlined size-20">cloud </span>
+						해당 항목에서 스크롤 시 더 많은 데이터를 볼 수 있습니다
+						<span class="material-symbols-outlined size-20">cloud </span>
+					</div>
 						<div class="related">
 						<div class="statTitle">
-						<span class="material-symbols-outlined size-27">cloud</span>related<span
+						related<span
 									class="material-symbols-outlined size-27">cloud</span>
 						</div>
 						<div class="statCont">
@@ -642,7 +677,7 @@ text-align: center;
 				location.href = "/bookmark/selectBookmarkListById";
 			});
 			$("#snBooknote").on("click", function() {
-				location.href = "/booknote/selectPostListById";
+				location.href = "/booknote/selectPostListRev";
 			});
 
 
