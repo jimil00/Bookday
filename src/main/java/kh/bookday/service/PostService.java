@@ -58,8 +58,8 @@ public class PostService {
 	}
 
 	// 포스트 페이지) 포스트 리스트 출력
-	public List<PostDTO> selectPostListById(String id){
-		List<PostDTO> plist = dao.selectPostListById(id);
+	public List<PostDTO> selectPostListRev(String id){
+		List<PostDTO> plist = dao.selectPostListRev(id);
 		for(PostDTO post: plist) {
 			post.setP_content(Jsoup.parse(post.getP_content()).text());
 		}
@@ -75,7 +75,8 @@ public class PostService {
 
 	// 포스트 페이지) 포스트 입력
 	public int insertPost(PostDTO dto) { // p_seq받아오는 걸로 바꾸기
-		return dao.insertPost(dto);
+		dao.insertPost(dto);
+		return dto.getP_seq();
 	}
 
 	// 포스트 페이지) 포스트 디테일 출력

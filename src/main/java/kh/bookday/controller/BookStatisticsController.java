@@ -1,5 +1,8 @@
 package kh.bookday.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import kh.bookday.dto.MemberDTO;
-import kh.bookday.dto.PostDTO;
 import kh.bookday.service.BookStatisticsService;
 import kh.bookday.service.MemberService;
 
@@ -40,15 +42,16 @@ public class BookStatisticsController {
 		model.addAttribute("dto", dto);
 		
 		// 가장 좋아하는 책
-		String fvrBookImg = service.selectFvrBookImgById(id);
-		model.addAttribute("fvrBookImg", fvrBookImg);
+		List<HashMap<String, String>> data =  service.selectFvrBookById(id);
+		model.addAttribute("data", data);
+		System.out.println(data);
 		
 		// 가장 좋아하는 작가
-		String fvrWriter = service.selectFvrWriterById(id);
+		List<String> fvrWriter = service.selectFvrWriterById(id);
 		model.addAttribute("fvrWriter", fvrWriter);
 		
-		// 가장 좋아하는 장
-		String fvrGenre = service.selectFvrGenreById(id);
+		// 가장 좋아하는 장르
+		List<String> fvrGenre = service.selectFvrGenreById(id);
 		model.addAttribute("fvrGenre", fvrGenre);
 		
 		return "mybook/bookstatistics";

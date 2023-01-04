@@ -879,10 +879,10 @@ span.size-20 {
                     location.href = "/bookmark/selectBookmarkListById";
                 });
                 $("#snBooknote").on("click", function () {
-                    location.href = "/booknote/selectPostListById";
+                    location.href = "/booknote/selectPostListRev";
                 });
                 $("#toList").on("click", function(){
-                	location.href = "/booknote/selectPostListById";
+                	location.href = "/booknote/selectPostListRev";
                 })
                 $("#delPBtn").on("click", function(){
                 	

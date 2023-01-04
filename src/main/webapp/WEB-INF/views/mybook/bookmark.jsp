@@ -485,6 +485,7 @@ span.size-30 {
 
 .bookmarkBookImg>img {
 	height: 180px;
+	width: 120px;
 }
 
 .bookmarkContentsTxt {
@@ -865,7 +866,7 @@ span.size-30 {
 				location.href = "/bookmark/selectBookmarkListById";
 			});
 			$("#snBooknote").on("click", function() {
-				location.href = "/booknote/selectPostListById";
+				location.href = "/booknote/selectPostListRev";
 			});
 			$("#bookmarkBookSearchWord").on("keydown", function(e){
 				if(e.keyCode == 13) {

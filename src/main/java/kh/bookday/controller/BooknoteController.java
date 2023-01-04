@@ -45,8 +45,8 @@ public class BooknoteController {
 	private HttpSession session;
 
 	// 포스트 리스트 출력
-	@RequestMapping("selectPostListById")
-	public String selectPostListById(Model model) {
+	@RequestMapping("selectPostListRev")
+	public String selectPostListRev(Model model) {
 
 		String id = String.valueOf(session.getAttribute("loginID"));
 
@@ -55,7 +55,7 @@ public class BooknoteController {
 		model.addAttribute("dto", dto);
 
 		// 포스트 리스트
-		List<PostDTO> list = service.selectPostListById(id);
+		List<PostDTO> list = service.selectPostListRev(id);
 		model.addAttribute("list", list);
 
 		// 포스트 좋아요 리스트
@@ -106,7 +106,7 @@ public class BooknoteController {
 	// 포스트 입력
 	@ResponseBody
 	@RequestMapping("insertPost")
-	public String insertPost(PostDTO dto, Model model) {
+	public int insertPost(PostDTO dto, Model model) {
 
 		String id = String.valueOf(session.getAttribute("loginID"));
 
@@ -118,9 +118,9 @@ public class BooknoteController {
 		dto.setP_writer_nn(mdto.getNickname());
 		dto.setP_title(dto.getP_title().replace("<", "&lt;"));
 		dto.setP_content(dto.getP_content().replace("<script>", "&lt;"));
-		int p_seq = service.insertPost(dto);
+		
+		return service.insertPost(dto);
 
-		return "/booknote/selectPostListById";
 	}
 
 	// 포스트 디테일 출력
@@ -156,7 +156,7 @@ public class BooknoteController {
 	public String deletePostByPseq(int p_seq) {
 		System.out.println(p_seq);
 			service.deletePostByPseq(p_seq);
-			return "redirect:/booknote/selectPostListById";
+			return "redirect:/booknote/selectPostListRev";
 
 	}
 	
