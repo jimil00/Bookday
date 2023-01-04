@@ -33,9 +33,11 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-/* div {
-border: 1px solid black;
-} */
+div {
+	/* 	border: 1px solid black; */
+	
+}
+
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -478,7 +480,9 @@ span, #logoImg:hover {
 }
 
 .post-main-top {
+	padding-top: 15px;
 	overflow: hidden;
+	line-height: 10px;
 }
 
 .profile-img-div {
@@ -494,9 +498,8 @@ span, #logoImg:hover {
 }
 
 .p-writer {
-	mar-top: 10px;
-	height: 27px;
-	overflow: hidden;
+	padding-top: 4px; 
+/*  	overflow: hidden;  */
 	width: 150px;
 	display: inline-block;
 	font-weight: bold;
@@ -504,25 +507,27 @@ span, #logoImg:hover {
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	height: 32px;
+	line-height: 32px;
 }
 
 .p-like {
-	overflow: hidden;
+/* 	overflow: hidden;  */
 }
 
 .like-icon {
 	float: left;
-	position: relative;
+	position: relative; 
 	bottom: 1px;
 	font-size: 18px;
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-	font-size: 18px;
 }
 
 .like-text {
 	float: left;
 	position: relative;
-	line-height: 19px;
+	height: 20px;
+	line-height: 17px;
 	padding-left: 3px;
 	font-size: 13px;
 }
@@ -531,8 +536,9 @@ span, #logoImg:hover {
 	overflow: hidden;
 	width: 100%;
 	height: 30px;
-	font-size: 15px; 
-	font-weight : bold;
+	line-height: 17px;
+	font-size: 15px;
+	font-weight: bold; 
 	padding-left: 10px;
 	padding-right: 10px;
 	word-wrap: break-word;
@@ -542,15 +548,16 @@ span, #logoImg:hover {
 }
 
 .p-content {
-/* 	overflow: hidden; */
-/* 	font-size: 15px; */
-/* 	padding-left: 10px; */
-/* 	padding-right: 10px; */
-/* 	display: -webkit-box; */
-/* 	height: 152px; */
-/* 	-webkit-line-clamp: 9; */
-/* 	-webkit-box-orient: vertical; */
-/* 	text-overflow: ellipsis; */
+	overflow: hidden;
+	font-size: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: -webkit-box;
+	height: 145px;
+	line-height: 17px;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
 }
 
 .with-books {
@@ -910,40 +917,41 @@ span, #logoImg:hover {
 						<p class="title">포스트</p>
 					</div>
 
-<!-- 					<div class="swiper-container"> -->
-<!-- 						<div class="swiper-wrapper"> -->
-							<c:choose>
-								<c:when test="${not empty plist}">
-									<c:forEach items="${plist}" var="p">
-<!-- 										<div class="swiper-slide"> -->
-											<div class="post-main">
-												<br>
-												<div class="post-main-top">
-													<div class="profile-img-div">
-														<img src="/resources/basic.png" class="profile_img">
-													</div>
-													<div class="p-writer">${p.p_writer_nn }</div>
-													<div class="p-like">
-														<div class="like-icon material-symbols-outlined"
-															data-count="0">thumb_up</div>
-														<div class="like-text">${p.p_like_count }</div>
-													</div>
-												</div>
-												<hr id="p_line">
-												<div class="p-title" title="${p.p_title }">${p.p_title }</div>
-												<div class="p-content">
-													<a href="/" style="text-decoration-line: none; color: black;">${p.p_content }</a>
-												</div>
-											</div>
-<!-- 										</div> -->
-									</c:forEach>
-								</c:when>
-								<c:otherwise>
-									<p class="post_title">작성된 포스트가 없습니다.</p>
-								</c:otherwise>
-							</c:choose>
-<!-- 						</div> -->
-<!-- 					</div> -->
+					<!-- 					<div class="swiper-container"> -->
+					<!-- 						<div class="swiper-wrapper"> -->
+					<c:choose>
+						<c:when test="${not empty plist}">
+							<c:forEach items="${plist}" var="p">
+								<!-- 										<div class="swiper-slide"> -->
+								<div class="post-main">
+									<!-- 									<br> -->
+									<div class="post-main-top">
+										<div class="profile-img-div">
+											<img src="/resources/basic.png" class="profile_img">
+										</div>
+										<div class="p-writer">${p.p_writer_nn }</div>
+										<div class="p-like">
+											<div class="like-icon material-symbols-outlined"
+												data-count="0">thumb_up</div>
+											<div class="like-text">${p.p_like_count }</div>
+										</div>
+									</div>
+									<hr>
+									<div class="p-title" title="${p.p_title }">${p.p_title }</div>
+									<div class="p-content">
+										<a href="/booknote/selectPostByPseq?p_seq=${post.p_seq }"
+											style="text-decoration-line: none; color: black;">${p.p_content }</a>
+									</div>
+								</div>
+								<!-- 										</div> -->
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<p class="post_title">작성된 포스트가 없습니다.</p>
+						</c:otherwise>
+					</c:choose>
+					<!-- 						</div> -->
+					<!-- 					</div> -->
 				</div>
 
 
