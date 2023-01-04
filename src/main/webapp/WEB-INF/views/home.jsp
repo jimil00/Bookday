@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<head profile="http://www.w3.org/2005/10/profile">
 <meta charset="UTF-8">
 <title>Home</title>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -349,85 +350,99 @@ height:fit-content;
 }
 
 .swiper-slide{
-width:150px;
+/* width:150px; */
 }
 
 
-/* 포스트 출력 상자 */
-.flex-postBox>.post_box {
-	margin: 20px;
-	width: 250px;
-/* 	border: 1px solid #5397fc; */
-	border-radius: 15px;
-	height: 300px;
-	text-align: center;
-    background: var(--ui-up);
-    overflow: hidden;
-    box-shadow: 2px 2px 20px rgb(0 0 0 / 6%), 2px 2px 10px rgb(0 0 0 / 4%);
-        letter-spacing: -.6px;
-}
-
-.profile, .p_title_box {
-	display: flex;
-}
-
-.profile_img {
-	width: 50px;
-	height: fit-content;
-	border-radius: 50%;
-	margin-right: 30px;
-}
-
-.profile {
-	position: relative;
-	margin: 15px;
-	margin-bottom: 0px;
-}
-
-.profile>p {
-	line-height: 55px;
-	margin: 0px;
-	
-}
-
-.p_title_box {
-	margin-top:10px;
-	justify-content: space-around;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-.line {
-	color: #d5d5d5;
-}
-
-#p_like {
-	justify-content: flex-end;
-}
-
-.p_like_icon {
-	position: relative;
-	top: 5px;
-	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
-}
-
-.post_content {
-	margin-top: 15px;
-	padding-left: 10px;
-	padding-right: 10px;
-	height: auto;
-	display: flex;
-	flex-wrap: wrap;
-	text-overflow: ellipsis;
+.post-main {
 	overflow: hidden;
-	word-break: break-word;
-	display: -webkit-box;
-	-webkit-line-clamp: 7;
-	-webkit-box-orient: vertical;
+	width: 250px;
+	height: 300px;
+	float: left;
+	margin-left: 55px;
+	margin-bottom: 20px;
+	margin-top: 25px;
+	border: 1px solid #5397fc40;
+	border-radius: 15px;
+	box-shadow: 3px 3px #80808050;
 }
 
-.post_title {
-	margin: 0px;
+.post-main-top {
+	overflow: hidden;
+}
+
+.profile-img-div {
+	float: left;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.profile-img {
+	width: 55px;
+	height: auto;
+	border-radius: 50%;
+}
+
+.p-writer {
+	padding-top: 10px;
+	height: 27px;
+	overflow: hidden;
+	width: 150px;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 15px;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.p-like {
+	overflow: hidden;
+}
+
+.like-icon {
+	float: left;
+	position: relative;
+	bottom: 1px;
+	font-size: 18px;
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+	font-size: 18px;
+}
+
+.like-text {
+	float: left;
+	position: relative;
+	line-height: 19px;
+	padding-left: 3px;
+	font-size: 13px;
+}
+
+.p-title {
+	overflow: hidden;
+	width: 100%;
+	height: 30px;
+	font-size: 15px; font-weight : bold;
+	padding-top: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: bold;
+}
+
+.p-content {
+	overflow: hidden;
+	font-size: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: -webkit-box;
+	width: 100%;
+	height: 152px;
+	-webkit-line-clamp: 9;
+	-webkit-box-orient: vertical;
+	/* 	word-wrap: break-word; */
+	text-overflow: ellipsis;
 }
 
 /* footer */
@@ -564,10 +579,6 @@ width:150px;
 				</div>
 
 				<div class="main_img">
-					<div class="sun,moon">
-						<img src="" id="sun,moon">
-					</div>
-
 					<img src="/resources/main_img.png" class="reading">
 				</div>
 
@@ -709,45 +720,39 @@ width:150px;
 					data-aos-duration="2000">
 					<h2 id="popular_headline">인기 포스트</h2>
 					
-			<div class="swiper-container swiper2">
-			    <div class="swiper-wrapper">
-			      
-		<c:choose>
-            <c:when test="${not empty plist}">
-                <c:forEach items="${plist}" var="p">
-                
-                    <div class="swiper-slide">
-                    
-                        <div class="flex-postBox">
-                        
-                            <div class="post_box">
-                                <div class="profile">
-                                    <img src="/resources/profile/${p.sysprofname}" class="profile_img">
-                                    <p>${p.p_writer_nn} 님의 포스트</p>
-                                </div>
-                                <hr>
-
-                                <div class="p_title_box">
-                                    <p class="post_title">${p.p_title}</p>
-
-                                        <div id="p_like">
-                                         <span class="p_like_count">${p.p_like_count}</span>
-                                        </div>
-                                </div>
-
-                                <p class="post_content">${p.p_content}</p>
-                            </div><!-- post_box -->
-                            
-                        </div> <!-- flex-box -->
-                   	</div>
-                </c:forEach>
-            </c:when>
-            <c:otherwise>
-                <p class="post_title">작성된 포스트가 없습니다.</p>
-            </c:otherwise>
-        </c:choose>
-			      
-					    </div>
+			<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<c:choose>
+								<c:when test="${not empty plist}">
+									<c:forEach items="${plist}" var="p">
+										<div class="swiper-slide">
+											<div class="post-main">
+												<br>
+												<div class="post-main-top">
+													<div class="profile-img-div">
+														<img src="/resources/profile/${p.sysprofname}" class="profile_img">
+													</div>
+													<div class="p-writer">${p.p_writer_nn }</div>
+													<div class="p-like">
+														<div class="like-icon material-symbols-outlined"
+															data-count="0">thumb_up</div>
+														<div class="like-text">${p.p_like_count }</div>
+													</div>
+												</div>
+												<hr style="border-top: 1px">
+												<div class="p-title" title="${p.p_title }">${p.p_title }</div>
+												<div class="p-content">
+													<a href="/" style="text-decoration-line: none; color: black;">${p.p_content }</a>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<p class="post_title">작성된 포스트가 없습니다.</p>
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -843,15 +848,14 @@ width:150px;
             }
       })
       
-      //프로필 사진 없을 때 포스트 출력
+       //프로필 사진 없을 때 포스트 출력
        $( document ).ready( function() {
       
-      	if(${p.sysprofname == null}){
-      		
+      	if(${p.sysprofname != null}){
 			$(".profile_img").attr("src","/resources/basic.png");
 							return;
 						}
-       });
+       }); 
       
       //스크롤 이벤트 라이브러리(AOS)선언
        $( document).ready( function() {
@@ -866,14 +870,11 @@ width:150px;
       
       var swiper = new Swiper(".swiper-container swiper2", {
     	  slidesPerView: 3,  
-    	  slidesPerGroup: 3,
           spaceBetween: 30,
           centeredSlides: false
   	});  
       
 
-      
-      
         //footer: 사업자 정보 토글 기능
        $("#business_info_text").hide();
 

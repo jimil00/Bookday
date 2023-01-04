@@ -61,10 +61,16 @@ div {
 }
 
 .btn {
+	height: 35px;
+    margin-right: 10px;
 	border-radius: 4px;
 	border: 1px solid rgb(194, 193, 193);
 	background-color: #ffffff;
 	color: #5397fc;
+}
+
+.btn:hover {
+	cursor: pointer;
 }
 </style>
 <body>
@@ -76,8 +82,8 @@ div {
 			<div class="title">30일 구독권이 결제 완료되었습니다!</div>
 			<div class="sub-date">구독기간 : ${dto.formedStartDate } ~ ${dto.formedEndDate }</div>
 			<div class="btn-div">
-				<button class="btn" id="bookbag">책가방으로 이동</button>
-				<button class="btn" id="close">닫기</button>
+				<button class="btn" id="bookbag" style="width: 120px;">책가방으로 이동</button>
+				<button class="btn" id="close" style="width: 70px;">닫기</button>
 			</div>
 		</div>
 	</div>
@@ -90,6 +96,9 @@ div {
 			opener.parent.location.reload();
 			window.close();
 		})
+		$(window).bind("beforeunload", function (e){
+            opener.parent.location.reload();
+        });
 	</script>
 </body>
 </html>

@@ -171,14 +171,15 @@ public class MemberController {
 	public String updatepw(String updatePw, String phone ) {
 
 		//다른 에이작스 컨트롤러에서 중복 여부 체크 후 update 시도
-		System.out.println(updatePw);
+		//System.out.println(updatePw);
 		//다시 암호화
-		String result=Pw_SHA256.getSHA256(updatePw);
+		String pw=Pw_SHA256.getSHA256(updatePw);
 
-		System.out.println(result);
+		System.out.println(pw);
+		System.out.println(phone);
 		
 		//해당 회원 정보로 들어갈 update 구문(해당 회원의 아이디 및 번호 값으로 조건을 준 후 update
-		service.updatePw(result,phone);
+		service.updatePw(pw,phone);
 
 		return "true";
 	}
@@ -269,9 +270,6 @@ public class MemberController {
 		
 		//비밀번호 암호화
 		System.out.println("디티오에 들어간 비밀번호: "+dto.getPw()+dto.getEmail()+dto.getName()+dto.getNickname()+dto.getPw());
-//		if(dto.getPw() == blankPw) {
-//			
-//		}
 		
 		String updatedPw=Pw_SHA256.getSHA256(dto.getPw());
 			dto.setPw(updatedPw);
@@ -300,7 +298,6 @@ public class MemberController {
 				try {
 					file.transferTo(new File(filePath+"/"+sysprofname));
 				} catch (IllegalStateException | IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.println(dto);
@@ -309,16 +306,15 @@ public class MemberController {
 				System.out.println(dto.getAddress2());
 				
 				service.updateMemInfo(dto);
-
+				
+				session.invalidate();
+				
+				session.setAttribute("loginID",id);
+				session.setAttribute("nickname",dto.getNickname());
 			}
 			
 		}return "redirect:toMypage";
 	}
-	
-
-	//마이페이지 리뷰 관리
-	
-	
 
 	//에러 수집
 	@ExceptionHandler(Exception.class) 

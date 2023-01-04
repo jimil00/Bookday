@@ -68,6 +68,10 @@ div {
 	color: #ffffff;
 }
 
+#search-btn, #save-btn:hover {
+	cursor: pointer;
+}
+
 </style>
 <body>
 	<div class="container">

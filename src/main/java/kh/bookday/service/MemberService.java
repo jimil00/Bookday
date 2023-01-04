@@ -120,7 +120,7 @@ public class MemberService {
 		//상황에 따라 바꿔서 사용
 		String redirect_uri_shu= "&redirect_uri=http://localhost:8090/member/kakaoLogin";
 		String redirect_uri_test="&redirect_uri=http://localhost/member/kakaoLogin";
-		String redirect_uri= "&redirect_uri= http://13.125.80.112/member/kakaoLogin";
+		String redirect_uri= "&redirect_uri=http://13.125.80.112/member/kakaoLogin";
 		String reqURL ="https://kauth.kakao.com/oauth/token";
 
 		try {
@@ -226,6 +226,7 @@ public class MemberService {
 			String id =  element.getAsJsonObject().get("id").getAsString();
 
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
+			System.err.println(email);
 
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 

@@ -554,7 +554,7 @@ display:none;
 						</c:when>
 						<c:otherwise>
 							<a id="nick"><p class="user" id="user">${nickname}님</p></a>
-							<a href="/member/logOut"><p class="user" id="logout">로그아웃</p></a>
+							<a href="/member/logout"><p class="user" id="logout">로그아웃</p></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -586,6 +586,7 @@ display:none;
 					<div id="contentsHeaderImg">
 						<img src="/resources/profile/${dto.sysprofname}"  width="100" height="100"
 							id="profile">
+
 					</div>
 					<div id="contentsHeaderTxt">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
 						} 하루</div>
@@ -780,6 +781,16 @@ display:none;
 				location.href = "/booknote/selectPostListById";
 			});
 
+			//포스트 프로필 사진 없을 때(수아)
+			$( document ).ready( function() {
+			    
+			  	if(${p.sysprofname == '0'}){
+			  		
+					$(".profile_img").attr("src","/resources/basic.png");
+									return;
+								}
+			   });
+			
 			const makeCalendar = (date) => {
 				  // 현재 년도와 월 받아오기
 				  const currentYear = new Date(date).getFullYear(); //2023
