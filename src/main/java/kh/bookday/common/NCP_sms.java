@@ -65,7 +65,7 @@ public class NCP_sms{
 	            con.setUseCaches(false);
 	            con.setDoOutput(true);
 	            con.setDoInput(true);
-	            con.setRequestProperty("content-type", "application/json");
+	            con.setRequestProperty("content-type", "application/json;charset=utf-8");
 	            con.setRequestProperty("x-ncp-apigw-timestamp", timestamp);
 	            con.setRequestProperty("x-ncp-iam-access-key", accessKey);
 	            con.setRequestProperty("x-ncp-apigw-signature-v2", makeSignature(requestUrl, timestamp, method, accessKey, secretKey));
@@ -81,7 +81,7 @@ public class NCP_sms{
 	            BufferedReader br;
 	            System.out.println("responseCode" +" " + responseCode);
 	            if(responseCode == 202) { // 정상 호출
-	                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	            	 br = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
 	            } else { // 에러 발생
 	                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 	            }

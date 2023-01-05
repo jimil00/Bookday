@@ -545,7 +545,7 @@ text-align:right;
 			</div>
 		</div>
 		<div class="footer">
-			<hr>
+			<hr style="border-top: 1px solid rgb(216, 216, 216);">
 			<div class="f_header">
 				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
 
