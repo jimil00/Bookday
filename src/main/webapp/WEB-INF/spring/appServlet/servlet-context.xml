@@ -55,7 +55,7 @@
 			<exclude-mapping path="/search/toSearch"/>
 			
 			<exclude-mapping path="/book/selectBookinfo"/>
-			
+<!-- 			<exclude-mapping path="/booknote/selectPostByPseq"/> -->
 			<exclude-mapping path="/toCurrentTime"/>
 			<exclude-mapping path="/error"/>
 			<exclude-mapping path="/member/error"/>

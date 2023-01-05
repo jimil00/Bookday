@@ -753,7 +753,7 @@ height:fit-content;
 												<hr id="p_line">
 												<div class="p-title" title="${p.p_title }">${p.p_title }</div>
 												<div class="p-content">
-													<a href="/" style="text-decoration-line: none; color: black;">${p.p_content }</a>
+													<a href="/booknote/selectPostByPseq?p_seq=${p.p_seq }" style="text-decoration-line: none; color: black;" id="post-link">${p.p_content }</a>
 												</div>
 											</div>
 										</div>
@@ -814,6 +814,12 @@ height:fit-content;
 		</div>
 
 		<script>
+		$("#post-link").on("click", function() {
+		  	  if(${loginID == null}) {
+		  		 alert("로그인 후 이동할 수 있습니다.");
+		  		 return false;
+		  	  }
+		  })
 
       $("#logo_img").on("click", function() {
          location.href = "/";

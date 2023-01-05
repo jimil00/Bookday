@@ -769,13 +769,13 @@ font-size: x-small;
     	  
     	  console.log($("#phone").val());
     	  
-    	
+ 
     	  if(phone=="" || !phoneRegex.test(phone)){
     			  alert("유효한 휴대폰 번호를 입력해주세요.");
-    		  }else if(phone == ${dto.phone}){  
+    		 }else if(phone == "${dto.phone}"){  
         		  alert("이미 인증된 휴대폰 번호입니다.");
-        		  return
-        		  }else{
+        		  return;
+        	}else{
     			  alert("인증번호를 발송하였습니다.");
     			  $("#verifi_code,#check_btn").css("display","inline");
     			  
