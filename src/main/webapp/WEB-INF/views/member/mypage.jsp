@@ -264,7 +264,7 @@ text-align:right;
 
 .body-btn-div {
 	text-align: center;
-	height: 100px;
+	height: 200px;
 }
 
 .body-btn {
@@ -276,9 +276,9 @@ text-align:right;
 	border-radius: 5px;
 	background-color: #5397fc;
 	box-shadow: 3px 3px #80808050;
-	transition-duration: 0.1s;
 }
 
+<<<<<<< HEAD
 
 .body-btn:hover {
     margin-left: 5px;
@@ -371,6 +371,7 @@ text-align:right;
 	margin-top: 5px;
 	font-size: x-small;
 }
+
 </style>
 </head>
 <body>

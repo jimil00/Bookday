@@ -323,7 +323,7 @@ text-align:right;
 	bottom: 1px;
 	font-size: 18px;
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-	font-size: 18px;
+/* 	font-size: 18px; */
 }
 
 .like-text {
@@ -338,7 +338,8 @@ text-align:right;
 	overflow: hidden;
 	width: 100%;
 	height: 30px;
-	font-size: 15px; font-weight : bold;
+	font-size: 15px; 
+	font-weight : bold;
 	padding-top: 3px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -356,7 +357,7 @@ text-align:right;
 	display: -webkit-box;
 	width: 100%;
 	height: 152px;
-	-webkit-line-clamp: 9;
+	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
 	/* 	word-wrap: break-word; */
 	text-overflow: ellipsis;
@@ -535,7 +536,7 @@ text-align:right;
 								<hr style="border-top: 1px">
 								<div class="p-title" title="${post.p_title }">${post.p_title }</div>
 								<div class="p-content">
-									<a href="/" style="text-decoration-line: none; color: black;">${post.p_content }</a>
+									<a href="/booknote/selectPostByPseq?p_seq=${post.p_seq }" style="text-decoration-line: none; color: black;">${post.p_content }</a>
 								</div>
 							</div>
 						</c:forEach>

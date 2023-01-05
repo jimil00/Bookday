@@ -335,6 +335,7 @@ display:none;
 .bookCal {
 	width: 80px;
 	height: 120px;
+	border-radius: 2%;
 }
 
 .noColor {
@@ -452,6 +453,7 @@ display:none;
 .bookYear{
 	width: 40px;
 	height: 60px;
+	border-radius: 2%;
 }
 /*footerHr*/
 .footerHr {

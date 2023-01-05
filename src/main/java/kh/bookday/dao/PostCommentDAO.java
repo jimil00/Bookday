@@ -29,5 +29,9 @@ public class PostCommentDAO {
 	public void deletePostComment(int pc_seq) {
 		db.delete("PostComment.deletePostComment", pc_seq);
 	}
+	
+	public void deletePostCommentByPseq(int p_seq) {
+		db.delete("PostComment.deletePostCommentByPseq", p_seq);
+	}
 
 }

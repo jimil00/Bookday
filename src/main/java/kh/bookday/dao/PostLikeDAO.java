@@ -30,5 +30,9 @@ public class PostLikeDAO {
 	public int deletePostLike(PostLikeDTO dto) {
 		return db.delete("PostLike.deletePostLike", dto);
 	}
+	
+	public void deletePostLikeByPseq(int p_seq) {
+		db.delete("PostLike.deletePostLikeByPseq", p_seq);
+	}
 
 }

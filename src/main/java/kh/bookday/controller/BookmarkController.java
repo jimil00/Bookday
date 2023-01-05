@@ -40,7 +40,7 @@ public class BookmarkController {
 		String id = String.valueOf(session.getAttribute("loginID"));
 		dto.setBm_writer_id(id);
 		
-		dto.setBm_content(dto.getBm_content().replace("<", "&lt;"));
+		dto.setBm_content(dto.getBm_content().replace("<script>", "&lt;"));
 
 		service.insertBookmark(dto);
 	}
@@ -80,7 +80,7 @@ public class BookmarkController {
 		
 		model.addAttribute("searchWord", searchWord);
 		
-		List<BookmarkDTO> list = service.selectBookmarkListBySw(searchWord);
+		List<BookmarkDTO> list = service.selectBookmarkListBySw(id, searchWord);
 		model.addAttribute("list", list);
 		
 		return "mybook/bookmark";

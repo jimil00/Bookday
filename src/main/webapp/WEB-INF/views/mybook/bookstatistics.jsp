@@ -326,6 +326,7 @@ display:none;
 .fvrCon .fvrBook{
 	width: 80px;
 	height: 120px;
+	border-radius: 2%;
 }
 
 .explanation{
@@ -483,9 +484,9 @@ display:none;
 				<ul>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookshelves">shelves</span></li>
-					<li class="selected"><span
+					<li><span
 						class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
-					<li><span class="material-symbols-outlined size-35"
+					<li class="selected"><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookmark">book</span></li>
@@ -587,12 +588,14 @@ display:none;
 						해당 항목에서 스크롤 시 더 많은 데이터를 볼 수 있습니다
 						<span class="material-symbols-outlined size-20">cloud </span>
 					</div>
-						<div class="related">
-						<div class="statTitle">
-						related<span
-									class="material-symbols-outlined size-27">cloud</span>
-						</div>
-						<div class="statCont">
+<!-- 						<div class="related"> -->
+<!-- 						<div class="statTitle"> -->
+<!-- 						popular<span -->
+<!-- 									class="material-symbols-outlined size-27">cloud</span> -->
+<!-- 						</div> -->
+<!-- 						<div class="statCont"> -->
+<!-- 						<div class="popPost"></div> -->
+<!-- 						<div class="popBook"></div> -->
 						</div>
 						</div>
 					</div>
@@ -660,6 +663,7 @@ display:none;
 
 		    	  let timeString = hours + ':' + minutes  + ':' + seconds;
 				 alert("현재 시간은 "+timeString);
+
 			});
 			$("#bookbag").on("click", function() {
 		    	  if(${loginID == null}) {

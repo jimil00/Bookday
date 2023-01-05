@@ -78,7 +78,12 @@ public class PostService {
 		dao.insertPost(dto);
 		return dto.getP_seq();
 	}
-
+	
+	// 포스트 페이지) 포스트 조회수
+	public void addViewCount(int p_seq) {
+		dao.addViewCount(p_seq);
+	}
+	
 	// 포스트 페이지) 포스트 디테일 출력
 	public PostDTO selectPostByPseq(int p_seq) {
 		return dao.selectPostByPseq(p_seq);
@@ -142,6 +147,8 @@ public class PostService {
 	// 포스트 삭제
 	public void deletePostByPseq(int p_seq) {
 		dao.deletePostByPseq(p_seq);
+		cdao.deletePostCommentByPseq(p_seq);
+		ldao.deletePostLikeByPseq(p_seq);
 	}
 	
 	// 섬머노트 이미지

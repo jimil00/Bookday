@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -358,11 +359,11 @@ span.size-30 {
 
 /* contentsBodyPostContents */
 .emptyPostContents {
-font-size: 15px;
-text-align:center;
-line-height:200px;
-width:100%;
-height:200px;
+	font-size: 15px;
+	text-align: center;
+	line-height: 200px;
+	width: 100%;
+	height: 200px;
 }
 
 .postContents {
@@ -387,6 +388,8 @@ height:200px;
 .postBookImg>img {
 	height: 180px;
 	width: 120px;
+	border-radius: 2%;
+	cursor: pointer;
 }
 
 .postContentsTxt {
@@ -398,6 +401,7 @@ height:200px;
 .postBookInfo {
 	font-size: 15px;
 	margin-bottom: 20px;
+	cursor: pointer;
 }
 
 .postHeader {
@@ -428,7 +432,7 @@ height:200px;
 }
 
 .postContent {
-	width: 83%;
+	width: 85%;
 	height: auto;
 	font-size: 14px;
 	height: auto;
@@ -452,7 +456,7 @@ height:200px;
 }
 
 .pLike {
-	width: 17%;
+	width: 15%;
 	display: flex;
 	justify-content: center;
 }
@@ -624,7 +628,8 @@ span.size-45 {
 				<ul>
 					<li><span class="material-symbols-outlined size-35"
 						id="snBookshelves">shelves</span></li>
-					<li><span class="material-symbols-outlined size-35" id="snCalendar">calendar_month</span></li>
+					<li><span class="material-symbols-outlined size-35"
+						id="snCalendar">calendar_month</span></li>
 					<li><span class="material-symbols-outlined size-35"
 						id="snStatistics">equalizer</span></li>
 					<li><span class="material-symbols-outlined size-35"
@@ -638,6 +643,7 @@ span.size-45 {
 					<div id="contentsHeaderImg">
 						<img src="/resources/profile/${dto.sysprofname}" width="100" height="100"
 							id="profile">
+
 					</div>
 					<div id="contentsHeaderTxt">${dto.nickname}님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
 						} 하루</div>
@@ -675,18 +681,22 @@ span.size-45 {
 									<div class="postContents">
 										<div class="postContentsImg">
 											<div class="postBookImg">
-												<img src="${i.b_img_url }">
+												<img src="${i.b_img_url }" isbn="${i.b_isbn }"
+													class="bookImg">
 											</div>
 										</div>
 										<div class="postContentsTxt">
-											<div class="postBookInfo"><${i.b_title
+											<div class="postBookInfo" isbn="${i.b_isbn }"><${i.b_title
 												}>&nbsp${i.b_writer }</div>
 											<div class="postHeader">
 												<div class="postTitle">
 													<a href="/booknote/selectPostByPseq?p_seq=${i.p_seq }">${i.p_title }</a>
 													<span class="postCommentCount">[${i.p_comment_count }]</span>
 												</div>
-												<div class="postWritedate">${i.p_write_date }</div>
+												<div class="postWritedate">
+													<fmt:formatDate value="${i.p_write_date }"
+														pattern="yyyy.MM.DD HH:mm" />
+												</div>
 											</div>
 											<hr class="postlistHr">
 											<div class="postBody">
@@ -800,6 +810,7 @@ span.size-45 {
 				}
 			})
 			$("#notifications").on("click", function() {
+<<<<<<< HEAD
 				  let today = new Date();   
 
 		    	  let hours = ('0' + today.getHours()).slice(-2); 
@@ -808,6 +819,9 @@ span.size-45 {
 
 		    	  let timeString = hours + ':' + minutes  + ':' + seconds;
 				 alert("현재 시간은 "+timeString);
+=======
+				alert(new Date());
+>>>>>>> b06fe70ec0e3553ca6785364d819fc9ba0dd46ef
 			})
 			$("#bookbag").on("click", function() {
 	    	  if(${loginID == null}) {
@@ -920,6 +934,18 @@ span.size-45 {
                     });
                 
 			})
+			
+			
+	$(".bookImg").on("click", function(){
+		let b_isbn = $(this).attr("isbn");
+		location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
+	})
+	$(".postBookInfo").on("click", function(){
+		let b_isbn = $(this).attr("isbn");
+		location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
+	})
+	  
+	
 			        //footer: 사업자 정보 토글 기능
        $("#business_info_text").hide();
 

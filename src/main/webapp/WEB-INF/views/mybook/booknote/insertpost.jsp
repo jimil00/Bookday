@@ -929,7 +929,7 @@ display:none;
 
             	  let timeString = hours + ':' + minutes  + ':' + seconds;
         		 alert("현재 시간은 "+timeString);
-        		 
+
                 })
                 $("#bookbag").on("click", function() {
 		    	  if(${loginID == null}) {

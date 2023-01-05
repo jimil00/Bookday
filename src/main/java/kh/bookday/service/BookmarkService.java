@@ -1,5 +1,6 @@
 package kh.bookday.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,12 @@ public class BookmarkService {
 		return dao.selectBmListByBmseq(dto);
 	}
 	
-	public List<BookmarkDTO> selectBookmarkListBySw(String searchWord){
-		return dao.selectBookmarkListBySw(searchWord);
+	public List<BookmarkDTO> selectBookmarkListBySw(String id, String searchWord){
+		HashMap<String, String> param = new HashMap<>();
+		param.put("id", id);
+		param.put("searchWord", searchWord);
+
+		return dao.selectBookmarkListBySw(param);
 	}
 	
 	public void deleteBookmarkBySeq(int bm_seq) {

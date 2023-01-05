@@ -42,7 +42,11 @@ public class PostDAO {
 	public int insertPost(PostDTO dto) {
 		return db.insert("Post.insertPost", dto);
 	}
-
+	
+	public void addViewCount(int p_seq) {
+		db.update("Post.addViewCount", p_seq);
+	}
+	
 	// 포스트 디테일 출력
 	public PostDTO selectPostByPseq(int p_seq){
 		return db.selectOne("Post.selectPostByPseq", p_seq);

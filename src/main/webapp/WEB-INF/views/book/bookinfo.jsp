@@ -33,9 +33,11 @@
 	font-family: 'NanumSquareNeo-Variable';
 }
 
-/* div {
-border: 1px solid black;
-} */
+div {
+	/* 	border: 1px solid black; */
+	
+}
+
 .container {
 	margin: auto;
 	overflow: hidden;
@@ -141,16 +143,15 @@ hr {
 	text-decoration-color: #5397fc;
 }
 
-#login{
-width:100px;
-text-align:right;
+#login {
+	width: 100px;
+	text-align: right;
 }
 
 #nick {
 	text-decoration: none;
-	width:100px;
+	width: 100px;
 }
-
 
 #nick:hover {
 	color: black;
@@ -349,7 +350,7 @@ span, #logoImg:hover {
 }
 
 #input_btn {
-	cursor:pointer;
+	cursor: pointer;
 	width: 9%;
 	height: 50px;
 	outline: none;
@@ -485,12 +486,14 @@ span, #logoImg:hover {
 	box-shadow: 3px 3px #80808050;
 }
 
-.p_line{
-	border-top:1px;
+.p_line {
+	border-top: 1px;
 }
+
 .post-main-top {
+	padding-top: 15px;
 	overflow: hidden;
-	height:50px;
+	line-height: 10px;
 }
 
 .profile-img-div {
@@ -506,9 +509,8 @@ span, #logoImg:hover {
 }
 
 .p-writer {
-	mar-top: 10px;
-	height: 27px;
-	overflow: hidden;
+	padding-top: 4px;
+	/*  	overflow: hidden;  */
 	width: 150px;
 	display: inline-block;
 	font-weight: bold;
@@ -516,10 +518,13 @@ span, #logoImg:hover {
 	word-wrap: break-word;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	height: 32px;
+	line-height: 32px;
 }
 
 .p-like {
-	overflow: hidden;
+	/* 	overflow: hidden;  */
+	
 }
 
 .like-icon {
@@ -528,13 +533,13 @@ span, #logoImg:hover {
 	bottom: 1px;
 	font-size: 18px;
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-	font-size: 18px;
 }
 
 .like-text {
 	float: left;
 	position: relative;
-	line-height: 19px;
+	height: 20px;
+	line-height: 17px;
 	padding-left: 3px;
 	font-size: 13px;
 }
@@ -543,8 +548,9 @@ span, #logoImg:hover {
 	overflow: hidden;
 	width: 100%;
 	height: 30px;
-	font-size: 15px; 
-	font-weight : bold;
+	line-height: 17px;
+	font-size: 15px;
+	font-weight: bold;
 	padding-left: 10px;
 	padding-right: 10px;
 	word-wrap: break-word;
@@ -554,15 +560,16 @@ span, #logoImg:hover {
 }
 
 .p-content {
-/* 	overflow: hidden; */
-/* 	font-size: 15px; */
-/* 	padding-left: 10px; */
-/* 	padding-right: 10px; */
-/* 	display: -webkit-box; */
-/* 	height: 152px; */
-/* 	-webkit-line-clamp: 9; */
-/* 	-webkit-box-orient: vertical; */
-/* 	text-overflow: ellipsis; */
+	overflow: hidden;
+	font-size: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: -webkit-box;
+	height: 145px;
+	line-height: 17px;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
 }
 
 .with-books {
@@ -580,7 +587,7 @@ span, #logoImg:hover {
 .w_img_url {
 	width: 150px;
 	height: 233px;
-		background: linear-gradient(to right, rgba(0, 0, 0, .3) 3px,
+	background: linear-gradient(to right, rgba(0, 0, 0, .3) 3px,
 		rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.25) 7px,
 		rgba(255, 255, 255, 0.25) 10px, transparent 12px, transparent 16px,
 		rgba(255, 255, 255, 0.25) 20px, transparent 22px);
@@ -592,30 +599,30 @@ span, #logoImg:hover {
 
 .w_title, .w_writer {
 	margin: 0px;
-	margin-left:15px;
+	margin-left: 15px;
 }
 
 .w_title {
 	overflow: hidden;
-    height: 23px;
-    width: 120px;
-    font-weight: bold;
-    font-size: 15px;
-    text-align: center;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	height: 23px;
+	width: 120px;
+	font-weight: bold;
+	font-size: 15px;
+	text-align: center;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .w_writer {
 	overflow: hidden;
-    height: 23px;
-    width: 120px;
-    text-align: center;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 14px;
+	height: 23px;
+	width: 120px;
+	text-align: center;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 14px;
 }
 
 .book_box>a {
@@ -942,14 +949,14 @@ span, #logoImg:hover {
 						<p class="title">포스트</p>
 					</div>
 
- 					<div class="swiper-container">
- 						<div class="swiper-wrapper"> 
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
 							<c:choose>
 								<c:when test="${not empty plist}">
 									<c:forEach items="${plist}" var="p">
-										<div class="swiper-slide"> 
+										<div class="swiper-slide">
 											<div class="post-main">
-												<br>
+												<!-- <br>  -->
 												<div class="post-main-top">
 													<div class="profile-img-div">
 														<img src="/resources/basic.png" class="profile_img">
@@ -961,23 +968,23 @@ span, #logoImg:hover {
 														<div class="like-text">${p.p_like_count }</div>
 													</div>
 												</div>
-												<hr id="p_line">
+												<hr>
 												<div class="p-title" title="${p.p_title }">${p.p_title }</div>
 												<div class="p-content">
-													<a href="/" style="text-decoration-line: none; color: black;">${p.p_content }</a>
+													<a href="/booknote/selectPostByPseq?p_seq=${post.p_seq }"
+														style="text-decoration-line: none; color: black;">${p.p_content }</a>
 												</div>
 											</div>
- 										</div> 
+										</div>
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
 									<p class="post_title">작성된 포스트가 없습니다.</p>
 								</c:otherwise>
 							</c:choose>
- 						</div> 
-					</div> 
+						</div>
+					</div>
 				</div>
-
 
 				<div class="with-books">
 					<p class="title">함께 담은 책</p>
@@ -994,7 +1001,8 @@ span, #logoImg:hover {
 
 												<a href="/book/selectBookinfo?b_isbn=${w.b_isbn}">
 													<div class="book">
-														<img src="${w.b_img_url}" title="${w.b_title}" class="w_img_url">
+														<img src="${w.b_img_url}" title="${w.b_title}"
+															class="w_img_url">
 														<p class="w_title">${w.b_title}</p>
 														<p class="w_writer">${w.b_writer}</p>
 													</div>
