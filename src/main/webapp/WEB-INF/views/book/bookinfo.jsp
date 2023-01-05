@@ -974,10 +974,18 @@ span, #logoImg:hover {
 												<div class="p-content">
 													<a href="/booknote/selectPostByPseq?p_seq=${p.p_seq }"
 														style="text-decoration-line: none; color: black;"
-														id="post-link">${p.p_content }</a>
+														id="${p.p_seq }">${p.p_content }</a>
 												</div>
 											</div>
 										</div>
+										<script>
+										$("#${p.p_seq }").on("click", function() {
+										  	  if(${empty loginID}) {
+										  		 alert("로그인 후 이동할 수 있습니다.");
+										  		 return false;
+										  	  }
+										  })
+							</script>
 									</c:forEach>
 								</c:when>
 								<c:otherwise>

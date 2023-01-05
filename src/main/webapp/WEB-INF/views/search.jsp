@@ -536,9 +536,17 @@ text-align:right;
 								<hr style="border-top: 1px">
 								<div class="p-title" title="${post.p_title }">${post.p_title }</div>
 								<div class="p-content">
-									<a href="/booknote/selectPostByPseq?p_seq=${post.p_seq }" style="text-decoration-line: none; color: black;" id="post-link">${post.p_content }</a>
+									<a href="/booknote/selectPostByPseq?p_seq=${post.p_seq }" style="text-decoration-line: none; color: black;" id="${post.p_seq }">${post.p_content }</a>
 								</div>
 							</div>
+							<script>
+							$("#${post.p_seq }").on("click", function() {
+							  	  if(${empty loginID}) {
+							  		 alert("로그인 후 이동할 수 있습니다.");
+							  		 return false;
+							  	  }
+							  })
+							</script>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
@@ -584,12 +592,7 @@ text-align:right;
 		</div>
 	</div>
 	<script>
-		$("#post-link").on("click", function() {
-	  	  if(${loginID == null}) {
-	  		 alert("로그인 후 이동할 수 있습니다.");
-	  		 return false;
-	  	  }
-	  })
+		
       $("#logoImg").on("click", function() {
          location.href = "/";
       })
