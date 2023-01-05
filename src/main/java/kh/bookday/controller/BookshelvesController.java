@@ -72,6 +72,8 @@ public class BookshelvesController {
 		
 		List<PostDTO> plist = pservice.select20PostListById(id);
 		model.addAttribute("plist", plist);
+		
+		System.out.println(new Gson().toJson(plist));
 
 		return "mybook/bookshelves";
 	}

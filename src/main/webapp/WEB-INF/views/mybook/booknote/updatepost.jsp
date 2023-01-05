@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>insertPost</title>
+<title>updatePost</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -316,12 +316,12 @@ span.size-30 {
 	font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 200, 'opsz' 30
 }
 
-/* ContentsBodyInsertBooknote */
-.insertBooknote {
+/* ContentsBodyupdateBooknote */
+.updateBooknote {
 	width: 100%;
 }
 
-.insertBooknoteHeader {
+.updateBooknoteHeader {
 	width: 100%;
 }
 
@@ -331,8 +331,8 @@ span.size-30 {
 	margin-bottom: 15px;
 }
 
-/* ContentsBodyInsertBooknoteSearchBookInfo */
-.insertBooknoteBookInfo {
+/* ContentsBodyupdateBooknoteSearchBookInfo */
+.updateBooknoteBookInfo {
 	height: 50px;
 	width: 100%;
 	display: flex;
@@ -416,21 +416,21 @@ span.size-30 {
 	font-size: 13px;
 }
 
-/* ContentsBodyInsertBooknoteDate */
-.insertBooknoteDate {
+/* ContentsBodyupdateBooknoteDate */
+.updateBooknoteDate {
 	height: 50px;
 	width: 100%;
 	display: flex;
 	align-items: center;
 }
 
-.insertBooknoteDateTitle {
+.updateBooknoteDateTitle {
 	font-size: 15px;
 	margin-right: 10px;
 	padding-bottom: 10px;
 }
 
-.insertBooknoteDateInput {
+.updateBooknoteDateInput {
 	position: relative;
 	bottom: 5px;
 	overflow: hidden;
@@ -454,7 +454,7 @@ span.size-30 {
 	right: 40px;
 }
 
-.insertBooknoteDateBtn {
+.updateBooknoteDateBtn {
 	position: absolute;
 	right: 0px;
 	line-height: 100px;
@@ -469,8 +469,8 @@ span.size-30 {
 	justify-content: center;
 }
 
-/* insertBooknoteTitle */
-.insertBooknoteTitle {
+/* updateBooknoteTitle */
+.updateBooknoteTitle {
 	height: 50px;
 	width: 100%;
 	display: flex;
@@ -479,13 +479,13 @@ span.size-30 {
 	
 }
 
-.insertBooknoteTitleTitle {
+.updateBooknoteTitleTitle {
 	font-size: 15px;
 	margin-right: 10px;
 	padding-bottom: 10px;
 }
 
-.insertBooknoteTitleBox {
+.updateBooknoteTitleBox {
 	position: relative;
 	bottom: 5px;
 	overflow: hidden;
@@ -496,7 +496,7 @@ span.size-30 {
 	box-shadow: 2px 2px 2px 2px #80808050;
 }
 
-#insertBooknoteTitleTxt {
+#updateBooknoteTitleTxt {
 	float: left;
 	padding: 0;
 	background: none;
@@ -509,15 +509,15 @@ span.size-30 {
 	right:10px;
 }
 
-/* ContentsBodyInsertBooknoteBtn */
-.insertBooknoteBtn {
+/* ContentsBodyupdateBooknoteBtn */
+.updateBooknoteBtn {
 	float: left;
 	width: 100%;
 	height: 50px;
 	position: relative;
 }
 
-#insertBooknoteBtn {
+#updateBooknoteBtn {
 	position: absolute;
 	top: 50%;
 	transform: translate(0%, -50%);
@@ -674,12 +674,12 @@ display:none;
                     				}
                     			});
                     		}
-                            $('#insertBooknoteBtn').on('click', function () {
+                            $('#updateBooknoteBtn').on('click', function () {
             					if($(".searchResultBookInfo").attr("isbn") == null){
             						alert("책을 검색해주세요.");
             						return false;
             					}
-                                if ($("#insertBooknoteTitleTxt").val() == "") {
+                                if ($("#updateBooknoteTitleTxt").val() == "") {
                                     alert('제목을 입력해주세요.');
                                     return false;
                                 }
@@ -698,7 +698,7 @@ display:none;
                                     + summernoteContent);
                                 var b_isbn = $(".searchResultBookInfo").attr("isbn");
                                 var b_img_url = $("#b_img_url").attr("src");
-                                var b_title = $("#b_title").html();
+                                var b_title = $(".bookTitle").html();
                                 var b_writer = $(".bookWriter").html();
                                 var b_genre = $(".bookGenre").html();
                                 var b_publisher = $(".bookPublisher").html();
@@ -708,11 +708,11 @@ display:none;
 								var dyst_read = $("#demo").val().substring(0,10);
 								var dyfn_read = $("#demo").val().substring(13,23);
 								var p_writer_nn = $("#contentsHeaderTxt").attr("p_writer_nn");
-                                var p_title = $("#insertBooknoteTitleTxt").val();
+                                var p_title = $("#updateBooknoteTitleTxt").val();
 
                                 $
                                     .ajax({
-                                        url: "/booknote/insertPost",
+                                        url: "/booknote/updatePost",
                                         type: "post",
                                         data: {
                                             "b_isbn": b_isbn,
@@ -731,6 +731,7 @@ display:none;
 
                                         success: function (data) {
                                             var p_seq = data;
+                                            console.log(p_seq)
                                             location.href = "/booknote/selectPostByPseq?p_seq="
                                                 + p_seq;
                                                 
@@ -807,10 +808,10 @@ display:none;
 			<div class="contents">
 				<div class="contentsHeader">
 					<div id="contentsHeaderImg">
-						<img src="/resources/profile/${dto.sysprofname }" width="100" height="100"
+						<img src="/resources/profile/${mdto.sysprofname }" width="100" height="100"
 							id="profile">
 					</div>
-					<div id="contentsHeaderTxt" p_writer_nn="${dto.nickname }">${dto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${dto.signup_date
+					<div id="contentsHeaderTxt" p_writer_nn="${mdto.nickname }">${mdto.nickname }님&nbsp책하루와&nbsp함께한&nbsp${mdto.signup_date
 						} 하루</div>
 				</div>
 				<div class="contentsBody">
@@ -818,9 +819,9 @@ display:none;
 						<div class="titleTxt">POST</div>
 						&nbsp <span class="material-symbols-outlined size-30">edit</span>
 					</div>
-					<div class="insertBooknote">
+					<div class="updateBooknote">
 						<div class="bookInfo">
-							<div class="insertBooknoteBookInfo">
+							<div class="updateBooknoteBookInfo">
 								<div class="booknoteBookSearchTitle">책 검색</div>
 								<div class="booknoteBookSearchBox">
 									<input class="booknoteBookSearchTxt" type="text"
@@ -835,29 +836,29 @@ display:none;
 						</div>
 					</div>
 					<hr class="divider">
-					<div class="insertBooknoteDate">
-						<div class="insertBooknoteDateTitle">읽은 기간 선택</div>
-						<div class="insertBooknoteDateInput">
+					<div class="updateBooknoteDate">
+						<div class="updateBooknoteDateTitle">읽은 기간 선택</div>
+						<div class="updateBooknoteDateInput">
 							<input type="text" id="demo" name="demo" value="${dto.dyst_read } ~ ${dto.dyfn_read }">
-							<button class="insertBooknoteDateBtn">
+							<button class="updateBooknoteDateBtn">
 								<span class="material-symbols-outlined"> calendar_month </span>
 							</button>
 						</div>
 					</div>
 					<hr class="divider">
-					<div class="insertBooknoteTitle">
-						<div class="insertBooknoteTitleTitle">제목</div>
-						<div class="insertBooknoteTitleBox">
-							<input type="text" id="insertBooknoteTitleTxt"
+					<div class="updateBooknoteTitle">
+						<div class="updateBooknoteTitleTitle">제목</div>
+						<div class="updateBooknoteTitleBox">
+							<input type="text" id="updateBooknoteTitleTxt"
 								placeholder="제목을 입력해주세요." maxlength="101" value="${dto.p_title }">
 
 						</div>
 					</div>
-					<div class="insertBooknoteContent">
+					<div class="updateBooknoteContent">
 						<div id="summernote" name="booknoteContent">${dto.p_content }</div>
 					</div>
-					<div class="insertBooknoteBtn">
-						<button id="insertBooknoteBtn">입력</button>
+					<div class="updateBooknoteBtn">
+						<button id="updateBooknoteBtn">수정</button>
 					</div>
 				</div>
 			</div>
@@ -971,7 +972,7 @@ display:none;
 
                 $(function () {
 
-                    $(".insertBooknoteDateBtn").on("click", function () {
+                    $(".updateBooknoteDateBtn").on("click", function () {
                         $("#demo").click();
                     })
 
@@ -1056,7 +1057,7 @@ display:none;
                     $(".bookInfo").append(divSearchResultBookInfo);
 
                 }
-                $('#insertBooknoteTitleTxt').keyup(function () {
+                $('#updateBooknoteTitleTxt').keyup(function () {
                     let title = $(this).val();
 
                     // 글자수 세기

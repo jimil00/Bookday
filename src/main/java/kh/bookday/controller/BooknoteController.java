@@ -153,6 +153,45 @@ public class BooknoteController {
 		return "mybook/booknote/selectpost";
 	}
 
+	// 포스트 수정 페이지로
+	@GetMapping("toUpdatePost")
+	public String toUpdatePost(int p_seq, Model model) {
+
+		String id = String.valueOf(session.getAttribute("loginID"));
+
+		// 회원 정보
+		MemberDTO mdto = mservice.selectMemberById(id);
+		model.addAttribute("mdto", mdto);
+		
+		service.addViewCount(p_seq);
+		
+		// 포스트 디테일
+		PostDTO dto = service.selectPostByPseq(p_seq);
+		model.addAttribute("dto", dto);
+
+		return "mybook/booknote/updatepost";
+	}
+	
+	// 포스트 수정
+	@ResponseBody
+	@RequestMapping("updatePost")
+	public int updatePost(PostDTO dto, Model model) {
+
+		String id = String.valueOf(session.getAttribute("loginID"));
+
+		// 회원 정보
+		MemberDTO mdto = mservice.selectMemberById(id);
+		
+		dto.setP_seq(dto.getP_seq());
+		dto.setP_writer_id(id);
+		dto.setP_title(dto.getP_title().replace("<", "&lt;"));
+		dto.setP_content(dto.getP_content().replace("<script>", "&lt;"));
+		service.updatePost(dto);
+		
+		return dto.getP_seq();
+
+	}
+	
 	// 포스트 삭제
 	@RequestMapping("deletePostByPseq")
 	public String deletePostByPseq(int p_seq) {

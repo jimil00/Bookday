@@ -415,7 +415,7 @@ span.size-30 {
 	font-weight: 200;
 }
 
-.postTitle a {
+a {
 	text-decoration: none;
 	color: black;
 }

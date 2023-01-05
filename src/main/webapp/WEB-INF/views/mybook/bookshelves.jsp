@@ -627,7 +627,6 @@ span.size-27 {
 					<hr class="bookshelvesHr">
                     </c:when>
                     <c:otherwise>
- 
 						<c:forEach var="post" items="${plist }" varStatus="status">						
 							<c:if test="${status.count%10==1 }">
 								<div class="postedBooks">
@@ -843,10 +842,10 @@ span.size-27 {
 
     
     function infinityScroll() {
-    	let postedBooks = document.querySelectorAll(`.postedBook`);
-        let lastBookCount = $(postedBooks[postedBooks.length-1]).attr("id");
-        console.log(lastBookCount);
-		if(lastBookCount == 20){
+//     	let postedBooks = document.querySelectorAll(`.postedBook`);
+//         let lastBookCount = $(postedBooks[postedBooks.length-1]).attr("id");
+//         console.log(lastBookCount);
+// 		if(lastBookCount == 20){
         $.getJSON("/bookshelves/nextList", {count: count})
             .done(res => {
                 console.log(res)
@@ -854,7 +853,7 @@ span.size-27 {
                     setPostedAppend(res)
                 }
             })
-    }
+//     }
     }
 
     function setPostedAppend(res) {

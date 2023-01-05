@@ -21,10 +21,12 @@ public class PostDAO {
 	public int selectPostCountById(String id) {
 		return db.selectOne("Post.selectPostCountById", id);
 	}
+	
 	// 포스트 리스트 20개 먼저 출력
 	public List<PostDTO> select20PostListById(String id){
 		return db.selectList("Post.select20PostListById", id);
 	}
+	
 	// 포스트 리스트 책장에 20개씩 출력(무한스크롤)
 	public List<PostDTO> selectNextPostListById(HashMap<String, Object> data){
 		return db.selectList("Post.selectNextPostListById", data);
@@ -39,6 +41,10 @@ public class PostDAO {
 	// 포스트 입력
 	public int insertPost(PostDTO dto) {
 		return db.insert("Post.insertPost", dto);
+	}
+
+	public void updatePost(PostDTO dto) {
+		db.update("Post.updatePost", dto);		
 	}
 	
 	public void addViewCount(int p_seq) {
@@ -120,11 +126,7 @@ public class PostDAO {
 	//인기 포스트 출력
 	public List<PostDTO> selectPopularPost() {
 		return db.selectList("Post.selectPopularPost");
-
 	}
-
-
-
 
 
 }
