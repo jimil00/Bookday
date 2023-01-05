@@ -155,8 +155,14 @@ span.size-40 {
 	text-decoration-color: #5397fc;
 }
 
+#login{
+width:100px;
+text-align:right;
+}
+
 #nick {
 	text-decoration: none;
+	width:100px;
 }
 
 #nick:hover {
@@ -756,7 +762,7 @@ span.size-20 {
 											<c:forEach var="i" items="${list}">
 												<div class="pcContents" seq="${i.pc_seq }">
 													<div class="pcWriterImg">
-														<img src="${i.sysprofname }">
+														<img src="/resources/profile/${i.sysprofname }">
 													</div>
 													<div class="pcContentsTxt">
 														<div class="pcContentsInfo">
@@ -849,7 +855,15 @@ span.size-20 {
                     }
                 });
                 $("#notifications").on("click", function () {
-                    alert(new Date());
+              	  let today = new Date();   
+
+            	  let hours = ('0' + today.getHours()).slice(-2); 
+            	  let minutes = ('0' + today.getMinutes()).slice(-2);
+            	  let seconds = ('0' + today.getSeconds()).slice(-2); 
+
+            	  let timeString = hours + ':' + minutes  + ':' + seconds;
+        		 alert("현재 시간은 "+timeString);
+
                 });
                 $("#bookbag").on("click", function() {
               	  if(${loginID == null}) {

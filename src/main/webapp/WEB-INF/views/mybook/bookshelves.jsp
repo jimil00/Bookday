@@ -174,8 +174,15 @@ span.size-40 {
 	margin-block-end: 1em;
 }
 
+
+#login{
+width:100px;
+text-align:right;
+}
+
 #nick {
 	text-decoration: none;
+	width:100px;
 }
 
 #nick:hover {
@@ -694,7 +701,14 @@ span.size-27 {
 			}
 		})
 		$("#notifications").on("click", function() {
-			alert(new Date());
+			  let today = new Date();   
+
+	    	  let hours = ('0' + today.getHours()).slice(-2); 
+	    	  let minutes = ('0' + today.getMinutes()).slice(-2);
+	    	  let seconds = ('0' + today.getSeconds()).slice(-2); 
+
+	    	  let timeString = hours + ':' + minutes  + ':' + seconds;
+			 alert("현재 시간은 "+timeString);
 		})
 		$("#bookbag").on("click", function() {
 			location.href = "/delivery/selectBookbagListById";
