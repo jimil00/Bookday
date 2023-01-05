@@ -121,7 +121,6 @@ public class MemberController {
 		System.out.println("번호 중복 체크 결과:"+result);
 
 		return result; 
-
 	}
 
 
@@ -262,9 +261,6 @@ public class MemberController {
 	public String updateMemInfo(MemberDTO dto, MultipartFile[] prof_img) {
 		
 		String id = String.valueOf(session.getAttribute("loginID"));
-		
-		//비밀번호 빈 값을 보냈을 때 자동으로 생성되는 값
-		//String blankPw= "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 		
 		dto.setId(id);
 		
