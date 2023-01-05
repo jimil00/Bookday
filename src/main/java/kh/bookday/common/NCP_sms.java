@@ -6,17 +6,17 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import java.util.Random;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.springframework.stereotype.Repository;
 
 
 public class NCP_sms{
@@ -53,25 +53,28 @@ public class NCP_sms{
 		    bodyJson.put("content","책하루 인증 번호는 "+"["+rand+"]"+"입니다.");		// Mandatory(필수), 기본 메시지 내용, SMS: 최대 80byte, LMS, MMS: 최대 2000byte
 		    bodyJson.put("messages", toArr);					// Mandatory(필수), 아래 항목들 참조 (messages.XXX), 최대 1,000개
 		    
-		    String body = bodyJson.toJSONString();
-		    //String body = bodyJson.toString();
+		    //String body = bodyJson.toJSONString();
+		    String body = bodyJson.toString();
 		    
 		    System.out.println(body);
 		    
 	        try {
 	            URL url = new URL(apiUrl);
+	            URLEncoder.encode(apiUrl, "UTF-8");
 
 	            HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	            con.setUseCaches(false);
 	            con.setDoOutput(true);
 	            con.setDoInput(true);
-	            con.setRequestProperty("content-type", "application/json");
+	            con.setRequestProperty("content-type", "application/json;charset=utf-8");
 	            con.setRequestProperty("x-ncp-apigw-timestamp", timestamp);
 	            con.setRequestProperty("x-ncp-iam-access-key", accessKey);
 	            con.setRequestProperty("x-ncp-apigw-signature-v2", makeSignature(requestUrl, timestamp, method, accessKey, secretKey));
 	            con.setRequestMethod(method);
 	            con.setDoOutput(true);
 	            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+	       
+	            //con.getOutputStream(),"UTF-8")
 	            
 	            wr.write(body.getBytes());
 	            wr.flush();
@@ -81,7 +84,10 @@ public class NCP_sms{
 	            BufferedReader br;
 	            System.out.println("responseCode" +" " + responseCode);
 	            if(responseCode == 202) { // 정상 호출
-	                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	            	
+	            	 br = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
+	                //br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	            	 
 	            } else { // 에러 발생
 	                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 	            }
@@ -89,7 +95,9 @@ public class NCP_sms{
 	            String inputLine;
 	            StringBuffer response = new StringBuffer();
 	            while ((inputLine = br.readLine()) != null) {
-	                response.append(inputLine);
+	            	
+	            	response.append(new String(URLDecoder.decode(inputLine, "UTF-8")));
+	                //response.append(inputLine);
 	            }
 	            br.close();
 	            
