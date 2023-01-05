@@ -432,7 +432,7 @@ span, #logoImg:hover {
 								<br>
 								<div class="post-main-top">
 									<div class="profile-img-div">
-										<img src="/resources/basic.png" class="profile-img">
+										<img src="/resources/profile/${post.sysprofname}" class="profile-img">
 									</div>
 									<div class="p-writer">${post.p_writer_nn }</div>
 									<div class="p-like">
@@ -444,7 +444,7 @@ span, #logoImg:hover {
 								<hr style="border-top: 1px">
 								<div class="p-title" title="${post.p_title }">${post.p_title }</div>
 								<div class="p-content">
-									<a href="/booknote/selectPostByPseq?p_seq=${post.p_seq }" style="text-decoration-line: none; color: black;">${post.p_content }</a>
+									<a href="/booknote/selectPostByPseq?p_seq=${post.p_seq }" style="text-decoration-line: none; color: black;" id="post-link">${post.p_content }</a>
 								</div>
 							</div>
 						</c:forEach>
@@ -455,6 +455,12 @@ span, #logoImg:hover {
 		<div class="footer"></div>
 	</div>
 	<script>
+		$("#post-link").on("click", function() {
+	  	  if(${loginID == null}) {
+	  		 alert("로그인 후 이동할 수 있습니다.");
+	  		 return false;
+	  	  }
+	  })
       $("#logoImg").on("click", function() {
          location.href = "/";
       })
