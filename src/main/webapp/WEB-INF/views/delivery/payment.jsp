@@ -156,8 +156,14 @@ span.size-40 {
 	text-decoration-color: #5397fc;
 }
 
+#login{
+width:100px;
+text-align:right;
+}
+
 #nick {
 	text-decoration: none;
+	width:100px;
 }
 
 #nick:hover {
@@ -255,6 +261,92 @@ li {
 }
 
 /* body */
+
+/* footer */
+.footer {
+	margin: 5px;
+}
+
+.f_header {
+	display: inline-flex;
+	margin-top: 10px;
+}
+
+.f_header>a>img {
+	width: 200px;
+}
+
+.sns_icon {
+	position: relative;
+	top: 1px;
+	left: 595px;
+}
+
+.sns_icon>a>img {
+	height: 50px;
+	width:200px;
+}
+
+.business_info {
+	margin-top: 30px;
+}
+
+#business_info_title {
+	font-size: x-small;
+	color: #808080d6;
+}
+
+.business_info>span {
+	margin-top: 5px;
+}
+
+.f_intro {
+	margin-top: 15px;
+	margin-bottom: 20px;
+	font-size: small;
+}
+
+.f_intro>span {
+	color: #4d4b4bc1;
+}
+
+.f_line {
+	color: #808080d6;
+}
+
+.business_info {
+	margin-top: 20px;
+}
+
+#business_info_text {
+	margin-top: 10px;
+	font-size: x-small;
+	color: #808080d6;
+}
+
+.inline_info {
+	display: inline-flex;
+}
+
+#arrow_down2, #arrow_up2 {
+	position: relative;
+	bottom: 6px;
+	color: #808080d6;
+}
+
+#arrow_up2 {
+	display: none;
+}
+
+.sns_icon>a>img {
+	width: 40px;
+	height: 40px;
+}
+
+.copyright {
+	margin-top: 5px;
+	font-size: x-small;
+}
 </style>
 </head>
 <body>
@@ -328,7 +420,44 @@ li {
 				</ul>
 			</div>
 		</div>
-		<div class="footer"></div>
+		<div class="footer">
+			<hr>
+			<div class="f_header">
+				<a href="/"><img src="/resources/bookday_logotitle.png"></a>
+
+				<div class="sns_icon">
+					<a href="#"><img src="/resources/instagram.png" id="insta"></a>
+					<a href="#"><img src="/resources/facebook.png" id="facebook"></a>
+					<a href="#"><img src="/resources/twitter_black.png" id="twiter"></a>
+					<a href="#"><img src="/resources/youtube.png" id="youtube"></a>
+				</div>
+
+			</div>
+			<div class="business_info">
+				<div class="inline_info">
+					<div id="business_info_title">사업자 정보</div>
+					<span class="arrow_icon material-symbols-outlined" id="arrow_down2">keyboard_arrow_down</span>
+					<span class="arrow_icon material-symbols-outlined" id="arrow_up2">keyboard_arrow_up</span>
+				</div>
+
+				<div id="business_info_text">
+					<span>대표자 성태조 </span><span>|</span><span> 사업자 등록번호
+						01-20-22015</span>
+					<p>주소 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 3F</p>
+					<span>대표전화 1544-9970 </span><span>|</span><span> 이메일
+						help@bookday.com</span>
+				</div>
+			</div>
+
+			<div class="f_intro">
+				<span>회사소개</span> <span class="f_line">|</span> <span>이용약관</span> <span
+					class="f_line">|</span> <span>개인정보처리방침</span> <span class="f_line">|</span>
+				<span>청소년보호정책</span> <span class="f_line">|</span> <span>제휴
+					문의</span>
+			</div>
+			<p class="copyright">Copyright © 2022 책하루 All Rights Reserved.</p>
+			<!--  <p class="copyright">©BOOKDAY Corp.</p> -->
+		</div>
 	</div>
 	<script>
 		$("#pay-btn").on("click", function() {
@@ -368,7 +497,14 @@ li {
 			}
 		})
 		$("#notifications").on("click", function() {
-			location.href = "//toNotification";
+			  let today = new Date();   
+
+	    	  let hours = ('0' + today.getHours()).slice(-2); 
+	    	  let minutes = ('0' + today.getMinutes()).slice(-2);
+	    	  let seconds = ('0' + today.getSeconds()).slice(-2); 
+
+	    	  let timeString = hours + ':' + minutes  + ':' + seconds;
+			 alert("현재 시간은 "+timeString);
 		})
 		$("#bookbag").on("click", function() {
 			location.href = "/delivery/selectBookbagListById";
@@ -384,6 +520,25 @@ li {
          location.href = "/member/toMypage";
          }
       })
+      
+       //footer: 사업자 정보 토글 기능
+       $("#business_info_text").hide();
+
+                    $("#business_info_title, #arrow_down2").click(function() {
+
+                        $("#business_info_text").slideToggle(200);
+
+                            $("#arrow_up2").css("display", "block");
+                            $("#arrow_down2").css("display", "none"); 
+ 
+                    });
+
+                    $("#arrow_up2").click(function() {
+                        $("#business_info_text").slideToggle(200);
+
+                        $("#arrow_down2").css("display", "block");
+                        $("#arrow_up2").css("display", "none");
+                    });
 	</script>
 </body>
 </html>
