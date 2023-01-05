@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -127,6 +128,7 @@ public class MemberService {
 		try {
 			//카카오 서버랑 연결하기 위한 url 선언
 			URL url = new URL(reqURL);
+			 URLEncoder.encode(reqURL, "UTF-8");
 
 			//http 연결
 			HttpURLConnection conn= (HttpURLConnection) url.openConnection();
@@ -151,7 +153,8 @@ public class MemberService {
 			System.out.println("카카오 로그인 응답 코드: "+responseCode);
 
 			//response로 받은 json 코드 읽어오기
-			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			//BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
 
 			String line = "";
 			String result = "";
@@ -202,12 +205,13 @@ public class MemberService {
 			//카카오 서버에 연결되기 위해 필요한 정보들(요청을 쏘는 방식 및 헤더 설정)
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Authorization", Authorization);
+			conn.addRequestProperty("charset", "utf-8");
 
 			int responsecode= conn.getResponseCode();
 			System.out.println("유저 정보 조회 요청 코드:"+responsecode);
 
 			//값 읽어오기
-			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
 
 			String line="";
 			String result ="";
