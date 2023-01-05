@@ -38,7 +38,10 @@
 button:hover {
 	cursor: pointer;
 }
-
+a{
+	text-decoration: none;
+	color: black;
+}
 /*     header */
 .header {
 	height: 150px;
@@ -912,18 +915,10 @@ span.size-20 {
             		}
                 })
                 $("#updPBtn").on("click", function(){
-                	alert("수정은 다음에 합시다 ^_ㅠ");
+					alert("수정은 다음 기회에..^_ㅠ");
                 })
                 
-        		//포스트 프로필 사진 없을 때(수아)
-            	$( document ).ready( function() {
-            	    
-            	  	if(${p.sysprofname == '0'}){
-            	  		
-            			$("#profile").attr("src","/resources/basic.png");
-            							return;
-            						}
-            	   });
+
                 
                 
                 $(".insertPcContentBox").keyup(function () {

@@ -44,6 +44,7 @@ public class PostService {
 	
 	// 포스트 리스트 먼저 출력(jstl)
 	public List<PostDTO> select20PostListById(String id){
+
 		return dao.select20PostListById(id);
 	}
 	
@@ -82,6 +83,11 @@ public class PostService {
 	public int insertPost(PostDTO dto) { // p_seq받아오는 걸로 바꾸기
 		dao.insertPost(dto);
 		return dto.getP_seq();
+	}
+	
+	// 포스트 페이지) 포스트 수정
+	public void updatePost(PostDTO dto) {
+		dao.updatePost(dto);
 	}
 	
 	// 포스트 페이지) 포스트 조회수
@@ -200,6 +206,8 @@ public class PostService {
 		return dao.selectPostListBySw(searchWord);
 	}
 // 지민
+
+
 
 
 
