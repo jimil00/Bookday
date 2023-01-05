@@ -21,15 +21,13 @@ public class PostDAO {
 	public int selectPostCountById(String id) {
 		return db.selectOne("Post.selectPostCountById", id);
 	}
-	
-	// 포스트 리스트 책장에 20개씩 출력
-	public List<PostDTO> select20PostListById(HashMap<String, Object> data){
-		return db.selectList("Post.select20PostListById", data);
+	// 포스트 리스트 20개 먼저 출력
+	public List<PostDTO> select20PostListById(String id){
+		return db.selectList("Post.select20PostListById", id);
 	}
-
-	// 포스트 20
-	public int select20PostCount() {
-		return db.selectOne("Post.select20PostCount");
+	// 포스트 리스트 책장에 20개씩 출력(무한스크롤)
+	public List<PostDTO> selectNextPostListById(HashMap<String, Object> data){
+		return db.selectList("Post.selectNextPostListById", data);
 	}
 	
 	// 포스트

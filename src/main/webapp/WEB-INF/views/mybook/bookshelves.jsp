@@ -621,7 +621,7 @@ span.size-27 {
                     </c:when>
                     <c:otherwise>
  
-						<c:forEach var="post" items="${plist }" varStatus="status">
+						<c:forEach var="post" items="${plist }" varStatus="status">						
 							<c:if test="${status.count%10==1 }">
 								<div class="postedBooks">
 							</c:if>
@@ -829,6 +829,10 @@ span.size-27 {
 
     
     function infinityScroll() {
+    	let postedBooks = document.querySelectorAll(`.postedBook`);
+        let lastBookCount = $(postedBooks[postedBooks.length-1]).attr("id");
+        console.log(lastBookCount);
+		if(lastBookCount == 20){
         $.getJSON("/bookshelves/nextList", {count: count})
             .done(res => {
                 console.log(res)
@@ -837,20 +841,21 @@ span.size-27 {
                 }
             })
     }
+    }
 
     function setPostedAppend(res) {
-        let postedBooks = $("<div>").addClass("postedBooks")
+        let postedBooks = $("<div>").addClass("postedBooks");
 		console.log(count);
         for (let i = 0; i < res.length; i++) {
-            let postedbook = $("<div>").addClass("postedBook").attr("id", )
-            let img = $("<img class='book'>").attr("src", res[i].b_img_url).attr("isbn", res[i].b_isbn)
-
-            postedBooks.append(postedbook.append(img))
+            let postedbook = $("<div>").addClass("postedBook");
+            let img = $("<img class='book'>").attr("src", res[i].b_img_url).attr("isbn", res[i].b_isbn);
+			postedbook.append(img);
+            postedBooks.append(postedbook);
 
             if (i % 10 === 9 || i === res.length - 1) {
-                let hr = $("<hr class='bookshelvesHr'>")
-                $('.posted').append(postedBooks).append(hr)
-                postedBooks = $("<div>").addClass("postedBooks")
+                let hr = $("<hr class='bookshelvesHr'>");
+                $('.posted').append(postedBooks).append(hr);
+                postedBooks = $("<div>").addClass("postedBooks");
             }
         }
 

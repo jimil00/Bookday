@@ -848,7 +848,7 @@ display:none;
 						<div class="insertBooknoteTitleTitle">제목</div>
 						<div class="insertBooknoteTitleBox">
 							<input type="text" id="insertBooknoteTitleTxt"
-								placeholder="제목을 입력해주세요." maxlength="200">
+								placeholder="제목을 입력해주세요." maxlength="101">
 
 						</div>
 					</div>
@@ -1055,6 +1055,24 @@ display:none;
                     $(".bookInfo").append(divSearchResultBookInfo);
 
                 }
+                $('#insertBooknoteTitleTxt').keyup(function () {
+                    let title = $(this).val();
+
+                    // 글자수 세기
+                    if (title.length == 0 || title == '') {
+                        $('.textCount').text('0자');
+                    } else {
+                        $('.textCount').text(title.length + '자');
+                    }
+					console.log(title.length)
+                    // 글자수 제한
+                    if (title.length > 100) {
+                        // 100자 부터는 타이핑 되지 않도록
+                        $(this).val($(this).val().substring(0, 100));
+                        // 100자 넘으면 알림창 뜨도록
+                        alert('제목은 100자까지 입력 가능합니다.');
+                    };
+                });
                 //footer: 사업자 정보 토글 기능
                 $("#business_info_text").hide();
 
