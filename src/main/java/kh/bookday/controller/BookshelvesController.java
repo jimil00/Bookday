@@ -70,7 +70,7 @@ public class BookshelvesController {
 		System.out.println(pcount);
 		model.addAttribute("pcount", pcount);
 		
-		List<PostDTO> plist = pservice.select20PostListById(id, 0);
+		List<PostDTO> plist = pservice.select20PostListById(id);
 		model.addAttribute("plist", plist);
 
 		return "mybook/bookshelves";
@@ -83,7 +83,7 @@ public class BookshelvesController {
 		
 		String id = String.valueOf(session.getAttribute("loginID"));
 		
-		return new Gson().toJson(pservice.select20PostListById(id, count));
+		return new Gson().toJson(pservice.selectNextPostListById(id, count));
 	}
 
 	@ExceptionHandler(Exception.class)

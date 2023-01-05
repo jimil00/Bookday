@@ -791,8 +791,8 @@ span.size-20 {
 								<hr class="selectPCHr">
 								<div class="insertPc">
 									<div class="insertPcContent">
-										<textarea class="insertPcContentBox" maxlength="200"></textarea>
-										<!-- 										<div class="insertPcContentBox" contenteditable="true"></div> -->
+<!-- 										<textarea class="insertPcContentBox" maxlength="200"></textarea> -->
+										<div class="insertPcContentBox" contenteditable="true"></div>
 									</div>
 									<div class="insertPcBtn">
 										<button id="insertPcBtn">입력</button>
@@ -935,13 +935,13 @@ span.size-20 {
                     } else {
                         $('.textCount').text(content.length + '자');
                     }
-
+					console.log(content.length)
                     // 글자수 제한
                     if (content.length > 200) {
                         // 200자 부터는 타이핑 되지 않도록
-                        $(this).val($(this).val().substring(0, 201));
+                        $(this).html($(this).html().substring(0, 200));
                         // 200자 넘으면 알림창 뜨도록
-                        alert('200자까지 입력 가능합니다.');
+                        alert('댓글은 200자까지 입력 가능합니다.');
                     };
                 });
                 
@@ -1023,7 +1023,7 @@ span.size-20 {
                     }
                     function insertPostComment(){
 
-                        let pc_content = $(".insertPcContentBox").val();
+                        let pc_content = $(".insertPcContentBox").html();
                         let p_seq = $("#p_seq").val();
 
                         $.ajax({
@@ -1034,7 +1034,7 @@ span.size-20 {
                                 "p_seq": p_seq
                             }, success:function(data){
                                 postCommentList(data);
-                                $(".insertPcContentBox").val("");
+                                $(".insertPcContentBox").html("");
                             }
                         })
                     }
@@ -1045,7 +1045,7 @@ span.size-20 {
                     
                     $(".insertPcContentBox").on("keydown", function(e){
 						if(e.keyCode == 13 && e.shiftKey == false) {
-							let pc_content = $(".insertPcContentBox").val();
+							let pc_content = $(".insertPcContentBox").html();
 							insertPostComment();
 						}
                     });

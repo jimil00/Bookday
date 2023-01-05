@@ -927,6 +927,24 @@ span.size-30 {
 				}
 
             });
+            $('.insertbookmarkContentBox').keyup(function () {
+                let bookmark = $(this).html();
+
+                // 글자수 세기
+                if (bookmark.length == 0 || bookmark == '') {
+                    $('.textCount').text('0자');
+                } else {
+                    $('.textCount').text(bookmark.length + '자');
+                }
+				console.log(bookmark.length)
+                // 글자수 제한
+                if (bookmark.length > 200) {
+                    // 200자 부터는 타이핑 되지 않도록
+                    $(this).html($(this).html().substring(0, 200));
+                    // 200자 넘으면 알림창 뜨도록
+                    alert('북마크는 200자까지 입력 가능합니다.');
+                };
+            });
         	$(document).on("click", ".bookImg", function(){
         		let b_isbn = $(this).attr("isbn");
         		location.href = "/book/selectBookinfo?b_isbn="+b_isbn;

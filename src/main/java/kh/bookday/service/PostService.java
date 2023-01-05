@@ -42,10 +42,15 @@ public class PostService {
 		return dao.selectPostCountById(id);
 	}
 	
+	// 포스트 리스트 먼저 출력(jstl)
+	public List<PostDTO> select20PostListById(String id){
+		return dao.select20PostListById(id);
+	}
+	
 	// 책장 페이지) 포스트 올린 책 20개씩 출력(무한 스크롤)
-	public List<PostDTO> select20PostListById(String id, int count) {
+	public List<PostDTO> selectNextPostListById(String id, int count) {
 
-		if (dao.select20PostCount() < (count * 20) + 1) {
+		if (dao.selectPostCountById(id) < (count * 20) + 1) {
 			return null;
 		}
 
@@ -54,7 +59,7 @@ public class PostService {
 		data.put("max", (count * 20) + 20);
 		data.put("id", id);
 
-		return dao.select20PostListById(data);
+		return dao.selectNextPostListById(data);
 	}
 
 	// 포스트 페이지) 포스트 리스트 출력
