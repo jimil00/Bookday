@@ -49,8 +49,17 @@
           <artifactId>spring-jdbc</artifactId>
           <version>${org.springframework-version}</version>
       </dependency>
-      
-      <!-- MyBatis Related-->
+
+       <!-- 게터세터생성자-->
+       <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+       <dependency>
+           <groupId>org.projectlombok</groupId>
+           <artifactId>lombok</artifactId>
+           <version>1.18.24</version>
+           <scope>provided</scope>
+       </dependency>
+
+       <!-- MyBatis Related-->
       <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
       <dependency>
           <groupId>org.mybatis</groupId>

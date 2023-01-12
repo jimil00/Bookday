@@ -40,10 +40,14 @@
       ]]>
 	</select>
 	
-	<update id="addViewCount">
+	<update id="upViewCount">
 		update post set p_view_count = p_view_count+1 where p_seq = #{p_seq}
 	</update>
-	
+
+	<update id="downViewCount">
+		update post set p_view_count = p_view_count-1 where p_seq = #{p_seq}
+	</update>
+
 	<select id="selectPostByPseq" resultType="kh.bookday.dto.PostDTO">
 		select * from post where p_seq = #{p_seq}
 	</select>
@@ -110,6 +114,10 @@
 		group by b_genre
 		having count(b_genre)>1))
 		order by b_genre
+	</select>
+	
+	<select id="selectPostListById" resultType="kh.bookday.dto.PostDTO">
+		select * from post where p_writer_id = #{id}
 	</select>
 <!-- 수진 -->
 

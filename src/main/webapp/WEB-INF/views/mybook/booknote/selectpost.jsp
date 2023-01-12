@@ -952,7 +952,7 @@ span.size-20 {
                             let pcContents = $("<div>").addClass("pcContents").attr("seq", res[i].pc_seq);
 
                             let pcWriterImg = $("<div>").addClass("pcWriterImg");
-                            let img = $("<img>").attr("src", res[i].sysprofname);
+                            let img = $("<img>").attr("src", "/resources/profile/"+res[i].sysprofname);
 
                             pcWriterImg.append(img);
                             pcContents.append(pcWriterImg);

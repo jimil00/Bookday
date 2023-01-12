@@ -744,9 +744,11 @@ span.size-30 {
 					<div class="selectBookmarkList">
 						<c:choose>
 							<c:when test="${empty list}">
+								<div class="empty">
 								<hr>
 								<div class="emptyContents">북마크가 없습니다.</div>
 								<hr>
+								</div>
 							</c:when>
 							<c:otherwise>
 
@@ -1030,7 +1032,7 @@ span.size-30 {
             function setBookmarkPrepend(res) {
 
                 for (let i = 0; i < res.length; i++) {
-
+					$(".empty").remove();
                     let bookmarkContents = $("<div>").addClass("bookmarkContents").attr("seq", res[i].bm_seq).attr("writer", res[i].bm_writer_id);
 
                     let bookmarkContentsImg = $("<div>").addClass("bookmarkContentsImg");

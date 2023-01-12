@@ -91,8 +91,8 @@ public class PostService {
 	}
 	
 	// 포스트 페이지) 포스트 조회수
-	public void addViewCount(int p_seq) {
-		dao.addViewCount(p_seq);
+	public void upViewCount(int p_seq) {
+		dao.upViewCount(p_seq);
 	}
 	
 	// 포스트 페이지) 포스트 디테일 출력
@@ -111,6 +111,7 @@ public class PostService {
 		if(!ldao.selectPostLike(dto)) {
 			result = ldao.insertPostLike(dto);
 			dao.updatePLCUp(dto.getP_seq());
+			dao.downViewCount(dto.getP_seq());
 		}
 		return String.valueOf(result);
 	}
@@ -121,6 +122,7 @@ public class PostService {
 		if(ldao.selectPostLike(dto)) {
 			result = ldao.deletePostLike(dto);
 			dao.updatePLCDown(dto.getP_seq());
+			dao.downViewCount(dto.getP_seq());
 		}
 		return String.valueOf(result);
 	}

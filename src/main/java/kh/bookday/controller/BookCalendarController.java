@@ -45,7 +45,7 @@ public class BookCalendarController {
 	@RequestMapping("selectBookCalbyId")
 	public String selectBookCalbyId() {
 		String id = String.valueOf(session.getAttribute("loginID"));
-
+		System.out.println(id);
 		return new Gson().toJson(service.selectPostListById(id));
 	}
 

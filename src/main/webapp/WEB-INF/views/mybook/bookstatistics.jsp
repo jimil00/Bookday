@@ -329,6 +329,11 @@ display:none;
 	border-radius: 2%;
 }
 
+.fvrBook, .fvrWriter, .fvrGenre{
+	cursor:pointer;
+}
+
+
 .explanation{
 	line-height: 80px;
 	height : 70px;
@@ -532,7 +537,7 @@ display:none;
 											<div class="fvrCon">
 											<c:forEach var="i" items="${data }">
 												<p>
-													<img src="${i.B_IMG_URL }" seq="${i.B_ISBN}" class="fvrBook">
+													<img src="${i.B_IMG_URL }" isbn="${i.B_ISBN}" class="fvrBook">
 												</p>
 											</c:forEach>
 											</div>
@@ -554,7 +559,7 @@ display:none;
 										<c:otherwise>
 											<div class="fvrCon">
 											<c:forEach var="w" items="${fvrWriter }">
-												<p>${w.B_WRITER }</p>
+												<p><span class="fvrWriter">${w.B_WRITER }</span></p>
 											</c:forEach>
 											</div>
 										</c:otherwise>
@@ -575,7 +580,7 @@ display:none;
 										<c:otherwise>
 											<div class="fvrCon">
 											<c:forEach var="g" items="${fvrGenre }">
-												<p>${g.B_GENRE }</p>
+												<p><span class="fvrGenre">${g.B_GENRE }</span></p>
 											</c:forEach>
 											</div>
 										</c:otherwise>
@@ -697,8 +702,18 @@ display:none;
 				location.href = "/booknote/selectPostListRev";
 			});
 
-
-			
+			$(document).on("click", ".fvrBook", function(){
+				let b_isbn = $(this).attr("isbn");
+				location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
+			})
+			$(document).on("click", ".fvrWriter", function(){
+				let writer = $(this).html();
+				location.href = "/search/toSearch?searchWord="+writer;
+			})
+			$(document).on("click", ".fvrGenre", function(){
+				let genre = $(this).text();
+				location.href = "/search/toSearch?searchWord="+genre;
+			})
 
 			
             //footer: 사업자 정보 토글 기능
