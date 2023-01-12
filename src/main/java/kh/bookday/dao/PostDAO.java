@@ -47,10 +47,12 @@ public class PostDAO {
 		db.update("Post.updatePost", dto);		
 	}
 	
-	public void addViewCount(int p_seq) {
-		db.update("Post.addViewCount", p_seq);
+	public void upViewCount(int p_seq) {
+		db.update("Post.upViewCount", p_seq);
 	}
-	
+
+	public void downViewCount(int p_seq) {db.update("Post.downViewCount", p_seq); }
+
 	// 포스트 디테일 출력
 	public PostDTO selectPostByPseq(int p_seq){
 		return db.selectOne("Post.selectPostByPseq", p_seq);

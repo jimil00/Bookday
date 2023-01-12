@@ -133,7 +133,7 @@ public class BooknoteController {
 		MemberDTO mdto = mservice.selectMemberById(id);
 		model.addAttribute("mdto", mdto);
 		
-		service.addViewCount(p_seq);
+		service.upViewCount(p_seq);
 		
 		// 포스트 디테일
 		PostDTO dto = service.selectPostByPseq(p_seq);
@@ -163,7 +163,7 @@ public class BooknoteController {
 		MemberDTO mdto = mservice.selectMemberById(id);
 		model.addAttribute("mdto", mdto);
 		
-		service.addViewCount(p_seq);
+		service.upViewCount(p_seq);
 		
 		// 포스트 디테일
 		PostDTO dto = service.selectPostByPseq(p_seq);

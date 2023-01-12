@@ -290,6 +290,9 @@ span.size-30 {
 	font-variation-settings: 'FILL' 1, 'wght' 200, 'GRAD' 200, 'opsz' 20
 }
 /*contents*/
+.bookCal, .bookYear{
+	cursor:pointer;
+}
 .rap {
 	max-width: 700px;
 	margin: auto;
@@ -826,6 +829,10 @@ display:none;
 			$("#snBooknote").on("click", function() {
 				location.href = "/booknote/selectPostListRev";
 			});
+			$(document).on("click", ".bookCal, .bookYear", function(){
+				let b_isbn = $(this).attr("isbn");
+				location.href = "/book/selectBookinfo?b_isbn="+b_isbn;
+			})
 
 			const makeCalendar = (date) => {
 				  // 현재 년도와 월 받아오기
@@ -911,7 +918,7 @@ display:none;
 					$.getJSON("/bookstatistics/selectBookCalbyId")
 			        .done(res => {
 			            if (res != null) {
-			            	
+			            	console.log(res)
 			                setCalAppend(res);
 			                setYearAppend(res);
 			            }
@@ -936,7 +943,7 @@ display:none;
 						for(let j = start; j <= finish; j++){
 							console.log('j : '+j+'gt : ' + getTimeDate + '=' +(j==getTimeDate))
 						  if(getTimeDate == j){
-							  $(day).append('<img src='+list.b_img_url+' class="bookCal">');
+							  $(day).append('<img src='+list.b_img_url+' class="bookCal" isbn='+list.b_isbn+'>');
 						  }					
 						}
 							
@@ -960,7 +967,7 @@ display:none;
 			        	console.log(mnfn_read)
 			            console.log(year == yrfn_read && month == mnfn_read)
 			            if (year == yrfn_read && month == mnfn_read) {
-			                $(i).siblings(".month_book").append('<img src="' + list.b_img_url + '" class="bookYear">');
+			                $(i).siblings(".month_book").append('<img src="' + list.b_img_url + '" class="bookYear"  isbn='+list.b_isbn+'>');
 			            }
 
 			        })
