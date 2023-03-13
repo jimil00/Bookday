@@ -1,4 +1,4 @@
-# <div align=center><img src="https://user-images.githubusercontent.com/104720372/224584449-e6147f66-889b-4e13-a7ca-53129df09183.png" width="300" height="200"></div><br>책하루
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/224584449-e6147f66-889b-4e13-a7ca-53129df09183.png" width="250" height=""></div><br>책하루
 > 독서노트 기록 및 통계 서비스와 종이 책 구독 서비스를 결합한 웹사이트 개발
 ## 목차
 [1. 개발환경](#개발환경)   
