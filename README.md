@@ -1,4 +1,4 @@
-# <div align=center><img src="file:///C:/Users/JIMIL/OneDrive/%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4/%ED%95%99%EC%9B%90/%ED%8C%8C%EC%9D%B4%EB%84%90%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/bookday_logo_ver1(kor).png" width="256" height="160"></div><br>책하루
+# <div align=center><img src="./img/bookday_logo_ver1(kor).png" width="256" height="160"></div><br>책하루
 > 독서노트 기록 및 통계 서비스와 종이 책 구독 서비스를 결합한 웹사이트 개발
 ## 목차
 [1. 개발환경](#개발환경)   
