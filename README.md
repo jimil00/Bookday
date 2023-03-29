@@ -85,6 +85,8 @@
 ## 프로젝트 화면
 
 ### [메인 페이지]
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/228476115-f91e38b3-ca6e-4dfa-bd35-afd7eb3e07ef.gif
+></div>
 
 ### [로그인 화면]
 
