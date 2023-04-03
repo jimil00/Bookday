@@ -90,7 +90,7 @@
 ### [로그인 화면]
 
 ### [도서 상세 페이지]
-
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422019-1eb6c16b-3c30-4941-ba93-d66bab32a76e.png" width="900" height=""></div>
 ### [결제 페이지]
 
 ### [책가방(장바구니) 페이지]
