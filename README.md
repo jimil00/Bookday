@@ -89,6 +89,8 @@
 
 ### [로그인 화면]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229423249-46f189ff-b9ce-4d89-8ed5-3579b2fbb420.png" width="1200" height=""></div>
+### [검색 페이지]
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/230830832-9b0eaf7a-3f90-4895-ad27-d565dfa64b2d.gif" width="1200" height=""></div>
 ### [도서 상세 페이지]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422019-1eb6c16b-3c30-4941-ba93-d66bab32a76e.png" width="1200" height=""></div>
 ### [결제 페이지]
