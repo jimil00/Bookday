@@ -44,7 +44,7 @@
   + 비밀번호 재설정 기능
 + **메인 페이지** 
   + 서비스 소개, 베스트셀러, 스테디셀러, 신간도서, 인기포스트 출력
-+ ** 담당역할) 검색 페이지**
++ **검색 페이지**
   + 도서명, 저자명, 장르 검색 시 관련된 책이나 포스트 출력
 + **도서 상세 페이지**
   + 도서명, 저자명, 장르, 출판사, 출판년도, 책소개 출력
@@ -89,7 +89,7 @@
 
 ### [로그인 화면]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229423249-46f189ff-b9ce-4d89-8ed5-3579b2fbb420.png" width="1200" height=""></div>
-### [검색 페이지]
+### [검색 페이지] - 담당역할
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/231100481-2ab4e928-47da-4c5a-9e3f-a88dfab7cfc2.gif" width="" height=""></div>
 ### [도서 상세 페이지]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422019-1eb6c16b-3c30-4941-ba93-d66bab32a76e.png" width="1200" height=""></div>
