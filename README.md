@@ -77,10 +77,10 @@
 ## 담당 기능
 + 서버 구축 및 DB 관리
 + 국립중앙정보도서관 Open API를 활용한 책 데이터 크롤링
-+ [마이 페이지(회원정보, 구독권정보 출력)](#마이-페이지)
-+ [검색 페이지](#검색-페이지)
-+ [결제 페이지](#결제-페이지)
-+ [책가방(장바구니) 페이지](#책가방장바구니-페이지)   
++ [마이 페이지(회원정보, 구독권정보 출력)](#마이-페이지---회원정보-구독권정보-출력-담당)
++ [검색 페이지](#검색-페이지---담당)
++ [결제 페이지](#결제-페이지---담당)
++ [책가방(장바구니) 페이지](#책가방장바구니-페이지---담당)   
 
 ## 프로젝트 화면
 
@@ -88,15 +88,15 @@
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/228476115-f91e38b3-ca6e-4dfa-bd35-afd7eb3e07ef.gif" width="900" height=""></div>
 ### [로그인 화면]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229423249-46f189ff-b9ce-4d89-8ed5-3579b2fbb420.png" width="1200" height=""></div>
-### [마이 페이지]
+### [마이 페이지] - 회원정보, 구독권정보 출력 담당
 # <div align=center><img src="" width="1200" height=""></div>
-### [검색 페이지]
+### [검색 페이지] - 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/231100481-2ab4e928-47da-4c5a-9e3f-a88dfab7cfc2.gif" width="" height=""></div>
 ### [도서 상세 페이지]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422019-1eb6c16b-3c30-4941-ba93-d66bab32a76e.png" width="1200" height=""></div>
-### [결제 페이지]
+### [결제 페이지] - 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422267-f86d0527-1d1b-437b-95b1-211170134f15.png" width="1200" height=""></div>
-### [책가방(장바구니) 페이지]
+### [책가방(장바구니) 페이지] - 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422790-53e6f55d-6fa4-4475-b96a-8fd180279aab.png" width="1200" height=""></div>
 + **구독, 미구독 여부에 따른 choose문 구성**
   + 구독 회원: 대여 현황, 배송지 정보, 대여하기 버튼 출력
