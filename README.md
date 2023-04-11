@@ -92,7 +92,7 @@
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422019-1eb6c16b-3c30-4941-ba93-d66bab32a76e.png" width="1200" height=""></div>
 ### [결제 페이지]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422267-f86d0527-1d1b-437b-95b1-211170134f15.png" width="1200" height=""></div>
-### [책가방(장바구니) 페이지]
+### 책가방(장바구니) 페이지
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422790-53e6f55d-6fa4-4475-b96a-8fd180279aab.png" width="1200" height=""></div>
 + **구독, 미구독 여부에 따른 choose문 구성**
   + 구독 회원: 대여 현황, 배송지 정보, 대여하기 버튼 출력
