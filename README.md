@@ -48,7 +48,7 @@
   
 ## 구현 기능
 
-+ **로그인 관련**
++ **로그인 및 회원가입**
   + 일반 로그인/카카오 로그인 기능
   + 로그인/로그아웃 기능
   + 로그인 인터셉터 기능
@@ -103,10 +103,12 @@
 
 ## 프로젝트 설명
 
-### [메인 페이지]
-# <div align=center><img src="https://user-images.githubusercontent.com/104720372/228476115-f91e38b3-ca6e-4dfa-bd35-afd7eb3e07ef.gif" width="900" height=""></div>
-### [로그인 화면]
+### [로그인 및 회원가입]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229423249-46f189ff-b9ce-4d89-8ed5-3579b2fbb420.png" width="1200" height=""></div>
+
+### [메인 페이지]
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/231743129-359d1098-5e29-4b22-9b35-339c51263eb2.gif" width="" height=""></div>
+
 ### [마이 페이지] - 회원정보, 구독권정보 출력 담당
 # <div align=center><img src="" width="1200" height=""></div>
 
