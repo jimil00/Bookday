@@ -107,25 +107,25 @@
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229423249-46f189ff-b9ce-4d89-8ed5-3579b2fbb420.png" width="1200" height=""></div>
 
 ### [메인 페이지]
-# <div align=center><img src="https://user-images.githubusercontent.com/104720372/231743129-359d1098-5e29-4b22-9b35-339c51263eb2.gif" width="" height=""></div>
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/231745286-10f97b84-e0f6-48c0-8254-77b4401169f5.gif" width="" height=""></div>
 
 ### [마이 페이지] - 회원정보, 구독권정보 출력 담당
-# <div align=center><img src="" width="1200" height=""></div>
-
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/231754375-80c68a85-66e3-48a7-b818-dd664cd80956.png" width="" height=""></div>
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/231746825-628e7b00-72a2-459f-9864-e951a791e853.png" width="" height=""></div>
 + 회원 정보, 구독권 정보 출력
-  
+
   + JSTL <c:choose> 태그를 활용하여 구독, 미구독 여부에 따른 화면 구성
     
-    + 구독 회원: 회원 정보, 구독권 정보, 대여 정보, 회원 정보 수정 버튼 출력
     + 미구독 회원: 회원 정보, 구독하기 버튼, 회원 정보 수정 버튼 출력
+    + 구독 회원: 회원 정보, 구독권 정보, 대여 정보, 회원 정보 수정 버튼 출력
 
-+ 회원정보 수정 및 프로필 사진 수정 기능
+  + JSTL <c:choose> 태그를 활용하여 구독 회원의 대여 여부에 따른 화면 구성
 
 ### [검색 페이지] - 담당
-# <div align=center><img src="https://user-images.githubusercontent.com/104720372/231100481-2ab4e928-47da-4c5a-9e3f-a88dfab7cfc2.gif" width="" height=""></div>
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/231752102-510f0e36-6aa2-4c2f-b116-c2d9196de09c.gif" width="" height=""></div>
 
 + 검색창 돋보기 버튼 클릭 시 모든 책과 포스트 출력
-+ 도서명, 저자명, 장르 검색 시 관련된 책과 포스트 출력
++ 검색창에 도서명, 저자명, 장르 검색 시 관련된 책과 포스트 출력
 + 도서 클릭 시 도서 상세 페이지로 이동
 
 ### [도서 상세 페이지]
@@ -134,8 +134,8 @@
 ### [결제 페이지] - 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229422267-f86d0527-1d1b-437b-95b1-211170134f15.png" width="1200" height=""></div>
 
-+ 카카오페이 API를 활용한 종이 책 구독권 결제 기능
-+ 결제 완료 시 회원 테이블에 등급 컬럼 변경과 월 구독 회원 테이블에 해당 사용자 정보 입력 후 결제 완료 팝업창 구현
++ 카카오페이 API를 활용하여 종이 책 구독권 결제 기능
++ 결제 완료 시 회원 테이블의 등급 컬럼 변경과 월 구독 회원 테이블에 해당 사용자 정보 입력 후 결제 완료 팝업창 구현
 + JSTL <c:choose> 태그를 활용하여 이미 결제한 사용자에겐 결제하기 버튼을 이용 중 버튼으로 전환
 
 ### [책가방(장바구니) 페이지] - 담당
