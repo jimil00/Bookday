@@ -187,3 +187,4 @@
     + 남은 대여 권수: 대여 완료 시 ajax를 활용하여 남은 대여 권수에 빌린 권수를 차감하는 쿼리 작성 
   
 ### [독서노트 페이지]
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/233368094-0b7c456a-6288-4cfb-b471-a2cc055764f6.gif" width="" height=""></div>
