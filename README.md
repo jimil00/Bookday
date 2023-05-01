@@ -14,20 +14,21 @@
 
 ## 개발환경
 
-+ **Language**
++ **Back-End**
   + JAVA 11
+  + OracleDB(ojdbc8)
+
++ **Front-End**
   + HTML5
   + CSS
   + JavaScript
+  + jQuery
   + JSP
-  + SQL
-
-+ **Database**
-  + Oracle
+  + Ajax
 
 + **Web Server & WAS**
-  + Apache-Tomcat 8.5
   + AWS EC2(Windows)
+  + Apache-Tomcat 8.5
 
 + **Framework & Library**
   + Spring Framework
@@ -39,7 +40,10 @@
   + EL
   + Ajax
 
-+ **협업 툴**
++ **Tools & ETC**
+  + Eclipse
+  + VSCode
+  + SQL Developer
   + GitHub
   + SourceTree
   + GoogleDrive
