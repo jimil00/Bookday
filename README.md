@@ -42,7 +42,7 @@
   + 카카오(로그인, 결제, 우편번호)
   + 네이버 클라우드 플랫폼(SMS)
   + Summer Note
-  + 국립중앙정보도서관 Open API
+  + 국립중앙정보도서관
 
 + **Tools & ETC**
   + Eclipse
