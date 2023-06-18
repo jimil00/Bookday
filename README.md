@@ -36,9 +36,7 @@
   + jQuery
   + Gson
   + Json
-  + JSTL Core
-  + EL
-  + Ajax
+  + JSTL
 
 + **API**
   + 카카오(로그인, 결제, 우편번호)
