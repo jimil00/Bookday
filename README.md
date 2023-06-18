@@ -53,7 +53,7 @@
 ## 구현 기능
 
 + **국립중앙정보도서관 Open API를 활용한 크롤링**
-  + 책 데이터 총 200개 이상 수집
+  + 책 데이터 총 200개 이상 수집 및 저장
 
 + **로그인 및 회원가입**
   + 일반 로그인/카카오 로그인
@@ -248,6 +248,8 @@ public class bookData {
 }
 
 ```
++ 책 데이터 총 200개 이상 수집 및 저장
+
 ### [로그인 및 회원가입]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229423249-46f189ff-b9ce-4d89-8ed5-3579b2fbb420.png" width="1200" height=""></div>
 
