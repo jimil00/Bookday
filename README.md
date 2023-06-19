@@ -252,7 +252,7 @@ public class bookData {
 }
 
 ```
-+ 책 데이터 총 200개 이상 수집 및 저장
++ **책 데이터 총 200개 이상 수집 및 저장**
 
 ### [로그인 및 회원가입]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/229423249-46f189ff-b9ce-4d89-8ed5-3579b2fbb420.png" width="1200" height=""></div>
@@ -263,7 +263,7 @@ public class bookData {
 ### [마이 페이지] - 회원 정보, 구독권 정보 출력 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/231852410-d252102f-0cb1-4d17-ace2-771074873425.png" width="" height=""></div>
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/231852496-efbfb4c4-0795-427d-9a44-c83d508b7f06.png" width="" height=""></div>
-+ 회원 정보, 구독권 정보 출력
++ **회원 정보, 구독권 정보 출력**
 
   + JSTL <c:choose> 태그를 활용하여 구독, 미구독 여부에 따른 화면 구성
     
@@ -275,18 +275,19 @@ public class bookData {
 ### [검색 페이지] - 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/231752102-510f0e36-6aa2-4c2f-b116-c2d9196de09c.gif" width="" height=""></div>
 
-+ 검색창 돋보기 버튼 클릭 시 모든 책과 포스트 출력
-+ 검색창에 도서명, 저자명, 장르 검색 시 관련된 책과 포스트 출력
-+ 도서 클릭 시 도서 상세 페이지로 이동
++ **검색창 돋보기 버튼 클릭 시 모든 책과 포스트 출력**
++ **검색창에 도서명, 저자명, 장르 검색 시 관련된 책과 포스트 출력**
++ **도서 클릭 시 도서 상세 페이지로 이동**
 
 ### [도서 상세 페이지]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/231857787-a9dab394-a6f9-4aae-a9d0-9e0fbc53d853.gif" width="" height=""></div>
 
 ### [결제 페이지] - 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/231871654-5f65dbf3-6221-41c4-96fb-1f55b81013a0.gif" width="" height=""></div>
-+ 카카오페이 API를 활용하여 종이 책 구독권 결제 기능
-+ 결제 완료 시 회원 테이블의 등급 컬럼 변경과 월 구독 회원 테이블에 해당 사용자 정보 입력 후 결제 완료 팝업창 구현
-+ JSTL <c:choose> 태그를 활용하여 이미 결제한 사용자에겐 결제하기 버튼을 이용 중 버튼으로 전환
++ **카카오페이 API를 활용하여 종이 책 구독권 결제 기능**
+ 
+ + 결제 완료 시 회원 테이블의 등급 컬럼 변경과 월 구독 회원 테이블에 해당 사용자 정보 입력 후 결제 완료 팝업창 구현
+ + JSTL <c:choose> 태그를 활용하여 이미 결제한 사용자에겐 결제하기 버튼을 이용 중 버튼으로 전환
 
 ### [책가방(장바구니) 페이지] - 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/231871370-a96a06b4-ccfe-4ec2-abcf-4e6e27d224b9.gif" width="" height=""></div>
