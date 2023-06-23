@@ -285,7 +285,7 @@ public class bookData {
 ### [결제 페이지] - 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/231871654-5f65dbf3-6221-41c4-96fb-1f55b81013a0.gif" width="" height=""></div>
 
-+ **카카오페이 API를 활용하여 종이 책 구독권 결제 기능**
++ **카카오페이 API를 활용하여 종이책 구독권 결제 기능**
  
   + 결제 완료 시 회원 테이블의 등급 컬럼 변경과 월 구독 회원 테이블에 해당 사용자 정보 입력 후 결제 완료 팝업창 구현
   + JSTL <c:choose> 태그를 활용하여 이미 결제한 사용자에겐 결제하기 버튼을 이용 중 버튼으로 전환
