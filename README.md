@@ -11,6 +11,7 @@
 [3. 구현 기능](#구현-기능)   
 [4. 담당 역할](#담당-역할)   
 [5. 프로젝트 설명](#프로젝트-설명)
+[6. 프로젝트 참여 소감](#프로젝트-참여-소감)
 
 ## 개발환경
 
@@ -340,3 +341,5 @@ public class bookData {
   
 ### [독서노트 페이지]
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/233368094-0b7c456a-6288-4cfb-b471-a2cc055764f6.gif" width="" height=""></div>
+
+## 프로젝트 참여 소감
